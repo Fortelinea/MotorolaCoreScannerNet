@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motorola.Test", "Motorola.Test\Motorola.Test.csproj", "{FA4131E2-857B-4BF0-81A7-F17F8BEE1F9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motorola.Snapi", "MotorolaSnapi\Motorola.Snapi.csproj", "{8609800B-EAF7-4A99-82D5-5899DF1E0747}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA4131E2-857B-4BF0-81A7-F17F8BEE1F9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA4131E2-857B-4BF0-81A7-F17F8BEE1F9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA4131E2-857B-4BF0-81A7-F17F8BEE1F9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA4131E2-857B-4BF0-81A7-F17F8BEE1F9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8609800B-EAF7-4A99-82D5-5899DF1E0747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8609800B-EAF7-4A99-82D5-5899DF1E0747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8609800B-EAF7-4A99-82D5-5899DF1E0747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8609800B-EAF7-4A99-82D5-5899DF1E0747}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
