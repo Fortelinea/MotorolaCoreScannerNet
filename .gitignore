@@ -1,0 +1,96 @@
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+#Visual Studio files
+*.sln.ide/
+*.[Oo]bj
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.sdf
+*.opensdf
+*.unsuccessfulbuild
+ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+Ankh.NoLoad
+
+nuget/package/lib/*
+nuget/package/*.nupkg
+
+#Telerik
+.JustCode/
+*.jtconfig
+
+#MonoDevelop
+*.pidb
+*.userprefs
+
+#Tooling
+_ReSharper*/
+*.[Rr]esharper
+[Tt]est[Rr]esult*
+*.sass-cache
+
+#Project files
+[Bb]uild/
+
+#Subversion files
+.svn
+
+# Office Temp Files
+~$*
+
+#NuGet
+packages/
+
+#ncrunch
+*ncrunch*
+*crunch*.local.xml
+
+# visual studio database projects
+*.dbmdl
+
+#Test files
+*.testsettings
+
+*.jmconfig
+RCWPF/
+
+#Installer
+Prima.Installer.Setup/Client
+Prima.Installer.Setup/Common
+Prima.Installer.Setup/Server/Service.Binaries.wxs
+Prima.Installer.Bootstrapper/Lib
+
+#Wizard plugins
+Prima.Installer.Server/Wizards
+
+#Installer
+Installer/**/*.dll
+Installer/**/*.msi
+Installer/**/*.txt
+Installer/**/*.exe
+Installer/**/*.zip
+
+
+Installer/Clients/Reports/*
+Installer/Server/PrimaWebService/*
+Installer/Prima/*
