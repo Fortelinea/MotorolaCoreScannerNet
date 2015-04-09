@@ -1,4 +1,5 @@
-﻿using CoreScanner;
+﻿using System;
+using CoreScanner;
 using Motorola.Snapi.Enums;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,12 +36,37 @@ namespace Motorola.Snapi.Attributes
             : base(scannerId, scannerDriver)
         {
             var attr = new List<ushort>();
-            attr.AddRange(Enumerable.Range(680, 22).Select(i => (ushort)i));
-            attr.Add(707);
-            attr.Add(554);
-            attr.Add(547);
-            GetAttributes(attr); // Needs to be finished
+            attr.AddRange(Enum.GetValues(typeof(OcrAttribute)).Cast<ushort>());
+            var xmlAttr = GetAttributes(attr); // Needs to be finished
             //_isOcrBEnabled = ;
+        }
+
+        private enum OcrAttribute
+        {
+            Template = 547,
+            SecurityLevel = 554,
+            OcrAEnable = 680,
+            OcrBEnable = 681,
+            Micre13BEnable = 682,
+            UsCurrencyEnable = 683,
+            OcrAVariant = 684,
+            OcrBVariant = 685,
+            ValidCharacters = 686,
+            Orientation = 687,
+            CheckDigitMod = 688,
+            MinCharacters = 689,
+            MaxCharacters = 690,
+            Lines = 691,
+            CheckDigitValidation = 694,
+            QuietZone = 695,
+            WhiteLevel = 696,
+            Despeckle = 697,
+            Thicken = 698,
+            LowPassFilter = 699,
+            CheckDigitMultiplier = 700,
+            EnableIllumination = 701,
+            EnableFinder = 702,
+            EnableExternalFinder = 707
         }
 
         /// <summary>

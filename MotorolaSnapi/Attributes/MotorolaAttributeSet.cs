@@ -2,7 +2,10 @@
 using Motorola.Snapi.Enums;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Motorola.Snapi.Attributes
 {
@@ -21,22 +24,38 @@ namespace Motorola.Snapi.Attributes
             _setAttributeXml = String.Format(@"<inArgs><cmdArgs><scannerID>{0}</scannerID><arg-xml><attrib_list><attribute><id>{1}</id><datatype>{2}</datatype><value>{3}</value></attribute></attrib_list></arg-xml></cmdArgs></inArgs>", scannerId, @"{0}", @"{1}", @"{2}");
         }
 
-        protected void GetAttribute(ushort id)
+        protected string GetAttribute(ushort id)
         {
             var xml = String.Format(_getAttributesXml, id);
             string outXml;
             int status;
 
             _scannerDriver.ExecCommand((int)ScannerCommand.AttrGet, ref xml, out outXml, out status);
+            return outXml;
         }
 
-        protected void GetAttributes(List<ushort> ids)
+
+        protected IDictionary<ushort, object> GetAttributes(List<ushort> ids)
         {
             var xml = String.Format(_getAttributesXml, String.Join(",", ids.Select(n => n.ToString()).ToArray()));
             string outXml;
             int status;
 
             _scannerDriver.ExecCommand((int)ScannerCommand.AttrGet, ref xml, out outXml, out status);
+
+            return ParseAttributes(outXml);
+        }
+
+        private IDictionary<ushort, object> ParseAttributes(string outXml)
+        {
+            var retval = new Dictionary<ushort, object>();
+            XDocument doc = XDocument.Parse(outXml);
+            var attributes = doc.Descendants("attribute");
+            foreach (var attribute in attributes)
+            {
+                //retval.Add(attribute.Descendants());
+            }
+            return retval;
         }
 
         protected void SetAttribute(int attributeId, DataType dataType, object value)
