@@ -12,10 +12,10 @@ namespace Motorola.Snapi.Commands
     {
         protected readonly string _getCommandXml;
         protected readonly string _setCommandXml;
-        protected CCoreScannerClass _scannerDriver;
+        protected ICoreScanner _scannerDriver;
         protected int _scannerId;
 
-        protected MotorolaCommandSet(int scannerId, CCoreScannerClass scannerDriver)
+        protected MotorolaCommandSet(int scannerId, ICoreScanner scannerDriver)
         {
             _scannerId = scannerId;
             _scannerDriver = scannerDriver;

@@ -21,7 +21,7 @@ namespace Motorola.Test
             foreach (var scanner in BarcodeScannerManager.Instance.GetDevices())
             {
                 ((BarcodeScanner)scanner).EnableLeicaBarcodes();
-                //scanner.EnableDataMatrixBarcodes();
+                scanner.EnableDataMatrixBarcodes();
             }
 
             BarcodeScannerManager.Instance.DataReceived += Instance_DataReceived;

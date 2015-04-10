@@ -8,9 +8,9 @@ namespace Motorola.Snapi.Commands
 {
     public class Keyboard
     {
-        private CCoreScannerClass _scannerDriver;
+        private ICoreScanner _scannerDriver;
 
-        internal Keyboard(CCoreScannerClass scannerDriver)
+        internal Keyboard(ICoreScanner scannerDriver)
         {
             _scannerDriver = scannerDriver;
         }

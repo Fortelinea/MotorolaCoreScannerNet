@@ -19,5 +19,7 @@ namespace Motorola.Snapi
         string SerialNumber { get; set; }
 
         int VendorId { get; set; }
+
+        void EnableDataMatrixBarcodes();
     }
 }

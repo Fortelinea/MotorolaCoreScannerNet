@@ -11,9 +11,9 @@ namespace Motorola.Snapi
     public class BarcodeScanner : IMotorolaSnapiScanner
     {
         private Ocr _ocr;
-        private CCoreScannerClass _scannerDriver;
+        private ICoreScanner _scannerDriver;
 
-        internal BarcodeScanner(CCoreScannerClass scannerDriver, XElement scannerXml)
+        internal BarcodeScanner(ICoreScanner scannerDriver, XElement scannerXml)
         {
             _scannerDriver = scannerDriver;
             Parse(scannerXml);
@@ -78,6 +78,11 @@ namespace Motorola.Snapi
         public string SerialNumber { get; set; }
 
         public int VendorId { get; set; }
+
+        public void EnableDataMatrixBarcodes()
+        {
+            //TODO Implement
+        }
 
         public void EnableLeicaBarcodes()
         {

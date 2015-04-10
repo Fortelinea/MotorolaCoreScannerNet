@@ -2,9 +2,7 @@
 using Motorola.Snapi.Enums;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace Motorola.Snapi.Attributes
@@ -13,10 +11,10 @@ namespace Motorola.Snapi.Attributes
     {
         protected readonly string _getAttributesXml;
         protected readonly string _setAttributeXml;
-        protected CCoreScannerClass _scannerDriver;
+        protected ICoreScanner _scannerDriver;
         protected int _scannerId;
 
-        protected MotorolaAttributeSet(int scannerId, CCoreScannerClass scannerDriver)
+        protected MotorolaAttributeSet(int scannerId, ICoreScanner scannerDriver)
         {
             _scannerId = scannerId;
             _scannerDriver = scannerDriver;
@@ -24,18 +22,27 @@ namespace Motorola.Snapi.Attributes
             _setAttributeXml = String.Format(@"<inArgs><cmdArgs><scannerID>{0}</scannerID><arg-xml><attrib_list><attribute><id>{1}</id><datatype>{2}</datatype><value>{3}</value></attribute></attrib_list></arg-xml></cmdArgs></inArgs>", scannerId, @"{0}", @"{1}", @"{2}");
         }
 
-        protected string GetAttribute(ushort id)
+        protected ScannerAttribute GetAttribute(ushort id)
         {
             var xml = String.Format(_getAttributesXml, id);
             string outXml;
             int status;
 
             _scannerDriver.ExecCommand((int)ScannerCommand.AttrGet, ref xml, out outXml, out status);
-            return outXml;
+
+            XDocument doc = XDocument.Parse(outXml);
+            var xmlAttribute = doc.Descendants("attribute").Single();
+            var name = xmlAttribute.Descendants("name").Single().Value;
+            var dataType = (DataType)xmlAttribute.Descendants("datatype").Single().Value[0];
+            var permission = xmlAttribute.Descendants("permission").Single().Value[0];
+            var stringValue = xmlAttribute.Descendants("value").Single().Value;
+            var value = ValueConverters.StringToActualType(dataType, stringValue);
+
+            var retval = new ScannerAttribute { Id = id, Name = name, DataType = dataType, Permission = permission, Value = value };
+            return retval;
         }
 
-
-        protected IDictionary<ushort, object> GetAttributes(List<ushort> ids)
+        protected IDictionary<OcrAttribute, ScannerAttribute> GetAttributes(List<ushort> ids)
         {
             var xml = String.Format(_getAttributesXml, String.Join(",", ids.Select(n => n.ToString()).ToArray()));
             string outXml;
@@ -43,24 +50,25 @@ namespace Motorola.Snapi.Attributes
 
             _scannerDriver.ExecCommand((int)ScannerCommand.AttrGet, ref xml, out outXml, out status);
 
-            return ParseAttributes(outXml);
-        }
-
-        private IDictionary<ushort, object> ParseAttributes(string outXml)
-        {
-            var retval = new Dictionary<ushort, object>();
+            var retval = new Dictionary<OcrAttribute, ScannerAttribute>();
             XDocument doc = XDocument.Parse(outXml);
             var attributes = doc.Descendants("attribute");
-            foreach (var attribute in attributes)
+            foreach (var xmlAttribute in attributes)
             {
-                //retval.Add(attribute.Descendants());
+                var id = ushort.Parse(xmlAttribute.Descendants("id").Single().Value);
+                var name = xmlAttribute.Descendants("name").Single().Value;
+                var dataType = (DataType)xmlAttribute.Descendants("datatype").Single().Value[0];
+                var permission = xmlAttribute.Descendants("permission").Single().Value[0];
+                var stringValue = xmlAttribute.Descendants("value").Single().Value;
+                var value = ValueConverters.StringToActualType(dataType, stringValue);
+                retval.Add((OcrAttribute)id, new ScannerAttribute { Id = id, Name = name, DataType = dataType, Permission = permission, Value = value });
             }
             return retval;
         }
 
-        protected void SetAttribute(int attributeId, DataType dataType, object value)
+        protected void SetAttribute(ScannerAttribute attribute)
         {
-            var xml = String.Format(_setAttributeXml, attributeId, dataType, value);
+            var xml = String.Format(_setAttributeXml, attribute.Id, attribute.DataType, attribute.Value);
             string outXml;
             int status;
 

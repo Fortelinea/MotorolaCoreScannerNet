@@ -2,10 +2,9 @@
 
 namespace Motorola.Snapi.Enums
 {
-    public enum DataType : byte
+    public enum DataType
     {
-        [Description("Array")]
-        A,
+        Array = 'A',
 
         [Description("UInt32")]
         D,

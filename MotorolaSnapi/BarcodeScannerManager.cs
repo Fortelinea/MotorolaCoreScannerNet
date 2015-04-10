@@ -16,12 +16,12 @@ namespace Motorola.Snapi
         public static readonly BarcodeScannerManager Instance = new BarcodeScannerManager();
         private static readonly object _accessLock = new object();
         private readonly Keyboard _keyboard;
-        private CCoreScannerClass _scannerDriver;
+        private ICoreScanner _scannerDriver;
 
         private BarcodeScannerManager()
         {
             if (_scannerDriver == null)
-                _scannerDriver = new CCoreScannerClass();
+                _scannerDriver = new CCoreScanner();
 
             _keyboard = new Keyboard(_scannerDriver);
         }
@@ -33,27 +33,27 @@ namespace Motorola.Snapi
             get { return _keyboard; }
         }
 
-        public static byte[] ParseHex(string hex)
-        {
-            int offset = hex.StartsWith("0x") ? 2 : 0;
-            if ((hex.Length % 2) != 0)
-            {
-                throw new ArgumentException("Invalid length: " + hex.Length);
-            }
-            byte[] ret = new byte[(hex.Length - offset) / 2];
+        //public static byte[] ParseHex(string hex)
+        //{
+        //    int offset = hex.StartsWith("0x") ? 2 : 0;
+        //    if ((hex.Length % 2) != 0)
+        //    {
+        //        throw new ArgumentException("Invalid length: " + hex.Length);
+        //    }
+        //    byte[] ret = new byte[(hex.Length - offset) / 2];
 
-            for (int i = 0; i < ret.Length; i++)
-            {
-                ret[i] = (byte)((ParseNybble(hex[offset]) << 4) |
-                                ParseNybble(hex[offset + 1]));
-                offset += 2;
-            }
-            return ret;
-        }
+        //    for (int i = 0; i < ret.Length; i++)
+        //    {
+        //        ret[i] = (byte)((ParseNybble(hex[offset]) << 4) |
+        //                        ParseNybble(hex[offset + 1]));
+        //        offset += 2;
+        //    }
+        //    return ret;
+        //}
 
         public void Attach()
         {
-            _scannerDriver.BarcodeEvent += OnBarcodeEvent;
+            //_scannerDriver.BarcodeEvent += OnBarcodeEvent;
 
             // Just register for a single event - barcode events
             string inXml = "<inArgs><cmdArgs><arg-int>1</arg-int><arg-int>1</arg-int></cmdArgs></inArgs>";
@@ -65,7 +65,7 @@ namespace Motorola.Snapi
         public void Close()
         {
             int status;
-            _scannerDriver.BarcodeEvent -= OnBarcodeEvent;
+            //_scannerDriver.BarcodeEvent -= OnBarcodeEvent;
             _scannerDriver.Close(0, out status);
         }
 
@@ -75,6 +75,7 @@ namespace Motorola.Snapi
 
             if (Open())
             {
+
                 // Lets list down all the scanners connected to the host
                 short numberOfScanners; // Number of scanners expect to be used
                 int[] connectedScannerIDList = new int[32]; // Random number - more than expected
@@ -100,17 +101,6 @@ namespace Motorola.Snapi
             _scannerDriver.Open(0 /* const: always 0 */, new short[] { (short)ScannerType.All }/* array of scanner types */, 1 /* size of prev parameter */, out status);
 
             return (((Status)status == Status.Success) || ((Status)status == Status.AlreadyOpened));
-        }
-
-        private static int ParseNybble(char c)
-        {
-            if (c >= '0' && c <= '9')
-            { return c - '0'; }
-            if (c >= 'A' && c <= 'F')
-            { return c - 'A' + 10; }
-            if (c >= 'a' && c <= 'f')
-            { return c - 'a' + 10; }
-            throw new ArgumentException("Invalid hex digit: " + c);
         }
 
         private void OnBarcodeEvent(short eventType, ref string pscanData)
