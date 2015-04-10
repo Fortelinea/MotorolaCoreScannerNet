@@ -1,9 +1,9 @@
 ﻿using CoreScanner;
-using Motorola.Snapi.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using Motorola.Snapi.Constants;
 
 namespace Motorola.Snapi.Attributes
 {

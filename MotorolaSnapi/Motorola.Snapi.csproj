@@ -49,12 +49,11 @@
     <Compile Include="BarcodeScanEventArgs.cs" />
     <Compile Include="BarcodeScanner.cs" />
     <Compile Include="BarcodeScannerManager.cs" />
-    <Compile Include="Commands\HostMode.cs" />
-    <Compile Include="Commands\MotorolaCommandSet.cs" />
-    <Compile Include="Enums\BarcodeOrientation.cs" />
-    <Compile Include="Enums\DataType.cs" />
-    <Compile Include="Enums\DeviceParameter.cs" />
-    <Compile Include="Enums\OcrAttribute.cs" />
+    <Compile Include="Constants\BarcodeOrientation.cs" />
+    <Compile Include="Constants\DataType.cs" />
+    <Compile Include="Constants\DeviceParameter.cs" />
+    <Compile Include="Constants\HostMode.cs" />
+    <Compile Include="Constants\OcrAttribute.cs" />
     <Compile Include="IMotorolaSnapiScanner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValueConverters.cs" />

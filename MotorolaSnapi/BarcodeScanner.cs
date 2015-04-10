@@ -1,10 +1,10 @@
 ﻿using CoreScanner;
 using Motorola.Snapi.Attributes;
-using Motorola.Snapi.Enums;
 using System;
 using System.ComponentModel;
 using System.IO;
 using System.Xml.Linq;
+using Motorola.Snapi.Constants;
 
 namespace Motorola.Snapi
 {
@@ -17,31 +17,19 @@ namespace Motorola.Snapi
         {
             _scannerDriver = scannerDriver;
             Parse(scannerXml);
+            SetHostMode(HostMode.USB_SNAPI_Imaging);
             _ocr = new Ocr(ScannerId, _scannerDriver);
         }
 
-        public enum ScannerHostMode : uint
+
+        public int SetHostMode(string mode, bool permanent = false, bool silent = true)
         {
-            [Description("XUA-45001-1")]
-            IbmHid = 1,
-
-            [Description("XUA-45001-2")]
-            IbmTt = 2,
-
-            [Description("XUA-45001-3")]
-            HidKb = 3,
-
-            [Description("XUA-45001-8")]
-            OPOS = 8,
-
-            [Description("XUA-45001-9")]
-            SNAPI = 9,
-
-            [Description("XUA-45001-10")]
-            SnapiWithoutImaging = 10,
-
-            [Description("XUA-45001-11")]
-            CdcSerialEmulation = 11
+            string setCommandXml = @"<inArgs><scannerID>{0}</scannerID><cmdArgs><arg-string>{1}</arg-string><arg-bool>{2}</arg-bool><arg-bool>{3}</arg-bool></cmdArgs></inArgs>";
+            string inXml = string.Format(setCommandXml, ScannerId, mode, silent ? "TRUE" : "FALSE", permanent ? "TRUE" : "FALSE");
+            string outXml;
+            int status;
+            _scannerDriver.ExecCommand((int)ScannerCommand.DeviceSwitchHostMode, ref inXml, out outXml, out status);
+            return status;
         }
 
         public string DateOfManufacture { get; set; }
@@ -49,20 +37,6 @@ namespace Motorola.Snapi
         public string Firmware { get; set; }
 
         public Guid GUID { get; set; }
-
-        public ScannerHostMode HostMode
-        {
-            set
-            {
-                // The TRUE is for silent change, the FALSE is for permanent change
-                var inXml = String.Format(
-                    @"<inArgs><scannerID>{0}</scannerID><cmdArgs><arg-string>XUA-45001-{1}</arg-string><arg-bool>TRUE</arg-bool><arg-bool>FALSE</arg-bool></cmdArgs></inArgs>", ScannerId, (int)value);
-                string outXml;
-                int status;
-
-                _scannerDriver.ExecCommand((int)ScannerCommand.DeviceSwitchHostMode, ref inXml, out outXml, out status);
-            }
-        }
 
         public string ModelNumber { get; set; }
 

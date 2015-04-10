@@ -1,11 +1,11 @@
 ﻿using CoreScanner;
 using Motorola.Snapi.Commands;
-using Motorola.Snapi.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using Motorola.Snapi.Constants;
 
 namespace Motorola.Snapi
 {
@@ -16,7 +16,7 @@ namespace Motorola.Snapi
         public static readonly BarcodeScannerManager Instance = new BarcodeScannerManager();
         private static readonly object _accessLock = new object();
         private readonly Keyboard _keyboard;
-        private ICoreScanner _scannerDriver;
+        private CCoreScanner _scannerDriver;
 
         private BarcodeScannerManager()
         {
@@ -53,7 +53,7 @@ namespace Motorola.Snapi
 
         public void Attach()
         {
-            //_scannerDriver.BarcodeEvent += OnBarcodeEvent;
+            _scannerDriver.BarcodeEvent += OnBarcodeEvent;
 
             // Just register for a single event - barcode events
             string inXml = "<inArgs><cmdArgs><arg-int>1</arg-int><arg-int>1</arg-int></cmdArgs></inArgs>";
@@ -65,7 +65,7 @@ namespace Motorola.Snapi
         public void Close()
         {
             int status;
-            //_scannerDriver.BarcodeEvent -= OnBarcodeEvent;
+            _scannerDriver.BarcodeEvent -= OnBarcodeEvent;
             _scannerDriver.Close(0, out status);
         }
 
@@ -88,7 +88,7 @@ namespace Motorola.Snapi
                 XDocument xdoc = XDocument.Parse(outXml);
                 List<XElement> scanners = xdoc.Descendants("scanner").ToList();
 
-                scanners.ForEach(s => retval.Add(new BarcodeScanner(_scannerDriver, s)));
+                foreach (var s in scanners) retval.Add(new BarcodeScanner(_scannerDriver, s));
             }
 
             return retval;

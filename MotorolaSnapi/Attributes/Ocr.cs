@@ -1,8 +1,8 @@
 ﻿using System;
 using CoreScanner;
-using Motorola.Snapi.Enums;
 using System.Collections.Generic;
 using System.Linq;
+using Motorola.Snapi.Constants;
 
 namespace Motorola.Snapi.Attributes
 {
@@ -43,27 +43,27 @@ namespace Motorola.Snapi.Attributes
             var attributes = GetAttributes(attr);
             _isOcrBEnabled = (bool)attributes[OcrAttribute.OcrBEnable].Value;
             _isOcrAEnabled = (bool)attributes[OcrAttribute.OcrAEnable].Value;
-            _checkDigitMod = (ushort)attributes[OcrAttribute.CheckDigitMod].Value;
+            _checkDigitMod = Convert.ToUInt16(attributes[OcrAttribute.CheckDigitMod].Value);
             _checkDigitMultiplier = (string)attributes[OcrAttribute.CheckDigitMultiplier].Value;
-            _despeckle = (ushort)attributes[OcrAttribute.Despeckle].Value;
+            _despeckle = Convert.ToUInt16(attributes[OcrAttribute.Despeckle].Value);
             _enableExternalFinder = (bool)attributes[OcrAttribute.EnableExternalFinder].Value;
             _enableFinder = (bool)attributes[OcrAttribute.EnableFinder].Value;
             _enableUsCurrency = (bool)attributes[OcrAttribute.UsCurrencyEnable].Value;
             _isIlluminationEnabled = (bool)attributes[OcrAttribute.EnableIllumination].Value;
             _isMicre13BEnabled = (bool)attributes[OcrAttribute.Micre13BEnable].Value;
-            _lines = (ushort)attributes[OcrAttribute.Lines].Value;
-            _lowPassFilter = (ushort)attributes[OcrAttribute.LowPassFilter].Value;
-            _maxCharacters = (ushort)attributes[OcrAttribute.MaxCharacters].Value;
-            _minCharacters = (ushort)attributes[OcrAttribute.MinCharacters].Value;
-            _ocrAVariant = (ushort)attributes[OcrAttribute.OcrAVariant].Value;
-            _ocrBVariant = (ushort)attributes[OcrAttribute.OcrBVariant].Value;
+            _lines = Convert.ToUInt16(attributes[OcrAttribute.Lines].Value);
+            _lowPassFilter = Convert.ToUInt16(attributes[OcrAttribute.LowPassFilter].Value);
+            _maxCharacters = Convert.ToUInt16(attributes[OcrAttribute.MaxCharacters].Value);
+            _minCharacters = Convert.ToUInt16(attributes[OcrAttribute.MinCharacters].Value);
+            _ocrAVariant = Convert.ToUInt16(attributes[OcrAttribute.OcrAVariant].Value);
+            _ocrBVariant = Convert.ToUInt16(attributes[OcrAttribute.OcrBVariant].Value);
             _orientation = (BarcodeOrientation)attributes[OcrAttribute.Orientation].Value;
-            _quietZone = (ushort)attributes[OcrAttribute.QuietZone].Value;
-            _securityLevel = (ushort)attributes[OcrAttribute.SecurityLevel].Value;
+            _quietZone = Convert.ToUInt16(attributes[OcrAttribute.QuietZone].Value);
+            _securityLevel = Convert.ToUInt16(attributes[OcrAttribute.SecurityLevel].Value);
             _template = (string)attributes[OcrAttribute.Template].Value;
-            _thicken = (ushort)attributes[OcrAttribute.Thicken].Value;
+            _thicken = Convert.ToUInt16(attributes[OcrAttribute.Thicken].Value);
             _validCharacters = (string)attributes[OcrAttribute.ValidCharacters].Value;
-            _whiteLevel = (ushort)attributes[OcrAttribute.WhiteLevel].Value;
+            _whiteLevel = Convert.ToUInt16(attributes[OcrAttribute.WhiteLevel].Value);
         }
 
         /// <summary>

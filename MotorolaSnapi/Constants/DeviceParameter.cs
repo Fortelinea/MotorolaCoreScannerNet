@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Motorola.Snapi.Enums
+namespace Motorola.Snapi.Constants
 {
     internal enum DeviceParameter
     {
