@@ -4,31 +4,15 @@ namespace Motorola.Snapi.Enums
 {
     public enum DataType
     {
-        Array = 'A',
-
-        [Description("UInt32")]
-        D,
-
-        [Description("Int32")]
-        L,
-
-        [Description("Int16")]
-        I,
-
-        [Description("UInt16")]
-        W,
-
-        [Description("Bool")]
-        F,
-
-        [Description("String")]
-        S,
-
-        [Description("Char")]
-        C,
-
-        [Description("Byte")]
-        B,
+        Array = 'A'
+        UInt = 'D'
+        Int = 'L'
+        Short = 'I'
+        UShort = 'W'
+        Bool = 'F'
+        String = 'S'
+        Char = 'C'
+        Byte = 'B'
 
         Unknown
     }
