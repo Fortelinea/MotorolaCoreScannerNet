@@ -55,7 +55,7 @@ namespace Motorola.Snapi
         {
             _scannerDriver.BarcodeEvent += OnBarcodeEvent;
 
-            // Just register for a single event - barcode events
+            // Register for barcode events and PNP events.
             string inXml = "<inArgs><cmdArgs><arg-int>1</arg-int><arg-int>1</arg-int></cmdArgs></inArgs>";
             string outXml;
             int status;
@@ -84,11 +84,14 @@ namespace Motorola.Snapi
                 string outXml; //Scanner details output
                 int status; // Extended API return code
                 _scannerDriver.GetScanners(out numberOfScanners, connectedScannerIDList, out outXml, out status);
-
                 XDocument xdoc = XDocument.Parse(outXml);
                 List<XElement> scanners = xdoc.Descendants("scanner").ToList();
 
-                foreach (var s in scanners) retval.Add(new BarcodeScanner(_scannerDriver, s));
+                foreach (var s in scanners)
+                {
+                    var scanner = new BarcodeScanner(_scannerDriver, s);
+                    retval.Add(scanner);                   
+                }
             }
 
             return retval;

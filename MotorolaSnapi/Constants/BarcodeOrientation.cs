@@ -1,6 +1,6 @@
 ﻿namespace Motorola.Snapi.Constants
 {
-    public enum BarcodeOrientation : ushort
+    public enum BarcodeOrientation : byte
     {
         Normal = 0,
         Clockwise270 = 1,

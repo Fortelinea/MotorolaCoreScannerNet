@@ -1,5 +1,6 @@
 ﻿using Motorola.Snapi;
 using System;
+using Motorola.Snapi.Constants;
 
 namespace Motorola.Test
 {
@@ -21,6 +22,8 @@ namespace Motorola.Test
             foreach (var scanner in BarcodeScannerManager.Instance.GetDevices())
             {
                 //((BarcodeScanner)scanner).EnableLeicaBarcodes();
+                scanner.SetHostMode(HostMode.USB_SNAPI_Imaging);
+                scanner.Initialize();
                 scanner.EnableDataMatrixBarcodes();
             }
 

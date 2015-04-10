@@ -1,7 +1,6 @@
 ﻿using CoreScanner;
 using Motorola.Snapi.Attributes;
 using System;
-using System.ComponentModel;
 using System.IO;
 using System.Xml.Linq;
 using Motorola.Snapi.Constants;
@@ -11,14 +10,13 @@ namespace Motorola.Snapi
     public class BarcodeScanner : IMotorolaSnapiScanner
     {
         private Ocr _ocr;
-        private ICoreScanner _scannerDriver;
+        private CCoreScanner _scannerDriver;
+        private string _mode;
 
-        internal BarcodeScanner(ICoreScanner scannerDriver, XElement scannerXml)
+        internal BarcodeScanner(CCoreScanner scannerDriver, XElement scannerXml)
         {
             _scannerDriver = scannerDriver;
             Parse(scannerXml);
-            SetHostMode(HostMode.USB_SNAPI_Imaging);
-            _ocr = new Ocr(ScannerId, _scannerDriver);
         }
 
 
@@ -29,7 +27,16 @@ namespace Motorola.Snapi
             string outXml;
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.DeviceSwitchHostMode, ref inXml, out outXml, out status);
+            _mode = mode;
             return status;
+        }
+
+        public void Initialize()
+        {
+            if ((_mode == HostMode.USB_SNAPI_Imaging) || (_mode == HostMode.USB_SNAPI_NoImaging))
+            {
+                _ocr = new Ocr(ScannerId, _scannerDriver);
+            }
         }
 
         public string DateOfManufacture { get; set; }

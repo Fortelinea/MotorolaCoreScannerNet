@@ -21,5 +21,9 @@ namespace Motorola.Snapi
         int VendorId { get; set; }
 
         void EnableDataMatrixBarcodes();
+
+        void Initialize();
+
+        int SetHostMode(string mode, bool permanent = false, bool silent = true);
     }
 }
