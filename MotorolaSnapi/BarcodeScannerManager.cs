@@ -26,8 +26,6 @@ namespace Motorola.Snapi
             _keyboard = new Keyboard(_scannerDriver);
         }
 
-        public event EventHandler<BarcodeScanEventArgs> DataReceived;
-
         public Keyboard Keyboard
         {
             get { return _keyboard; }
@@ -54,9 +52,10 @@ namespace Motorola.Snapi
         public void Attach()
         {
             _scannerDriver.BarcodeEvent += OnBarcodeEvent;
+            _scannerDriver.PNPEvent += OnPnpEvent;
 
             // Register for barcode events and PNP events.
-            string inXml = "<inArgs><cmdArgs><arg-int>1</arg-int><arg-int>1</arg-int></cmdArgs></inArgs>";
+            string inXml = "<inArgs><cmdArgs><arg-int>2</arg-int><arg-int>1,16</arg-int></cmdArgs></inArgs>";
             string outXml;
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.RegisterForEvents, ref inXml, out outXml, out status);
@@ -106,15 +105,6 @@ namespace Motorola.Snapi
             return (((Status)status == Status.Success) || ((Status)status == Status.AlreadyOpened));
         }
 
-        private void OnBarcodeEvent(short eventType, ref string pscanData)
-        {
-            if (DataReceived != null)
-            {
-                XDocument xdoc = XDocument.Parse(pscanData);
-                DataReceived(this, new BarcodeScanEventArgs(ParseScannerId(xdoc), ParseData(xdoc)));
-            }
-        }
-
         /// <summary>
         /// Parses out the hex array from the XElement and converts each to a char and appends to string
         /// </summary>
@@ -143,6 +133,23 @@ namespace Motorola.Snapi
             catch
             { return 0; }
         }
+
+        #region Events
+        public event EventHandler<BarcodeScanEventArgs> DataReceived;
+        public event EventHandler<PnpEventArgs> ScannerAttached;
+
+        private void OnBarcodeEvent(short eventType, ref string pscanData)
+        {
+            if (DataReceived != null)
+            {
+                XDocument xdoc = XDocument.Parse(pscanData);
+                DataReceived(this, new BarcodeScanEventArgs(ParseScannerId(xdoc), ParseData(xdoc)));
+            }
+        }
+
+        private void OnPnpEvent(short eventtype, ref string ppnpdata) { if (ScannerAttached != null) ScannerAttached(this, new PnpEventArgs(eventtype, ppnpdata)); }
+
+        #endregion
 
         #region IDisposable
 
@@ -176,4 +183,5 @@ namespace Motorola.Snapi
 
         #endregion IDisposable
     }
+
 }

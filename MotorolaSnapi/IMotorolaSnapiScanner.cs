@@ -16,6 +16,8 @@ namespace Motorola.Snapi
 
         int ScannerId { get; set; }
 
+        string UsbHostMode { get; set; }
+
         string SerialNumber { get; set; }
 
         int VendorId { get; set; }
@@ -24,6 +26,6 @@ namespace Motorola.Snapi
 
         void Initialize();
 
-        int SetHostMode(string mode, bool permanent = false, bool silent = true);
+        void SetHostMode(string mode, bool permanent = false, bool silent = true);
     }
 }

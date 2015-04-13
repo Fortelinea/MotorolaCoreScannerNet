@@ -45,8 +45,8 @@ namespace Motorola.Snapi.Attributes
         protected IDictionary<OcrAttribute, ScannerAttribute> GetAttributes(List<ushort> ids)
         {
             var xml = String.Format(_getAttributesXml, String.Join(",", ids.Select(n => n.ToString()).ToArray()));
-            string outXml;
-            int status;
+            string outXml = null;
+            int status = -1;
 
             _scannerDriver.ExecCommand((int)ScannerCommand.AttrGet, ref xml, out outXml, out status);
 

@@ -11,7 +11,6 @@ namespace Motorola.Snapi
     {
         private Ocr _ocr;
         private CCoreScanner _scannerDriver;
-        private string _mode;
 
         internal BarcodeScanner(CCoreScanner scannerDriver, XElement scannerXml)
         {
@@ -20,20 +19,22 @@ namespace Motorola.Snapi
         }
 
 
-        public int SetHostMode(string mode, bool permanent = false, bool silent = true)
+        public void SetHostMode(string mode, bool permanent = false, bool silent = true)
         {
             string setCommandXml = @"<inArgs><scannerID>{0}</scannerID><cmdArgs><arg-string>{1}</arg-string><arg-bool>{2}</arg-bool><arg-bool>{3}</arg-bool></cmdArgs></inArgs>";
             string inXml = string.Format(setCommandXml, ScannerId, mode, silent ? "TRUE" : "FALSE", permanent ? "TRUE" : "FALSE");
             string outXml;
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.DeviceSwitchHostMode, ref inXml, out outXml, out status);
-            _mode = mode;
-            return status;
+            if (status != 0)
+                throw new ScannerException{ErrorCode = status};
+            UsbHostMode = mode;
+            //return status;
         }
 
         public void Initialize()
         {
-            if ((_mode == HostMode.USB_SNAPI_Imaging) || (_mode == HostMode.USB_SNAPI_NoImaging))
+            if ((UsbHostMode == HostMode.USB_SNAPI_Imaging) || (UsbHostMode == HostMode.USB_SNAPI_NoImaging))
             {
                 _ocr = new Ocr(ScannerId, _scannerDriver);
             }
@@ -44,6 +45,8 @@ namespace Motorola.Snapi
         public string Firmware { get; set; }
 
         public Guid GUID { get; set; }
+
+        public string UsbHostMode { get; set; }
 
         public string ModelNumber { get; set; }
 
@@ -81,6 +84,32 @@ namespace Motorola.Snapi
         {
             if ((scannerXml == null) || (scannerXml.IsEmpty))
                 throw new InvalidDataException("Xml is empty");
+
+            XAttribute type = scannerXml.Attribute("type");
+            var mode = type.Value;
+            switch (mode)
+            {
+                case ("SNAPI"):
+                {
+                    UsbHostMode = HostMode.USB_SNAPI_Imaging;
+                    break;
+                }
+                case ("USBIBMHID"):
+                {
+                    UsbHostMode = HostMode.USB_IBMHID;
+                    break;
+                }
+                case ("USBHIDKB"):
+                {
+                    UsbHostMode = HostMode.USB_HIDKB;
+                    break;
+                }
+                case ("USBIBMTT"):
+                {
+                    UsbHostMode = HostMode.USB_IBMTT;
+                    break;
+                }
+            }
 
             XElement scannerId = scannerXml.Element("scannerID");
             if (scannerId != null)
