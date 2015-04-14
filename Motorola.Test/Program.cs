@@ -7,10 +7,11 @@ namespace Motorola.Test
     internal class Program
     {
         private static bool _scannerAttached;
+        private static string _lastScanned;
 
         private static void Instance_DataReceived(object sender, BarcodeScanEventArgs e)
         {
-            var d = e.Data;
+            _lastScanned = e.Data;
         }
 
         private static void Instance_ScannerAttached(object sender, PnpEventArgs e) 
@@ -27,21 +28,28 @@ namespace Motorola.Test
 
             BarcodeScannerManager.Instance.Open();
 
-            BarcodeScannerManager.Instance.Attach();
+            BarcodeScannerManager.Instance.RegisterForEvents(EventType.Barcode, EventType.Pnp);
+
+            var b = BarcodeScannerManager.Instance.RegisteredEvents;
+
+            BarcodeScannerManager.Instance.UnRegisterForEvents(EventType.Barcode, EventType.Pnp);
+
+            b = BarcodeScannerManager.Instance.RegisteredEvents;
 
             BarcodeScannerManager.Instance.Keyboard.EnableEmulation = false;
 
             BarcodeScannerManager.Instance.ScannerAttached += Instance_ScannerAttached;
 
+            var a = BarcodeScannerManager.Instance.DriverVersion;
+
             foreach (var scanner in BarcodeScannerManager.Instance.GetDevices())
             {
-                //((BarcodeScanner)scanner).EnableLeicaBarcodes();
                 if (scanner.UsbHostMode != HostMode.USB_SNAPI_Imaging)
                 {
                     scanner.SetHostMode(HostMode.USB_SNAPI_Imaging);
                     while (_scannerAttached == false)
                     {
-                        System.Threading.Thread.Sleep(5000);
+                        System.Threading.Thread.Sleep(3000);
                     }
                 }
                 scanner.Initialize();

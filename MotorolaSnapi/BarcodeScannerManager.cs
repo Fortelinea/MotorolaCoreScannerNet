@@ -11,8 +11,6 @@ namespace Motorola.Snapi
 {
     public class BarcodeScannerManager : IDisposable
     {
-        public const string DriverVersion = "1.0";
-
         public static readonly BarcodeScannerManager Instance = new BarcodeScannerManager();
         private static readonly object _accessLock = new object();
         private readonly Keyboard _keyboard;
@@ -31,43 +29,18 @@ namespace Motorola.Snapi
             get { return _keyboard; }
         }
 
-        //public static byte[] ParseHex(string hex)
-        //{
-        //    int offset = hex.StartsWith("0x") ? 2 : 0;
-        //    if ((hex.Length % 2) != 0)
-        //    {
-        //        throw new ArgumentException("Invalid length: " + hex.Length);
-        //    }
-        //    byte[] ret = new byte[(hex.Length - offset) / 2];
-
-        //    for (int i = 0; i < ret.Length; i++)
-        //    {
-        //        ret[i] = (byte)((ParseNybble(hex[offset]) << 4) |
-        //                        ParseNybble(hex[offset + 1]));
-        //        offset += 2;
-        //    }
-        //    return ret;
-        //}
-
-        public void Attach()
-        {
-            _scannerDriver.BarcodeEvent += OnBarcodeEvent;
-            _scannerDriver.PNPEvent += OnPnpEvent;
-
-            // Register for barcode events and PNP events.
-            string inXml = "<inArgs><cmdArgs><arg-int>2</arg-int><arg-int>1,16</arg-int></cmdArgs></inArgs>";
-            string outXml;
-            int status;
-            _scannerDriver.ExecCommand((int)ScannerCommand.RegisterForEvents, ref inXml, out outXml, out status);
-        }
-
         public void Close()
         {
             int status;
             _scannerDriver.BarcodeEvent -= OnBarcodeEvent;
+            _scannerDriver.PNPEvent += OnPnpEvent;
             _scannerDriver.Close(0, out status);
         }
 
+        /// <summary>
+        /// Find all connected devices
+        /// </summary>
+        /// <returns>A list of IMotorolaSnapiScanner</returns>
         public List<IMotorolaSnapiScanner> GetDevices()
         {
             List<IMotorolaSnapiScanner> retval = new List<IMotorolaSnapiScanner>();
@@ -96,6 +69,10 @@ namespace Motorola.Snapi
             return retval;
         }
 
+        /// <summary>
+        /// Opens an application instance from the user application or user library.
+        /// </summary>
+        /// <returns>True if opened successfully</returns>
         public bool Open()
         {
             //Call Open API
@@ -103,6 +80,24 @@ namespace Motorola.Snapi
             _scannerDriver.Open(0 /* const: always 0 */, new short[] { (short)ScannerType.All }/* array of scanner types */, 1 /* size of prev parameter */, out status);
 
             return (((Status)status == Status.Success) || ((Status)status == Status.AlreadyOpened));
+        }
+
+        /// <summary>
+        /// Version number of the CoreScanner driver.
+        /// </summary>
+        public string DriverVersion
+        {
+            get
+            {
+                string inXml = "<inArgs></inArgs>";
+                string outXml;
+                int status;
+                _scannerDriver.ExecCommand((int)ScannerCommand.GetVersion, ref inXml, out outXml, out status);
+
+                XDocument xdoc = XDocument.Parse(outXml);
+                XElement keyEnumState = xdoc.Descendants("arg-string").First();
+                return keyEnumState.Value;
+            }
         }
 
         /// <summary>
@@ -126,18 +121,182 @@ namespace Motorola.Snapi
             { return String.Empty; }
         }
 
+        /// <summary>
+        /// Gets the scanner ID from xml
+        /// </summary>
+        /// <param name="xdoc">XDocument containing xml to parse</param>
+        /// <returns></returns>
         private UInt32 ParseScannerId(XDocument xdoc)
         {
             try
-            { return UInt32.Parse(xdoc.Descendants("scannerID").Single().Value); }
+            {
+                return UInt32.Parse(xdoc.Descendants("scannerID").Single().Value);
+            }
             catch
             { return 0; }
         }
 
         #region Events
-        public event EventHandler<BarcodeScanEventArgs> DataReceived;
-        public event EventHandler<PnpEventArgs> ScannerAttached;
+        private List<EventType> _registeredEvents;
 
+        public IEnumerable<EventType> RegisteredEvents
+        {
+            get { return _registeredEvents; }
+        }
+
+        /// <summary>
+        /// Registers the API for the given event types.
+        /// </summary>
+        /// <param name="events">Events to register for.</param>
+        public void RegisterForEvents(params EventType[] events)
+        {
+            if (_registeredEvents == null)
+            {
+                _registeredEvents = new List<EventType>();
+            }
+            var template = @"<inArgs><cmdArgs><arg-int>{0}</arg-int><arg-int>{1}</arg-int></cmdArgs></inArgs>";
+
+            var count = 0;
+            var arg = "";
+            foreach (var eventType in events)
+            {
+                if(_registeredEvents.Contains(eventType))
+                    continue;
+                _registeredEvents.Add(eventType);
+                arg += (int)eventType;
+                arg += ",";
+                count++;
+
+                switch (eventType)
+                {
+                    case EventType.Barcode:
+                    {
+                        _scannerDriver.BarcodeEvent += OnBarcodeEvent;
+                        break;
+                    }
+                    case EventType.Image:
+                    {
+                        throw new NotImplementedException();
+                        break;
+                    }
+                    case EventType.Other:
+                    {
+                        throw new NotImplementedException();
+                        break;
+                    }
+                    case EventType.Pnp:
+                    {
+                        _scannerDriver.PNPEvent += OnPnpEvent;
+                        break;
+                    }
+                    case EventType.Rmd:
+                    {
+                        throw new NotImplementedException();
+                        break;
+                    }
+                    case EventType.Video:
+                    {
+                        throw new NotImplementedException();
+                        break;
+                    }
+                }
+            }
+            if (!arg.Equals(""))
+            {
+                arg = arg.Substring(0, arg.Length - 1);
+                string inXml = string.Format(template, count, arg);
+                string outXml;
+                int status;
+                _scannerDriver.ExecCommand((int)ScannerCommand.RegisterForEvents, ref inXml, out outXml, out status);
+            }
+        }
+
+        /// <summary>
+        /// Unregisters the API for the given event types.
+        /// </summary>
+        /// <param name="events">Events to unregister from.</param>
+        public void UnRegisterForEvents(params EventType[] events)
+        {
+            if (_registeredEvents != null)
+            {
+                var template = @"<inArgs><cmdArgs><arg-int>{0}</arg-int><arg-int>{1}</arg-int></cmdArgs></inArgs>";
+
+                var count = 0;
+                var arg = "";
+                foreach (var eventType in events)
+                {
+                    if (_registeredEvents.Contains(eventType))
+                    {
+                        _registeredEvents.Remove(eventType);
+                        arg += (int)eventType;
+                        arg += ",";
+                        count++;
+
+                        switch (eventType)
+                        {
+                            case EventType.Barcode:
+                            {
+                                _scannerDriver.BarcodeEvent -= OnBarcodeEvent;
+                                break;
+                            }
+                            case EventType.Image:
+                            {
+                                _scannerDriver.ImageEvent -= OnImageEvent;
+                                break;
+                            }
+                            case EventType.Other:
+                            {
+                                throw new NotImplementedException();
+                                break;
+                            }
+                            case EventType.Pnp:
+                            {
+                                _scannerDriver.PNPEvent -= OnPnpEvent;
+                                break;
+                            }
+                            case EventType.Rmd:
+                            {
+                                throw new NotImplementedException();
+                                break;
+                            }
+                            case EventType.Video:
+                            {
+                                throw new NotImplementedException();
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (!arg.Equals(""))
+                {
+                    arg = arg.Substring(0, arg.Length - 1);
+                    string inXml = string.Format(template, count, arg);
+                    string outXml;
+                    int status;
+                    _scannerDriver.ExecCommand((int)ScannerCommand.UnregisterForEvents, ref inXml, out outXml, out status);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Invoked when bar code data is received by a scanner.
+        /// </summary>
+        public event EventHandler<BarcodeScanEventArgs> DataReceived;
+        /// <summary>
+        /// Invoked when a scanner is attached by plugging in the usb or after a reboot.
+        /// </summary>
+        public event EventHandler<PnpEventArgs> ScannerAttached;
+        /// <summary>
+        /// Invoked when a scanner captures an image.
+        /// </summary>
+        public event EventHandler<ImageEventArgs> ImageReceived; 
+
+        /// <summary>
+        /// Handles BardcodeEvent and invokes DataReceived.
+        /// </summary>
+        /// <param name="eventType">1 - Triggered when a decode is successful.</param>
+        /// <param name="pscanData">Bar code string that contains information about the scanner that triggered the bar code event 
+        /// including data type, data label and raw data of the scanned bar code.</param>
         private void OnBarcodeEvent(short eventType, ref string pscanData)
         {
             if (DataReceived != null)
@@ -147,8 +306,29 @@ namespace Motorola.Snapi
             }
         }
 
-        private void OnPnpEvent(short eventtype, ref string ppnpdata) { if (ScannerAttached != null) ScannerAttached(this, new PnpEventArgs(eventtype, ppnpdata)); }
+        /// <summary>
+        /// Handles PNPEvent and invokes ScannerAttached.
+        /// </summary>
+        /// <param name="eventtype">1 - Scanner attached.
+        /// 2 - Scanner detached.</param>
+        /// <param name="ppnpdata">Xml output.</param>
+        private void OnPnpEvent(short eventtype, ref string ppnpdata)
+        {
+            if (ScannerAttached != null)
+            {
+                ScannerAttached(this, new PnpEventArgs(eventtype, ppnpdata));
+            }
+        }
 
+        /// <summary>
+        /// Handles ImageEvent and invokes ImageReceived
+        /// </summary>
+        /// <param name="eventtype"></param>
+        /// <param name="size"></param>
+        /// <param name="imageformat"></param>
+        /// <param name="sfimagedata"></param>
+        /// <param name="pscannerdata"></param>
+        private void OnImageEvent(short eventtype, int size, short imageformat, ref object sfimagedata, ref string pscannerdata) { throw new NotImplementedException(); }
         #endregion
 
         #region IDisposable

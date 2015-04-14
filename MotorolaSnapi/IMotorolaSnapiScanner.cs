@@ -1,4 +1,5 @@
 ﻿using System;
+using Motorola.Snapi.Commands;
 
 namespace Motorola.Snapi
 {

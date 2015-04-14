@@ -27,7 +27,7 @@ namespace Motorola.Snapi
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.DeviceSwitchHostMode, ref inXml, out outXml, out status);
             if (status != 0)
-                throw new ScannerException{ErrorCode = status};
+                throw new ScannerException{ErrorCode = (Status)status};
             UsbHostMode = mode;
             //return status;
         }

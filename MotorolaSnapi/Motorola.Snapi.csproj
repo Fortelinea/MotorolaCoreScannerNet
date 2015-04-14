@@ -52,8 +52,10 @@
     <Compile Include="Constants\BarcodeOrientation.cs" />
     <Compile Include="Constants\DataType.cs" />
     <Compile Include="Constants\DeviceParameter.cs" />
+    <Compile Include="Constants\EventType.cs" />
     <Compile Include="Constants\HostMode.cs" />
     <Compile Include="Constants\OcrAttribute.cs" />
+    <Compile Include="ImageEventArgs.cs" />
     <Compile Include="IMotorolaSnapiScanner.cs" />
     <Compile Include="PnpEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

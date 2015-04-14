@@ -6,11 +6,14 @@ using Motorola.Snapi.Constants;
 
 namespace Motorola.Snapi.Commands
 {
+    /// <summary>
+    /// Keyboard emulation commands.
+    /// </summary>
     public class Keyboard
     {
         private ICoreScanner _scannerDriver;
 
-        internal Keyboard(ICoreScanner scannerDriver)
+        internal Keyboard(CCoreScanner scannerDriver)
         {
             _scannerDriver = scannerDriver;
         }

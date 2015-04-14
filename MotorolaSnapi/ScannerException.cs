@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using Motorola.Snapi.Constants;
 
 namespace Motorola.Snapi
 {
     [Serializable]
     public class ScannerException : Exception
     {
-        private int _errorCode;
+        private Status _errorCode;
         public ScannerException() { }
 
         public ScannerException(string message) : base(message) { }
@@ -17,11 +18,11 @@ namespace Motorola.Snapi
         {
             if (info != null)
             {
-                _errorCode = info.GetInt32("_errorCode");
+                _errorCode = (Status)info.GetInt32("_errorCode");
             }
         }
 
-        public int ErrorCode
+        internal Status ErrorCode
         {
             get { return _errorCode; }
             set { _errorCode = value; }
