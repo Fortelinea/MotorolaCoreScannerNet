@@ -11,10 +11,10 @@ namespace Motorola.Snapi.Attributes
     {
         protected readonly string _getAttributesXml;
         protected readonly string _setAttributeXml;
-        protected ICoreScanner _scannerDriver;
+        protected CCoreScanner _scannerDriver;
         protected int _scannerId;
 
-        protected MotorolaAttributeSet(int scannerId, ICoreScanner scannerDriver)
+        protected MotorolaAttributeSet(int scannerId, CCoreScanner scannerDriver)
         {
             _scannerId = scannerId;
             _scannerDriver = scannerDriver;
@@ -42,7 +42,7 @@ namespace Motorola.Snapi.Attributes
             return retval;
         }
 
-        protected IDictionary<Enum, ScannerAttribute> GetAttributes(List<ushort> ids)
+        protected IDictionary<ushort, ScannerAttribute> GetAttributes(List<ushort> ids)
         {
             var xml = String.Format(_getAttributesXml, String.Join(",", ids.Select(n => n.ToString()).ToArray()));
             string outXml = null;
@@ -50,7 +50,7 @@ namespace Motorola.Snapi.Attributes
 
             _scannerDriver.ExecCommand((int)ScannerCommand.AttrGet, ref xml, out outXml, out status);
 
-            var retval = new Dictionary<Enum, ScannerAttribute>();
+            var retval = new Dictionary<ushort, ScannerAttribute>();
             XDocument doc = XDocument.Parse(outXml);
             var attributes = doc.Descendants("attribute");
             foreach (var xmlAttribute in attributes)
@@ -61,7 +61,7 @@ namespace Motorola.Snapi.Attributes
                 var permission = xmlAttribute.Descendants("permission").Single().Value[0];
                 var stringValue = xmlAttribute.Descendants("value").Single().Value;
                 var value = ValueConverters.StringToActualType(dataType, stringValue);
-                retval.Add((OcrAttribute)id, new ScannerAttribute { Id = id, Name = name, DataType = dataType, Permission = permission, Value = value });
+                retval.Add(id, new ScannerAttribute { Id = id, Name = name, DataType = dataType, Permission = permission, Value = value });
             }
             return retval;
         }

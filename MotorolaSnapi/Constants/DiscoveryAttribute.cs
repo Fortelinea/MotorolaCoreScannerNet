@@ -1,25 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Motorola.Snapi.Constants
 {
-    public enum DiscoveryAttribute : ushort
+    public static class DiscoveryAttribute
     {
-        ModelNumber = 533,
-        SerialNumber = 534,
-        BluetoothAddress = 541,
-        DeviceClass = 20007,
-        DateOfManufacture = 535,
-        LastServiceDate = 536,
-        ScannerFirmwareVersion = 20004,
-        ScankitVersion = 20008,
-        ImagekitVersion = 20013,
-        CombinedFirmwareVersion = 20009,
-        RSMVersion = 20011,
-        DateOfFirstProgramming = 614,
-        ConfigurationFilename = 616
+        public static ushort ModelNumber = 533;
+        public static ushort SerialNumber = 534;
+        public static ushort BluetoothAddress = 541;
+        public static ushort DeviceClass = 20007;
+        public static ushort DateOfManufacture = 535;
+        public static ushort LastServiceDate = 536;
+        public static ushort ScannerFirmwareVersion = 20004;
+        public static ushort ScankitVersion = 20008;
+        public static ushort ImagekitVersion = 20013;
+        public static ushort CombinedFirmwareVersion = 20009;
+        public static ushort RSMVersion = 20011;
+        public static ushort DateOfFirstProgramming = 614;
+        public static ushort ConfigurationFilename = 616;
+
+        public static IEnumerable<ushort> All = new ushort[]
+                                                {
+                                                    ModelNumber,
+                                                    SerialNumber,
+                                                    BluetoothAddress,
+                                                    DeviceClass,
+                                                    DateOfManufacture,
+                                                    LastServiceDate,
+                                                    ScannerFirmwareVersion,
+                                                    ScankitVersion,
+                                                    ImagekitVersion,
+                                                    CombinedFirmwareVersion,
+                                                    RSMVersion,
+                                                    DateOfFirstProgramming,
+                                                    ConfigurationFilename
+                                                };
     }
 }

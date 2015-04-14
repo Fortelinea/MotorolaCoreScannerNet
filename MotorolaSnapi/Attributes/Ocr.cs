@@ -7,7 +7,7 @@ using Motorola.Snapi.Constants;
 namespace Motorola.Snapi.Attributes
 {
     /// <summary>
-    /// Handles all OCR barcode attributes.
+    /// Provides properties for accessing and modifying scanner OCR attributes.
     /// </summary>
     public class Ocr : MotorolaAttributeSet
     {
@@ -35,11 +35,16 @@ namespace Motorola.Snapi.Attributes
         private string _validCharacters;
         private ushort _whiteLevel;
 
-        internal Ocr(int scannerId, ICoreScanner scannerDriver)
+        /// <summary>
+        /// Initializes an Ocr object containing the current values of all OCR attributes for a given scanner.
+        /// </summary>
+        /// <param name="scannerId">ID number of the scanner to get data from.</param>
+        /// <param name="scannerDriver">CCoreScanner instance</param>
+        internal Ocr(int scannerId, CCoreScanner scannerDriver)
             : base(scannerId, scannerDriver)
         {
             var attr = new List<ushort>();
-            attr.AddRange(Enum.GetValues(typeof(OcrAttribute)).Cast<ushort>());
+            attr.AddRange(OcrAttribute.All);
             var attributes = GetAttributes(attr);
             _isOcrBEnabled = (bool)attributes[OcrAttribute.OcrBEnable].Value;
             _isOcrAEnabled = (bool)attributes[OcrAttribute.OcrAEnable].Value;
@@ -350,7 +355,7 @@ namespace Motorola.Snapi.Attributes
             {
                 _orientation = value;
 
-                SetAttribute(new ScannerAttribute { Id = 687, DataType = ValueConverters.ActualTypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = 687, DataType = ValueConverters.ActualTypeToDataType(typeof(byte)), Value = (int)value });
             }
         }
 

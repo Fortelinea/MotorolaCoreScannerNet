@@ -11,7 +11,7 @@ namespace Motorola.Snapi.Commands
     /// </summary>
     public class Keyboard
     {
-        private ICoreScanner _scannerDriver;
+        private CCoreScanner _scannerDriver;
 
         internal Keyboard(CCoreScanner scannerDriver)
         {

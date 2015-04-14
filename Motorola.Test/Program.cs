@@ -32,10 +32,6 @@ namespace Motorola.Test
 
             var b = BarcodeScannerManager.Instance.RegisteredEvents;
 
-            BarcodeScannerManager.Instance.UnRegisterForEvents(EventType.Barcode, EventType.Pnp);
-
-            b = BarcodeScannerManager.Instance.RegisteredEvents;
-
             BarcodeScannerManager.Instance.Keyboard.EnableEmulation = false;
 
             BarcodeScannerManager.Instance.ScannerAttached += Instance_ScannerAttached;

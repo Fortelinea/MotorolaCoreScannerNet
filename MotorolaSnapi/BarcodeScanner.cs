@@ -11,6 +11,7 @@ namespace Motorola.Snapi
     {
         private Ocr _ocr;
         private CCoreScanner _scannerDriver;
+        private Discovery _discovery;
 
         internal BarcodeScanner(CCoreScanner scannerDriver, XElement scannerXml)
         {
@@ -37,6 +38,7 @@ namespace Motorola.Snapi
             if ((UsbHostMode == HostMode.USB_SNAPI_Imaging) || (UsbHostMode == HostMode.USB_SNAPI_NoImaging))
             {
                 _ocr = new Ocr(ScannerId, _scannerDriver);
+                _discovery = new Discovery(ScannerId, _scannerDriver);
             }
         }
 
@@ -62,6 +64,11 @@ namespace Motorola.Snapi
         public string SerialNumber { get; set; }
 
         public int VendorId { get; set; }
+
+        public Discovery Discovery
+        {
+            get { return _discovery; }
+        }
 
         public void EnableDataMatrixBarcodes()
         {
