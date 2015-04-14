@@ -32,8 +32,7 @@ namespace Motorola.Snapi
         public void Close()
         {
             int status;
-            _scannerDriver.BarcodeEvent -= OnBarcodeEvent;
-            _scannerDriver.PNPEvent += OnPnpEvent;
+            UnRegisterForEvents(EventType.Barcode, EventType.Pnp);
             _scannerDriver.Close(0, out status);
         }
 
@@ -198,7 +197,7 @@ namespace Motorola.Snapi
                     }
                     case EventType.Video:
                     {
-                        _scannerDriver.VideoEvent += OnVideoEvent
+                        _scannerDriver.VideoEvent += OnVideoEvent;
                         break;
                     }
                 }
@@ -265,7 +264,7 @@ namespace Motorola.Snapi
                             }
                             case EventType.Video:
                             {
-                                _scannerDriver.VideoEvent -= OnVideoEvent
+                                _scannerDriver.VideoEvent -= OnVideoEvent;
                                 break;
                             }
                         }

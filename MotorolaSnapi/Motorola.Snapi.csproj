@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\Discovery.cs" />
     <Compile Include="Attributes\ScannerAttribute.cs" />
     <Compile Include="Commands\Keyboard.cs" />
     <Compile Include="Attributes\MotorolaAttributeSet.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Constants\BarcodeOrientation.cs" />
     <Compile Include="Constants\DataType.cs" />
     <Compile Include="Constants\DeviceParameter.cs" />
+    <Compile Include="Constants\DiscoveryAttribute.cs" />
     <Compile Include="Constants\EventType.cs" />
     <Compile Include="Constants\HostMode.cs" />
     <Compile Include="Constants\OcrAttribute.cs" />

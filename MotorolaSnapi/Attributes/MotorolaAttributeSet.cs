@@ -42,7 +42,7 @@ namespace Motorola.Snapi.Attributes
             return retval;
         }
 
-        protected IDictionary<OcrAttribute, ScannerAttribute> GetAttributes(List<ushort> ids)
+        protected IDictionary<Enum, ScannerAttribute> GetAttributes(List<ushort> ids)
         {
             var xml = String.Format(_getAttributesXml, String.Join(",", ids.Select(n => n.ToString()).ToArray()));
             string outXml = null;
@@ -50,7 +50,7 @@ namespace Motorola.Snapi.Attributes
 
             _scannerDriver.ExecCommand((int)ScannerCommand.AttrGet, ref xml, out outXml, out status);
 
-            var retval = new Dictionary<OcrAttribute, ScannerAttribute>();
+            var retval = new Dictionary<Enum, ScannerAttribute>();
             XDocument doc = XDocument.Parse(outXml);
             var attributes = doc.Descendants("attribute");
             foreach (var xmlAttribute in attributes)
