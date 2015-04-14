@@ -1,5 +1,5 @@
 ﻿using System;
-using Motorola.Snapi.Commands;
+using Motorola.Snapi.Attributes;
 
 namespace Motorola.Snapi
 {
@@ -28,5 +28,13 @@ namespace Motorola.Snapi
         void Initialize();
 
         void SetHostMode(string mode, bool permanent = false, bool silent = true);
+
+        Discovery Discovery { get; }
+
+        Ocr OCR { get; }
+
+        SystemEvents Events { get; }
+
+        Status Status { get; }
     }
 }

@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Attributes\Discovery.cs" />
     <Compile Include="Attributes\ScannerAttribute.cs" />
+    <Compile Include="Attributes\Status.cs" />
     <Compile Include="Attributes\SystemEvents.cs" />
     <Compile Include="Commands\Keyboard.cs" />
     <Compile Include="Attributes\MotorolaAttributeSet.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Constants\EventType.cs" />
     <Compile Include="Constants\HostMode.cs" />
     <Compile Include="Constants\OcrAttribute.cs" />
+    <Compile Include="Constants\StatusAttribute.cs" />
     <Compile Include="Constants\SystemEventAttribute.cs" />
     <Compile Include="ImageEventArgs.cs" />
     <Compile Include="IMotorolaSnapiScanner.cs" />

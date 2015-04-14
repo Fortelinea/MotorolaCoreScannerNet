@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using CoreScanner;
 using Motorola.Snapi.Constants;
 
@@ -10,65 +9,12 @@ namespace Motorola.Snapi.Attributes
     /// </summary>
     public class Ocr : MotorolaAttributeSet
     {
-        private ushort _checkDigitMod;
-        private string _checkDigitMultiplier;
-        private ushort _despeckle;
-        private bool _enableExternalFinder;
-        private bool _enableFinder;
-        private bool _enableUsCurrency;
-        private bool _isIlluminationEnabled;
-        private bool _isMicre13BEnabled;
-        private bool _isOcrAEnabled;
-        private bool _isOcrBEnabled;
-        private ushort _lines;
-        private ushort _lowPassFilter;
-        private ushort _maxCharacters;
-        private ushort _minCharacters;
-        private ushort _ocrAVariant;
-        private ushort _ocrBVariant;
-        private BarcodeOrientation _orientation;
-        private ushort _quietZone;
-        private ushort _securityLevel;
-        private string _template;
-        private ushort _thicken;
-        private string _validCharacters;
-        private ushort _whiteLevel;
-
         /// <summary>
-        /// Initializes an Ocr object containing the current values of all OCR attributes for a given scanner.
+        /// Initializes an Ocr object.
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal Ocr(int scannerId, CCoreScanner scannerDriver)
-            : base(scannerId, scannerDriver)
-        {
-            var attr = new List<ushort>();
-            attr.AddRange(OcrAttribute.All);
-            var attributes = GetAttributes(attr);
-            _isOcrBEnabled = (bool)attributes[OcrAttribute.OcrBEnable].Value;
-            _isOcrAEnabled = (bool)attributes[OcrAttribute.OcrAEnable].Value;
-            _checkDigitMod = Convert.ToUInt16(attributes[OcrAttribute.CheckDigitMod].Value);
-            _checkDigitMultiplier = (string)attributes[OcrAttribute.CheckDigitMultiplier].Value;
-            _despeckle = Convert.ToUInt16(attributes[OcrAttribute.Despeckle].Value);
-            _enableExternalFinder = (bool)attributes[OcrAttribute.EnableExternalFinder].Value;
-            _enableFinder = (bool)attributes[OcrAttribute.EnableFinder].Value;
-            _enableUsCurrency = (bool)attributes[OcrAttribute.UsCurrencyEnable].Value;
-            _isIlluminationEnabled = (bool)attributes[OcrAttribute.EnableIllumination].Value;
-            _isMicre13BEnabled = (bool)attributes[OcrAttribute.Micre13BEnable].Value;
-            _lines = Convert.ToUInt16(attributes[OcrAttribute.Lines].Value);
-            _lowPassFilter = Convert.ToUInt16(attributes[OcrAttribute.LowPassFilter].Value);
-            _maxCharacters = Convert.ToUInt16(attributes[OcrAttribute.MaxCharacters].Value);
-            _minCharacters = Convert.ToUInt16(attributes[OcrAttribute.MinCharacters].Value);
-            _ocrAVariant = Convert.ToUInt16(attributes[OcrAttribute.OcrAVariant].Value);
-            _ocrBVariant = Convert.ToUInt16(attributes[OcrAttribute.OcrBVariant].Value);
-            _orientation = (BarcodeOrientation)attributes[OcrAttribute.Orientation].Value;
-            _quietZone = Convert.ToUInt16(attributes[OcrAttribute.QuietZone].Value);
-            _securityLevel = Convert.ToUInt16(attributes[OcrAttribute.SecurityLevel].Value);
-            _template = (string)attributes[OcrAttribute.Template].Value;
-            _thicken = Convert.ToUInt16(attributes[OcrAttribute.Thicken].Value);
-            _validCharacters = (string)attributes[OcrAttribute.ValidCharacters].Value;
-            _whiteLevel = Convert.ToUInt16(attributes[OcrAttribute.WhiteLevel].Value);
-        }
+        internal Ocr(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
 
         /// <summary>
         /// Driver Attribute Name: OCRCheckDigitMod
@@ -77,12 +23,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public ushort CheckDigitMod
         {
-            get { return _checkDigitMod; }
+            get
+            {
+                return Convert.ToUInt16(GetAttribute(OcrAttribute.CheckDigitMod)
+                                            .Value);
+            }
             set
             {
-                _checkDigitMod = value;
-
-                SetAttribute(new ScannerAttribute {Id = 688, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value});
+                SetAttribute(new ScannerAttribute {Id = OcrAttribute.CheckDigitMod, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value});
             }
         }
 
@@ -93,12 +41,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string CheckDigitMultiplier
         {
-            get { return _checkDigitMultiplier; }
+            get
+            {
+                return (string)GetAttribute(OcrAttribute.CheckDigitMultiplier)
+                                   .Value;
+            }
             set
             {
-                _checkDigitMultiplier = value;
-
-                SetAttribute(new ScannerAttribute {Id = 700, DataType = ValueConverters.ActualTypeToDataType(typeof(string)), Value = value});
+                SetAttribute(new ScannerAttribute {Id = OcrAttribute.CheckDigitMultiplier, DataType = ValueConverters.ActualTypeToDataType(typeof(string)), Value = value});
             }
         }
 
@@ -109,12 +59,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public ushort CheckDigitValidation
         {
-            get { return _quietZone; }
+            get
+            {
+                return Convert.ToUInt16(GetAttribute(OcrAttribute.CheckDigitValidation)
+                                            .Value);
+            }
             set
             {
-                _quietZone = value;
-
-                SetAttribute(new ScannerAttribute{Id = 694, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value});
+                SetAttribute(new ScannerAttribute{Id = OcrAttribute.CheckDigitValidation, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value});
             }
         }
 
@@ -125,12 +77,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public ushort Despeckle
         {
-            get { return _despeckle; }
+            get
+            {
+                return Convert.ToUInt16(GetAttribute(OcrAttribute.Despeckle)
+                                            .Value);
+            }
             set
             {
-                _despeckle = value;
-
-                SetAttribute(new ScannerAttribute { Id = 697, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Despeckle, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
             }
         }
 
@@ -141,12 +95,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public bool EnableExternalFinder
         {
-            get { return _enableExternalFinder; }
+            get
+            {
+                return (bool)GetAttribute(OcrAttribute.CheckDigitMultiplier)
+                                 .Value;
+            }
             set
             {
-                _enableExternalFinder = value;
-
-                SetAttribute(new ScannerAttribute { Id = 707, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.CheckDigitMultiplier, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
             }
         }
 
@@ -157,12 +113,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public bool EnableFinder
         {
-            get { return _enableFinder; }
+            get
+            {
+                return (bool)GetAttribute(OcrAttribute.EnableFinder)
+                                 .Value;
+            }
             set
             {
-                _enableFinder = value;
-
-                SetAttribute(new ScannerAttribute { Id = 702, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.EnableFinder, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
             }
         }
 
@@ -173,12 +131,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public bool EnableIllumination
         {
-            get { return _isIlluminationEnabled; }
+            get
+            {
+                return (bool)GetAttribute(OcrAttribute.EnableIllumination)
+                               .Value;
+            }
             set
             {
-                _isIlluminationEnabled = value;
-
-                SetAttribute(new ScannerAttribute { Id = 701, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.EnableIllumination, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
             }
         }
 
@@ -189,12 +149,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public bool EnableMicre13B
         {
-            get { return _isMicre13BEnabled; }
+            get
+            {
+                return (bool)GetAttribute(OcrAttribute.Micre13BEnable)
+                               .Value;
+            }
             set
             {
-                _isMicre13BEnabled = value;
-
-                SetAttribute(new ScannerAttribute { Id = 682, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Micre13BEnable, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
             }
         }
 
@@ -205,12 +167,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public bool EnableOcrA
         {
-            get { return _isOcrAEnabled; }
+            get
+            {
+                return (bool)GetAttribute(OcrAttribute.OcrAEnable)
+                               .Value;
+            }
             set
             {
-                _isOcrAEnabled = value;
-
-                SetAttribute(new ScannerAttribute { Id = 680, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.OcrAEnable, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
             }
         }
 
@@ -221,12 +185,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public bool EnableOcrB
         {
-            get { return _isOcrBEnabled; }
+            get
+            {
+                return (bool)GetAttribute(OcrAttribute.OcrBEnable)
+                               .Value; 
+            }
             set
             {
-                _isOcrBEnabled = value;
-
-                SetAttribute(new ScannerAttribute { Id = 681, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.OcrBEnable, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
             }
         }
 
@@ -237,12 +203,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public bool EnableUSCurrency
         {
-            get { return _enableUsCurrency; }
+            get
+            {
+                return (bool)GetAttribute(OcrAttribute.UsCurrencyEnable)
+                                 .Value;
+            }
             set
             {
-                _enableUsCurrency = value;
-
-                SetAttribute(new ScannerAttribute { Id = 683, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.UsCurrencyEnable, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
             }
         }
 
@@ -253,12 +221,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public ushort Lines
         {
-            get { return _lines; }
+            get
+            {
+                return Convert.ToUInt16(GetAttribute(OcrAttribute.Lines)
+                                            .Value);
+            }
             set
             {
-                _lines = value;
-
-                SetAttribute(new ScannerAttribute { Id = 691, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Lines, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
             }
         }
 
@@ -269,12 +239,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public ushort LowPassFilter
         {
-            get { return _lowPassFilter; }
+            get
+            {
+                return Convert.ToUInt16(GetAttribute(OcrAttribute.LowPassFilter)
+                                            .Value);
+            }
             set
             {
-                _lowPassFilter = value;
-
-                SetAttribute(new ScannerAttribute { Id = 699, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.LowPassFilter, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
             }
         }
 
@@ -285,12 +257,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public ushort MaxCharacters
         {
-            get { return _maxCharacters; }
+            get
+            {
+                return Convert.ToUInt16(GetAttribute(OcrAttribute.MaxCharacters)
+                                            .Value);
+            }
             set
             {
-                _maxCharacters = value;
-
-                SetAttribute(new ScannerAttribute { Id = 690, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.MaxCharacters, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
             }
         }
 
@@ -301,12 +275,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public ushort MinCharacters
         {
-            get { return _minCharacters; }
+            get
+            {
+                return Convert.ToUInt16(GetAttribute(OcrAttribute.MinCharacters)
+                                            .Value);
+            }
             set
             {
-                _minCharacters = value;
-
-                SetAttribute(new ScannerAttribute { Id = 689, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.MinCharacters, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
             }
         }
 
@@ -317,12 +293,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public ushort OcrAVariant
         {
-            get { return _ocrAVariant; }
+            get
+            {
+                return Convert.ToUInt16(GetAttribute(OcrAttribute.OcrAVariant)
+                                            .Value);
+            }
             set
             {
-                _ocrAVariant = value;
-
-                SetAttribute(new ScannerAttribute { Id = 684, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.OcrAVariant, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
             }
         }
 
@@ -333,12 +311,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public ushort OcrBVariant
         {
-            get { return _ocrBVariant; }
+            get
+            {
+                return Convert.ToUInt16(GetAttribute(OcrAttribute.OcrBVariant)
+                                            .Value);
+            }
             set
             {
-                _ocrBVariant = value;
-
-                SetAttribute(new ScannerAttribute { Id = 685, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.OcrBVariant, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
             }
         }
 
@@ -349,12 +329,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public BarcodeOrientation Orientation
         {
-            get { return _orientation; }
+            get
+            {
+                return (BarcodeOrientation)GetAttribute(OcrAttribute.Orientation)
+                               .Value;
+            }
             set
             {
-                _orientation = value;
-
-                SetAttribute(new ScannerAttribute { Id = 687, DataType = ValueConverters.ActualTypeToDataType(typeof(byte)), Value = (int)value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Orientation, DataType = ValueConverters.ActualTypeToDataType(typeof(byte)), Value = (int)value });
             }
         }
 
@@ -365,12 +347,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public ushort QuietZone
         {
-            get { return _quietZone; }
+            get
+            {
+                return Convert.ToUInt16(GetAttribute(OcrAttribute.QuietZone)
+                                            .Value);
+            }
             set
             {
-                _quietZone = value;
-
-                SetAttribute(new ScannerAttribute { Id = 695, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
+                 SetAttribute(new ScannerAttribute { Id = OcrAttribute.QuietZone, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
             }
         }
 
@@ -381,12 +365,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public ushort SecurityLevel
         {
-            get { return _securityLevel; }
+            get
+            {
+                return Convert.ToUInt16(GetAttribute(OcrAttribute.SecurityLevel)
+                          .Value);
+            }
             set
             {
-                _securityLevel = value;
-
-                SetAttribute(new ScannerAttribute { Id = 554, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.SecurityLevel, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
             }
         }
 
@@ -397,12 +383,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string Template
         {
-            get { return _template; }
+            get
+            {
+                return (string)GetAttribute(OcrAttribute.Template)
+                                   .Value;
+            }
             set
             {
-                _template = value;
-
-                SetAttribute(new ScannerAttribute { Id = 547, DataType = ValueConverters.ActualTypeToDataType(typeof(string)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Template, DataType = ValueConverters.ActualTypeToDataType(typeof(string)), Value = value });
             }
         }
 
@@ -413,12 +401,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public ushort Thicken
         {
-            get { return _thicken; }
+            get
+            {
+                return Convert.ToUInt16(GetAttribute(OcrAttribute.Thicken)
+                          .Value);
+            }
             set
             {
-                _thicken = value;
-
-                SetAttribute(new ScannerAttribute { Id = 698, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Thicken, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
             }
         }
 
@@ -429,12 +419,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string ValidCharacters
         {
-            get { return _validCharacters; }
+            get
+            {
+                return (string)GetAttribute(OcrAttribute.ValidCharacters)
+                                   .Value;
+            }
             set
             {
-                _validCharacters = value;
-
-                SetAttribute(new ScannerAttribute { Id = 686, DataType = ValueConverters.ActualTypeToDataType(typeof(string)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.ValidCharacters, DataType = ValueConverters.ActualTypeToDataType(typeof(string)), Value = value });
             }
         }
 
@@ -445,12 +437,14 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public ushort WhiteLevel
         {
-            get { return _whiteLevel; }
+            get
+            {
+                return Convert.ToUInt16(GetAttribute(OcrAttribute.WhiteLevel)
+                                            .Value);
+            }
             set
             {
-                _whiteLevel = value;
-
-                SetAttribute(new ScannerAttribute { Id = 696, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.WhiteLevel, DataType = ValueConverters.ActualTypeToDataType(typeof(ushort)), Value = value });
             }
         }
     }

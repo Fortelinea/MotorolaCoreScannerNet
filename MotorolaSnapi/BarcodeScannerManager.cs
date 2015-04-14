@@ -78,7 +78,7 @@ namespace Motorola.Snapi
             int status; // Extended API return code
             _scannerDriver.Open(0 /* const: always 0 */, new short[] { (short)ScannerType.All }/* array of scanner types */, 1 /* size of prev parameter */, out status);
 
-            return (((Status)status == Status.Success) || ((Status)status == Status.AlreadyOpened));
+            return (((StatusCode)status == StatusCode.Success) || ((StatusCode)status == StatusCode.AlreadyOpened));
         }
 
         /// <summary>

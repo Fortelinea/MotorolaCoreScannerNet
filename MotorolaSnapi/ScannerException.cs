@@ -7,7 +7,7 @@ namespace Motorola.Snapi
     [Serializable]
     public class ScannerException : Exception
     {
-        private Status _errorCode;
+        private StatusCode _errorCode;
         public ScannerException() { }
 
         public ScannerException(string message) : base(message) { }
@@ -18,11 +18,11 @@ namespace Motorola.Snapi
         {
             if (info != null)
             {
-                _errorCode = (Status)info.GetInt32("_errorCode");
+                _errorCode = (StatusCode)info.GetInt32("_errorCode");
             }
         }
 
-        internal Status ErrorCode
+        internal StatusCode ErrorCode
         {
             get { return _errorCode; }
             set { _errorCode = value; }

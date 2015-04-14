@@ -9,10 +9,7 @@ namespace Motorola.Snapi
 {
     public class BarcodeScanner : IMotorolaSnapiScanner
     {
-        private Ocr _ocr;
         private readonly CCoreScanner _scannerDriver;
-        private Discovery _discovery;
-        private SystemEvents _systemEvents;
 
         internal BarcodeScanner(CCoreScanner scannerDriver, XElement scannerXml)
         {
@@ -29,7 +26,7 @@ namespace Motorola.Snapi
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.DeviceSwitchHostMode, ref inXml, out outXml, out status);
             if (status != 0)
-                throw new ScannerException{ErrorCode = (Status)status};
+                throw new ScannerException{ErrorCode = (StatusCode)status};
             UsbHostMode = mode;
             //return status;
         }
@@ -41,10 +38,7 @@ namespace Motorola.Snapi
                 _ocr = new Ocr(ScannerId, _scannerDriver);
                 _discovery = new Discovery(ScannerId, _scannerDriver);
                 _systemEvents = new SystemEvents(ScannerId, _scannerDriver);
-            }
-            if (UsbHostMode == HostMode.USB_CDC)
-            {
-                _systemEvents = new SystemEvents(ScannerId, _scannerDriver);
+                _status = new Status(ScannerId, _scannerDriver);
             }
         }
 
@@ -58,11 +52,6 @@ namespace Motorola.Snapi
 
         public string ModelNumber { get; private set; }
 
-        public Ocr OCR
-        {
-            get { return _ocr; }
-        }
-
         public int ProductId { get; private set; }
 
         public int ScannerId { get; private set; }
@@ -71,10 +60,32 @@ namespace Motorola.Snapi
 
         public int VendorId { get; private set; }
 
+        #region Attributes
+        private Discovery _discovery;
+        private SystemEvents _systemEvents;
+        private Status _status;
+        private Ocr _ocr;
+
         public Discovery Discovery
         {
             get { return _discovery; }
         }
+
+        public Ocr OCR
+        {
+            get { return _ocr; }
+        }
+
+        public SystemEvents Events
+        {
+            get { return _systemEvents; }
+        }
+
+        public Status Status
+        {
+            get { return _status; }
+        }
+        #endregion
 
         public void EnableDataMatrixBarcodes()
         {
@@ -187,5 +198,4 @@ namespace Motorola.Snapi
                 Firmware = firmware.Value.Trim();
         }
     }
-
 }

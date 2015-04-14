@@ -120,7 +120,7 @@ namespace Motorola.Snapi.Constants
         IbmTableTop = 9 // IBM Table Top Scanners
     }
 
-    internal enum Status
+    internal enum StatusCode
     {
         Success = 0, //  Generic success
         Locked = 10, //  Device is locked by another application
