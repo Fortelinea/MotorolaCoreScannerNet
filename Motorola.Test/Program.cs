@@ -49,7 +49,7 @@ namespace Motorola.Test
                     }
                 }
                 scanner.Initialize();
-                scanner.EnableDataMatrixBarcodes();
+
             }
 
             BarcodeScannerManager.Instance.DataReceived += Instance_DataReceived;

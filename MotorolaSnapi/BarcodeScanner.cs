@@ -10,8 +10,9 @@ namespace Motorola.Snapi
     public class BarcodeScanner : IMotorolaSnapiScanner
     {
         private Ocr _ocr;
-        private CCoreScanner _scannerDriver;
+        private readonly CCoreScanner _scannerDriver;
         private Discovery _discovery;
+        private SystemEvents _systemEvents;
 
         internal BarcodeScanner(CCoreScanner scannerDriver, XElement scannerXml)
         {
@@ -39,31 +40,36 @@ namespace Motorola.Snapi
             {
                 _ocr = new Ocr(ScannerId, _scannerDriver);
                 _discovery = new Discovery(ScannerId, _scannerDriver);
+                _systemEvents = new SystemEvents(ScannerId, _scannerDriver);
+            }
+            if (UsbHostMode == HostMode.USB_CDC)
+            {
+                _systemEvents = new SystemEvents(ScannerId, _scannerDriver);
             }
         }
 
-        public string DateOfManufacture { get; set; }
+        public string DateOfManufacture { get; private set; }
 
-        public string Firmware { get; set; }
+        public string Firmware { get; private set; }
 
-        public Guid GUID { get; set; }
+        public Guid GUID { get; private set; }
 
-        public string UsbHostMode { get; set; }
+        public string UsbHostMode { get; private set; }
 
-        public string ModelNumber { get; set; }
+        public string ModelNumber { get; private set; }
 
-        public Ocr Ocr
+        public Ocr OCR
         {
             get { return _ocr; }
         }
 
-        public int ProductId { get; set; }
+        public int ProductId { get; private set; }
 
-        public int ScannerId { get; set; }
+        public int ScannerId { get; private set; }
 
-        public string SerialNumber { get; set; }
+        public string SerialNumber { get; private set; }
 
-        public int VendorId { get; set; }
+        public int VendorId { get; private set; }
 
         public Discovery Discovery
         {
@@ -181,4 +187,5 @@ namespace Motorola.Snapi
                 Firmware = firmware.Value.Trim();
         }
     }
+
 }

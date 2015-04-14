@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using CoreScanner;
 using Motorola.Snapi.Constants;
 
@@ -28,7 +27,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// Initializes a Discovery object containing the current values of all discovery attributes for a given scanner.
         /// </summary>
-        /// <param name="scannerId">ID number of the scanner to get data from.</param>
+        /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
         internal Discovery(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver)
         {
@@ -182,7 +181,7 @@ namespace Motorola.Snapi.Attributes
             set
             {
                 _dateOfFirstProgramming = value;
-                SetAttribute(new ScannerAttribute { Id = (ushort)DiscoveryAttribute.DateOfFirstProgramming, DataType = ValueConverters.ActualTypeToDataType(typeof(string)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = DiscoveryAttribute.DateOfFirstProgramming, DataType = ValueConverters.ActualTypeToDataType(typeof(string)), Value = value });
             }
         }
 
@@ -200,7 +199,7 @@ namespace Motorola.Snapi.Attributes
             set
             {
                 _configurationFilename = value;
-                SetAttribute(new ScannerAttribute { Id = (ushort)DiscoveryAttribute.ConfigurationFilename, DataType = ValueConverters.ActualTypeToDataType(typeof(string)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = DiscoveryAttribute.ConfigurationFilename, DataType = ValueConverters.ActualTypeToDataType(typeof(string)), Value = value });
             }
         }
     }

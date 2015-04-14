@@ -11,8 +11,12 @@ namespace Motorola.Snapi.Commands
     /// </summary>
     public class Keyboard
     {
-        private CCoreScanner _scannerDriver;
+        private readonly CCoreScanner _scannerDriver;
 
+        /// <summary>
+        /// Initializes a Keyboard object.
+        /// </summary>
+        /// <param name="scannerDriver">CCoreScanner instance</param>
         internal Keyboard(CCoreScanner scannerDriver)
         {
             _scannerDriver = scannerDriver;
@@ -24,6 +28,9 @@ namespace Motorola.Snapi.Commands
             French = 1
         }
 
+        /// <summary>
+        /// True if keyboard emulation is enabled.
+        /// </summary>
         public bool EnableEmulation
         {
             get
@@ -46,6 +53,9 @@ namespace Motorola.Snapi.Commands
             }
         }
 
+        /// <summary>
+        /// Keyboard Locale
+        /// </summary>
         public KeyboardLocale Locale
         {
             get

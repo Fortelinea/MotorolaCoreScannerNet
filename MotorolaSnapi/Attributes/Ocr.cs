@@ -1,7 +1,6 @@
 ﻿using System;
-using CoreScanner;
 using System.Collections.Generic;
-using System.Linq;
+using CoreScanner;
 using Motorola.Snapi.Constants;
 
 namespace Motorola.Snapi.Attributes
@@ -38,7 +37,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// Initializes an Ocr object containing the current values of all OCR attributes for a given scanner.
         /// </summary>
-        /// <param name="scannerId">ID number of the scanner to get data from.</param>
+        /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
         internal Ocr(int scannerId, CCoreScanner scannerDriver)
             : base(scannerId, scannerDriver)

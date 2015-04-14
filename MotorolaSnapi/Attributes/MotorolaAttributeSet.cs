@@ -7,6 +7,9 @@ using Motorola.Snapi.Constants;
 
 namespace Motorola.Snapi.Attributes
 {
+    /// <summary>
+    /// Base class for all attribute sets. Contains methods for setting and getting attributes.
+    /// </summary>
     public abstract class MotorolaAttributeSet
     {
         protected readonly string _getAttributesXml;
@@ -14,6 +17,11 @@ namespace Motorola.Snapi.Attributes
         protected CCoreScanner _scannerDriver;
         protected int _scannerId;
 
+        /// <summary>
+        /// Initializes this base class. Must be inherited
+        /// </summary>
+        /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
+        /// <param name="scannerDriver"></param>
         protected MotorolaAttributeSet(int scannerId, CCoreScanner scannerDriver)
         {
             _scannerId = scannerId;
@@ -22,6 +30,11 @@ namespace Motorola.Snapi.Attributes
             _setAttributeXml = String.Format(@"<inArgs><cmdArgs><scannerID>{0}</scannerID><arg-xml><attrib_list><attribute><id>{1}</id><datatype>{2}</datatype><value>{3}</value></attribute></attrib_list></arg-xml></cmdArgs></inArgs>", scannerId, @"{0}", @"{1}", @"{2}");
         }
 
+        /// <summary>
+        /// Get an attribute from the scanner given it's ID.
+        /// </summary>
+        /// <param name="id">Attribute ID</param>
+        /// <returns>ScannerAttribute object holding identification info and the value of the attribute.</returns>
         protected ScannerAttribute GetAttribute(ushort id)
         {
             var xml = String.Format(_getAttributesXml, id);
@@ -42,6 +55,11 @@ namespace Motorola.Snapi.Attributes
             return retval;
         }
 
+        /// <summary>
+        /// Get a Dictionary of attributes from the scanner given a List of attribute IDs.
+        /// </summary>
+        /// <param name="ids">Attribute ID list</param>
+        /// <returns>Dictionary of ScannerAttribute objects holding identification info and the value of their corrisponding attribute. Keyed by id.</returns>
         protected IDictionary<ushort, ScannerAttribute> GetAttributes(List<ushort> ids)
         {
             var xml = String.Format(_getAttributesXml, String.Join(",", ids.Select(n => n.ToString()).ToArray()));
@@ -66,6 +84,10 @@ namespace Motorola.Snapi.Attributes
             return retval;
         }
 
+        /// <summary>
+        /// Sets an attribute on the scanner given a ScannerAttribute object.
+        /// </summary>
+        /// <param name="attribute">ScannerAttribute object containing identification info and the value of the attribute to set.</param>
         protected void SetAttribute(ScannerAttribute attribute)
         {
             var xml = String.Format(_setAttributeXml, attribute.Id, attribute.DataType, attribute.Value);

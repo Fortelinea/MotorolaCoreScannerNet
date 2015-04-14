@@ -5,23 +5,23 @@ namespace Motorola.Snapi
 {
     public interface IMotorolaSnapiScanner
     {
-        string DateOfManufacture { get; set; }
+        string DateOfManufacture { get; }
 
-        string Firmware { get; set; }
+        string Firmware { get; }
 
-        Guid GUID { get; set; }
+        Guid GUID { get; }
 
-        string ModelNumber { get; set; }
+        string ModelNumber { get; }
 
-        int ProductId { get; set; }
+        int ProductId { get; }
 
-        int ScannerId { get; set; }
+        int ScannerId { get; }
 
-        string UsbHostMode { get; set; }
+        string UsbHostMode { get; }
 
-        string SerialNumber { get; set; }
+        string SerialNumber { get; }
 
-        int VendorId { get; set; }
+        int VendorId { get; }
 
         void EnableDataMatrixBarcodes();
 
