@@ -176,12 +176,14 @@ namespace Motorola.Snapi
                     }
                     case EventType.Image:
                     {
-                        throw new NotImplementedException();
+                        _scannerDriver.ImageEvent += OnImageEvent;
                         break;
                     }
                     case EventType.Other:
                     {
-                        throw new NotImplementedException();
+                        _scannerDriver.IOEvent += OnIOEvent;
+                        _scannerDriver.CommandResponseEvent += OnCommandResponceEvent;
+                        _scannerDriver.ScannerNotificationEvent += OnScannerNotificationEvent;
                         break;
                     }
                     case EventType.Pnp:
@@ -191,12 +193,12 @@ namespace Motorola.Snapi
                     }
                     case EventType.Rmd:
                     {
-                        throw new NotImplementedException();
+                        _scannerDriver.ScanRMDEvent += OnScanRMDEvent;
                         break;
                     }
                     case EventType.Video:
                     {
-                        throw new NotImplementedException();
+                        _scannerDriver.VideoEvent += OnVideoEvent
                         break;
                     }
                 }
@@ -246,7 +248,9 @@ namespace Motorola.Snapi
                             }
                             case EventType.Other:
                             {
-                                throw new NotImplementedException();
+                                _scannerDriver.IOEvent -= OnIOEvent;
+                                _scannerDriver.CommandResponseEvent -= OnCommandResponceEvent;
+                                _scannerDriver.ScannerNotificationEvent -= OnScannerNotificationEvent;
                                 break;
                             }
                             case EventType.Pnp:
@@ -256,12 +260,12 @@ namespace Motorola.Snapi
                             }
                             case EventType.Rmd:
                             {
-                                throw new NotImplementedException();
+                                _scannerDriver.ScanRMDEvent -= OnScanRMDEvent;
                                 break;
                             }
                             case EventType.Video:
                             {
-                                throw new NotImplementedException();
+                                _scannerDriver.VideoEvent -= OnVideoEvent
                                 break;
                             }
                         }
@@ -329,6 +333,58 @@ namespace Motorola.Snapi
         /// <param name="sfimagedata"></param>
         /// <param name="pscannerdata"></param>
         private void OnImageEvent(short eventtype, int size, short imageformat, ref object sfimagedata, ref string pscannerdata) { throw new NotImplementedException(); }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="eventType"></param>
+        /// <param name="size"></param>
+        /// <param name="sfvideoData"></param>
+        /// <param name="pScannerData"></param>
+        private void OnVideoEvent(short eventType, int size, ref object sfvideoData, ref string pScannerData)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="eventType"></param>
+        /// <param name="prmdData"></param>
+        private void OnScanRMDEvent(short eventType, ref string prmdData)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="notificationType"></param>
+        /// <param name="pScannerData"></param>
+        private void OnScannerNotificationEvent(short notificationType, ref string pScannerData)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="status"></param>
+        /// <param name="prspData"></param>
+        private void OnCommandResponceEvent(short status, ref string prspData)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="data"></param>
+        private void OnIOEvent(short type, byte data)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region IDisposable
