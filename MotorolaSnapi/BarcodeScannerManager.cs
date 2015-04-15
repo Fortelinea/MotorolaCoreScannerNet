@@ -2,6 +2,8 @@
 using Motorola.Snapi.Commands;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
@@ -32,7 +34,7 @@ namespace Motorola.Snapi
         public void Close()
         {
             int status;
-            UnRegisterForEvents(EventType.Barcode, EventType.Pnp);
+            UnRegisterForEvents(EventType.Barcode, EventType.Pnp, EventType.Image, EventType.Other, EventType.Rmd, EventType.Video);
             _scannerDriver.Close(0, out status);
         }
 
@@ -99,6 +101,7 @@ namespace Motorola.Snapi
             }
         }
 
+        #region Parsers
         /// <summary>
         /// Parses out the hex array from the XElement and converts each to a char and appends to string
         /// </summary>
@@ -134,6 +137,34 @@ namespace Motorola.Snapi
             catch
             { return 0; }
         }
+
+        /// <summary>
+        /// Gets rawdata from barcode xml.
+        /// </summary>
+        /// <param name="xdoc">XDocument generated from barcode event.</param>
+        /// <returns>byte[] containing the rawdata</returns>
+        private byte[] ParseRawData(XDocument xdoc)
+        {
+            return ValueConverters.StringToByteArray(xdoc.Descendants("rawdata")
+                                                  .Single()
+                                                  .Value);
+        }
+
+        /// <summary>
+        /// Gets barcode type from barcode xml.
+        /// </summary>
+        /// <param name="xdoc">XDocument generated from barcode event.</param>
+        /// <returns>Barcode type</returns>
+        private BarcodeType ParseBarcodeType(XDocument xdoc)
+        {
+            try
+            {
+                return (BarcodeType)ushort.Parse(xdoc.Descendants("datatype").Single().Value);
+            }
+            catch
+            { return 0; }
+        }
+        #endregion
 
         #region Events
         private List<EventType> _registeredEvents;
@@ -290,9 +321,18 @@ namespace Motorola.Snapi
         /// </summary>
         public event EventHandler<PnpEventArgs> ScannerAttached;
         /// <summary>
+        /// Invoked when a scanner is detached.
+        /// </summary>
+        public event EventHandler<PnpEventArgs> ScannerDetached;
+        /// <summary>
         /// Invoked when a scanner captures an image.
         /// </summary>
-        public event EventHandler<ImageEventArgs> ImageReceived; 
+        public event EventHandler<ImageEventArgs> ImageReceived;
+        /// <summary>
+        /// Invoked when a scanner captures video.
+        /// </summary>
+        public event EventHandler<VideoEventArgs> VideoReceived;
+
 
         /// <summary>
         /// Handles BardcodeEvent and invokes DataReceived.
@@ -305,7 +345,7 @@ namespace Motorola.Snapi
             if (DataReceived != null)
             {
                 XDocument xdoc = XDocument.Parse(pscanData);
-                DataReceived(this, new BarcodeScanEventArgs(ParseScannerId(xdoc), ParseData(xdoc)));
+                DataReceived(this, new BarcodeScanEventArgs(ParseScannerId(xdoc), ParseBarcodeType(xdoc), ParseData(xdoc), ParseRawData(xdoc)));
             }
         }
 
@@ -317,24 +357,61 @@ namespace Motorola.Snapi
         /// <param name="ppnpdata">Xml output.</param>
         private void OnPnpEvent(short eventtype, ref string ppnpdata)
         {
-            if (ScannerAttached != null)
+            if (ScannerAttached != null && eventtype == 1)
             {
-                ScannerAttached(this, new PnpEventArgs(eventtype, ppnpdata));
+                ScannerAttached(this, new PnpEventArgs(ppnpdata));
+            }
+            else if (ScannerDetached != null && eventtype == 2)
+            {
+                ScannerDetached(this, new PnpEventArgs(ppnpdata));
             }
         }
 
         /// <summary>
-        /// Handles ImageEvent and invokes ImageReceived
+        /// Handles ImageEvent and invokes ImageReceived.
         /// </summary>
         /// <param name="eventtype"></param>
         /// <param name="size"></param>
         /// <param name="imageformat"></param>
-        /// <param name="sfimagedata"></param>
+        /// <param name="sfimageData"></param>
         /// <param name="pscannerdata"></param>
-        private void OnImageEvent(short eventtype, int size, short imageformat, ref object sfimagedata, ref string pscannerdata) { throw new NotImplementedException(); }
+        private void OnImageEvent(short eventtype, int size, short imageformat, ref object sfimageData, ref string pscannerdata)
+        {
+            if (ImageEvent.CaptureCompleted == (ImageEvent)eventtype)
+            {
+                Array arr = (Array)sfimageData;
+                long len = arr.LongLength;
+                byte[] byImage = new byte[len];
+                arr.CopyTo(byImage, 0);
+                var xdoc = XDocument.Parse(pscannerdata);
+                Image image;
+                System.Drawing.Imaging.ImageFormat format = null;
+                using (var ms = new MemoryStream(byImage))
+                {
+                    image = Image.FromStream(ms);
+                    if ((ImageFormat)imageformat == ImageFormat.Bmp)
+                    {
+                        format = System.Drawing.Imaging.ImageFormat.Bmp;
+                    }
+                    else if ((ImageFormat)imageformat == ImageFormat.Jpeg)
+                    {
+                        format = System.Drawing.Imaging.ImageFormat.Jpeg;
+                    }
+                    else if ((ImageFormat)imageformat == ImageFormat.Tiff)
+                    {
+                        format = System.Drawing.Imaging.ImageFormat.Tiff;
+                    }
+                    if (ImageReceived != null) ImageReceived(this, new ImageEventArgs(ParseScannerId(xdoc), format, image));
+                }
+            }
+            else 
+            {
+                //TODO Implement what to do when capture fails.
+            }
+        }
 
         /// <summary>
-        /// 
+        /// Handles VideoEvent and invokes VideoReceived.
         /// </summary>
         /// <param name="eventType"></param>
         /// <param name="size"></param>
@@ -346,7 +423,7 @@ namespace Motorola.Snapi
         }
 
         /// <summary>
-        /// 
+        /// Handles ScanRMDEvent
         /// </summary>
         /// <param name="eventType"></param>
         /// <param name="prmdData"></param>
@@ -356,7 +433,7 @@ namespace Motorola.Snapi
         }
 
         /// <summary>
-        /// 
+        /// Handles ScannerNotificationEvent
         /// </summary>
         /// <param name="notificationType"></param>
         /// <param name="pScannerData"></param>
@@ -366,7 +443,7 @@ namespace Motorola.Snapi
         }
 
         /// <summary>
-        /// 
+        /// Handles CommandResponceEvent
         /// </summary>
         /// <param name="status"></param>
         /// <param name="prspData"></param>
@@ -376,7 +453,7 @@ namespace Motorola.Snapi
         }
 
         /// <summary>
-        /// 
+        /// Handles IOEvent
         /// </summary>
         /// <param name="type"></param>
         /// <param name="data"></param>

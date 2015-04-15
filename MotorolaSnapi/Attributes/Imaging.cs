@@ -4,11 +4,23 @@ using Motorola.Snapi.Constants;
 
 namespace Motorola.Snapi.Attributes
 {
-    //TODO Comment this class.
-    class Imaging : MotorolaAttributeSet
+    /// <summary>
+    /// Provides properties for accessing and modifying scanner imaging attributes.
+    /// </summary>
+    public class Imaging : MotorolaAttributeSet
     {
+        /// <summary>
+        /// Initializes a new Imaging object
+        /// </summary>
+        /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
+        /// <param name="scannerDriver">CCoreScanner instance</param>
         internal Imaging(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
 
+        /// <summary>
+        /// <para>Driver Attribute Name: CropTop</para>
+        /// <para>Description: This parameter sets the value at which the image is cropped from the top.</para>
+        /// <para>Values: 0 to 1023</para>
+        /// </summary>
         public ushort CropTop
         {
             get
@@ -22,6 +34,11 @@ namespace Motorola.Snapi.Attributes
             }
         }
 
+        /// <summary>
+        /// <para>Driver Attribute Name: CropLeft</para>
+        /// <para>Description: This parameter sets the value at which the image is cropped from the left.</para>
+        /// <para>Values: 0 to 1279</para>
+        /// </summary>
         public ushort CropLeft
         {
             get
@@ -35,6 +52,30 @@ namespace Motorola.Snapi.Attributes
             }
         }
 
+        /// <summary>
+        /// <para>Driver Attribute Name: CropRight</para>
+        /// <para>Description: This parameter sets the value at which the image is cropped from the right.</para>
+        /// <para>Values: 0 to 1279</para>
+        /// </summary>
+        public ushort CropRight
+        {
+            get
+            {
+                return Convert.ToUInt16(GetAttribute(ImagingAttribute.CropRight)
+                                            .Value);
+            }
+            set
+            {
+                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.CropRight, DataType = ValueConverters.TypeToDataType(typeof(ushort)), Value = value });
+            }
+        }
+
+
+        /// <summary>
+        /// <para>Driver Attribute Name: CropBottom</para>
+        /// <para>Description: This parameter sets the value at which the image is cropped from the bottom.</para>
+        /// <para>Values: 0 to 1023</para>
+        /// </summary>
         public ushort CropBottom
         {
             get
@@ -48,6 +89,11 @@ namespace Motorola.Snapi.Attributes
             }
         }
 
+        /// <summary>
+        /// <para>Driver Attribute Name: JPEGFileSizeWord</para>
+        /// <para>Description: This parameter sets the size of the JPEG image in multiples of 1K.</para>
+        /// <para>Values: 5 to 600</para>
+        /// </summary>
         public ushort JPEGFileSize
         {
             get
@@ -61,6 +107,11 @@ namespace Motorola.Snapi.Attributes
             }
         }
 
+        /// <summary>
+        /// <para>Driver Attribute Name: Exposure</para>
+        /// <para>Description: Sets the time of exposure.</para>
+        /// <para>Values: 5 to 5000</para>
+        /// </summary>
         public ushort Exposure
         {
             get
@@ -74,6 +125,12 @@ namespace Motorola.Snapi.Attributes
             }
         }
 
+        /// <summary>
+        /// <para>Driver Attribute Name: SnapshotByMotion</para>
+        /// <para>Description: When enabled, once an object in the field of view remains stationary, an
+        /// image will be taken and transmitted to the host. This applies to Snapshot mode only.</para>
+        /// <para>Values: 5 to 5000</para>
+        /// </summary>
         public bool SnapshotByMotionEnabled
         {
             get
@@ -87,6 +144,12 @@ namespace Motorola.Snapi.Attributes
             }
         }
 
+        /// <summary>
+        /// <para>Driver Attribute Name: ContinuousSnapshot</para>
+        /// <para>Description: Set to true to stay in Snapshot mode, and false to return to normal
+        /// decode mode after image capture. This only applies in Presentation Snapshot by Motion mode.</para>
+        /// <para>Values: true(On) false(Off)</para>
+        /// </summary>
         public bool ContinuousSnapshotEnabled
         {
             get
@@ -100,12 +163,17 @@ namespace Motorola.Snapi.Attributes
             }
         }
 
+        /// <summary>
+        /// <para>Driver Attribute Name: ImageEdgeSharpen</para>
+        /// <para>Description: Sharpen image edges.</para>
+        /// <para>Values: 0(Off) to 100(High)</para>
+        /// </summary>
         public ushort ImageEdgeSharpen
         {
             get
             {
-                return (ushort)GetAttribute(ImagingAttribute.ImageEdgeSharpen)
-                                 .Value;
+                return Convert.ToUInt16(GetAttribute(ImagingAttribute.ImageEdgeSharpen)
+                                            .Value);
             }
             set
             {
@@ -113,38 +181,58 @@ namespace Motorola.Snapi.Attributes
             }
         }
 
-        public ushort ImageRotation
+        /// <summary>
+        /// <para>Driver Attribute Name: ImageRotation</para>
+        /// <para>Description: Rotate images by the ammount of this value.</para>
+        /// <para>Values:</para>
+        /// <para>0 – 0 degrees</para>
+        /// <para>1 – 90 degrees</para>
+        /// <para>2 – 180 degrees</para>
+        /// <para>3 – 270 degrees</para>
+        /// </summary>
+        public ImageRotation ImageRotation
         {
             get
             {
-                return (ushort)GetAttribute(ImagingAttribute.ImageRotation)
+                return (ImageRotation)GetAttribute(ImagingAttribute.ImageRotation)
                                    .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute{ Id = ImagingAttribute.ImageRotation, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute{ Id = ImagingAttribute.ImageRotation, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = (byte)value });
             }
         }
 
+        /// <summary>
+        /// <para>Driver Attribute Name: ContrastEnhancement</para>
+        /// <para>Description: Enhances the image contrast.</para>
+        /// <para>Values: false (Disable), true (Enable)</para>
+        /// </summary>
         public bool ContrastEnhancement
         {
             get
             {
-                return (bool)GetAttribute(ImagingAttribute.ContrastEnhancement)
-                                   .Value;
+                return (Convert.ToUInt16(GetAttribute(ImagingAttribute.ContrastEnhancement)
+                                   .Value) == 1);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.ContrastEnhancement, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                string v = value ? "1" : "0";
+                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.ContrastEnhancement, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = v });
             }
         }
 
+        /// <summary>
+        /// <para>Driver Attribute Name: VideoSubsample</para>
+        /// <para>Description: Sets the image resolution. Image size will be changed if you manipulate this parameter.</para>
+        /// <para>Values: 0 to 3</para>
+        /// </summary>
         public ushort ImageResolution
         {
             get
             {
-                return (ushort)GetAttribute(ImagingAttribute.VideoSubsample)
-                                   .Value;
+                return Convert.ToUInt16(GetAttribute(ImagingAttribute.VideoSubsample)
+                                            .Value);
             }
             set
             {
@@ -152,12 +240,17 @@ namespace Motorola.Snapi.Attributes
             }
         }
 
+        /// <summary>
+        /// <para>Driver Attribute Name: AimBrightness</para>
+        /// <para>Description: Sets the brightness of the aim patterns by altering the aim duration.</para>
+        /// <para>Values: 0 to 255 in .5ms increments</para>
+        /// </summary>
         public ushort AimBrightness
         {
             get
             {
-                return (ushort)GetAttribute(ImagingAttribute.AimBrightness)
-                                   .Value;
+                return Convert.ToUInt16(GetAttribute(ImagingAttribute.AimBrightness)
+                                            .Value);
             }
             set
             {
@@ -165,12 +258,17 @@ namespace Motorola.Snapi.Attributes
             }
         }
 
+        /// <summary>
+        /// <para>Driver Attribute Name: IlluminationBrightness</para>
+        /// <para>Description: Sets the brightness of the illumination.</para>
+        /// <para>Values: 0 (weakest) to 10 (strongest)</para>
+        /// </summary>
         public ushort IlluminationBrightness
         {
             get
             {
-                return (ushort)GetAttribute(ImagingAttribute.IlluminationBrightness)
-                                   .Value;
+                return Convert.ToUInt16(GetAttribute(ImagingAttribute.IlluminationBrightness)
+                                            .Value);
             }
             set
             {

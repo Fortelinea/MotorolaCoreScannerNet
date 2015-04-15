@@ -1,5 +1,6 @@
 ﻿using System;
 using Motorola.Snapi.Attributes;
+using Motorola.Snapi.Constants;
 
 namespace Motorola.Snapi
 {
@@ -23,6 +24,8 @@ namespace Motorola.Snapi
 
         int VendorId { get; }
 
+        CaptureMode CaptureMode { set; }
+
         void Initialize();
 
         void SetHostMode(string mode, bool permanent = false, bool silent = true);
@@ -34,5 +37,7 @@ namespace Motorola.Snapi
         SystemEvents Events { get; }
 
         Status Status { get; }
+
+        Imaging Imaging { get; }
     }
 }

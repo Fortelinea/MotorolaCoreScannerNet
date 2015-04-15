@@ -39,6 +39,7 @@ namespace Motorola.Snapi
                 _discovery = new Discovery(ScannerId, _scannerDriver);
                 _systemEvents = new SystemEvents(ScannerId, _scannerDriver);
                 _status = new Status(ScannerId, _scannerDriver);
+                _imaging = new Imaging(ScannerId, _scannerDriver);
             }
         }
 
@@ -60,11 +61,39 @@ namespace Motorola.Snapi
 
         public int VendorId { get; private set; }
 
+        public CaptureMode CaptureMode
+        {
+            set
+            {
+                var inXml = string.Format(@"<inArgs><scannerID>1</scannerID></inArgs>");
+                string OutXml;
+                int status = 0;
+
+                if (value == CaptureMode.Image)
+                {
+                    _scannerDriver.ExecCommand((int)ScannerCommand.DeviceCaptureImage, ref inXml, out OutXml, out status);
+                }
+                else if (value == CaptureMode.Barcode)
+                {
+                    _scannerDriver.ExecCommand((int)ScannerCommand.DeviceCaptureBarcode, ref inXml, out OutXml, out status);
+                }
+                else if (value == CaptureMode.Video)
+                {
+                    _scannerDriver.ExecCommand((int)ScannerCommand.DeviceCaptureVideo, ref inXml, out OutXml, out status);
+                }
+                if (status != 0)
+                {
+                    throw new ScannerException(string.Format("Failed to set mode to {0}.", value)){ErrorCode = (StatusCode)status};
+                }
+            }
+        }
+
         #region Attributes
         private Discovery _discovery;
         private SystemEvents _systemEvents;
         private Status _status;
         private Ocr _ocr;
+        private Imaging _imaging;
 
         public Discovery Discovery
         {
@@ -85,19 +114,24 @@ namespace Motorola.Snapi
         {
             get { return _status; }
         }
+
+        public Imaging Imaging
+        {
+            get { return _imaging; }
+        }
         #endregion
 
-        public void EnableLeicaBarcodes()
-        {
-            _ocr.EnableOcrB = true;
-            _ocr.Template = "3333 333";
-            _ocr.ValidCharacters = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            _ocr.Orientation = BarcodeOrientation.Omnidirectional;
-            _ocr.MinCharacters = 7;
-            _ocr.MaxCharacters = 9;
-            _ocr.Lines = 1;
-            _ocr.SecurityLevel = 70;
-        }
+        //public void EnableLeicaBarcodes()
+        //{
+        //    _ocr.EnableOcrB = true;
+        //    _ocr.Template = "3333 333";
+        //    _ocr.ValidCharacters = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        //    _ocr.Orientation = BarcodeOrientation.Omnidirectional;
+        //    _ocr.MinCharacters = 7;
+        //    _ocr.MaxCharacters = 9;
+        //    _ocr.Lines = 1;
+        //    _ocr.SecurityLevel = 70;
+        //}
 
         private void Parse(XElement scannerXml)
         {

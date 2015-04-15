@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,11 +55,14 @@
     <Compile Include="BarcodeScanner.cs" />
     <Compile Include="BarcodeScannerManager.cs" />
     <Compile Include="Constants\BarcodeOrientation.cs" />
+    <Compile Include="Constants\BarcodeType.cs" />
+    <Compile Include="Constants\CaptureMode.cs" />
     <Compile Include="Constants\DataType.cs" />
     <Compile Include="Constants\DeviceParameter.cs" />
     <Compile Include="Constants\DiscoveryAttribute.cs" />
     <Compile Include="Constants\EventType.cs" />
     <Compile Include="Constants\HostMode.cs" />
+    <Compile Include="Constants\ImageRotation.cs" />
     <Compile Include="Constants\ImagingAttribute.cs" />
     <Compile Include="Constants\OcrAttribute.cs" />
     <Compile Include="Constants\StatusAttribute.cs" />
@@ -69,6 +73,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScannerException.cs" />
     <Compile Include="ValueConverters.cs" />
+    <Compile Include="VideoEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="CoreScanner">

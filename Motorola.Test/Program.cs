@@ -12,14 +12,19 @@ namespace Motorola.Test
         private static void Instance_DataReceived(object sender, BarcodeScanEventArgs e)
         {
             _lastScanned = e.Data;
+            var raw = System.Text.Encoding.Default.GetString(e.RawData);
+            Console.WriteLine("Barcode type: " + e.BarcodeType);
+            Console.WriteLine("Data: " + e.Data);
         }
 
         private static void Instance_ScannerAttached(object sender, PnpEventArgs e) 
         {
-            if (e.EventType == 0)
-            {
-                _scannerAttached = true;
-            }
+            _scannerAttached = true;
+        }
+
+        private static void Instance_ImageReceived(object sender, ImageEventArgs e)
+        {
+            e.Image.Save(@"C:\Users\Jason\Desktop\Image.jpg", e.Format);      
         }
 
         private static void Main(string[] args)
@@ -28,7 +33,7 @@ namespace Motorola.Test
 
             BarcodeScannerManager.Instance.Open();
 
-            BarcodeScannerManager.Instance.RegisterForEvents(EventType.Barcode, EventType.Pnp);
+            BarcodeScannerManager.Instance.RegisterForEvents(EventType.Barcode, EventType.Pnp, EventType.Image);
 
             var b = BarcodeScannerManager.Instance.RegisteredEvents;
 
@@ -49,51 +54,73 @@ namespace Motorola.Test
                     }
                 }
                 scanner.Initialize();
-                var c = scanner.Status.Charging;
-                var d = scanner.Status.InCradle;
-                var e = scanner.Status.IsHandsfree;
-                var f = scanner.OCR.CheckDigitMod = 2;
-                var g = scanner.OCR.CheckDigitMultiplier = "1212";
-                var h = scanner.OCR.CheckDigitValidation = 3;
-                var i = scanner.OCR.Despeckle = 99;
-                var j = scanner.OCR.EnableExternalFinder = true;
-                var k = scanner.OCR.EnableFinder = true;
-                var l = scanner.OCR.EnableIllumination = true;
-                var m = scanner.OCR.EnableMicre13B = true;
-                var n = scanner.OCR.EnableOcrA = true;
-                var o = scanner.OCR.EnableOcrB = true;
-                var p = scanner.OCR.EnableUSCurrency = true;
-                var q = scanner.OCR.Lines = 3;
-                var r = scanner.OCR.LowPassFilter = 10;
-                var s = scanner.OCR.MaxCharacters = 10;
-                var t = scanner.OCR.MinCharacters = 3;
-                var u = scanner.OCR.OcrAVariant = 1;
-                var v = scanner.OCR.OcrBVariant = 5;
-                var w = scanner.OCR.Orientation = BarcodeOrientation.UpsideDown;
-                var x = scanner.OCR.QuietZone = 43;
-                var y = scanner.OCR.SecurityLevel = 50;
-                var z = scanner.OCR.Template = "1234ABC";
-                var aa = scanner.OCR.Thicken = 10;
-                var ab = scanner.OCR.ValidCharacters = "ABCDEFGHIJKLMNPQRSTUVWXYZ1234567890";
-                var ac = scanner.OCR.WhiteLevel = 50;
-                var ad = scanner.Discovery.BluetoothAddress;
-                var ae = scanner.Discovery.CombinedFirmwareVersion;
-                var af = scanner.Discovery.ConfigurationFilename;
-                var ag = scanner.Discovery.DateOfFirstProgramming = DateTime.Today;
-                var ah = scanner.Discovery.DateOfManufacture;
-                var ai = scanner.Discovery.DeviceClass;
-                var aj = scanner.Discovery.ImagekitVersion;
-                var ak = scanner.Discovery.LastServiceDate;
-                var al = scanner.Discovery.ModelNumber;
-                var am = scanner.Discovery.RsmVersion;
-                var an = scanner.Discovery.ScankitVersion;
-                var ao = scanner.Discovery.ScannerFirmwareVersion;
-                var ap = scanner.Discovery.SerialNumber;
+                scanner.CaptureMode = CaptureMode.Barcode;
+                GetAttributes(scanner);
             }
 
             BarcodeScannerManager.Instance.DataReceived += Instance_DataReceived;
+            BarcodeScannerManager.Instance.ImageReceived += Instance_ImageReceived;
 
+            Console.WriteLine("Ready to scan..");
             Console.ReadLine();
+        }
+
+        private static void GetAttributes(IMotorolaSnapiScanner scanner)
+        {
+            var c = scanner.Status.Charging;
+            var d = scanner.Status.InCradle;
+            var e = scanner.Status.IsHandsfree;
+            var f = scanner.OCR.CheckDigitMod;
+            var g = scanner.OCR.CheckDigitMultiplier;
+            var h = scanner.OCR.CheckDigitValidation;
+            var i = scanner.OCR.Despeckle;
+            var j = scanner.OCR.EnableExternalFinder;
+            var k = scanner.OCR.EnableFinder;
+            var l = scanner.OCR.EnableIllumination;
+            var m = scanner.OCR.EnableMicre13B;
+            var n = scanner.OCR.EnableOcrA;
+            var o = scanner.OCR.EnableOcrB;
+            var p = scanner.OCR.EnableUSCurrency;
+            var q = scanner.OCR.Lines;
+            var r = scanner.OCR.LowPassFilter;
+            var s = scanner.OCR.MaxCharacters;
+            var t = scanner.OCR.MinCharacters;
+            var u = scanner.OCR.OcrAVariant;
+            var v = scanner.OCR.OcrBVariant;
+            var w = scanner.OCR.Orientation;
+            var x = scanner.OCR.QuietZone;
+            var y = scanner.OCR.SecurityLevel;
+            var z = scanner.OCR.Template;
+            var aa = scanner.OCR.Thicken;
+            var ab = scanner.OCR.ValidCharacters;
+            var ac = scanner.OCR.WhiteLevel;
+            var ad = scanner.Discovery.BluetoothAddress;
+            var ae = scanner.Discovery.CombinedFirmwareVersion;
+            var af = scanner.Discovery.ConfigurationFilename;
+            var ag = scanner.Discovery.DateOfFirstProgramming;
+            var ah = scanner.Discovery.DateOfManufacture;
+            var ai = scanner.Discovery.DeviceClass;
+            var aj = scanner.Discovery.ImagekitVersion;
+            var ak = scanner.Discovery.LastServiceDate;
+            var al = scanner.Discovery.ModelNumber;
+            var am = scanner.Discovery.RsmVersion;
+            var an = scanner.Discovery.ScankitVersion;
+            var ao = scanner.Discovery.ScannerFirmwareVersion;
+            var ap = scanner.Discovery.SerialNumber;
+            var aq = scanner.Imaging.AimBrightness;
+            var ar = scanner.Imaging.ContinuousSnapshotEnabled;
+            var @as = scanner.Imaging.ContrastEnhancement;
+            var at = scanner.Imaging.CropBottom;
+            var au = scanner.Imaging.CropLeft;
+            var av = scanner.Imaging.CropRight;
+            var aw = scanner.Imaging.CropTop;
+            var ax = scanner.Imaging.Exposure;
+            var ay = scanner.Imaging.IlluminationBrightness;
+            var az = scanner.Imaging.ImageEdgeSharpen;
+            var ba = scanner.Imaging.ImageResolution;
+            var bb = scanner.Imaging.ImageRotation;
+            var bc = scanner.Imaging.JPEGFileSize;
+            var bd = scanner.Imaging.SnapshotByMotionEnabled;
         }
     }
 }
