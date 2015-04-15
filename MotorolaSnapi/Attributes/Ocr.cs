@@ -97,12 +97,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(OcrAttribute.CheckDigitMultiplier)
+                return (bool)GetAttribute(OcrAttribute.EnableExternalFinder)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.CheckDigitMultiplier, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.EnableExternalFinder, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
             }
         }
 
