@@ -121,6 +121,9 @@ namespace Motorola.Test
             var bb = scanner.Imaging.ImageRotation;
             var bc = scanner.Imaging.JPEGFileSize;
             var bd = scanner.Imaging.SnapshotByMotionEnabled;
+            var be = scanner.Events.BootupEventEnabled;
+            var bf = scanner.Events.DecodeEventEnabled;
+            var bg = scanner.Events.ParamEventEnabled;
         }
     }
 }
