@@ -181,7 +181,7 @@ namespace Motorola.Snapi.Attributes
             set
             {
                 _dateOfFirstProgramming = value;
-                SetAttribute(new ScannerAttribute { Id = DiscoveryAttribute.DateOfFirstProgramming, DataType = ValueConverters.ActualTypeToDataType(typeof(string)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = DiscoveryAttribute.DateOfFirstProgramming, DataType = ValueConverters.ActualTypeToDataType(typeof(string)), Value = value.ToString("DDMMMYY") });
             }
         }
 

@@ -43,6 +43,10 @@ namespace Motorola.Snapi.Attributes
             int status;
 
             _scannerDriver.ExecCommand((int)ScannerCommand.AttrGet, ref xml, out outXml, out status);
+            if (status != 0)
+            {
+                throw new ScannerException(string.Format("Failed to get attribute {0}. Error code {1}", id, status)) { ErrorCode = (StatusCode)status };
+            }
             if (outXml == null)
                 return null;
             XDocument doc = XDocument.Parse(outXml);
