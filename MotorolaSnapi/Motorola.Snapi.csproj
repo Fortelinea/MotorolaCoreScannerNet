@@ -58,6 +58,7 @@
     <Compile Include="Constants\DiscoveryAttribute.cs" />
     <Compile Include="Constants\EventType.cs" />
     <Compile Include="Constants\HostMode.cs" />
+    <Compile Include="Constants\ImagingAttribute.cs" />
     <Compile Include="Constants\OcrAttribute.cs" />
     <Compile Include="Constants\StatusAttribute.cs" />
     <Compile Include="Constants\SystemEventAttribute.cs" />
