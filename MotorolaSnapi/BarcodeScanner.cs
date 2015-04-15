@@ -87,11 +87,6 @@ namespace Motorola.Snapi
         }
         #endregion
 
-        public void EnableDataMatrixBarcodes()
-        {
-            //TODO Implement
-        }
-
         public void EnableLeicaBarcodes()
         {
             _ocr.EnableOcrB = true;

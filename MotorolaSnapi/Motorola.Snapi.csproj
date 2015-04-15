@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\Discovery.cs" />
+    <Compile Include="Attributes\Imaging.cs" />
     <Compile Include="Attributes\ScannerAttribute.cs" />
     <Compile Include="Attributes\Status.cs" />
     <Compile Include="Attributes\SystemEvents.cs" />

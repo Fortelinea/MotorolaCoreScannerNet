@@ -17,6 +17,13 @@ namespace Motorola.Snapi.Attributes
         /// <param name="scannerDriver">CCoreScanner instance</param>
         internal SystemEvents(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver){}
 
+        /// <summary>
+        /// Driver Attribute Name: DecodeEvent
+        /// Description: When enabled, the scanner generates a message
+        /// to the host whenever a bar code is successfully
+        /// decoded. When disabled, no notification is sent
+        /// Values: "On" (true), "Off" (false)
+        /// </summary>
         public bool DecodeEventEnabled
         {
             get
@@ -26,10 +33,16 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.DecodeEvent, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.DecodeEvent, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
             }
         }
 
+        /// <summary>
+        /// Driver Attribute Name: BootupEvent
+        /// Description: When enabled, the scanner generates a message to the host
+        /// whenever power is applied. When disabled, no notification is sent
+        /// Values: "On" (true), "Off" (false)
+        /// </summary>
         public bool BootupEventEnabled
         {
             get
@@ -39,10 +52,16 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.BootupEvent, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.BootupEvent, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
             }
         }
 
+        /// <summary>
+        /// Driver Attribute Name: ParamEvent
+        /// Description: When enabled, the scanner generates a message
+        /// to the host when a parameter is changed.
+        /// Values: "On" (true), "Off" (false)
+        /// </summary>
         public bool ParamEventEnabled
         {
             get
@@ -52,7 +71,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.ParamEvent, DataType = ValueConverters.ActualTypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.ParamEvent, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
             }
         }
     }

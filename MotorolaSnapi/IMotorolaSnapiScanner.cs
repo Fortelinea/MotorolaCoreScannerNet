@@ -23,8 +23,6 @@ namespace Motorola.Snapi
 
         int VendorId { get; }
 
-        void EnableDataMatrixBarcodes();
-
         void Initialize();
 
         void SetHostMode(string mode, bool permanent = false, bool silent = true);

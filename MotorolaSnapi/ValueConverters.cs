@@ -97,7 +97,7 @@ namespace Motorola.Snapi
             throw new ArgumentException("Invalid hex digit: " + c);
         }
 
-        public static DataType ActualTypeToDataType(Type t)
+        public static DataType TypeToDataType(Type t)
         {
             if (t == typeof(byte[]))
                 return DataType.Array;

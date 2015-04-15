@@ -158,7 +158,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = DiscoveryAttribute.DateOfFirstProgramming, DataType = ValueConverters.ActualTypeToDataType(typeof(string)), Value = value.ToString("DDMMMYY") });
+                SetAttribute(new ScannerAttribute { Id = DiscoveryAttribute.DateOfFirstProgramming, DataType = ValueConverters.TypeToDataType(typeof(string)), Value = value.ToString("DDMMMYY") });
             }
         }
 
@@ -175,7 +175,7 @@ namespace Motorola.Snapi.Attributes
             get { return (string)GetAttribute(DiscoveryAttribute.ConfigurationFilename).Value; }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = DiscoveryAttribute.ConfigurationFilename, DataType = ValueConverters.ActualTypeToDataType(typeof(string)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = DiscoveryAttribute.ConfigurationFilename, DataType = ValueConverters.TypeToDataType(typeof(string)), Value = value });
             }
         }
     }
