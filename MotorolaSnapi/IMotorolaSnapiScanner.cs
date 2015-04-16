@@ -1,11 +1,12 @@
 ﻿using System;
 using Motorola.Snapi.Attributes;
-using Motorola.Snapi.Constants;
+using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi
 {
     public interface IMotorolaSnapiScanner
     {
+        #region ScannerInfo
         string DateOfManufacture { get; }
 
         string Firmware { get; }
@@ -25,11 +26,13 @@ namespace Motorola.Snapi
         int VendorId { get; }
 
         CaptureMode CaptureMode { set; }
+        #endregion ScannerInfo
 
-        void Initialize();
-
+        #region Commands
         void SetHostMode(string mode, bool permanent = false, bool silent = true);
+        #endregion
 
+        #region Attributes
         Discovery Discovery { get; }
 
         Ocr OCR { get; }
@@ -39,6 +42,10 @@ namespace Motorola.Snapi
         Status Status { get; }
 
         Imaging Imaging { get; }
+
         Beeper Beeper { get; }
+
+        LicenseParsing License { get; }
+        #endregion
     }
 }

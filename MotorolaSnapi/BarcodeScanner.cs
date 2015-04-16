@@ -1,9 +1,10 @@
-﻿using CoreScanner;
-using Motorola.Snapi.Attributes;
-using System;
+﻿using System;
 using System.IO;
 using System.Xml.Linq;
+using CoreScanner;
+using Motorola.Snapi.Attributes;
 using Motorola.Snapi.Constants;
+using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi
 {
@@ -17,7 +18,7 @@ namespace Motorola.Snapi
             Parse(scannerXml);
         }
 
-
+        #region Commands
         public void SetHostMode(string mode, bool permanent = false, bool silent = true)
         {
             string setCommandXml = @"<inArgs><scannerID>{0}</scannerID><cmdArgs><arg-string>{1}</arg-string><arg-bool>{2}</arg-bool><arg-bool>{3}</arg-bool></cmdArgs></inArgs>";
@@ -30,20 +31,9 @@ namespace Motorola.Snapi
             UsbHostMode = mode;
             //return status;
         }
+        #endregion
 
-        public void Initialize()
-        {
-            if ((UsbHostMode == HostMode.USB_SNAPI_Imaging) || (UsbHostMode == HostMode.USB_SNAPI_NoImaging))
-            {
-                _ocr = new Ocr(ScannerId, _scannerDriver);
-                _discovery = new Discovery(ScannerId, _scannerDriver);
-                _systemEvents = new SystemEvents(ScannerId, _scannerDriver);
-                _status = new Status(ScannerId, _scannerDriver);
-                _imaging = new Imaging(ScannerId, _scannerDriver);
-                _beeper = new Beeper(ScannerId, _scannerDriver);
-            }
-        }
-
+        #region ScannerInfo
         public string DateOfManufacture { get; private set; }
 
         public string Firmware { get; private set; }
@@ -88,6 +78,7 @@ namespace Motorola.Snapi
                 }
             }
         }
+        #endregion
 
         #region Attributes
         private Discovery _discovery;
@@ -96,35 +87,41 @@ namespace Motorola.Snapi
         private Ocr _ocr;
         private Imaging _imaging;
         private Beeper _beeper;
+        private LicenseParsing _license;
 
         public Discovery Discovery
         {
-            get { return _discovery; }
+            get { return _discovery ?? (_discovery = new Discovery(ScannerId, _scannerDriver)); }
         }
 
         public Ocr OCR
         {
-            get { return _ocr; }
+            get { return _ocr ?? (_ocr = new Ocr(ScannerId, _scannerDriver)); }
         }
 
         public SystemEvents Events
         {
-            get { return _systemEvents; }
+            get { return _systemEvents ?? (_systemEvents = new SystemEvents(ScannerId, _scannerDriver)); }
         }
 
         public Status Status
         {
-            get { return _status; }
+            get { return _status ?? (_status = new Status(ScannerId, _scannerDriver)); }
         }
 
         public Imaging Imaging
         {
-            get { return _imaging; }
+            get { return _imaging ?? (_imaging = new Imaging(ScannerId, _scannerDriver)); }
         }
 
         public Beeper Beeper
         {
-            get { return _beeper; }
+            get { return _beeper ?? (_beeper = new Beeper(ScannerId, _scannerDriver)); }
+        }
+
+        public LicenseParsing License
+        {
+            get { return _license ?? (_license = new LicenseParsing(ScannerId, _scannerDriver)); }
         }
 
         #endregion
@@ -141,6 +138,10 @@ namespace Motorola.Snapi
         //    _ocr.SecurityLevel = 70;
         //}
 
+        /// <summary>
+        /// Parses scanner info from this scanner's xml. (Usually from GetDevices Method which executes the GetScanners command.)
+        /// </summary>
+        /// <param name="scannerXml">Xml containing info for this scanner</param>
         private void Parse(XElement scannerXml)
         {
             if ((scannerXml == null) || (scannerXml.IsEmpty))

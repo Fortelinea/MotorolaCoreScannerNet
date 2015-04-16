@@ -1,13 +1,14 @@
-﻿using CoreScanner;
-using Motorola.Snapi.Commands;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using Motorola.Snapi.Constants;
+using CoreScanner;
+using Motorola.Snapi.Commands;
+using Motorola.Snapi.Constants.Enums;
+using ImageFormat = System.Drawing.Imaging.ImageFormat;
 
 namespace Motorola.Snapi
 {
@@ -145,7 +146,7 @@ namespace Motorola.Snapi
         /// <returns>byte[] containing the rawdata</returns>
         private byte[] ParseRawData(XDocument xdoc)
         {
-            return ValueConverters.StringToByteArray(xdoc.Descendants("rawdata")
+            return ValueConverters.HexStringToByteArray(xdoc.Descendants("rawdata")
                                                   .Single()
                                                   .Value);
         }
@@ -385,21 +386,21 @@ namespace Motorola.Snapi
                 arr.CopyTo(byImage, 0);
                 var xdoc = XDocument.Parse(pscannerdata);
                 Image image;
-                System.Drawing.Imaging.ImageFormat format = null;
+                ImageFormat format = null;
                 using (var ms = new MemoryStream(byImage))
                 {
                     image = Image.FromStream(ms);
-                    if ((ImageFormat)imageformat == ImageFormat.Bmp)
+                    if ((Constants.Enums.ImageFormat)imageformat == Constants.Enums.ImageFormat.Bmp)
                     {
-                        format = System.Drawing.Imaging.ImageFormat.Bmp;
+                        format = ImageFormat.Bmp;
                     }
-                    else if ((ImageFormat)imageformat == ImageFormat.Jpeg)
+                    else if ((Constants.Enums.ImageFormat)imageformat == Constants.Enums.ImageFormat.Jpeg)
                     {
-                        format = System.Drawing.Imaging.ImageFormat.Jpeg;
+                        format = ImageFormat.Jpeg;
                     }
-                    else if ((ImageFormat)imageformat == ImageFormat.Tiff)
+                    else if ((Constants.Enums.ImageFormat)imageformat == Constants.Enums.ImageFormat.Tiff)
                     {
-                        format = System.Drawing.Imaging.ImageFormat.Tiff;
+                        format = ImageFormat.Tiff;
                     }
                     if (ImageReceived != null) ImageReceived(this, new ImageEventArgs(ParseScannerId(xdoc), format, image));
                 }

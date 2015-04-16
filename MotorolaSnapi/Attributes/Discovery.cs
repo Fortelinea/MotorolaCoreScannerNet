@@ -1,6 +1,7 @@
 ﻿using System;
 using CoreScanner;
-using Motorola.Snapi.Constants;
+using Motorola.Snapi.Constants.AttributeNumbers;
+using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
 {
@@ -9,9 +10,8 @@ namespace Motorola.Snapi.Attributes
     /// </summary>
     public class Discovery : MotorolaAttributeSet
     {
-
         /// <summary>
-        /// Initializes a Discovery object.
+        /// Instantiates a Discovery object.
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
@@ -48,7 +48,7 @@ namespace Motorola.Snapi.Attributes
             {
                 var attribute = GetAttribute(DiscoveryAttribute.BluetoothAddress);
                 if (attribute != null)
-                    return ValueConverters.StringToByteArray((string)attribute.Value);
+                    return ValueConverters.HexStringToByteArray((string)attribute.Value);
                 return null;
             }
         }
@@ -158,7 +158,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = DiscoveryAttribute.DateOfFirstProgramming, DataType = ValueConverters.TypeToDataType(typeof(string)), Value = value.ToString("DDMMMYY") });
+                SetAttribute(new ScannerAttribute { Id = DiscoveryAttribute.DateOfFirstProgramming, DataType = DataType.String, Value = value.ToString("DDMMMYY") });
             }
         }
 
@@ -175,7 +175,7 @@ namespace Motorola.Snapi.Attributes
             get { return (string)GetAttribute(DiscoveryAttribute.ConfigurationFilename).Value; }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = DiscoveryAttribute.ConfigurationFilename, DataType = ValueConverters.TypeToDataType(typeof(string)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = DiscoveryAttribute.ConfigurationFilename, DataType = DataType.String, Value = value });
             }
         }
     }

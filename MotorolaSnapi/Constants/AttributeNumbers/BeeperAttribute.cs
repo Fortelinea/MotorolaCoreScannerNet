@@ -1,4 +1,4 @@
-﻿namespace Motorola.Snapi.Constants
+﻿namespace Motorola.Snapi.Constants.AttributeNumbers
 {
     public class BeeperAttribute
     {

@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using CoreScanner;
-using Motorola.Snapi.Constants;
+﻿using CoreScanner;
+using Motorola.Snapi.Constants.AttributeNumbers;
 
 namespace Motorola.Snapi.Attributes
 {

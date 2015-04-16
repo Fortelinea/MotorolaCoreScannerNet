@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Reflection;
 using Motorola.Snapi.Constants;
+using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Test
 {
@@ -57,7 +58,6 @@ namespace Motorola.Test
                         System.Threading.Thread.Sleep(3000);
                     }
                 }
-                scanner.Initialize();
                 scanner.CaptureMode = CaptureMode.Image;
                 GetAttributes(scanner);
             }
@@ -130,6 +130,8 @@ namespace Motorola.Test
             var bg = scanner.Events.ParamEventEnabled;
             var bh = scanner.Beeper.BeeperFrequency;
             var bi = scanner.Beeper.BeeperVolume;
+            var bj = scanner.License.LicenseParseMode;
+            var bk = scanner.License.LicenseParseBuffer;
         }
 
         public static string GetDescription(this Enum value)

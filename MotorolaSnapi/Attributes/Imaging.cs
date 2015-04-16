@@ -1,6 +1,7 @@
 ﻿using System;
 using CoreScanner;
-using Motorola.Snapi.Constants;
+using Motorola.Snapi.Constants.AttributeNumbers;
+using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
 {
@@ -30,7 +31,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute{Id = ImagingAttribute.CropTop, DataType = ValueConverters.TypeToDataType(typeof(ushort)), Value = value});
+                SetAttribute(new ScannerAttribute{Id = ImagingAttribute.CropTop, DataType = DataType.UShort, Value = value});
             }
         }
 
@@ -48,7 +49,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.CropLeft, DataType = ValueConverters.TypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.CropLeft, DataType = DataType.UShort, Value = value });
             }
         }
 
@@ -66,7 +67,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.CropRight, DataType = ValueConverters.TypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.CropRight, DataType = DataType.UShort, Value = value });
             }
         }
 
@@ -85,7 +86,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.CropBottom, DataType = ValueConverters.TypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.CropBottom, DataType = DataType.UShort, Value = value });
             }
         }
 
@@ -103,7 +104,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.JPEGFileSizeWord, DataType = ValueConverters.TypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.JPEGFileSizeWord, DataType = DataType.UShort, Value = value });
             }
         }
 
@@ -121,7 +122,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.Exposure, DataType = ValueConverters.TypeToDataType(typeof(ushort)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.Exposure, DataType = DataType.UShort, Value = value });
             }
         }
 
@@ -140,7 +141,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.SnapshotByMotion, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.SnapshotByMotion, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -159,7 +160,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.ContinuousSnapshot, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.ContinuousSnapshot, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -177,7 +178,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.ContinuousSnapshot, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.ContinuousSnapshot, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -199,7 +200,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute{ Id = ImagingAttribute.ImageRotation, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = (byte)value });
+                SetAttribute(new ScannerAttribute{ Id = ImagingAttribute.ImageRotation, DataType = DataType.Byte, Value = (byte)value });
             }
         }
 
@@ -218,7 +219,7 @@ namespace Motorola.Snapi.Attributes
             set
             {
                 string v = value ? "1" : "0";
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.ContrastEnhancement, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = v });
+                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.ContrastEnhancement, DataType = DataType.Byte, Value = v });
             }
         }
 
@@ -236,7 +237,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.VideoSubsample, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.VideoSubsample, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -254,7 +255,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.AimBrightness, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.AimBrightness, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -272,7 +273,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.IlluminationBrightness, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.IlluminationBrightness, DataType = DataType.Byte, Value = value });
             }
         }
     }

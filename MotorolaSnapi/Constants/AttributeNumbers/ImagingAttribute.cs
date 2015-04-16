@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Motorola.Snapi.Constants
+namespace Motorola.Snapi.Constants.AttributeNumbers
 {
     public static class ImagingAttribute
     {

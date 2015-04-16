@@ -1,5 +1,5 @@
 ﻿using System;
-using Motorola.Snapi.Constants;
+using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi
 {

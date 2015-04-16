@@ -1,8 +1,8 @@
-﻿using CoreScanner;
-using System;
+﻿using System;
 using System.Linq;
 using System.Xml.Linq;
-using Motorola.Snapi.Constants;
+using CoreScanner;
+using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Commands
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using Motorola.Snapi.Constants;
+using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi
 {

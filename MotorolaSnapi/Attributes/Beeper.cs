@@ -1,5 +1,6 @@
 ﻿using CoreScanner;
-using Motorola.Snapi.Constants;
+using Motorola.Snapi.Constants.AttributeNumbers;
+using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
 {
@@ -25,7 +26,7 @@ namespace Motorola.Snapi.Attributes
             get { return (BeeperVolume)GetAttribute(BeeperAttribute.BeeperVolume).Value; }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = BeeperAttribute.BeeperVolume, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = (byte)value });
+                SetAttribute(new ScannerAttribute { Id = BeeperAttribute.BeeperVolume, DataType = DataType.Byte, Value = (byte)value });
             }
         }
 
@@ -39,7 +40,7 @@ namespace Motorola.Snapi.Attributes
             get { return (BeeperFrequency)GetAttribute(BeeperAttribute.BeeperFrequency).Value; }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = BeeperAttribute.BeeperFrequency, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = (byte)value });
+                SetAttribute(new ScannerAttribute { Id = BeeperAttribute.BeeperFrequency, DataType = DataType.Byte, Value = (byte)value });
             }
         }
     }

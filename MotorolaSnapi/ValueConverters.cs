@@ -1,12 +1,12 @@
 ﻿using System;
-using Motorola.Snapi.Constants;
+using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi
 {
     /// <summary>
     /// Static class containing methods for converting Motorola's xml string data values to their respective .NET data types and vice versa.
     /// </summary>
-    public static class ValueConverters
+    internal static class ValueConverters
     {
         /// <summary>
         /// Converts data strings from scanner to their proper data type.
@@ -14,19 +14,19 @@ namespace Motorola.Snapi
         /// <param name="dataType">Motorola type represented by a byte.</param>
         /// <param name="stringValue">String representation of the data to convert.</param>
         /// <returns>Value with proper .NET type.</returns>
-        public static object StringToActualType(DataType dataType, string stringValue)
+        internal static object StringToActualType(DataType dataType, string stringValue)
         {
             object value = null;
             switch (dataType)
             {
                 case DataType.Array:
                     {
-                        value = StringToByteArray(stringValue);
+                        value = HexStringToByteArray(stringValue);
                         break;
                     }
                 case DataType.Byte:
                     {
-                        value = byte.Parse(stringValue);
+                        value = Byte.Parse(stringValue);
                         break;
                     }
                 case DataType.Char:
@@ -61,7 +61,7 @@ namespace Motorola.Snapi
                     }
                 case DataType.UShort:
                     {
-                        value = ushort.Parse(stringValue);
+                        value = UInt16.Parse(stringValue);
                         break;
                     }
             }
@@ -73,7 +73,7 @@ namespace Motorola.Snapi
         /// </summary>
         /// <param name="hex">String of hexadecimal digits</param>
         /// <returns></returns>
-        public static byte[] StringToByteArray(string hex)
+        internal static byte[] HexStringToByteArray(string hex)
         {
             var hexadecimal = hex.Replace(" ", "").Replace("0x", "");
             if (hexadecimal.Length % 2 == 1)
@@ -89,7 +89,7 @@ namespace Motorola.Snapi
             return arr;
         }
 
-        public static int HexCharToInt(char c)
+        internal static int HexCharToInt(char c)
         {
             int val = c;
             if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f'))
@@ -97,7 +97,7 @@ namespace Motorola.Snapi
             throw new ArgumentException("Invalid hex digit: " + c);
         }
 
-        public static DataType TypeToDataType(Type t)
+        internal static DataType TypeToDataType(Type t)
         {
             if (t == typeof(byte[]))
                 return DataType.Array;
@@ -119,6 +119,14 @@ namespace Motorola.Snapi
                 return DataType.UShort;
 
             return DataType.Unknown;
+        }
+
+        internal static string ByteArrayToHexString(byte[] value)
+        {
+            string hex = BitConverter.ToString(value);
+            hex = hex.Insert(0, "0x");
+            hex = hex.Replace("-", " 0x");
+            return hex;
         }
     }
 }

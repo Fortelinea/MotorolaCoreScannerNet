@@ -1,6 +1,7 @@
 ﻿using System;
 using CoreScanner;
-using Motorola.Snapi.Constants;
+using Motorola.Snapi.Constants.AttributeNumbers;
+using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
 {
@@ -30,7 +31,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute {Id = OcrAttribute.CheckDigitMod, DataType = ValueConverters.TypeToDataType(typeof(ushort)), Value = value});
+                SetAttribute(new ScannerAttribute {Id = OcrAttribute.CheckDigitMod, DataType = DataType.UShort, Value = value});
             }
         }
 
@@ -48,7 +49,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute {Id = OcrAttribute.CheckDigitMultiplier, DataType = ValueConverters.TypeToDataType(typeof(string)), Value = value});
+                SetAttribute(new ScannerAttribute {Id = OcrAttribute.CheckDigitMultiplier, DataType = DataType.String, Value = value});
             }
         }
 
@@ -66,7 +67,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute{Id = OcrAttribute.CheckDigitValidation, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value});
+                SetAttribute(new ScannerAttribute{Id = OcrAttribute.CheckDigitValidation, DataType = DataType.Byte, Value = value});
             }
         }
 
@@ -84,7 +85,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Despeckle, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Despeckle, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -102,7 +103,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.EnableExternalFinder, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.EnableExternalFinder, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -120,7 +121,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.EnableFinder, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.EnableFinder, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -138,7 +139,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.EnableIllumination, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.EnableIllumination, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -156,7 +157,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Micre13BEnable, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Micre13BEnable, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -174,7 +175,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.OcrAEnable, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.OcrAEnable, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -192,7 +193,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.OcrBEnable, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.OcrBEnable, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -210,7 +211,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.UsCurrencyEnable, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.UsCurrencyEnable, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -228,7 +229,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Lines, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Lines, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -246,7 +247,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.LowPassFilter, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.LowPassFilter, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -264,7 +265,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.MaxCharacters, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.MaxCharacters, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -282,7 +283,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.MinCharacters, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.MinCharacters, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -300,7 +301,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.OcrAVariant, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.OcrAVariant, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -318,7 +319,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.OcrBVariant, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.OcrBVariant, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -336,7 +337,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Orientation, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = (int)value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Orientation, DataType = DataType.Byte, Value = (int)value });
             }
         }
 
@@ -354,7 +355,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                 SetAttribute(new ScannerAttribute { Id = OcrAttribute.QuietZone, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                 SetAttribute(new ScannerAttribute { Id = OcrAttribute.QuietZone, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -372,7 +373,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.SecurityLevel, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.SecurityLevel, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -390,7 +391,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Template, DataType = ValueConverters.TypeToDataType(typeof(string)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Template, DataType = DataType.String, Value = value });
             }
         }
 
@@ -408,7 +409,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Thicken, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.Thicken, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -426,7 +427,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.ValidCharacters, DataType = ValueConverters.TypeToDataType(typeof(string)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.ValidCharacters, DataType = DataType.String, Value = value });
             }
         }
 
@@ -444,7 +445,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = OcrAttribute.WhiteLevel, DataType = ValueConverters.TypeToDataType(typeof(byte)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = OcrAttribute.WhiteLevel, DataType = DataType.Byte, Value = value });
             }
         }
     }

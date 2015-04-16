@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Motorola.Snapi.Constants
+namespace Motorola.Snapi.Constants.Enums
 {
     public enum BarcodeType : ushort
     {

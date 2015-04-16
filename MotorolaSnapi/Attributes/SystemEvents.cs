@@ -1,6 +1,6 @@
-using System.Collections.Generic;
 using CoreScanner;
-using Motorola.Snapi.Constants;
+using Motorola.Snapi.Constants.AttributeNumbers;
+using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
 {
@@ -33,7 +33,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.DecodeEvent, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.DecodeEvent, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -52,7 +52,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.BootupEvent, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.BootupEvent, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -71,7 +71,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.ParamEvent, DataType = ValueConverters.TypeToDataType(typeof(bool)), Value = value });
+                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.ParamEvent, DataType = DataType.Bool, Value = value });
             }
         }
     }

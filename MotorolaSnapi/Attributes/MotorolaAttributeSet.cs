@@ -1,10 +1,11 @@
-﻿using CoreScanner;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Xml;
 using System.Xml.Linq;
-using Motorola.Snapi.Constants;
+using CoreScanner;
+using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
 {
@@ -86,7 +87,7 @@ namespace Motorola.Snapi.Attributes
             }
             catch (XmlException e)
             {
-                System.Threading.Thread.Sleep(1000);
+                Thread.Sleep(1000);
                 return GetAttributes(ids);
             }
             var attributes = doc.Descendants("attribute");
