@@ -88,6 +88,8 @@ namespace Motorola.Snapi
         private Imaging _imaging;
         private Beeper _beeper;
         private LicenseParsing _license;
+        private Adf _adf;
+        private Synapse _synapse;
 
         public Discovery Discovery
         {
@@ -122,6 +124,16 @@ namespace Motorola.Snapi
         public LicenseParsing License
         {
             get { return _license ?? (_license = new LicenseParsing(ScannerId, _scannerDriver)); }
+        }
+
+        public Adf ADF
+        {
+            get { return _adf ?? (_adf = new Adf(ScannerId, _scannerDriver)); }
+        }
+
+        public Synapse Synapse
+        {
+            get { return _synapse ?? (_synapse = new Synapse(ScannerId, _scannerDriver)); }
         }
 
         #endregion

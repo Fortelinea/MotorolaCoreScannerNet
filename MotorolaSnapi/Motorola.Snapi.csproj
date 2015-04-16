@@ -43,12 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\Adf.cs" />
     <Compile Include="Attributes\Beeper.cs" />
     <Compile Include="Attributes\Discovery.cs" />
     <Compile Include="Attributes\LicenseParsing.cs" />
     <Compile Include="Attributes\Imaging.cs" />
     <Compile Include="Attributes\ScannerAttribute.cs" />
     <Compile Include="Attributes\Status.cs" />
+    <Compile Include="Attributes\Synapse.cs" />
     <Compile Include="Attributes\SystemEvents.cs" />
     <Compile Include="Commands\Keyboard.cs" />
     <Compile Include="Attributes\MotorolaAttributeSet.cs" />
@@ -56,12 +58,14 @@
     <Compile Include="BarcodeScanEventArgs.cs" />
     <Compile Include="BarcodeScanner.cs" />
     <Compile Include="BarcodeScannerManager.cs" />
+    <Compile Include="Constants\AttributeNumbers\AdfAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\BeeperAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\DiscoveryAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\ImagingAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\LicenseParsingAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\OcrAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\StatusAttribute.cs" />
+    <Compile Include="Constants\AttributeNumbers\SynapseAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\SystemEventAttribute.cs" />
     <Compile Include="Constants\Enums\BarcodeOrientation.cs" />
     <Compile Include="Constants\Enums\BarcodeType.cs" />

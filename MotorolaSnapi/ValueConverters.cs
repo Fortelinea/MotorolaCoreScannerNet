@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi
@@ -22,6 +23,11 @@ namespace Motorola.Snapi
                 case DataType.Array:
                     {
                         value = HexStringToByteArray(stringValue);
+                        var array = (byte[])value;
+                        if (array.Count() == 1)
+                        {
+                            value = array[0];
+                        }
                         break;
                     }
                 case DataType.Byte:

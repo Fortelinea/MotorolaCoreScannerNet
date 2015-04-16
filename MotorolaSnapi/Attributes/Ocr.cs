@@ -20,7 +20,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRCheckDigitMod</para>
         /// <para>Description: OCR module check calculation.</para>
-        /// <para>Values: 1..99</para>
+        /// <remarks><para>Values: 1..99</para>
         /// </summary>
         public ushort CheckDigitMod
         {
@@ -38,7 +38,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRCheckDigitMulti</para>
         /// <para>Description: OCR check digit multiplier string.</para>
-        /// <para>Values: 1212121212</para>
+        /// <remarks><para>Values: 1212121212</para>
         /// </summary>
         public string CheckDigitMultiplier
         {
@@ -56,7 +56,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRCheckDigitValid</para>
         /// <para>Description: Set one of OCR check digit validations.</para>
-        /// <para>Values: 0..9</para>
+        /// <remarks><para>Values: 0..9</para></remarks>
         /// </summary>
         public ushort CheckDigitValidation
         {
@@ -74,7 +74,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRDespeckle</para>
         /// <para>Description: OCR Despeckle Level.</para>
-        /// <para>Values: 0..99</para>
+        /// <remarks><para>Values: 0..99</para></remarks>
         /// </summary>
         public ushort Despeckle
         {
@@ -92,7 +92,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRFinderExternal</para>
         /// <para>Description: Enabled external OCR finder.</para>
-        /// <para>Values: "Enable"(true) "Disable"(false)</para>
+        /// <remarks><para>Values: "Enable"(true) "Disable"(false)</para></remarks>
         /// </summary>
         public bool EnableExternalFinder
         {
@@ -110,7 +110,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRFinderEnable</para>
         /// <para>Description: Enables OCR finder.</para>
-        /// <para>Values: "Enable"(true) "Disable"(false)</para>
+        /// <remarks><para>Values: "Enable"(true) "Disable"(false)</para></remarks>
         /// </summary>
         public bool EnableFinder
         {
@@ -128,7 +128,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRBrightIllum</para>
         /// <para>Description: Enable brightness for long OCR strings.</para>
-        /// <para>Values: "Enable"(true) "Disable"(false)</para>
+        /// <remarks><para>Values: "Enable"(true) "Disable"(false)</para></remarks>
         /// </summary>
         public bool EnableIllumination
         {
@@ -146,7 +146,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: MICRE13BEnable</para>
         /// <para>Description: Enable/Disable MICR E13B.</para>
-        /// <para>Values: "Enable"(true) "Disable"(false)</para>
+        /// <remarks><para>Values: "Enable"(true) "Disable"(false)</para></remarks>
         /// </summary>
         public bool EnableMicre13B
         {
@@ -164,7 +164,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRAEnable</para>
         /// <para>Description: OCR-A Enable/Disable.</para>
-        /// <para>Values: "Enable"(true) "Disable"(false)</para>
+        /// <remarks><para>Values: "Enable"(true) "Disable"(false)</para></remarks>
         /// </summary>
         public bool EnableOcrA
         {
@@ -182,7 +182,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRBEnable</para>
         /// <para>Description: OCR-B Enable/Disable.</para>
-        /// <para>Values: "Enable"(true) "Disable"(false)</para>
+        /// <remarks><para>Values: "Enable"(true) "Disable"(false)</para></remarks>
         /// </summary>
         public bool EnableOcrB
         {
@@ -200,7 +200,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: USCurrencyEnable</para>
         /// <para>Description: Enable/Disable US Currency Serial Number.</para>
-        /// <para>Values: "Enable"(true) "Disable"(false)</para>
+        /// <remarks><para>Values: "Enable"(true) "Disable"(false)</para></remarks>
         /// </summary>
         public bool EnableUSCurrency
         {
@@ -218,7 +218,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRLines</para>
         /// <para>Description: Set number of lines of OCR to be read.</para>
-        /// <para>Values: 1, 2, 3</para>
+        /// <remarks><para>Values: 1, 2, 3</para></remarks>
         /// </summary>
         public ushort Lines
         {
@@ -236,7 +236,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRLowPassFilter</para>
         /// <para>Description: OCR Low Pass Filter.</para>
-        /// <para>Values: 0..20</para>
+        /// <remarks><para>Values: 0..20</para></remarks>
         /// </summary>
         public ushort LowPassFilter
         {
@@ -254,7 +254,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRMaxChar</para>
         /// <para>Description: Set maximum number of OCR characters per line to decode.</para>
-        /// <para>Values: 3..100</para>
+        /// <remarks><para>Values: 3..100</para></remarks>
         /// </summary>
         public ushort MaxCharacters
         {
@@ -272,7 +272,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRMinChar</para>
         /// <para>Description: Set minimum number of OCR characters per line to decode.</para>
-        /// <para>Values: 3..100</para>
+        /// <remarks><para>Values: 3..100</para></remarks>
         /// </summary>
         public ushort MinCharacters
         {
@@ -290,7 +290,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRAVariant</para>
         /// <para>Description: Set one of OCR-A variants.</para>
-        /// <para>Values: 0, 1, 2, 3</para>
+        /// <remarks><para>Values: 0, 1, 2, 3</para></remarks>
         /// </summary>
         public ushort OcrAVariant
         {
@@ -308,7 +308,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRBVariant</para>
         /// <para>Description: Set one of OCR-B variants.</para>
-        /// <para>Values: 0..10</para>
+        /// <remarks><para>Values: 0..10</para></remarks>
         /// </summary>
         public ushort OcrBVariant
         {
@@ -326,7 +326,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCROrientation</para>
         /// <para>Description: Set the orientation of an OCR string to be read to the camera.</para>
-        /// <para>Values: 0, 1, 2, 3</para>
+        /// <remarks><para>Values: 0, 1, 2, 3</para></remarks>
         /// </summary>
         public BarcodeOrientation Orientation
         {
@@ -344,7 +344,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRQuietZone</para>
         /// <para>Description: Set OCR quiet zone.</para>
-        /// <para>Values: 20..99</para>
+        /// <remarks><para>Values: 20..99</para></remarks>
         /// </summary>
         public ushort QuietZone
         {
@@ -362,7 +362,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRSecurityLevel</para>
         /// <para>Description: OCR security / confidence level.</para>
-        /// <para>Values: 10..99</para>
+        /// <remarks><para>Values: 10..99</para></remarks>
         /// </summary>
         public ushort SecurityLevel
         {
@@ -380,7 +380,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRTemplate1</para>
         /// <para>Description:Set OCR template that matches an OCR string to be read.</para>
-        /// <para>Values: Variable</para>
+        /// <remarks><para>Values: Variable</para></remarks>
         /// </summary>
         public string Template
         {
@@ -398,7 +398,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRThicken</para>
         /// <para>Description: OCR Thickening.</para>
-        /// <para>Values: 0..16</para>
+        /// <remarks><para>Values: 0..16</para></remarks>
         /// </summary>
         public ushort Thicken
         {
@@ -416,7 +416,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRSubset</para>
         /// <para>Description: Set OCR character subset for an OCR string to be read.</para>
-        /// <para>Values: 0000000000000000000000000000000000000000000000000000000000000000</para>
+        /// <remarks><para>Values: 0000000000000000000000000000000000000000000000000000000000000000</para></remarks>
         /// </summary>
         public string ValidCharacters
         {
@@ -434,7 +434,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRBWLevel</para>
         /// <para>Description: Sets OCR White Level.</para>
-        /// <para>Values: 0..99</para>
+        /// <remarks><para>Values: 0..99</para></remarks>
         /// </summary>
         public ushort WhiteLevel
         {

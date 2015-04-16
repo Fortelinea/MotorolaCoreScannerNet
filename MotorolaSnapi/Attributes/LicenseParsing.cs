@@ -6,7 +6,10 @@ using Motorola.Snapi.Constants.Enums;
 namespace Motorola.Snapi.Attributes
 {
     /// <summary>
-    /// Provides properties for accessing and modifying Driver License Parsing attributes. 
+    /// <para>Provides properties for accessing and modifying Driver License Parsing attributes.</para>
+    /// <remarks>Notes: DL parsing rules are in a proprietary format. End users wishing to deploy DL parsing rules should first manually
+    /// program the scanner using programming bar codes and then reading the attribute from the application. The rules can then be
+    /// deployed to other scanners in the enterprise.</remarks> 
     /// </summary>
     public class LicenseParsing : MotorolaAttributeSet
     {
@@ -52,7 +55,7 @@ namespace Motorola.Snapi.Attributes
             {
                 var attribute = GetAttribute(LicenseParsingAttribute.DLParseBuffer);
                 if (attribute != null)
-                    return ValueConverters.HexStringToByteArray((string)GetAttribute(LicenseParsingAttribute.DLParseBuffer).Value);
+                    return (byte[])attribute.Value;
                 return null;
             }
             set
@@ -60,7 +63,5 @@ namespace Motorola.Snapi.Attributes
                 SetAttribute(new ScannerAttribute { Id = LicenseParsingAttribute.DLParseMode, DataType = DataType.Array, Value = ValueConverters.ByteArrayToHexString(value) });
             }
         }
-
     }
-
 }

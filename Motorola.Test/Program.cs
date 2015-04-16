@@ -58,7 +58,7 @@ namespace Motorola.Test
                         System.Threading.Thread.Sleep(3000);
                     }
                 }
-                scanner.CaptureMode = CaptureMode.Image;
+                //scanner.CaptureMode = CaptureMode.Image;
                 GetAttributes(scanner);
             }
 
@@ -132,6 +132,23 @@ namespace Motorola.Test
             var bi = scanner.Beeper.BeeperVolume;
             var bj = scanner.License.LicenseParseMode;
             var bk = scanner.License.LicenseParseBuffer;
+            var bl = scanner.ADF.KeyDelay;
+            var bm = scanner.ADF.ADFRules;
+            var bn = scanner.ADF.KeyCategory1;
+            var bo = scanner.ADF.KeyCategory2;
+            var bp = scanner.ADF.KeyCategory3;
+            var bq = scanner.ADF.KeyCategory4;
+            var br = scanner.ADF.KeyCategory5;
+            var bs = scanner.ADF.KeyCategory6;
+            var bt = scanner.ADF.KeyValue1;
+            var bu = scanner.ADF.KeyValue2;
+            var bv = scanner.ADF.KeyValue3;
+            var bw = scanner.ADF.KeyValue4;
+            var bx = scanner.ADF.KeyValue5;
+            var by = scanner.ADF.KeyValue6;
+            var bz = scanner.ADF.PauseDuration;
+            var ca = scanner.ADF.SimpleDataFormat;
+            var cb = scanner.Synapse.Value;
         }
 
         public static string GetDescription(this Enum value)

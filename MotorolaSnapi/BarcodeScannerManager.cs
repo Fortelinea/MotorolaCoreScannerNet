@@ -385,11 +385,10 @@ namespace Motorola.Snapi
                 byte[] byImage = new byte[len];
                 arr.CopyTo(byImage, 0);
                 var xdoc = XDocument.Parse(pscannerdata);
-                Image image;
                 ImageFormat format = null;
                 using (var ms = new MemoryStream(byImage))
                 {
-                    image = Image.FromStream(ms);
+                    var image = Image.FromStream(ms);
                     if ((Constants.Enums.ImageFormat)imageformat == Constants.Enums.ImageFormat.Bmp)
                     {
                         format = ImageFormat.Bmp;

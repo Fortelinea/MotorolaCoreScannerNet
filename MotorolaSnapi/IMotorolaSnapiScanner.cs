@@ -46,6 +46,10 @@ namespace Motorola.Snapi
         Beeper Beeper { get; }
 
         LicenseParsing License { get; }
+
+        Adf ADF { get; }
+
+        Synapse Synapse { get; }
         #endregion
     }
 }
