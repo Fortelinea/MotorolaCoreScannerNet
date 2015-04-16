@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\Beeper.cs" />
     <Compile Include="Attributes\Discovery.cs" />
     <Compile Include="Attributes\Imaging.cs" />
     <Compile Include="Attributes\ScannerAttribute.cs" />
@@ -56,6 +57,9 @@
     <Compile Include="BarcodeScannerManager.cs" />
     <Compile Include="Constants\BarcodeOrientation.cs" />
     <Compile Include="Constants\BarcodeType.cs" />
+    <Compile Include="Constants\BeeperAttribute.cs" />
+    <Compile Include="Constants\BeeperFrequency.cs" />
+    <Compile Include="Constants\BeeperVolume.cs" />
     <Compile Include="Constants\CaptureMode.cs" />
     <Compile Include="Constants\DataType.cs" />
     <Compile Include="Constants\DeviceParameter.cs" />

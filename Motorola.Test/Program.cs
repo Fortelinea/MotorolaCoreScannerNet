@@ -8,6 +8,7 @@ namespace Motorola.Test
     {
         private static bool _scannerAttached;
         private static string _lastScanned;
+        private const string ImageSaveLocation = @"C:\Users\Jason\Desktop\Image.jpg";
 
         private static void Instance_DataReceived(object sender, BarcodeScanEventArgs e)
         {
@@ -24,7 +25,8 @@ namespace Motorola.Test
 
         private static void Instance_ImageReceived(object sender, ImageEventArgs e)
         {
-            e.Image.Save(@"C:\Users\Jason\Desktop\Image.jpg", e.Format);      
+            e.Image.Save(ImageSaveLocation, e.Format);      
+            Console.WriteLine("Image saved to \"{0}\"", ImageSaveLocation);
         }
 
         private static void Main(string[] args)
@@ -54,14 +56,14 @@ namespace Motorola.Test
                     }
                 }
                 scanner.Initialize();
-                scanner.CaptureMode = CaptureMode.Barcode;
+                scanner.CaptureMode = CaptureMode.Image;
                 GetAttributes(scanner);
             }
 
             BarcodeScannerManager.Instance.DataReceived += Instance_DataReceived;
             BarcodeScannerManager.Instance.ImageReceived += Instance_ImageReceived;
 
-            Console.WriteLine("Ready to scan..");
+            Console.WriteLine("Ready to scan.. (Enter to quit)");
             Console.ReadLine();
         }
 
@@ -124,6 +126,8 @@ namespace Motorola.Test
             var be = scanner.Events.BootupEventEnabled;
             var bf = scanner.Events.DecodeEventEnabled;
             var bg = scanner.Events.ParamEventEnabled;
+            var bh = scanner.Beeper.BeeperFrequency;
+            var bi = scanner.Beeper.BeeperVolume;
         }
     }
 }

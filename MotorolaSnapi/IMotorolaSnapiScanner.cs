@@ -39,5 +39,6 @@ namespace Motorola.Snapi
         Status Status { get; }
 
         Imaging Imaging { get; }
+        Beeper Beeper { get; }
     }
 }

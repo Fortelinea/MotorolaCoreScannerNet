@@ -40,6 +40,7 @@ namespace Motorola.Snapi
                 _systemEvents = new SystemEvents(ScannerId, _scannerDriver);
                 _status = new Status(ScannerId, _scannerDriver);
                 _imaging = new Imaging(ScannerId, _scannerDriver);
+                _beeper = new Beeper(ScannerId, _scannerDriver);
             }
         }
 
@@ -94,6 +95,7 @@ namespace Motorola.Snapi
         private Status _status;
         private Ocr _ocr;
         private Imaging _imaging;
+        private Beeper _beeper;
 
         public Discovery Discovery
         {
@@ -119,6 +121,12 @@ namespace Motorola.Snapi
         {
             get { return _imaging; }
         }
+
+        public Beeper Beeper
+        {
+            get { return _beeper; }
+        }
+
         #endregion
 
         //public void EnableLeicaBarcodes()

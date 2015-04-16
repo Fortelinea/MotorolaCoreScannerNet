@@ -11,16 +11,16 @@ namespace Motorola.Snapi.Attributes
     {
 
         /// <summary>
-        /// Initializes a Discovery object containing the current values of all discovery attributes for a given scanner.
+        /// Initializes a Discovery object.
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
         internal Discovery(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver){}
 
         /// <summary>
-        /// Driver Attribute Name: ModelNumber
-        /// Description: Model number of the scanner which matches the label of the device.
-        /// For example:"LS4208-SR20001ZZ"
+        /// <para>Driver Attribute Name: ModelNumber</para>
+        /// <para>Description: Model number of the scanner which matches the label of the device.</para>
+        /// <para>For example:"LS4208-SR20001ZZ"</para>
         /// </summary>
         public string ModelNumber
         {
