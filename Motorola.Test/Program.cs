@@ -1,10 +1,12 @@
 ﻿using Motorola.Snapi;
 using System;
+using System.ComponentModel;
+using System.Reflection;
 using Motorola.Snapi.Constants;
 
 namespace Motorola.Test
 {
-    internal class Program
+    internal static class Program
     {
         private static bool _scannerAttached;
         private static string _lastScanned;
@@ -14,7 +16,7 @@ namespace Motorola.Test
         {
             _lastScanned = e.Data;
             var raw = System.Text.Encoding.Default.GetString(e.RawData);
-            Console.WriteLine("Barcode type: " + e.BarcodeType);
+            Console.WriteLine("Barcode type: " + e.BarcodeType.GetDescription());
             Console.WriteLine("Data: " + e.Data);
         }
 
@@ -128,6 +130,22 @@ namespace Motorola.Test
             var bg = scanner.Events.ParamEventEnabled;
             var bh = scanner.Beeper.BeeperFrequency;
             var bi = scanner.Beeper.BeeperVolume;
+        }
+
+        public static string GetDescription(this Enum value)
+        {
+            FieldInfo fi = value.GetType().GetField(value.ToString());
+
+            DescriptionAttribute[] attributes =
+                (DescriptionAttribute[])fi.GetCustomAttributes(
+                typeof(DescriptionAttribute),
+                false);
+
+            if (attributes != null &&
+                attributes.Length > 0)
+                return attributes[0].Description;
+            else
+                return value.ToString();
         }
     }
 }
