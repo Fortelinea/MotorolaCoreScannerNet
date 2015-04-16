@@ -18,11 +18,11 @@ namespace Motorola.Snapi.Attributes
         internal SystemEvents(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver){}
 
         /// <summary>
-        /// Driver Attribute Name: DecodeEvent
-        /// Description: When enabled, the scanner generates a message
+        /// <para>Driver Attribute Name: DecodeEvent</para>
+        /// <para>Description: When enabled, the scanner generates a message
         /// to the host whenever a bar code is successfully
-        /// decoded. When disabled, no notification is sent
-        /// Values: "On" (true), "Off" (false)
+        /// decoded. When disabled, no notification is sent</para>
+        /// <para>Values: "On" (true), "Off" (false)</para>
         /// </summary>
         public bool DecodeEventEnabled
         {
@@ -38,10 +38,10 @@ namespace Motorola.Snapi.Attributes
         }
 
         /// <summary>
-        /// Driver Attribute Name: BootupEvent
-        /// Description: When enabled, the scanner generates a message to the host
-        /// whenever power is applied. When disabled, no notification is sent
-        /// Values: "On" (true), "Off" (false)
+        /// <para>Driver Attribute Name: BootupEvent</para>
+        /// <para>Description: When enabled, the scanner generates a message to the host
+        /// whenever power is applied. When disabled, no notification is sent</para>
+        /// <para>Values: "On" (true), "Off" (false)</para>
         /// </summary>
         public bool BootupEventEnabled
         {
@@ -57,10 +57,10 @@ namespace Motorola.Snapi.Attributes
         }
 
         /// <summary>
-        /// Driver Attribute Name: ParamEvent
-        /// Description: When enabled, the scanner generates a message
-        /// to the host when a parameter is changed.
-        /// Values: "On" (true), "Off" (false)
+        /// <para>Driver Attribute Name: ParamEvent</para>
+        /// <para>Description: When enabled, the scanner generates a message
+        /// to the host when a parameter is changed.</para>
+        /// <para>Values: "On" (true), "Off" (false)</para>
         /// </summary>
         public bool ParamEventEnabled
         {

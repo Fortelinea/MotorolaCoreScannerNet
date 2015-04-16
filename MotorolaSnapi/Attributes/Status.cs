@@ -18,9 +18,9 @@ namespace Motorola.Snapi.Attributes
         internal Status(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
-        /// Driver Attribute Name: InCradleDetect
-        /// Description: Indicates if the cordless scanner is inserted in the cradle.
-        /// Values: "In Cradle"(true) "Out of Cradle"(false)
+        /// <para>Driver Attribute Name: InCradleDetect</para>
+        /// <para>Description: Indicates if the cordless scanner is inserted in the cradle.</para>
+        /// <para>Values: "In Cradle"(true) "Out of Cradle"(false)</para>
         /// </summary>
         public bool InCradle
         {
@@ -36,9 +36,9 @@ namespace Motorola.Snapi.Attributes
         }
 
         /// <summary>
-        /// Driver Attribute Name: OperationalMode
-        /// Description: Indicates if the device is being used in ScanStand.
-        /// Values: “Handsfree”(true) “Handheld”(false)
+        /// <para>Driver Attribute Name: OperationalMode</para>
+        /// <para>Description: Indicates if the device is being used in ScanStand.</para>
+        /// <para>Values: “Handsfree”(true) “Handheld”(false)</para>
         /// </summary>
         public bool IsHandsfree
         {
@@ -54,9 +54,9 @@ namespace Motorola.Snapi.Attributes
         }
 
         /// <summary>
-        /// Driver Attribute Name: Charging
-        /// Description: Indicates if the device is charging.
-        /// Values: "false" "true"
+        /// <para>Driver Attribute Name: Charging</para>
+        /// <para>Description: Indicates if the device is charging.</para>
+        /// <para>Values: "false" "true"</para>
         /// </summary>
         public bool Charging
         {
