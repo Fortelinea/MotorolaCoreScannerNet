@@ -2,6 +2,7 @@
 using System;
 using System.ComponentModel;
 using System.Reflection;
+using Motorola.Snapi.Commands;
 using Motorola.Snapi.Constants;
 using Motorola.Snapi.Constants.Enums;
 
@@ -50,7 +51,7 @@ namespace Motorola.Test
 
             foreach (var scanner in BarcodeScannerManager.Instance.GetDevices())
             {
-                if (scanner.UsbHostMode != HostMode.USB_SNAPI_Imaging)
+                if (scanner.Info.UsbHostMode != HostMode.USB_SNAPI_Imaging)
                 {
                     scanner.SetHostMode(HostMode.USB_SNAPI_Imaging);
                     while (_scannerAttached == false)
@@ -59,8 +60,9 @@ namespace Motorola.Test
                     }
                 }
                 scanner.CaptureMode = CaptureMode.Barcode;
-                scanner.SetAllDefault();
+                scanner.Defaults.Restore();
                 GetAttributes(scanner);
+                PerformCommands(scanner);
             }
 
             BarcodeScannerManager.Instance.DataReceived += Instance_DataReceived;
@@ -68,6 +70,18 @@ namespace Motorola.Test
 
             Console.WriteLine("Ready to scan.. (Enter to quit)");
             Console.ReadLine();
+        }
+
+        private static void PerformCommands(IMotorolaSnapiScanner scanner)
+        {
+            scanner.Actions.ToggleLed(LedMode.GreenOn);
+            scanner.Actions.ToggleLed(LedMode.GreenOff);
+            scanner.Actions.ToggleLed(LedMode.YellowOn);
+            scanner.Actions.ToggleLed(LedMode.YellowOff);
+            scanner.Actions.ToggleLed(LedMode.RedOn);
+            scanner.Actions.ToggleLed(LedMode.RedOff);
+            scanner.Actions.SoundBeeper(BeepPattern.FiveHighShort);
+            scanner.Reboot();
         }
 
         private static void GetAttributes(IMotorolaSnapiScanner scanner)
@@ -86,138 +100,138 @@ namespace Motorola.Test
 
         private static void TestUpcEan(IMotorolaSnapiScanner scanner)
         {
-            var cc = scanner.UPC_EAN.BooklandEanEnabled = false;
-            var cd = scanner.UPC_EAN.ConvertUpcE1toA = false;
-            var ce = scanner.UPC_EAN.ConvertUpcEtoA = false;
-            var cf = scanner.UPC_EAN.Ean13Jan13Enabled = false;
-            var cg = scanner.UPC_EAN.Ean8Jan8Enabled = false;
-            var ch = scanner.UPC_EAN.Ean8Jan8Extend = false;
-            var ci = scanner.UPC_EAN.Supp2Enabled = false;
-            var cj = scanner.UPC_EAN.Supp5Enabled = false;
-            var ck = scanner.UPC_EAN.TransmitCodeId = TransmitCodeId.None;
-            var cl = scanner.UPC_EAN.TransmitUpcACheckDigit = false;
-            var cm = scanner.UPC_EAN.TransmitUpcE1CheckDigit = false;
-            var cn = scanner.UPC_EAN.TransmitUpcECheckDigit = false;
-            var co = scanner.UPC_EAN.UccCouponExtendedCodeEnabled = false;
-            var cp = scanner.UPC_EAN.UpcAEnabled = false;
-            var cq = scanner.UPC_EAN.UpcAPreamble = UpcPreamble.NoPreamble;
-            var cr = scanner.UPC_EAN.UpcE1Enabled = false;
-            var cs = scanner.UPC_EAN.UpcE1Preamble = UpcPreamble.NoPreamble;
-            var ct = scanner.UPC_EAN.UpcEEnabled = false;
-            var cu = scanner.UPC_EAN.UpcEPreamble = UpcPreamble.NoPreamble;
-            var cv = scanner.UPC_EAN.UpcEanJanSupplementalMode = SupplementalMode.IgnoreSupplemental;
-            var cw = scanner.UPC_EAN.UpcEanJanSupplementalRedundancy = 2;
+            var cc = scanner.Attributes.UPC_EAN.BooklandEanEnabled = false;
+            var cd = scanner.Attributes.UPC_EAN.ConvertUpcE1toA = false;
+            var ce = scanner.Attributes.UPC_EAN.ConvertUpcEtoA = false;
+            var cf = scanner.Attributes.UPC_EAN.Ean13Jan13Enabled = false;
+            var cg = scanner.Attributes.UPC_EAN.Ean8Jan8Enabled = false;
+            var ch = scanner.Attributes.UPC_EAN.Ean8Jan8Extend = false;
+            var ci = scanner.Attributes.UPC_EAN.Supp2Enabled = false;
+            var cj = scanner.Attributes.UPC_EAN.Supp5Enabled = false;
+            var ck = scanner.Attributes.UPC_EAN.TransmitCodeId = TransmitCodeId.None;
+            var cl = scanner.Attributes.UPC_EAN.TransmitUpcACheckDigit = false;
+            var cm = scanner.Attributes.UPC_EAN.TransmitUpcE1CheckDigit = false;
+            var cn = scanner.Attributes.UPC_EAN.TransmitUpcECheckDigit = false;
+            var co = scanner.Attributes.UPC_EAN.UccCouponExtendedCodeEnabled = false;
+            var cp = scanner.Attributes.UPC_EAN.UpcAEnabled = false;
+            var cq = scanner.Attributes.UPC_EAN.UpcAPreamble = UpcPreamble.NoPreamble;
+            var cr = scanner.Attributes.UPC_EAN.UpcE1Enabled = false;
+            var cs = scanner.Attributes.UPC_EAN.UpcE1Preamble = UpcPreamble.NoPreamble;
+            var ct = scanner.Attributes.UPC_EAN.UpcEEnabled = false;
+            var cu = scanner.Attributes.UPC_EAN.UpcEPreamble = UpcPreamble.NoPreamble;
+            var cv = scanner.Attributes.UPC_EAN.UpcEanJanSupplementalMode = SupplementalMode.IgnoreSupplemental;
+            var cw = scanner.Attributes.UPC_EAN.UpcEanJanSupplementalRedundancy = 2;
         }
 
-        private static void TestSynapse(IMotorolaSnapiScanner scanner) { var cb = scanner.Synapse.Value; }
+        private static void TestSynapse(IMotorolaSnapiScanner scanner) { var cb = scanner.Attributes.Synapse.Value; }
 
         private static void TestADF(IMotorolaSnapiScanner scanner)
         {
-            var bl = scanner.ADF.KeyDelay;
-            var bm = scanner.ADF.ADFRules;
-            var bn = scanner.ADF.KeyCategory1;
-            var bo = scanner.ADF.KeyCategory2;
-            var bp = scanner.ADF.KeyCategory3;
-            var bq = scanner.ADF.KeyCategory4;
-            var br = scanner.ADF.KeyCategory5;
-            var bs = scanner.ADF.KeyCategory6;
-            var bt = scanner.ADF.KeyValue1;
-            var bu = scanner.ADF.KeyValue2;
-            var bv = scanner.ADF.KeyValue3;
-            var bw = scanner.ADF.KeyValue4;
-            var bx = scanner.ADF.KeyValue5;
-            var by = scanner.ADF.KeyValue6;
-            var bz = scanner.ADF.PauseDuration;
-            var ca = scanner.ADF.SimpleDataFormat;
+            var bl = scanner.Attributes.ADF.KeyDelay;
+            var bm = scanner.Attributes.ADF.ADFRules;
+            var bn = scanner.Attributes.ADF.KeyCategory1;
+            var bo = scanner.Attributes.ADF.KeyCategory2;
+            var bp = scanner.Attributes.ADF.KeyCategory3;
+            var bq = scanner.Attributes.ADF.KeyCategory4;
+            var br = scanner.Attributes.ADF.KeyCategory5;
+            var bs = scanner.Attributes.ADF.KeyCategory6;
+            var bt = scanner.Attributes.ADF.KeyValue1;
+            var bu = scanner.Attributes.ADF.KeyValue2;
+            var bv = scanner.Attributes.ADF.KeyValue3;
+            var bw = scanner.Attributes.ADF.KeyValue4;
+            var bx = scanner.Attributes.ADF.KeyValue5;
+            var by = scanner.Attributes.ADF.KeyValue6;
+            var bz = scanner.Attributes.ADF.PauseDuration;
+            var ca = scanner.Attributes.ADF.SimpleDataFormat;
         }
 
         private static void TestLicense(IMotorolaSnapiScanner scanner)
         {
-            var bj = scanner.License.LicenseParseMode;
-            var bk = scanner.License.LicenseParseBuffer;
+            var bj = scanner.Attributes.License.LicenseParseMode;
+            var bk = scanner.Attributes.License.LicenseParseBuffer;
         }
 
         private static void TestBeeper(IMotorolaSnapiScanner scanner)
         {
-            var bh = scanner.Beeper.BeeperFrequency;
-            var bi = scanner.Beeper.BeeperVolume;
+            var bh = scanner.Attributes.Beeper.BeeperFrequency;
+            var bi = scanner.Attributes.Beeper.BeeperVolume;
         }
 
         private static void TestEvents(IMotorolaSnapiScanner scanner)
         {
-            var be = scanner.Events.BootupEventEnabled;
-            var bf = scanner.Events.DecodeEventEnabled;
-            var bg = scanner.Events.ParamEventEnabled;
+            var be = scanner.Attributes.Events.BootupEventEnabled;
+            var bf = scanner.Attributes.Events.DecodeEventEnabled;
+            var bg = scanner.Attributes.Events.ParamEventEnabled;
         }
 
         private static void TestImaging(IMotorolaSnapiScanner scanner)
         {
-            var aq = scanner.Imaging.AimBrightness;
-            var ar = scanner.Imaging.ContinuousSnapshotEnabled;
-            var @as = scanner.Imaging.ContrastEnhancement;
-            var at = scanner.Imaging.CropBottom;
-            var au = scanner.Imaging.CropLeft;
-            var av = scanner.Imaging.CropRight;
-            var aw = scanner.Imaging.CropTop;
-            var ax = scanner.Imaging.Exposure;
-            var ay = scanner.Imaging.IlluminationBrightness;
-            var az = scanner.Imaging.ImageEdgeSharpen;
-            var ba = scanner.Imaging.ImageResolution;
-            var bb = scanner.Imaging.ImageRotation;
-            var bc = scanner.Imaging.JPEGFileSize;
-            var bd = scanner.Imaging.SnapshotByMotionEnabled;
+            var aq = scanner.Attributes.Imaging.AimBrightness;
+            var ar = scanner.Attributes.Imaging.ContinuousSnapshotEnabled;
+            var @as = scanner.Attributes.Imaging.ContrastEnhancement;
+            var at = scanner.Attributes.Imaging.CropBottom;
+            var au = scanner.Attributes.Imaging.CropLeft;
+            var av = scanner.Attributes.Imaging.CropRight;
+            var aw = scanner.Attributes.Imaging.CropTop;
+            var ax = scanner.Attributes.Imaging.Exposure;
+            var ay = scanner.Attributes.Imaging.IlluminationBrightness;
+            var az = scanner.Attributes.Imaging.ImageEdgeSharpen;
+            var ba = scanner.Attributes.Imaging.ImageResolution;
+            var bb = scanner.Attributes.Imaging.ImageRotation;
+            var bc = scanner.Attributes.Imaging.JPEGFileSize;
+            var bd = scanner.Attributes.Imaging.SnapshotByMotionEnabled;
         }
 
         private static void TestDiscovery(IMotorolaSnapiScanner scanner)
         {
-            var ad = scanner.Discovery.BluetoothAddress;
-            var ae = scanner.Discovery.CombinedFirmwareVersion;
-            var af = scanner.Discovery.ConfigurationFilename;
-            var ag = scanner.Discovery.DateOfFirstProgramming;
-            var ah = scanner.Discovery.DateOfManufacture;
-            var ai = scanner.Discovery.DeviceClass;
-            var aj = scanner.Discovery.ImagekitVersion;
-            var ak = scanner.Discovery.LastServiceDate;
-            var al = scanner.Discovery.ModelNumber;
-            var am = scanner.Discovery.RsmVersion;
-            var an = scanner.Discovery.ScankitVersion;
-            var ao = scanner.Discovery.ScannerFirmwareVersion;
-            var ap = scanner.Discovery.SerialNumber;
+            var ad = scanner.Attributes.Discovery.BluetoothAddress;
+            var ae = scanner.Attributes.Discovery.CombinedFirmwareVersion;
+            var af = scanner.Attributes.Discovery.ConfigurationFilename;
+            var ag = scanner.Attributes.Discovery.DateOfFirstProgramming;
+            var ah = scanner.Attributes.Discovery.DateOfManufacture;
+            var ai = scanner.Attributes.Discovery.DeviceClass;
+            var aj = scanner.Attributes.Discovery.ImagekitVersion;
+            var ak = scanner.Attributes.Discovery.LastServiceDate;
+            var al = scanner.Attributes.Discovery.ModelNumber;
+            var am = scanner.Attributes.Discovery.RsmVersion;
+            var an = scanner.Attributes.Discovery.ScankitVersion;
+            var ao = scanner.Attributes.Discovery.ScannerFirmwareVersion;
+            var ap = scanner.Attributes.Discovery.SerialNumber;
         }
 
         private static void TestOcr(IMotorolaSnapiScanner scanner)
         {
-            var f = scanner.OCR.CheckDigitMod;
-            var g = scanner.OCR.CheckDigitMultiplier;
-            var h = scanner.OCR.CheckDigitValidation;
-            var i = scanner.OCR.Despeckle;
-            var j = scanner.OCR.EnableExternalFinder;
-            var k = scanner.OCR.EnableFinder;
-            var l = scanner.OCR.EnableIllumination;
-            var m = scanner.OCR.EnableMicre13B;
-            var n = scanner.OCR.EnableOcrA;
-            var o = scanner.OCR.EnableOcrB;
-            var p = scanner.OCR.EnableUSCurrency;
-            var q = scanner.OCR.Lines;
-            var r = scanner.OCR.LowPassFilter;
-            var s = scanner.OCR.MaxCharacters;
-            var t = scanner.OCR.MinCharacters;
-            var u = scanner.OCR.OcrAVariant;
-            var v = scanner.OCR.OcrBVariant;
-            var w = scanner.OCR.Orientation;
-            var x = scanner.OCR.QuietZone;
-            var y = scanner.OCR.SecurityLevel;
-            var z = scanner.OCR.Template;
-            var aa = scanner.OCR.Thicken;
-            var ab = scanner.OCR.ValidCharacters;
-            var ac = scanner.OCR.WhiteLevel;
+            var f = scanner.Attributes.OCR.CheckDigitMod;
+            var g = scanner.Attributes.OCR.CheckDigitMultiplier;
+            var h = scanner.Attributes.OCR.CheckDigitValidation;
+            var i = scanner.Attributes.OCR.Despeckle;
+            var j = scanner.Attributes.OCR.EnableExternalFinder;
+            var k = scanner.Attributes.OCR.EnableFinder;
+            var l = scanner.Attributes.OCR.EnableIllumination;
+            var m = scanner.Attributes.OCR.EnableMicre13B;
+            var n = scanner.Attributes.OCR.EnableOcrA;
+            var o = scanner.Attributes.OCR.EnableOcrB;
+            var p = scanner.Attributes.OCR.EnableUSCurrency;
+            var q = scanner.Attributes.OCR.Lines;
+            var r = scanner.Attributes.OCR.LowPassFilter;
+            var s = scanner.Attributes.OCR.MaxCharacters;
+            var t = scanner.Attributes.OCR.MinCharacters;
+            var u = scanner.Attributes.OCR.OcrAVariant;
+            var v = scanner.Attributes.OCR.OcrBVariant;
+            var w = scanner.Attributes.OCR.Orientation;
+            var x = scanner.Attributes.OCR.QuietZone;
+            var y = scanner.Attributes.OCR.SecurityLevel;
+            var z = scanner.Attributes.OCR.Template;
+            var aa = scanner.Attributes.OCR.Thicken;
+            var ab = scanner.Attributes.OCR.ValidCharacters;
+            var ac = scanner.Attributes.OCR.WhiteLevel;
         }
 
         private static void TestStatus(IMotorolaSnapiScanner scanner)
         {
-            var c = scanner.Status.Charging;
-            var d = scanner.Status.InCradle;
-            var e = scanner.Status.IsHandsfree;
+            var c = scanner.Attributes.Status.Charging;
+            var d = scanner.Attributes.Status.InCradle;
+            var e = scanner.Attributes.Status.IsHandsfree;
         }
 
         public static string GetDescription(this Enum value)

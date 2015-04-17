@@ -52,7 +52,7 @@ namespace Motorola.Snapi
 
                 // Lets list down all the scanners connected to the host
                 short numberOfScanners; // Number of scanners expect to be used
-                int[] connectedScannerIDList = new int[32]; // Random number - more than expected
+                var connectedScannerIDList = new int[32]; // Random number - more than expected
 
                 // List of scanner IDs to be returned
                 string outXml; //Scanner details output

@@ -1,9 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using CoreScanner;
-using Motorola.Snapi.Attributes;
-using Motorola.Snapi.Constants;
+using Motorola.Snapi.Commands;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi
@@ -11,14 +8,35 @@ namespace Motorola.Snapi
     public class BarcodeScanner : IMotorolaSnapiScanner
     {
         private readonly CCoreScanner _scannerDriver;
+        private readonly ScannerInfo _info;
+
 
         internal BarcodeScanner(CCoreScanner scannerDriver, XElement scannerXml)
         {
             _scannerDriver = scannerDriver;
-            Parse(scannerXml);
+            _info = new ScannerInfo(scannerXml);
+            _attributes = new AttributeSets(_scannerDriver, Info.ScannerId);
         }
 
         #region Commands
+        private MacroPdf _macroPdf;
+        public MacroPdf MacroPDF { get { return _macroPdf ?? (_macroPdf = new MacroPdf(_scannerDriver, Info.ScannerId)); } }
+        private Actions _actions;
+        public Actions Actions { get { return _actions ?? (_actions = new Actions(_scannerDriver, Info.ScannerId)); } }
+        private Defaults _defaults;
+        public Defaults Defaults { get { return _defaults ?? (_defaults = new Defaults(_scannerDriver, Info.ScannerId)); } }
+        private Firmware _firmware;
+        public Firmware Firmware { get { return _firmware ?? (_firmware = new Firmware(_scannerDriver, Info.ScannerId)); } }
+        private AccessControl _accessControl;
+        /// <summary>
+        /// Commands for claiming and releasing this device.
+        /// </summary>
+        public AccessControl AccessControl { get { return _accessControl ?? (_accessControl = new AccessControl(_scannerDriver, Info.ScannerId)); } }
+        private Trigger _trigger;
+        /// <summary>
+        /// Represents a vitural trigger.
+        /// </summary>
+        public Trigger Trigger { get { return _trigger ?? (_trigger = new Trigger(_scannerDriver, Info.ScannerId)); } }
         /// <summary>
         /// Change the USB host mode of the scanner.
         /// </summary>
@@ -28,97 +46,26 @@ namespace Motorola.Snapi
         public void SetHostMode(string mode, bool permanent = false, bool silent = true)
         {
             const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID><cmdArgs><arg-string>{1}</arg-string><arg-bool>{2}</arg-bool><arg-bool>{3}</arg-bool></cmdArgs></inArgs>";
-            string inXml = string.Format(setCommandXml, ScannerId, mode, silent ? "TRUE" : "FALSE", permanent ? "TRUE" : "FALSE");
+            string inXml = string.Format(setCommandXml, Info.ScannerId, mode, silent ? "TRUE" : "FALSE", permanent ? "TRUE" : "FALSE");
             string outXml;
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.DeviceSwitchHostMode, ref inXml, out outXml, out status);
             if (status != 0)
                 throw new ScannerException{ErrorCode = (StatusCode)status};
-            UsbHostMode = mode;
             //return status;
-        }
-        /// <summary>
-        /// Set all attributes to their default values.
-        /// </summary>
-        public void SetAllDefault()
-        {
-            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-            string inXml = string.Format(setCommandXml, ScannerId);
-            string outXml;
-            int status;
-            _scannerDriver.ExecCommand((int)ScannerCommand.SetParameterDefaults, ref inXml, out outXml, out status);
-            if (status != 0)
-                throw new ScannerException("Set all defaults failed") { ErrorCode = (StatusCode)status };
-        }
-
-        /// <summary>
-        /// Claim this device.
-        /// </summary>
-        public void Claim()
-        {
-            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-            string inXml = string.Format(setCommandXml, ScannerId);
-            string outXml;
-            int status;
-            _scannerDriver.ExecCommand((int)ScannerCommand.ClaimDevice, ref inXml, out outXml, out status);
-            if (status != 0)
-                throw new ScannerException("Device claim failed") { ErrorCode = (StatusCode)status };
-        }
-
-        /// <summary>
-        /// Release this device.
-        /// </summary>
-        public void Release()
-        {
-            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-            string inXml = string.Format(setCommandXml, ScannerId);
-            string outXml;
-            int status;
-            _scannerDriver.ExecCommand((int)ScannerCommand.ReleaseDevice, ref inXml, out outXml, out status);
-            if (status != 0)
-                throw new ScannerException("Device release failed") { ErrorCode = (StatusCode)status };
-        }
-
-        /// <summary>
-        /// Abort MacroPDF of this scanner.
-        /// </summary>
-        public void AbortMacroPdf()
-        {
-            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-            string inXml = string.Format(setCommandXml, ScannerId);
-            string outXml;
-            int status;
-            _scannerDriver.ExecCommand((int)ScannerCommand.AbortMacroPdf, ref inXml, out outXml, out status);
-            if (status != 0)
-                throw new ScannerException("Abort MacroPDF failed") { ErrorCode = (StatusCode)status };
-        }
-
-        /// <summary>
-        /// Abort Firmware updates process of a specified scanner while it is progressing.
-        /// WARNING! If the scanner’s firmware is not backup protected, issuing this command during a firmware update may cause a corruption leaving the scanner inoperable. 
-        /// </summary>
-        public void AbortFirmwareUpdate()
-        {
-            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-            string inXml = string.Format(setCommandXml, ScannerId);
-            string outXml;
-            int status;
-            _scannerDriver.ExecCommand((int)ScannerCommand.AbortUpdateFirmware, ref inXml, out outXml, out status);
-            if (status != 0)
-                throw new ScannerException("Abort firmware update failed") { ErrorCode = (StatusCode)status };
         }
 
         /// <summary>
         /// Turn the aim of this scanner on or off
         /// </summary>
-        public bool Aim
+        public bool AimEnabled
         {
             set
             {
                 if (value)
                 {
                     const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-                    string inXml = string.Format(setCommandXml, ScannerId);
+                    string inXml = string.Format(setCommandXml, Info.ScannerId);
                     string outXml;
                     int status;
                     _scannerDriver.ExecCommand((int)ScannerCommand.AimOn, ref inXml, out outXml, out status);
@@ -128,7 +75,7 @@ namespace Motorola.Snapi
                 else
                 {
                     const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-                    string inXml = string.Format(setCommandXml, ScannerId);
+                    string inXml = string.Format(setCommandXml, Info.ScannerId);
                     string outXml;
                     int status;
                     _scannerDriver.ExecCommand((int)ScannerCommand.AimOff, ref inXml, out outXml, out status);
@@ -138,47 +85,6 @@ namespace Motorola.Snapi
             }
         }
 
-        /// <summary>
-        /// Flush MacroPDF of this scanner
-        /// </summary>
-        public void FlushMacroPdf()
-        {
-            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-            string inXml = string.Format(setCommandXml, ScannerId);
-            string outXml;
-            int status;
-            _scannerDriver.ExecCommand((int)ScannerCommand.FlushMacroPdf, ref inXml, out outXml, out status);
-            if (status != 0)
-                throw new ScannerException("MacroPDF flush failed") { ErrorCode = (StatusCode)status };
-        }
-
-        /// <summary>
-        /// Virtualy pull the trigger of this scanner
-        /// </summary>
-        public void PullTrigger()
-        {
-            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-            string inXml = string.Format(setCommandXml, ScannerId);
-            string outXml;
-            int status;
-            _scannerDriver.ExecCommand((int)ScannerCommand.DevicePullTrigger, ref inXml, out outXml, out status);
-            if (status != 0)
-                throw new ScannerException("Trigger pull failed") { ErrorCode = (StatusCode)status };
-        }
-
-        /// <summary>
-        /// Virtualy release the trigger of this scanner
-        /// </summary>
-        public void ReleaseTrigger()
-        {
-            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-            string inXml = string.Format(setCommandXml, ScannerId);
-            string outXml;
-            int status;
-            _scannerDriver.ExecCommand((int)ScannerCommand.DeviceReleaseTrigger, ref inXml, out outXml, out status);
-            if (status != 0)
-                throw new ScannerException("Trigger pull failed") { ErrorCode = (StatusCode)status };
-        }
 
         /// <summary>
         /// Enable or disable scanning
@@ -190,7 +96,7 @@ namespace Motorola.Snapi
                 if (value)
                 {
                     const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-                    string inXml = string.Format(setCommandXml, ScannerId);
+                    string inXml = string.Format(setCommandXml, Info.ScannerId);
                     string outXml;
                     int status;
                     _scannerDriver.ExecCommand((int)ScannerCommand.ScanEnable, ref inXml, out outXml, out status);
@@ -200,7 +106,7 @@ namespace Motorola.Snapi
                 else
                 {
                     const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-                    string inXml = string.Format(setCommandXml, ScannerId);
+                    string inXml = string.Format(setCommandXml, Info.ScannerId);
                     string outXml;
                     int status;
                     _scannerDriver.ExecCommand((int)ScannerCommand.ScanDisable, ref inXml, out outXml, out status);
@@ -216,34 +122,18 @@ namespace Motorola.Snapi
         public void Reboot()
         {
             const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-            string inXml = string.Format(setCommandXml, ScannerId);
+            string inXml = string.Format(setCommandXml, Info.ScannerId);
             string outXml;
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.RebootScanner, ref inXml, out outXml, out status);
             if (status != 0)
-                throw new ScannerException("Trigger pull failed") { ErrorCode = (StatusCode)status };
+                throw new ScannerException("Reboot command failed") { ErrorCode = (StatusCode)status };
         }
         //TODO Finish scanner commands. Start from topology
         #endregion
 
         #region ScannerInfo
-        public string DateOfManufacture { get; private set; }
-
-        public string Firmware { get; private set; }
-
-        public Guid GUID { get; private set; }
-
-        public string UsbHostMode { get; private set; }
-
-        public string ModelNumber { get; private set; }
-
-        public int ProductId { get; private set; }
-
-        public int ScannerId { get; private set; }
-
-        public string SerialNumber { get; private set; }
-
-        public int VendorId { get; private set; }
+        public ScannerInfo Info { get { return _info; } }
 
         public CaptureMode CaptureMode
         {
@@ -273,69 +163,8 @@ namespace Motorola.Snapi
         }
         #endregion
 
-        #region Attributes
-        private Discovery _discovery;
-        private SystemEvents _systemEvents;
-        private Status _status;
-        private Ocr _ocr;
-        private Imaging _imaging;
-        private Beeper _beeper;
-        private LicenseParsing _license;
-        private Adf _adf;
-        private Synapse _synapse;
-        private UpcEan _upcEan;
-
-        public Discovery Discovery
-        {
-            get { return _discovery ?? (_discovery = new Discovery(ScannerId, _scannerDriver)); }
-        }
-
-        public Ocr OCR
-        {
-            get { return _ocr ?? (_ocr = new Ocr(ScannerId, _scannerDriver)); }
-        }
-
-        public SystemEvents Events
-        {
-            get { return _systemEvents ?? (_systemEvents = new SystemEvents(ScannerId, _scannerDriver)); }
-        }
-
-        public Status Status
-        {
-            get { return _status ?? (_status = new Status(ScannerId, _scannerDriver)); }
-        }
-
-        public Imaging Imaging
-        {
-            get { return _imaging ?? (_imaging = new Imaging(ScannerId, _scannerDriver)); }
-        }
-
-        public Beeper Beeper
-        {
-            get { return _beeper ?? (_beeper = new Beeper(ScannerId, _scannerDriver)); }
-        }
-
-        public LicenseParsing License
-        {
-            get { return _license ?? (_license = new LicenseParsing(ScannerId, _scannerDriver)); }
-        }
-
-        public Adf ADF
-        {
-            get { return _adf ?? (_adf = new Adf(ScannerId, _scannerDriver)); }
-        }
-
-        public Synapse Synapse
-        {
-            get { return _synapse ?? (_synapse = new Synapse(ScannerId, _scannerDriver)); }
-        }
-
-        public UpcEan UPC_EAN
-        {
-            get { return _upcEan ?? (_upcEan = new UpcEan(ScannerId, _scannerDriver)); }
-        }
-
-        #endregion
+        private readonly AttributeSets _attributes;
+        public AttributeSets Attributes { get { return _attributes; } }
 
         //public void EnableLeicaBarcodes()
         //{
@@ -349,102 +178,6 @@ namespace Motorola.Snapi
         //    _ocr.SecurityLevel = 70;
         //}
 
-        /// <summary>
-        /// Parses scanner info from this scanner's xml. (Usually from GetDevices Method which executes the GetScanners command.)
-        /// </summary>
-        /// <param name="scannerXml">Xml containing info for this scanner</param>
-        private void Parse(XElement scannerXml)
-        {
-            if ((scannerXml == null) || (scannerXml.IsEmpty))
-                throw new InvalidDataException("Xml is empty");
-
-            XAttribute type = scannerXml.Attribute("type");
-            var mode = type.Value;
-            switch (mode)
-            {
-                case ("SNAPI"):
-                {
-                    UsbHostMode = HostMode.USB_SNAPI_Imaging;
-                    break;
-                }
-                case ("USBIBMHID"):
-                {
-                    UsbHostMode = HostMode.USB_IBMHID;
-                    break;
-                }
-                case ("USBHIDKB"):
-                {
-                    UsbHostMode = HostMode.USB_HIDKB;
-                    break;
-                }
-                case ("USBIBMTT"):
-                {
-                    UsbHostMode = HostMode.USB_IBMTT;
-                    break;
-                }
-            }
-
-            XElement scannerId = scannerXml.Element("scannerID");
-            if (scannerId != null)
-            {
-                try
-                {
-                    ScannerId = Int32.Parse(scannerId.Value);
-                }
-                catch
-                {
-                    throw;
-                }
-            }
-
-            XElement serialNumber = scannerXml.Element("serialnumber");
-            if (serialNumber != null)
-                SerialNumber = serialNumber.Value.Trim();
-
-            XElement guid = scannerXml.Element("GUID");
-            if (guid != null)
-            {
-                try
-                {
-                    GUID = Guid.Parse(guid.Value);
-                }
-                catch
-                { }
-            }
-
-            XElement vendorId = scannerXml.Element("VID");
-            if (vendorId != null)
-            {
-                try
-                {
-                    VendorId = Int32.Parse(vendorId.Value);
-                }
-                catch
-                { }
-            }
-
-            XElement productId = scannerXml.Element("PID");
-            if (productId != null)
-            {
-                try
-                {
-                    ProductId = Int32.Parse(productId.Value);
-                }
-                catch
-                { }
-            }
-
-            XElement modelNumber = scannerXml.Element("modelnumber");
-            if (modelNumber != null)
-                ModelNumber = modelNumber.Value.Trim();
-
-            XElement dateOfManufacture = scannerXml.Element("DoM");
-            if (dateOfManufacture != null)
-                DateOfManufacture = dateOfManufacture.Value.Trim();
-
-            XElement firmware = scannerXml.Element("firmware");
-            if (firmware != null)
-                Firmware = firmware.Value.Trim();
-        }
     }
+
 }

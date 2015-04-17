@@ -11,6 +11,11 @@ namespace Motorola.Snapi.Attributes
     /// </summary>
     public class Adf : MotorolaAttributeSet
     {
+        /// <summary>
+        /// Initializes a Adf object.
+        /// </summary>
+        /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
+        /// <param name="scannerDriver">CCoreScanner instance</param>
         internal Adf(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
 
         /// <summary>
