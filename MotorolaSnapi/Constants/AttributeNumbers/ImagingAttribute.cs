@@ -2,7 +2,7 @@
 
 namespace Motorola.Snapi.Constants.AttributeNumbers
 {
-    public static class ImagingAttribute
+    internal static class ImagingAttribute
     {
         public const ushort CropTop = 315;
         public const ushort CropLeft = 316;

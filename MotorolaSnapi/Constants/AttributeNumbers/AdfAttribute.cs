@@ -2,7 +2,7 @@
 
 namespace Motorola.Snapi.Constants.AttributeNumbers
 {
-    public static class AdfAttribute
+    internal static class AdfAttribute
     {
         public const ushort ADFRules = 392;
         public const ushort KeyDelay = 110;

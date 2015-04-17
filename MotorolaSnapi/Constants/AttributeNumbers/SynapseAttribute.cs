@@ -1,6 +1,6 @@
 ﻿namespace Motorola.Snapi.Constants.AttributeNumbers
 {
-    public static class SynapseAttribute
+    internal static class SynapseAttribute
     {
         public const ushort Synapse = 135;
     }

@@ -26,7 +26,7 @@ namespace Motorola.Snapi
 
             _keyboard = new Keyboard(_scannerDriver);
         }
-
+        #region Commands
         public Keyboard Keyboard
         {
             get { return _keyboard; }
@@ -101,7 +101,145 @@ namespace Motorola.Snapi
                 return keyEnumState.Value;
             }
         }
+        /// <summary>
+        /// Registers the API for the given event types.
+        /// </summary>
+        /// <param name="events">Events to register for.</param>
+        public void RegisterForEvents(params EventType[] events)
+        {
+            if (_registeredEvents == null)
+            {
+                _registeredEvents = new List<EventType>();
+            }
+            var template = @"<inArgs><cmdArgs><arg-int>{0}</arg-int><arg-int>{1}</arg-int></cmdArgs></inArgs>";
 
+            var count = 0;
+            var arg = "";
+            foreach (var eventType in events)
+            {
+                if (_registeredEvents.Contains(eventType))
+                    continue;
+                _registeredEvents.Add(eventType);
+                arg += (int)eventType;
+                arg += ",";
+                count++;
+
+                switch (eventType)
+                {
+                    case EventType.Barcode:
+                        {
+                            _scannerDriver.BarcodeEvent += OnBarcodeEvent;
+                            break;
+                        }
+                    case EventType.Image:
+                        {
+                            _scannerDriver.ImageEvent += OnImageEvent;
+                            break;
+                        }
+                    case EventType.Other:
+                        {
+                            _scannerDriver.IOEvent += OnIOEvent;
+                            _scannerDriver.CommandResponseEvent += OnCommandResponceEvent;
+                            _scannerDriver.ScannerNotificationEvent += OnScannerNotificationEvent;
+                            break;
+                        }
+                    case EventType.Pnp:
+                        {
+                            _scannerDriver.PNPEvent += OnPnpEvent;
+                            break;
+                        }
+                    case EventType.Rmd:
+                        {
+                            _scannerDriver.ScanRMDEvent += OnScanRMDEvent;
+                            break;
+                        }
+                    case EventType.Video:
+                        {
+                            _scannerDriver.VideoEvent += OnVideoEvent;
+                            break;
+                        }
+                }
+            }
+            if (!arg.Equals(""))
+            {
+                arg = arg.Substring(0, arg.Length - 1);
+                string inXml = string.Format(template, count, arg);
+                string outXml;
+                int status;
+                _scannerDriver.ExecCommand((int)ScannerCommand.RegisterForEvents, ref inXml, out outXml, out status);
+            }
+        }
+
+        /// <summary>
+        /// Unregisters the API for the given event types.
+        /// </summary>
+        /// <param name="events">Events to unregister from.</param>
+        public void UnRegisterForEvents(params EventType[] events)
+        {
+            if (_registeredEvents != null)
+            {
+                var template = @"<inArgs><cmdArgs><arg-int>{0}</arg-int><arg-int>{1}</arg-int></cmdArgs></inArgs>";
+
+                var count = 0;
+                var arg = "";
+                foreach (var eventType in events)
+                {
+                    if (_registeredEvents.Contains(eventType))
+                    {
+                        _registeredEvents.Remove(eventType);
+                        arg += (int)eventType;
+                        arg += ",";
+                        count++;
+
+                        switch (eventType)
+                        {
+                            case EventType.Barcode:
+                                {
+                                    _scannerDriver.BarcodeEvent -= OnBarcodeEvent;
+                                    break;
+                                }
+                            case EventType.Image:
+                                {
+                                    _scannerDriver.ImageEvent -= OnImageEvent;
+                                    break;
+                                }
+                            case EventType.Other:
+                                {
+                                    _scannerDriver.IOEvent -= OnIOEvent;
+                                    _scannerDriver.CommandResponseEvent -= OnCommandResponceEvent;
+                                    _scannerDriver.ScannerNotificationEvent -= OnScannerNotificationEvent;
+                                    break;
+                                }
+                            case EventType.Pnp:
+                                {
+                                    _scannerDriver.PNPEvent -= OnPnpEvent;
+                                    break;
+                                }
+                            case EventType.Rmd:
+                                {
+                                    _scannerDriver.ScanRMDEvent -= OnScanRMDEvent;
+                                    break;
+                                }
+                            case EventType.Video:
+                                {
+                                    _scannerDriver.VideoEvent -= OnVideoEvent;
+                                    break;
+                                }
+                        }
+                    }
+                }
+                if (!arg.Equals(""))
+                {
+                    arg = arg.Substring(0, arg.Length - 1);
+                    string inXml = string.Format(template, count, arg);
+                    string outXml;
+                    int status;
+                    _scannerDriver.ExecCommand((int)ScannerCommand.UnregisterForEvents, ref inXml, out outXml, out status);
+                }
+            }
+        }
+
+        #endregion
         #region Parsers
         /// <summary>
         /// Parses out the hex array from the XElement and converts each to a char and appends to string
@@ -174,145 +312,6 @@ namespace Motorola.Snapi
         {
             get { return _registeredEvents; }
         }
-
-        /// <summary>
-        /// Registers the API for the given event types.
-        /// </summary>
-        /// <param name="events">Events to register for.</param>
-        public void RegisterForEvents(params EventType[] events)
-        {
-            if (_registeredEvents == null)
-            {
-                _registeredEvents = new List<EventType>();
-            }
-            var template = @"<inArgs><cmdArgs><arg-int>{0}</arg-int><arg-int>{1}</arg-int></cmdArgs></inArgs>";
-
-            var count = 0;
-            var arg = "";
-            foreach (var eventType in events)
-            {
-                if(_registeredEvents.Contains(eventType))
-                    continue;
-                _registeredEvents.Add(eventType);
-                arg += (int)eventType;
-                arg += ",";
-                count++;
-
-                switch (eventType)
-                {
-                    case EventType.Barcode:
-                    {
-                        _scannerDriver.BarcodeEvent += OnBarcodeEvent;
-                        break;
-                    }
-                    case EventType.Image:
-                    {
-                        _scannerDriver.ImageEvent += OnImageEvent;
-                        break;
-                    }
-                    case EventType.Other:
-                    {
-                        _scannerDriver.IOEvent += OnIOEvent;
-                        _scannerDriver.CommandResponseEvent += OnCommandResponceEvent;
-                        _scannerDriver.ScannerNotificationEvent += OnScannerNotificationEvent;
-                        break;
-                    }
-                    case EventType.Pnp:
-                    {
-                        _scannerDriver.PNPEvent += OnPnpEvent;
-                        break;
-                    }
-                    case EventType.Rmd:
-                    {
-                        _scannerDriver.ScanRMDEvent += OnScanRMDEvent;
-                        break;
-                    }
-                    case EventType.Video:
-                    {
-                        _scannerDriver.VideoEvent += OnVideoEvent;
-                        break;
-                    }
-                }
-            }
-            if (!arg.Equals(""))
-            {
-                arg = arg.Substring(0, arg.Length - 1);
-                string inXml = string.Format(template, count, arg);
-                string outXml;
-                int status;
-                _scannerDriver.ExecCommand((int)ScannerCommand.RegisterForEvents, ref inXml, out outXml, out status);
-            }
-        }
-
-        /// <summary>
-        /// Unregisters the API for the given event types.
-        /// </summary>
-        /// <param name="events">Events to unregister from.</param>
-        public void UnRegisterForEvents(params EventType[] events)
-        {
-            if (_registeredEvents != null)
-            {
-                var template = @"<inArgs><cmdArgs><arg-int>{0}</arg-int><arg-int>{1}</arg-int></cmdArgs></inArgs>";
-
-                var count = 0;
-                var arg = "";
-                foreach (var eventType in events)
-                {
-                    if (_registeredEvents.Contains(eventType))
-                    {
-                        _registeredEvents.Remove(eventType);
-                        arg += (int)eventType;
-                        arg += ",";
-                        count++;
-
-                        switch (eventType)
-                        {
-                            case EventType.Barcode:
-                            {
-                                _scannerDriver.BarcodeEvent -= OnBarcodeEvent;
-                                break;
-                            }
-                            case EventType.Image:
-                            {
-                                _scannerDriver.ImageEvent -= OnImageEvent;
-                                break;
-                            }
-                            case EventType.Other:
-                            {
-                                _scannerDriver.IOEvent -= OnIOEvent;
-                                _scannerDriver.CommandResponseEvent -= OnCommandResponceEvent;
-                                _scannerDriver.ScannerNotificationEvent -= OnScannerNotificationEvent;
-                                break;
-                            }
-                            case EventType.Pnp:
-                            {
-                                _scannerDriver.PNPEvent -= OnPnpEvent;
-                                break;
-                            }
-                            case EventType.Rmd:
-                            {
-                                _scannerDriver.ScanRMDEvent -= OnScanRMDEvent;
-                                break;
-                            }
-                            case EventType.Video:
-                            {
-                                _scannerDriver.VideoEvent -= OnVideoEvent;
-                                break;
-                            }
-                        }
-                    }
-                }
-                if (!arg.Equals(""))
-                {
-                    arg = arg.Substring(0, arg.Length - 1);
-                    string inXml = string.Format(template, count, arg);
-                    string outXml;
-                    int status;
-                    _scannerDriver.ExecCommand((int)ScannerCommand.UnregisterForEvents, ref inXml, out outXml, out status);
-                }
-            }
-        }
-
         /// <summary>
         /// Invoked when bar code data is received by a scanner.
         /// </summary>

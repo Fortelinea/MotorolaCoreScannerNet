@@ -2,7 +2,7 @@
 
 namespace Motorola.Snapi.Constants.AttributeNumbers
 {
-    public static class DiscoveryAttribute
+    internal static class DiscoveryAttribute
     {
         public const ushort ModelNumber = 533;
         public const ushort SerialNumber = 534;

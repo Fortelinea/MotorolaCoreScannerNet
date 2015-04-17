@@ -2,7 +2,7 @@
 
 namespace Motorola.Snapi.Constants.AttributeNumbers
 {
-    public static class OcrAttribute
+    internal static class OcrAttribute
     {
         public const ushort Template = 547;
         public const ushort SecurityLevel = 554;

@@ -2,7 +2,7 @@
 
 namespace Motorola.Snapi.Constants.AttributeNumbers
 {
-    public static class StatusAttribute
+    internal static class StatusAttribute
     {
         public const ushort InCradleDetect = 25000;
         public const ushort OperationalMode = 25001;

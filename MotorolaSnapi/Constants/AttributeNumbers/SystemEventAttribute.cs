@@ -2,7 +2,7 @@
 
 namespace Motorola.Snapi.Constants.AttributeNumbers
 {
-    public static class SystemEventAttribute
+    internal static class SystemEventAttribute
     {
         public const ushort DecodeEvent = 256;
         public const ushort BootupEvent = 258;

@@ -30,6 +30,7 @@ namespace Motorola.Snapi
 
         #region Commands
         void SetHostMode(string mode, bool permanent = false, bool silent = true);
+        void SetAllDefault();
         #endregion
 
         #region Attributes
@@ -50,6 +51,8 @@ namespace Motorola.Snapi
         Adf ADF { get; }
 
         Synapse Synapse { get; }
+
+        UpcEan UPC_EAN { get; }
         #endregion
     }
 }

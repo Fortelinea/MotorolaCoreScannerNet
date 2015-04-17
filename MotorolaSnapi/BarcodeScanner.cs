@@ -19,9 +19,15 @@ namespace Motorola.Snapi
         }
 
         #region Commands
+        /// <summary>
+        /// Change the USB host mode of the scanner.
+        /// </summary>
+        /// <param name="mode">Host mode code</param>
+        /// <param name="permanent">Keep in this mode after power cycle.</param>
+        /// <param name="silent">Change modes silently (No beep)</param>
         public void SetHostMode(string mode, bool permanent = false, bool silent = true)
         {
-            string setCommandXml = @"<inArgs><scannerID>{0}</scannerID><cmdArgs><arg-string>{1}</arg-string><arg-bool>{2}</arg-bool><arg-bool>{3}</arg-bool></cmdArgs></inArgs>";
+            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID><cmdArgs><arg-string>{1}</arg-string><arg-bool>{2}</arg-bool><arg-bool>{3}</arg-bool></cmdArgs></inArgs>";
             string inXml = string.Format(setCommandXml, ScannerId, mode, silent ? "TRUE" : "FALSE", permanent ? "TRUE" : "FALSE");
             string outXml;
             int status;
@@ -31,6 +37,193 @@ namespace Motorola.Snapi
             UsbHostMode = mode;
             //return status;
         }
+        /// <summary>
+        /// Set all attributes to their default values.
+        /// </summary>
+        public void SetAllDefault()
+        {
+            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
+            string inXml = string.Format(setCommandXml, ScannerId);
+            string outXml;
+            int status;
+            _scannerDriver.ExecCommand((int)ScannerCommand.SetParameterDefaults, ref inXml, out outXml, out status);
+            if (status != 0)
+                throw new ScannerException("Set all defaults failed") { ErrorCode = (StatusCode)status };
+        }
+
+        /// <summary>
+        /// Claim this device.
+        /// </summary>
+        public void Claim()
+        {
+            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
+            string inXml = string.Format(setCommandXml, ScannerId);
+            string outXml;
+            int status;
+            _scannerDriver.ExecCommand((int)ScannerCommand.ClaimDevice, ref inXml, out outXml, out status);
+            if (status != 0)
+                throw new ScannerException("Device claim failed") { ErrorCode = (StatusCode)status };
+        }
+
+        /// <summary>
+        /// Release this device.
+        /// </summary>
+        public void Release()
+        {
+            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
+            string inXml = string.Format(setCommandXml, ScannerId);
+            string outXml;
+            int status;
+            _scannerDriver.ExecCommand((int)ScannerCommand.ReleaseDevice, ref inXml, out outXml, out status);
+            if (status != 0)
+                throw new ScannerException("Device release failed") { ErrorCode = (StatusCode)status };
+        }
+
+        /// <summary>
+        /// Abort MacroPDF of this scanner.
+        /// </summary>
+        public void AbortMacroPdf()
+        {
+            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
+            string inXml = string.Format(setCommandXml, ScannerId);
+            string outXml;
+            int status;
+            _scannerDriver.ExecCommand((int)ScannerCommand.AbortMacroPdf, ref inXml, out outXml, out status);
+            if (status != 0)
+                throw new ScannerException("Abort MacroPDF failed") { ErrorCode = (StatusCode)status };
+        }
+
+        /// <summary>
+        /// Abort Firmware updates process of a specified scanner while it is progressing.
+        /// WARNING! If the scanner’s firmware is not backup protected, issuing this command during a firmware update may cause a corruption leaving the scanner inoperable. 
+        /// </summary>
+        public void AbortFirmwareUpdate()
+        {
+            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
+            string inXml = string.Format(setCommandXml, ScannerId);
+            string outXml;
+            int status;
+            _scannerDriver.ExecCommand((int)ScannerCommand.AbortUpdateFirmware, ref inXml, out outXml, out status);
+            if (status != 0)
+                throw new ScannerException("Abort firmware update failed") { ErrorCode = (StatusCode)status };
+        }
+
+        /// <summary>
+        /// Turn the aim of this scanner on or off
+        /// </summary>
+        public bool Aim
+        {
+            set
+            {
+                if (value)
+                {
+                    const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
+                    string inXml = string.Format(setCommandXml, ScannerId);
+                    string outXml;
+                    int status;
+                    _scannerDriver.ExecCommand((int)ScannerCommand.AimOn, ref inXml, out outXml, out status);
+                    if (status != 0)
+                        throw new ScannerException("Abort firmware update failed") {ErrorCode = (StatusCode)status};
+                }
+                else
+                {
+                    const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
+                    string inXml = string.Format(setCommandXml, ScannerId);
+                    string outXml;
+                    int status;
+                    _scannerDriver.ExecCommand((int)ScannerCommand.AimOff, ref inXml, out outXml, out status);
+                    if (status != 0)
+                        throw new ScannerException("Aim set failed") { ErrorCode = (StatusCode)status };
+                }
+            }
+        }
+
+        /// <summary>
+        /// Flush MacroPDF of this scanner
+        /// </summary>
+        public void FlushMacroPdf()
+        {
+            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
+            string inXml = string.Format(setCommandXml, ScannerId);
+            string outXml;
+            int status;
+            _scannerDriver.ExecCommand((int)ScannerCommand.FlushMacroPdf, ref inXml, out outXml, out status);
+            if (status != 0)
+                throw new ScannerException("MacroPDF flush failed") { ErrorCode = (StatusCode)status };
+        }
+
+        /// <summary>
+        /// Virtualy pull the trigger of this scanner
+        /// </summary>
+        public void PullTrigger()
+        {
+            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
+            string inXml = string.Format(setCommandXml, ScannerId);
+            string outXml;
+            int status;
+            _scannerDriver.ExecCommand((int)ScannerCommand.DevicePullTrigger, ref inXml, out outXml, out status);
+            if (status != 0)
+                throw new ScannerException("Trigger pull failed") { ErrorCode = (StatusCode)status };
+        }
+
+        /// <summary>
+        /// Virtualy release the trigger of this scanner
+        /// </summary>
+        public void ReleaseTrigger()
+        {
+            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
+            string inXml = string.Format(setCommandXml, ScannerId);
+            string outXml;
+            int status;
+            _scannerDriver.ExecCommand((int)ScannerCommand.DeviceReleaseTrigger, ref inXml, out outXml, out status);
+            if (status != 0)
+                throw new ScannerException("Trigger pull failed") { ErrorCode = (StatusCode)status };
+        }
+
+        /// <summary>
+        /// Enable or disable scanning
+        /// </summary>
+        public bool ScanningEnabled
+        {
+            set
+            {
+                if (value)
+                {
+                    const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
+                    string inXml = string.Format(setCommandXml, ScannerId);
+                    string outXml;
+                    int status;
+                    _scannerDriver.ExecCommand((int)ScannerCommand.ScanEnable, ref inXml, out outXml, out status);
+                    if (status != 0)
+                        throw new ScannerException("Abort firmware update failed") { ErrorCode = (StatusCode)status };
+                }
+                else
+                {
+                    const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
+                    string inXml = string.Format(setCommandXml, ScannerId);
+                    string outXml;
+                    int status;
+                    _scannerDriver.ExecCommand((int)ScannerCommand.ScanDisable, ref inXml, out outXml, out status);
+                    if (status != 0)
+                        throw new ScannerException("Aim set failed") { ErrorCode = (StatusCode)status };
+                }
+            }
+        }
+
+        /// <summary>
+        /// Reboot the scanner
+        /// </summary>
+        public void Reboot()
+        {
+            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
+            string inXml = string.Format(setCommandXml, ScannerId);
+            string outXml;
+            int status;
+            _scannerDriver.ExecCommand((int)ScannerCommand.RebootScanner, ref inXml, out outXml, out status);
+            if (status != 0)
+                throw new ScannerException("Trigger pull failed") { ErrorCode = (StatusCode)status };
+        }
+        //TODO Finish scanner commands. Start from topology
         #endregion
 
         #region ScannerInfo
@@ -90,6 +283,7 @@ namespace Motorola.Snapi
         private LicenseParsing _license;
         private Adf _adf;
         private Synapse _synapse;
+        private UpcEan _upcEan;
 
         public Discovery Discovery
         {
@@ -134,6 +328,11 @@ namespace Motorola.Snapi
         public Synapse Synapse
         {
             get { return _synapse ?? (_synapse = new Synapse(ScannerId, _scannerDriver)); }
+        }
+
+        public UpcEan UPC_EAN
+        {
+            get { return _upcEan ?? (_upcEan = new UpcEan(ScannerId, _scannerDriver)); }
         }
 
         #endregion

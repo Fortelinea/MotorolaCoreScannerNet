@@ -28,7 +28,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.ADFRules, DataType = DataType.Array, Value = ValueConverters.ByteArrayToHexString(value) });
+                SetAttribute(new ScannerAttribute { Id = AdfAttribute.ADFRules, DataType = DataType.Bool, Value = ValueConverters.ByteArrayToHexString(value) });
             }
         }
 

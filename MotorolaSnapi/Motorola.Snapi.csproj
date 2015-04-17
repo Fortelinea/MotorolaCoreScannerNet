@@ -52,6 +52,7 @@
     <Compile Include="Attributes\Status.cs" />
     <Compile Include="Attributes\Synapse.cs" />
     <Compile Include="Attributes\SystemEvents.cs" />
+    <Compile Include="Attributes\UpcEan.cs" />
     <Compile Include="Commands\Keyboard.cs" />
     <Compile Include="Attributes\MotorolaAttributeSet.cs" />
     <Compile Include="Attributes\Ocr.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Constants\AttributeNumbers\StatusAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\SynapseAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\SystemEventAttribute.cs" />
+    <Compile Include="Constants\AttributeNumbers\UpcEanAttribute.cs" />
     <Compile Include="Constants\Enums\BarcodeOrientation.cs" />
     <Compile Include="Constants\Enums\BarcodeType.cs" />
     <Compile Include="Constants\Enums\BeeperFrequency.cs" />
@@ -77,6 +79,9 @@
     <Compile Include="Constants\Enums\LicenseParseMode.cs" />
     <Compile Include="Constants\Enums\EventType.cs" />
     <Compile Include="Constants\Enums\ImageRotation.cs" />
+    <Compile Include="Constants\Enums\SupplementalMode.cs" />
+    <Compile Include="Constants\Enums\TransmitCodeId.cs" />
+    <Compile Include="Constants\Enums\UpcPreamble.cs" />
     <Compile Include="Constants\HostMode.cs" />
     <Compile Include="ImageEventArgs.cs" />
     <Compile Include="IMotorolaSnapiScanner.cs" />
