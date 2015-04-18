@@ -46,6 +46,7 @@
     <Compile Include="AttributeSets.cs" />
     <Compile Include="Attributes\Adf.cs" />
     <Compile Include="Attributes\Beeper.cs" />
+    <Compile Include="Attributes\Code128.cs" />
     <Compile Include="Attributes\Discovery.cs" />
     <Compile Include="Attributes\LicenseParsing.cs" />
     <Compile Include="Attributes\Imaging.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Commands\Trigger.cs" />
     <Compile Include="Constants\AttributeNumbers\AdfAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\BeeperAttribute.cs" />
+    <Compile Include="Constants\AttributeNumbers\Code128Attribute.cs" />
     <Compile Include="Constants\AttributeNumbers\DiscoveryAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\ImagingAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\LicenseParsingAttribute.cs" />
