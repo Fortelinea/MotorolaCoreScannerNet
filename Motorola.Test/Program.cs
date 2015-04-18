@@ -2,9 +2,9 @@
 using System;
 using System.ComponentModel;
 using System.Reflection;
-using Motorola.Snapi.Commands;
 using Motorola.Snapi.Constants;
 using Motorola.Snapi.Constants.Enums;
+using Motorola.Snapi.EventArgs;
 
 namespace Motorola.Test
 {
@@ -39,7 +39,7 @@ namespace Motorola.Test
 
             BarcodeScannerManager.Instance.Open();
 
-            BarcodeScannerManager.Instance.RegisterForEvents(EventType.Barcode, EventType.Pnp, EventType.Image);
+            BarcodeScannerManager.Instance.RegisterForEvents(EventType.Barcode, EventType.Pnp, EventType.Image, EventType.Other, EventType.Rmd);
 
             var b = BarcodeScannerManager.Instance.RegisteredEvents;
 

@@ -8,6 +8,7 @@ using System.Xml.Linq;
 using CoreScanner;
 using Motorola.Snapi.Commands;
 using Motorola.Snapi.Constants.Enums;
+using Motorola.Snapi.EventArgs;
 using ImageFormat = System.Drawing.Imaging.ImageFormat;
 
 namespace Motorola.Snapi
@@ -150,7 +151,7 @@ namespace Motorola.Snapi
                         }
                     case EventType.Rmd:
                         {
-                            _scannerDriver.ScanRMDEvent += OnScanRMDEvent;
+                            _scannerDriver.ScanRMDEvent += OnScanRmdEvent;
                             break;
                         }
                     case EventType.Video:
@@ -217,7 +218,7 @@ namespace Motorola.Snapi
                                 }
                             case EventType.Rmd:
                                 {
-                                    _scannerDriver.ScanRMDEvent -= OnScanRMDEvent;
+                                    _scannerDriver.ScanRMDEvent -= OnScanRmdEvent;
                                     break;
                                 }
                             case EventType.Video:
@@ -244,8 +245,8 @@ namespace Motorola.Snapi
         /// <summary>
         /// Parses out the hex array from the XElement and converts each to a char and appends to string
         /// </summary>
-        /// <param name="xdoc"></param>
-        /// <returns></returns>
+        /// <param name="xdoc">XDocument containing xml to parse.</param>
+        /// <returns>Data string</returns>
         private string ParseData(XDocument xdoc)
         {
             try
@@ -265,13 +266,43 @@ namespace Motorola.Snapi
         /// <summary>
         /// Gets the scanner ID from xml
         /// </summary>
-        /// <param name="xdoc">XDocument containing xml to parse</param>
-        /// <returns></returns>
-        private UInt32 ParseScannerId(XDocument xdoc)
+        /// <param name="xdoc">XDocument containing xml to parse.</param>
+        /// <returns>Scanner ID</returns>
+        private uint ParseScannerId(XDocument xdoc)
         {
             try
             {
-                return UInt32.Parse(xdoc.Descendants("scannerID").Single().Value);
+                return uint.Parse(xdoc.Descendants("scannerID").Single().Value);
+            }
+            catch
+            { return 0; }
+        }
+
+        /// <summary>
+        /// Gets the status from xml
+        /// </summary>
+        /// <param name="xdoc">XDocument containing xml to parse.</param>
+        /// <returns>Status code</returns>
+        private int ParseStatus(XDocument xdoc)
+        {
+            try
+            {
+                return int.Parse(xdoc.Descendants("status").Single().Value);
+            }
+            catch
+            { return 0; }
+        }
+
+        /// <summary>
+        /// Gets the total number of records from xml
+        /// </summary>
+        /// <param name="xdoc">XDocument containing xml to parse.</param>
+        /// <returns>Number of records in firmware file.</returns>
+        private int ParseTotalRecords(XDocument xdoc)
+        {
+            try
+            {
+                return int.Parse(xdoc.Descendants("maxcount").Single().Value);
             }
             catch
             { return 0; }
@@ -290,9 +321,18 @@ namespace Motorola.Snapi
         }
 
         /// <summary>
+        /// Gets the current software component number from xml
+        /// </summary>
+        /// <param name="xdoc">XDocument containing xml to parse.</param>
+        /// <returns>SOftware component number</returns>
+        private int ParseComponent(XDocument xdoc)
+        {
+            return int.Parse(xdoc.Descendants("software_component").Single().Value);
+        }
+        /// <summary>
         /// Gets barcode type from barcode xml.
         /// </summary>
-        /// <param name="xdoc">XDocument generated from barcode event.</param>
+        /// <param name="xdoc">XDocument containing xml to parse.</param>
         /// <returns>Barcode type</returns>
         private BarcodeType ParseBarcodeType(XDocument xdoc)
         {
@@ -302,6 +342,16 @@ namespace Motorola.Snapi
             }
             catch
             { return 0; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="xdoc">XDocument generated from barcode event.</param>
+        /// <returns></returns>
+        private int ParseProgress(XDocument xdoc)
+        {
+            return int.Parse(xdoc.Descendants("progress").Single().Value);
         }
         #endregion
 
@@ -332,7 +382,42 @@ namespace Motorola.Snapi
         /// Invoked when a scanner captures video.
         /// </summary>
         public event EventHandler<VideoEventArgs> VideoReceived;
-
+        /// <summary>
+        /// Invoked when a firmware update session has begun.
+        /// </summary>
+        public event EventHandler<FlashStartEventArgs> FlashSessionStarted;
+        /// <summary>
+        /// Invoked when a firmware download has begun.
+        /// </summary>
+        public event EventHandler<DownloadEventArgs> DownloadStarted;
+        /// <summary>
+        /// Invoked when a record finishes downloading to update on the progress.
+        /// </summary>
+        public event EventHandler<DownloadEventArgs> BlockFinished;
+        /// <summary>
+        /// Invoked when a component download ends
+        /// </summary>
+        public event EventHandler<DownloadEventArgs> DownloadEnded;
+        /// <summary>
+        /// Invoked when a firmware download session ends.
+        /// </summary>
+        public event EventHandler<FirmwareEventArgs> FlashSessionEnded;
+        /// <summary>
+        /// Invoked when a status message or error message is received relating to firmware update.
+        /// </summary>
+        public event EventHandler<FirmwareEventArgs> FirmwareStatusOrErrorReceived;
+        /// <summary>
+        /// Invoked when a scanner's operation mode is changed to decode barcode mode.
+        /// </summary>
+        public event EventHandler<ScannerEventArgs> DecodeModeEnabled;
+        /// <summary>
+        /// Invoked when a scanner's operation mode is changed to snapshot mode.
+        /// </summary>
+        public event EventHandler<ScannerEventArgs> SnapshotModeEnabled;
+        /// <summary>
+        /// Invoked when a scanner's operation mode is changed to video mode.
+        /// </summary>
+        public event EventHandler<ScannerEventArgs> VideoModeEnabled;
 
         /// <summary>
         /// Handles BardcodeEvent and invokes DataReceived.
@@ -350,20 +435,23 @@ namespace Motorola.Snapi
         }
 
         /// <summary>
-        /// Handles PNPEvent and invokes ScannerAttached.
+        /// Handles PNPEvent and invokes ScannerAttached or ScannerDetached.
         /// </summary>
         /// <param name="eventtype">1 - Scanner attached.
         /// 2 - Scanner detached.</param>
         /// <param name="ppnpdata">Xml output.</param>
         private void OnPnpEvent(short eventtype, ref string ppnpdata)
         {
+            XDocument xdoc = XDocument.Parse(ppnpdata);
+            var scannerId = ParseScannerId(xdoc);
+
             if (ScannerAttached != null && eventtype == 1)
             {
-                ScannerAttached(this, new PnpEventArgs(ppnpdata));
+                ScannerAttached(this, new PnpEventArgs(scannerId, ppnpdata));
             }
             else if (ScannerDetached != null && eventtype == 2)
             {
-                ScannerDetached(this, new PnpEventArgs(ppnpdata));
+                ScannerDetached(this, new PnpEventArgs(scannerId, ppnpdata));
             }
         }
 
@@ -426,19 +514,74 @@ namespace Motorola.Snapi
         /// </summary>
         /// <param name="eventType"></param>
         /// <param name="prmdData"></param>
-        private void OnScanRMDEvent(short eventType, ref string prmdData)
+        private void OnScanRmdEvent(short eventType, ref string prmdData)
         {
-            throw new NotImplementedException();
+            XDocument xdoc = XDocument.Parse(prmdData);
+            var status = (StatusCode)ParseStatus(xdoc);
+            uint scannerId = ParseScannerId(xdoc);
+            switch ((RmdEventType)eventType)
+            {
+                case RmdEventType.SessionStarted:
+                {
+                    if (FlashSessionStarted != null) FlashSessionStarted(this, new FlashStartEventArgs(scannerId, status, ParseTotalRecords(xdoc)));
+                    break;
+                }
+                case RmdEventType.DownloadStarted:
+                {
+                    if(DownloadStarted != null) DownloadStarted(this, new DownloadEventArgs(scannerId, status, ParseComponent(xdoc)));
+                    break;
+                }
+                case RmdEventType.BlockFinished:
+                {
+                    if(BlockFinished != null) BlockFinished(this, new DownloadEventArgs(scannerId, status, ParseComponent(xdoc), ParseProgress(xdoc)));
+                    break;
+                }
+                case RmdEventType.DownloadEnded:
+                {
+                    if(DownloadEnded != null) DownloadEnded(this, new DownloadEventArgs(scannerId, status, ParseComponent(xdoc)));
+                    break;
+                }
+                case RmdEventType.SessionEnded:
+                {
+                    if(FlashSessionEnded != null) FlashSessionEnded(this, new FirmwareEventArgs(scannerId, status));
+                    break;
+                }
+                case RmdEventType.ErrorOrStatus:
+                {
+                    if(FirmwareStatusOrErrorReceived != null) FirmwareStatusOrErrorReceived(this, new FirmwareEventArgs(scannerId, status));
+                    break;
+                }
+            }
         }
 
+
         /// <summary>
-        /// Handles ScannerNotificationEvent
+        /// Handles ScannerNotificationEvent.
         /// </summary>
         /// <param name="notificationType"></param>
         /// <param name="pScannerData"></param>
         private void OnScannerNotificationEvent(short notificationType, ref string pScannerData)
         {
-            throw new NotImplementedException();
+            XDocument xdoc = XDocument.Parse(pScannerData);
+            var scannerId = ParseScannerId(xdoc);
+            switch ((NotificationType)notificationType)
+            {
+                case NotificationType.DecodeMode:
+                {
+                    if (DecodeModeEnabled != null) DecodeModeEnabled(this, new ScannerEventArgs(scannerId));
+                    break;
+                }
+                case NotificationType.SnapshotMode:
+                {
+                    if (SnapshotModeEnabled != null) SnapshotModeEnabled(this, new ScannerEventArgs(scannerId));
+                    break;
+                }
+                case NotificationType.VideoMode:
+                {
+                    if (VideoModeEnabled != null) VideoModeEnabled(this, new ScannerEventArgs(scannerId));
+                    break;
+                }
+            }
         }
 
         /// <summary>

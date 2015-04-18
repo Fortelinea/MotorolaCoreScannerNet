@@ -1,18 +1,15 @@
-﻿using System;
-using Motorola.Snapi.Constants.Enums;
+﻿using Motorola.Snapi.Constants.Enums;
 
-namespace Motorola.Snapi
+namespace Motorola.Snapi.EventArgs
 {
-    public class BarcodeScanEventArgs : EventArgs
+    public class BarcodeScanEventArgs : ScannerEventArgs
     {
         private readonly BarcodeType _barcodeType;
         private readonly string _data;
         private readonly byte[] _rawData;
-        private readonly UInt32 _scannerId;
 
-        public BarcodeScanEventArgs(UInt32 scannerIdentifier, BarcodeType barcodeType, string data, byte[] rawData)
+        public BarcodeScanEventArgs(uint scannerId, BarcodeType barcodeType, string data, byte[] rawData) : base(scannerId)
         {
-            _scannerId = scannerIdentifier;
             _data = data;
             _rawData = rawData;
             _barcodeType = barcodeType;
@@ -31,11 +28,6 @@ namespace Motorola.Snapi
         public byte[] RawData
         {
             get { return _rawData; }
-        }
-
-        public UInt32 ScannerId
-        {
-            get { return _scannerId; }
         }
     }
 }
