@@ -8,7 +8,7 @@ using System.Xml.Linq;
 using CoreScanner;
 using Motorola.Snapi.Commands;
 using Motorola.Snapi.Constants.Enums;
-using Motorola.Snapi.EventArgs;
+using Motorola.Snapi.EventArguments;
 using ImageFormat = System.Drawing.Imaging.ImageFormat;
 
 namespace Motorola.Snapi
@@ -418,6 +418,15 @@ namespace Motorola.Snapi
         /// Invoked when a scanner's operation mode is changed to video mode.
         /// </summary>
         public event EventHandler<ScannerEventArgs> VideoModeEnabled;
+        /// <summary>
+        /// Invoked when a responce to a command is received.
+        /// TODO Figure out what to do with this.
+        /// </summary>
+        internal event EventHandler<CommandResponceEventArgs> ResponceReceived;
+        /// <summary>
+        /// Invoked when another application attempts to access a scanner that has been exclusively claimed by this application.
+        /// </summary>
+        public event EventHandler<IOEventArgs> ApplicationBlocked;
 
         /// <summary>
         /// Handles BardcodeEvent and invokes DataReceived.
@@ -447,11 +456,11 @@ namespace Motorola.Snapi
 
             if (ScannerAttached != null && eventtype == 1)
             {
-                ScannerAttached(this, new PnpEventArgs(scannerId, ppnpdata));
+                ScannerAttached(this, new PnpEventArgs(scannerId));
             }
             else if (ScannerDetached != null && eventtype == 2)
             {
-                ScannerDetached(this, new PnpEventArgs(scannerId, ppnpdata));
+                ScannerDetached(this, new PnpEventArgs(scannerId));
             }
         }
 
@@ -506,11 +515,12 @@ namespace Motorola.Snapi
         /// <param name="pScannerData"></param>
         private void OnVideoEvent(short eventType, int size, ref object sfvideoData, ref string pScannerData)
         {
+            //TODO Implement OnVideoEvent.
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Handles ScanRMDEvent
+        /// Handles ScanRMDEvent. Invokes FlashSessionStarted, DownloadStarted, BlockFinished, DownloadEnded, FlashSessionEnded, or FirmwareStatusOrErrorReceived.
         /// </summary>
         /// <param name="eventType"></param>
         /// <param name="prmdData"></param>
@@ -556,7 +566,7 @@ namespace Motorola.Snapi
 
 
         /// <summary>
-        /// Handles ScannerNotificationEvent.
+        /// Handles ScannerNotificationEvent. Invokes DecodeModeEnabled, SnapshotModeEnabled, or VideoModeEnabled.
         /// </summary>
         /// <param name="notificationType"></param>
         /// <param name="pScannerData"></param>
@@ -585,23 +595,24 @@ namespace Motorola.Snapi
         }
 
         /// <summary>
-        /// Handles CommandResponceEvent
+        /// Handles CommandResponceEvent. Invokes ResponceReceived
         /// </summary>
         /// <param name="status"></param>
         /// <param name="prspData"></param>
         private void OnCommandResponceEvent(short status, ref string prspData)
         {
-            throw new NotImplementedException();
+            XDocument outXml = XDocument.Parse(prspData);
+            if (ResponceReceived != null) ResponceReceived(this, new CommandResponceEventArgs(outXml));
         }
 
         /// <summary>
-        /// Handles IOEvent
+        /// Handles IOEvents. Invokes ApplicationBlocked
         /// </summary>
         /// <param name="type"></param>
         /// <param name="data"></param>
         private void OnIOEvent(short type, byte data)
         {
-            throw new NotImplementedException();
+            if(ApplicationBlocked != null) ApplicationBlocked(this, new IOEventArgs(type, data));
         }
         #endregion
 

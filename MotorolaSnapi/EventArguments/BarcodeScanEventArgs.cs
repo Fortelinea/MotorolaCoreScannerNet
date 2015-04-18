@@ -1,6 +1,6 @@
 ﻿using Motorola.Snapi.Constants.Enums;
 
-namespace Motorola.Snapi.EventArgs
+namespace Motorola.Snapi.EventArguments
 {
     public class BarcodeScanEventArgs : ScannerEventArgs
     {

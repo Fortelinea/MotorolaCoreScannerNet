@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace Motorola.Snapi.EventArgs
+namespace Motorola.Snapi.EventArguments
 {
     public class ImageEventArgs : ScannerEventArgs {
         private readonly ImageFormat _format;
@@ -12,8 +12,13 @@ namespace Motorola.Snapi.EventArgs
             _format = format;
             _image = image;
         }
-
+        /// <summary>
+        /// File format of the received image.
+        /// </summary>
         public ImageFormat Format { get { return _format;} }
+        /// <summary>
+        /// Image received by the scanner.
+        /// </summary>
         public Image Image { get { return _image;} }
     }
 }

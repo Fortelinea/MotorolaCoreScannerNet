@@ -129,7 +129,6 @@ namespace Motorola.Snapi
             if (status != 0)
                 throw new ScannerException("Reboot command failed") { ErrorCode = (StatusCode)status };
         }
-        //TODO Finish scanner commands. Start from topology
         #endregion
 
         #region ScannerInfo

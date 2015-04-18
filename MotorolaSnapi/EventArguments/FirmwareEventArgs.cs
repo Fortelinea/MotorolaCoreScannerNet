@@ -1,6 +1,6 @@
 ﻿using Motorola.Snapi.Constants.Enums;
 
-namespace Motorola.Snapi.EventArgs
+namespace Motorola.Snapi.EventArguments
 {
     public class FirmwareEventArgs : ScannerEventArgs
     {
@@ -10,6 +10,9 @@ namespace Motorola.Snapi.EventArgs
             _status = status;
         }
 
+        /// <summary>
+        /// Status code.
+        /// </summary>
         public StatusCode Status { get { return _status; } }
     }
 }

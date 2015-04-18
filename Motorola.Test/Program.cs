@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Reflection;
 using Motorola.Snapi.Constants;
 using Motorola.Snapi.Constants.Enums;
-using Motorola.Snapi.EventArgs;
+using Motorola.Snapi.EventArguments;
 
 namespace Motorola.Test
 {
