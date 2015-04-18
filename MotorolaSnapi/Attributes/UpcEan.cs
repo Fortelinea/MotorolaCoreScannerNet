@@ -19,7 +19,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: UPC-A</para>
-        /// <para>Description: This parameter enables the decoding of UPC-A.</para>
+        /// <para>This parameter enables the decoding of UPC-A.</para>
         /// </summary>
         public bool UpcAEnabled
         {
@@ -35,7 +35,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: UPC-E</para>
-        /// <para>Description: This parameter enables the decoding of UPC-E.</para>
+        /// <para>This parameter enables the decoding of UPC-E.</para>
         /// </summary>
         public bool UpcEEnabled
         {
@@ -51,7 +51,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: UPC-E1</para>
-        /// <para>Description: This parameter enables the decoding of UPC-E1.</para>
+        /// <para>This parameter enables the decoding of UPC-E1.</para>
         /// </summary>
         public bool UpcE1Enabled
         {
@@ -67,7 +67,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: EAN-8/JAN8</para>
-        /// <para>Description: This parameter enables the decoding of EAN-8/JAN 8.</para>
+        /// <para>This parameter enables the decoding of EAN-8/JAN 8.</para>
         /// </summary>
         public bool Ean8Jan8Enabled
         {
@@ -83,7 +83,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: EAN-13/JAN13</para>
-        /// <para>Description: This parameter enables the decoding of EAN-13/JAN 13.</para>
+        /// <para>This parameter enables the decoding of EAN-13/JAN 13.</para>
         /// </summary>
         public bool Ean13Jan13Enabled
         {
@@ -99,7 +99,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: BooklandEAN</para>
-        /// <para>Description: This parameter enables the decoding of BooklandEAN.</para>
+        /// <para>This parameter enables the decoding of BooklandEAN.</para>
         /// </summary>
         public bool BooklandEanEnabled
         {
@@ -115,7 +115,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: UPC/EAN/JANSupplementals</para>
-        /// <para>Description: Decode Supplemental (2 and 5 digits). Supplementals are bar codes appended according to
+        /// <para>Decode Supplemental (2 and 5 digits). Supplementals are bar codes appended according to
         /// specific format conventions (e.g., UPC A+2, UPC E+2, EAN13+2).
         /// Six options are available.</para>
         /// </summary>
@@ -133,7 +133,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: UPC/EAN/JANSupplementalsRedundancy</para>
-        /// <para>Description: With Auto discriminate UPC/EAN/JAN Supplemental selected, this parameter adjusts
+        /// <para>With Auto discriminate UPC/EAN/JAN Supplemental selected, this parameter adjusts
         /// the number of times a symbol without Supplemental is decoded before transmission. The range is from two to thirty
         /// times. Five or above is recommended when decoding a mix of UPC/EAN symbols with and without supplemental,
         /// and the auto discriminate option is selected</para>
@@ -153,7 +153,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: TransmitUPC-ACheckDigit</para>
-        /// <para>Description: This parameter enables transmission of UPC-A bar code data with a check digit.</para>
+        /// <para>This parameter enables transmission of UPC-A bar code data with a check digit.</para>
         /// </summary>
         public bool TransmitUpcACheckDigit
         {
@@ -169,7 +169,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: TransmitUPC-ECheckDigit</para>
-        /// <para>Description: This parameter enables transmission of bar UPC-E code data with a check digit.</para>
+        /// <para>This parameter enables transmission of bar UPC-E code data with a check digit.</para>
         /// </summary>
         public bool TransmitUpcECheckDigit
         {
@@ -185,7 +185,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: TransmitUPC-E1CheckDigit</para>
-        /// <para>Description: This parameter enables transmission of bar UPC-E1 code data with a check digit.</para>
+        /// <para>This parameter enables transmission of bar UPC-E1 code data with a check digit.</para>
         /// </summary>
         public bool TransmitUpcE1CheckDigit
         {
@@ -201,7 +201,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: UPCAPreamble</para>
-        /// <para>Description: Preamble characters are part of the UPC-A symbol consisting of Country Code and System Character.</para>
+        /// <para>Preamble characters are part of the UPC-A symbol consisting of Country Code and System Character.</para>
         /// <remarks>"No Preamble"(0), "System Character"(1), "System Character & Country Code"(2)</remarks>
         /// </summary>
         public UpcPreamble UpcAPreamble
@@ -218,7 +218,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: UPCEPreamble</para>
-        /// <para>Description: Preamble characters are part of the UPC-E symbol consisting of Country Code and System Character.</para>
+        /// <para>Preamble characters are part of the UPC-E symbol consisting of Country Code and System Character.</para>
         /// <remarks>"No Preamble"(0), "System Character"(1), "System Character & Country Code"(2)</remarks>
         /// </summary>
         public UpcPreamble UpcEPreamble
@@ -235,7 +235,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: UPCE1Preamble</para>
-        /// <para>Description: Preamble characters are part of the UPC-E1 symbol consisting of Country Code and System Character.</para>
+        /// <para>Preamble characters are part of the UPC-E1 symbol consisting of Country Code and System Character.</para>
         /// <remarks>"No Preamble"(0), "System Character"(1), "System Character & Country Code"(2)</remarks>
         /// </summary>
         public UpcPreamble UpcE1Preamble
@@ -252,7 +252,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: ConvertUPCEtoA</para>
-        /// <para>Description: Enable this parameter to convert UPC-E (zero suppressed) decoded data to UPC-A format before transmission. After conversion,
+        /// <para>Enable this parameter to convert UPC-E (zero suppressed) decoded data to UPC-A format before transmission. After conversion,
         /// the data follows UPC-A format and is affected by UPC-A programming selections (e.g., Preamble, Check Digit).</para>
         /// </summary>
         public bool ConvertUpcEtoA
@@ -269,7 +269,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: ConvertUpcE1toA</para>
-        /// <para>Description: Enable this parameter to convert UPC-E1 decoded data to UPC-A format before transmission. After conversion,
+        /// <para>Enable this parameter to convert UPC-E1 decoded data to UPC-A format before transmission. After conversion,
         /// the data follows UPC-A format and is affected by UPC-A programming selections (e.g., Preamble, Check Digit).</para>
         /// </summary>
         public bool ConvertUpcE1toA
@@ -286,7 +286,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: EAN8/JAN8Extend</para>
-        /// <para>Description: When enabled, this parameter adds five leading zeros to decoded EAN-8 symbols to
+        /// <para>When enabled, this parameter adds five leading zeros to decoded EAN-8 symbols to
         /// make them compatible in format to EAN-13 symbols.</para>
         /// </summary>
         public bool Ean8Jan8Extend
@@ -303,7 +303,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: UCCCouponExtendedCode</para>
-        /// <para>Description: When enabled, this parameter decodes UPCA bar codes starting with digit ‘5’, EAN-13 bar codes starting with digit
+        /// <para>When enabled, this parameter decodes UPCA bar codes starting with digit ‘5’, EAN-13 bar codes starting with digit
         /// ‘99’, and UPCA/EAN-128 Coupon Codes. UPCA, EAN-13 and EAN-128 must be enabled to scan all types of Coupon Codes.</para>
         /// </summary>
         public bool UccCouponExtendedCodeEnabled

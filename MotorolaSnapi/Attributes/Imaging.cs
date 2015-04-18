@@ -19,7 +19,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: CropTop</para>
-        /// <para>Description: This parameter sets the value at which the image is cropped from the top.</para>
+        /// <para>This parameter sets the value at which the image is cropped from the top.</para>
         /// <para>Values: 0 to 1023</para>
         /// </summary>
         public ushort CropTop
@@ -37,7 +37,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: CropLeft</para>
-        /// <para>Description: This parameter sets the value at which the image is cropped from the left.</para>
+        /// <para>This parameter sets the value at which the image is cropped from the left.</para>
         /// <para>Values: 0 to 1279</para>
         /// </summary>
         public ushort CropLeft
@@ -55,7 +55,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: CropRight</para>
-        /// <para>Description: This parameter sets the value at which the image is cropped from the right.</para>
+        /// <para>This parameter sets the value at which the image is cropped from the right.</para>
         /// <para>Values: 0 to 1279</para>
         /// </summary>
         public ushort CropRight
@@ -74,7 +74,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: CropBottom</para>
-        /// <para>Description: This parameter sets the value at which the image is cropped from the bottom.</para>
+        /// <para>This parameter sets the value at which the image is cropped from the bottom.</para>
         /// <para>Values: 0 to 1023</para>
         /// </summary>
         public ushort CropBottom
@@ -92,7 +92,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: JPEGFileSizeWord</para>
-        /// <para>Description: This parameter sets the size of the JPEG image in multiples of 1K.</para>
+        /// <para>This parameter sets the size of the JPEG image in multiples of 1K.</para>
         /// <para>Values: 5 to 600</para>
         /// </summary>
         public ushort JPEGFileSize
@@ -110,7 +110,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: Exposure</para>
-        /// <para>Description: Sets the time of exposure.</para>
+        /// <para>Sets the time of exposure.</para>
         /// <para>Values: 5 to 5000</para>
         /// </summary>
         public ushort Exposure
@@ -128,7 +128,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: SnapshotByMotion</para>
-        /// <para>Description: When enabled, once an object in the field of view remains stationary, an
+        /// <para>When enabled, once an object in the field of view remains stationary, an
         /// image will be taken and transmitted to the host. This applies to Snapshot mode only.</para>
         /// <para>Values: 5 to 5000</para>
         /// </summary>
@@ -147,7 +147,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: ContinuousSnapshot</para>
-        /// <para>Description: Set to true to stay in Snapshot mode, and false to return to normal
+        /// <para>Set to true to stay in Snapshot mode, and false to return to normal
         /// decode mode after image capture. This only applies in Presentation Snapshot by Motion mode.</para>
         /// <para>Values: true(On) false(Off)</para>
         /// </summary>
@@ -166,7 +166,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: ImageEdgeSharpen</para>
-        /// <para>Description: Sharpen image edges.</para>
+        /// <para>Sharpen image edges.</para>
         /// <para>Values: 0(Off) to 100(High)</para>
         /// </summary>
         public ushort ImageEdgeSharpen
@@ -184,7 +184,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: ImageRotation</para>
-        /// <para>Description: Rotate images by the ammount of this value.</para>
+        /// <para>Rotate images by the ammount of this value.</para>
         /// <para>Values:</para>
         /// <para>0 – 0 degrees</para>
         /// <para>1 – 90 degrees</para>
@@ -206,7 +206,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: ContrastEnhancement</para>
-        /// <para>Description: Enhances the image contrast.</para>
+        /// <para>Enhances the image contrast.</para>
         /// <para>Values: false (Disable), true (Enable)</para>
         /// </summary>
         public bool ContrastEnhancement
@@ -225,7 +225,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: VideoSubsample</para>
-        /// <para>Description: Sets the image resolution. Image size will be changed if you manipulate this parameter.</para>
+        /// <para>Sets the image resolution. Image size will be changed if you manipulate this parameter.</para>
         /// <para>Values: 0 to 3</para>
         /// </summary>
         public ushort ImageResolution
@@ -243,7 +243,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: AimBrightness</para>
-        /// <para>Description: Sets the brightness of the aim patterns by altering the aim duration.</para>
+        /// <para>Sets the brightness of the aim patterns by altering the aim duration.</para>
         /// <para>Values: 0 to 255 in .5ms increments</para>
         /// </summary>
         public ushort AimBrightness
@@ -261,7 +261,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: IlluminationBrightness</para>
-        /// <para>Description: Sets the brightness of the illumination.</para>
+        /// <para>Sets the brightness of the illumination.</para>
         /// <para>Values: 0 (weakest) to 10 (strongest)</para>
         /// </summary>
         public ushort IlluminationBrightness

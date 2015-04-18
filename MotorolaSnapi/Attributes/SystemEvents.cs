@@ -19,7 +19,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: DecodeEvent</para>
-        /// <para>Description: When enabled, the scanner generates a message
+        /// <para>When enabled, the scanner generates a message
         /// to the host whenever a bar code is successfully
         /// decoded. When disabled, no notification is sent</para>
         /// <para>Values: "On" (true), "Off" (false)</para>
@@ -39,7 +39,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: BootupEvent</para>
-        /// <para>Description: When enabled, the scanner generates a message to the host
+        /// <para>When enabled, the scanner generates a message to the host
         /// whenever power is applied. When disabled, no notification is sent</para>
         /// <para>Values: "On" (true), "Off" (false)</para>
         /// </summary>
@@ -58,7 +58,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: ParamEvent</para>
-        /// <para>Description: When enabled, the scanner generates a message
+        /// <para>When enabled, the scanner generates a message
         /// to the host when a parameter is changed.</para>
         /// <para>Values: "On" (true), "Off" (false)</para>
         /// </summary>

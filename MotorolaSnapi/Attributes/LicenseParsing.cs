@@ -22,7 +22,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Number: DLParseMode</para>
-        /// <para>Description: This parameter specifies a Driver’s License parsing Mode. It can be disabled,
+        /// <para>This parameter specifies a Driver’s License parsing Mode. It can be disabled,
         /// set to Embedded driver’s license parsing (does not require Motorola software on
         /// the host) or set to Server Based driver’slicense parsing (requires Motorola software on the host).</para>
         /// <para>Values: Parsing Off (0), Parse w Embedded Software (1), Encrypt then send to host (2)</para>
@@ -44,7 +44,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Number: DLParseBuffer</para>
-        /// <para>Description: The buffer containing the DL parse rules.</para>
+        /// <para>The buffer containing the DL parse rules.</para>
         /// <para>Notes: DL parsing rules are in a proprietary format. End users wishing to deploy DL parsing rules should first manually
         /// program the scanner using programming bar codes and then reading the attribute from the application. The rules can then be
         /// deployed to other scanners in the enterprise.</para>

@@ -20,7 +20,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: ADFRules</para>
-        /// <para>Description: The parameter defines the advanced data formatting rules which should be applied to decoded bar codes.</remarks>
+        /// <para>The parameter defines the advanced data formatting rules which should be applied to decoded bar codes.</remarks>
         /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
         /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
         /// deployed to other scanners in the enterprise.</remarks>

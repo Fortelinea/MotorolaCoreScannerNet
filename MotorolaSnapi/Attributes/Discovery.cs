@@ -19,7 +19,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: ModelNumber</para>
-        /// <para>Description: Model number of the scanner which matches the label of the device.</para>
+        /// <para>Model number of the scanner which matches the label of the device.</para>
         /// <para>For example:"LS4208-SR20001ZZ"</para>
         /// </summary>
         public string ModelNumber
@@ -29,7 +29,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: SerialNumber</para>
-        /// <para>Description: Unique serial number assigned at time of manufacture.</para>
+        /// <para>Unique serial number assigned at time of manufacture.</para>
         /// <para>For example:"M1J26F45V"</para>
         /// </summary>
         public string SerialNumber
@@ -39,7 +39,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: BluetoothAddress</para>
-        /// <para>Description: Unique Bluetooth Address of the device, assigned at time of manufacture.</para>
+        /// <para>Unique Bluetooth Address of the device, assigned at time of manufacture.</para>
         /// <para>For example: {05, 27, 33, 89, 13, 75}</para>
         /// </summary>
         public byte[] BluetoothAddress
@@ -55,7 +55,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: DeviceClass</para>
-        /// <para>Description: Description of the device’s hardware.</para>
+        /// <para>Description of the device’s hardware.</para>
         /// <para>For example: "1D Laser", "2D Laser", "Imager",
         /// "Cordless 1D Laser", "Cordless 2D Laser",
         /// "Cordless Imager", "Cordless Base Station"</para>
@@ -67,7 +67,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: DateofManufacture</para>
-        /// <para>Description: Date of Device Manufacture.</para>
+        /// <para>Date of Device Manufacture.</para>
         /// <para>For example: "15APR05"</para>
         /// </summary>
         public DateTime DateOfManufacture
@@ -81,7 +81,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: LastServiceDate</para>
-        /// <para>Description: Date of last repair within a Motorola Authorized repair facility.</para>
+        /// <para>Date of last repair within a Motorola Authorized repair facility.</para>
         /// <para>For example: "15APR05"</para>
         /// </summary>
         public DateTime LastServiceDate
@@ -95,7 +95,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: ScannerFirmwareVersion</para>
-        /// <para>Description: Internal Symbol tracking code for the scanner’s operating system version.</para>
+        /// <para>Internal Symbol tracking code for the scanner’s operating system version.</para>
         /// <para>For example: "NBRFMAAC" or "PAAAACS00-001-N01S0"</para>
         /// </summary>
         public string ScannerFirmwareVersion
@@ -105,7 +105,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: ScankitVersion</para>
-        /// <para>Description: Identifies the 1D decode package that is resident in the device.</para>
+        /// <para>Identifies the 1D decode package that is resident in the device.</para>
         /// <para>For example: "SKIT4.33T02"</para>
         /// </summary>
         public string ScankitVersion
@@ -115,7 +115,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: ImagekitVersion</para>
-        /// <para>Description: Identifies the 2D decode package that is resident in the device.</para>
+        /// <para>Identifies the 2D decode package that is resident in the device.</para>
         /// <para>For example: "IMGKIT_4.04T02"</para>
         /// </summary>
         public string ImagekitVersion
@@ -125,7 +125,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: CombinedFirmwareVersion</para>
-        /// <para>Description: Reports firmware versions of the multiple CPU’s on
+        /// <para>Reports firmware versions of the multiple CPU’s on
         /// a single product with space delimiters.</para>
         /// <para>For example: "NBRPUAAA NBRPUDAA"</para>
         /// </summary>
@@ -136,7 +136,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: RSMVersion</para>
-        /// <para>Description: Identifies the RSM version resident in the device.</para>
+        /// <para>Identifies the RSM version resident in the device.</para>
         /// <para>For example: "2.0"</para>
         /// </summary>
         public string RsmVersion
@@ -146,7 +146,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: DateofFirstProgramming</para>
-        /// <para>Description: Date of first electronic programming.</para>
+        /// <para>Date of first electronic programming.</para>
         /// <para>For example: "15APR05"</para>
         /// </summary>
         public DateTime DateOfFirstProgramming
@@ -164,7 +164,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: ConfigurationFilename</para>
-        /// <para>Description: Identifies the device configuration. Scanning
+        /// <para>Identifies the device configuration. Scanning
         /// SetDefaults sets this value to Factory Defaults.
         /// Once set with this or another user defined value,
         /// this value changes to Modified upon scanning any

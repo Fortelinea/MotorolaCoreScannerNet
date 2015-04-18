@@ -18,7 +18,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: BeeperVolume</para>
-        /// <para>Description: Defines the volume level of the beeper.</para>
+        /// <para>Defines the volume level of the beeper.</para>
         /// <para>Values: "Low"(2) "Medium"(1) "High"(0)</para>
         /// </summary>
         public BeeperVolume BeeperVolume
@@ -32,7 +32,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: BeeperVolume</para>
-        /// <para>Description: The parameter defines the frequency level set of the beeper.</para>
+        /// <para>The parameter defines the frequency level set of the beeper.</para>
         /// <para>Values: "Low"(2) "Medium"(1) "High"(0)</para>
         /// </summary>
         public BeeperFrequency BeeperFrequency

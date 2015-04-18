@@ -16,7 +16,6 @@ namespace Motorola.Snapi
     public class BarcodeScannerManager : IDisposable
     {
         public static readonly BarcodeScannerManager Instance = new BarcodeScannerManager();
-        private static readonly object _accessLock = new object();
         private readonly Keyboard _keyboard;
         private CCoreScanner _scannerDriver;
 
@@ -27,6 +26,7 @@ namespace Motorola.Snapi
 
             _keyboard = new Keyboard(_scannerDriver);
         }
+
         #region Commands
         public Keyboard Keyboard
         {
@@ -241,6 +241,7 @@ namespace Motorola.Snapi
         }
 
         #endregion
+
         #region Parsers
         /// <summary>
         /// Parses out the hex array from the XElement and converts each to a char and appends to string
