@@ -39,7 +39,7 @@ namespace Motorola.Snapi.Attributes
         /// <para>This parameter enables the scanner to check the integrity of all I 2 of 5 symbols to verify the data complies with either the Uniform Symbology
         /// Specification (USS), or the Optical Product Code Council (OPCC) check digit algorithm.</para>
         /// </summary>
-        public I2Of5CheckDigit I2Of5CheckDigitVerificationEnabled
+        public I2Of5CheckDigit I2Of5CheckDigitVerification
         {
             get
             {
