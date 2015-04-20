@@ -31,6 +31,7 @@ namespace Motorola.Snapi.Attributes
         private Pdf _pdf;
         private DataMatrixQr _dataMatrixQr;
         private Maxicode _maxicode;
+        private Postal _postal;
 
         public AttributeSets(CCoreScanner scannerDriver, int scannerId)
         {
@@ -161,6 +162,11 @@ namespace Motorola.Snapi.Attributes
         public Maxicode Maxicode
         {
             get { return _maxicode ?? (_maxicode = new Maxicode(_scannerId, _scannerDriver)); }
+        }
+
+        public Postal Postal
+        {
+            get { return _postal ?? (_postal = new Postal(_scannerId, _scannerDriver)); }
         }
     }
 }

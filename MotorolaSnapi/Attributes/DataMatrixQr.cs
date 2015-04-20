@@ -4,8 +4,16 @@ using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
 {
+    /// <summary>
+    /// Provides properties for accessing DataMatrix QR barcode attributes.
+    /// </summary>
     public class DataMatrixQr : MotorolaAttributeSet
     {
+        /// <summary>
+        /// Instantiates a DataMatrixQr object
+        /// </summary>
+        /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
+        /// <param name="scannerDriver">CCoreScanner instance</param>
         public DataMatrixQr(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
 
         /// <summary>

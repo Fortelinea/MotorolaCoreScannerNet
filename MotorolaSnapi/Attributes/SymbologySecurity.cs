@@ -5,8 +5,16 @@ using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
 {
+    /// <summary>
+    /// Provides properties for accessing barcode security attributes.
+    /// </summary>
     public class SymbologySecurity : MotorolaAttributeSet
     {
+        /// <summary>
+        /// Instantiates a SymbologySecurity object
+        /// </summary>
+        /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
+        /// <param name="scannerDriver">CCoreScanner instance</param>
         internal SymbologySecurity(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
 
         /// <summary>
