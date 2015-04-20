@@ -4,22 +4,22 @@ namespace Motorola.Snapi.Constants.AttributeNumbers
 {
     internal static class ImagingAttribute
     {
-        public const ushort CropTop = 315;
-        public const ushort CropLeft = 316;
-        public const ushort CropBottom = 317;
-        public const ushort CropRight = 318;
-        public const ushort JPEGFileSizeWord = 561;
-        public const ushort Exposure = 567;
-        public const ushort SnapshotByMotion = 647;
-        public const ushort ContinuousSnapshot = 648;
-        public const ushort ImageEdgeSharpen = 664;
-        public const ushort ImageRotation = 665;
-        public const ushort ContrastEnhancement = 666;
-        public const ushort VideoSubsample = 667;
-        public const ushort AimBrightness = 668;
-        public const ushort IlluminationBrightness = 669;
+        internal const ushort CropTop = 315;
+        internal const ushort CropLeft = 316;
+        internal const ushort CropBottom = 317;
+        internal const ushort CropRight = 318;
+        internal const ushort JPEGFileSizeWord = 561;
+        internal const ushort Exposure = 567;
+        internal const ushort SnapshotByMotion = 647;
+        internal const ushort ContinuousSnapshot = 648;
+        internal const ushort ImageEdgeSharpen = 664;
+        internal const ushort ImageRotation = 665;
+        internal const ushort ContrastEnhancement = 666;
+        internal const ushort VideoSubsample = 667;
+        internal const ushort AimBrightness = 668;
+        internal const ushort IlluminationBrightness = 669;
 
-        public static readonly IEnumerable<ushort> All = new[]
+        internal static readonly IEnumerable<ushort> All = new[]
                                                          {
                                                              CropTop,
                                                              CropBottom,

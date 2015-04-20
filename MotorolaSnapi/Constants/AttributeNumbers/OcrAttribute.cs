@@ -4,31 +4,31 @@ namespace Motorola.Snapi.Constants.AttributeNumbers
 {
     internal static class OcrAttribute
     {
-        public const ushort Template = 547;
-        public const ushort SecurityLevel = 554;
-        public const ushort OcrAEnable = 680;
-        public const ushort OcrBEnable = 681;
-        public const ushort Micre13BEnable = 682;
-        public const ushort UsCurrencyEnable = 683;
-        public const ushort OcrAVariant = 684;
-        public const ushort OcrBVariant = 685;
-        public const ushort ValidCharacters = 686;
-        public const ushort Orientation = 687;
-        public const ushort CheckDigitMod = 688;
-        public const ushort MinCharacters = 689;
-        public const ushort MaxCharacters = 690;
-        public const ushort Lines = 691;
-        public const ushort CheckDigitValidation = 694;
-        public const ushort QuietZone = 695;
-        public const ushort WhiteLevel = 696;
-        public const ushort Despeckle = 697;
-        public const ushort Thicken = 698;
-        public const ushort LowPassFilter = 699;
-        public const ushort CheckDigitMultiplier = 700;
-        public const ushort EnableIllumination = 701;
-        public const ushort EnableFinder = 702;
-        public const ushort EnableExternalFinder = 707;
-        public static readonly IEnumerable<ushort> All = new []
+        internal const ushort Template = 547;
+        internal const ushort SecurityLevel = 554;
+        internal const ushort OcrAEnable = 680;
+        internal const ushort OcrBEnable = 681;
+        internal const ushort Micre13BEnable = 682;
+        internal const ushort UsCurrencyEnable = 683;
+        internal const ushort OcrAVariant = 684;
+        internal const ushort OcrBVariant = 685;
+        internal const ushort ValidCharacters = 686;
+        internal const ushort Orientation = 687;
+        internal const ushort CheckDigitMod = 688;
+        internal const ushort MinCharacters = 689;
+        internal const ushort MaxCharacters = 690;
+        internal const ushort Lines = 691;
+        internal const ushort CheckDigitValidation = 694;
+        internal const ushort QuietZone = 695;
+        internal const ushort WhiteLevel = 696;
+        internal const ushort Despeckle = 697;
+        internal const ushort Thicken = 698;
+        internal const ushort LowPassFilter = 699;
+        internal const ushort CheckDigitMultiplier = 700;
+        internal const ushort EnableIllumination = 701;
+        internal const ushort EnableFinder = 702;
+        internal const ushort EnableExternalFinder = 707;
+        internal static readonly IEnumerable<ushort> All = new []
                                                 {
                                                     Template,
                                                     SecurityLevel,

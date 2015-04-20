@@ -104,7 +104,8 @@ namespace Motorola.Snapi.Attributes
         }
 
         /// <summary>
-        /// Defines the allowable lengths for the symbology.
+        /// <para>Driver Attribute Name: Code128Length1</para>
+        /// <para>Defines the allowable lengths for the symbology.</para>
         /// </summary>
         public ushort Code128Length1
         {//Not sure what this actually does or what the values mean.
@@ -119,7 +120,8 @@ namespace Motorola.Snapi.Attributes
         }
 
         /// <summary>
-        /// Defines the allowable lengths for the symbology.
+        /// <para>Driver Attribute Name: Code128Length2</para>
+        /// <para>Defines the allowable lengths for the symbology.</para>
         /// </summary>
         public ushort Code128Length2
         {//Not sure what this actually does or what the values mean.

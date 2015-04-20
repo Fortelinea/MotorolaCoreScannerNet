@@ -62,7 +62,7 @@ namespace Motorola.Test
                 scanner.CaptureMode = CaptureMode.Barcode;
                 scanner.Defaults.Restore();
                 GetAttributes(scanner);
-                PerformCommands(scanner);
+                //PerformCommands(scanner);
             }
 
             BarcodeScannerManager.Instance.DataReceived += Instance_DataReceived;
@@ -96,6 +96,55 @@ namespace Motorola.Test
             //TestADF(scanner);
             //TestSynapse(scanner);
             //TestUpcEan(scanner);
+            //TestCode128(scanner);
+            //TestCode39(scanner);
+            TestCode11(scanner);
+            TestCode93(scanner);
+        }
+
+        private static void TestCode11(IMotorolaSnapiScanner scanner)
+        {
+            var code11 = scanner.Attributes.Code11;
+            var a = code11.Code11CheckDigitVerificationEnabled;
+            var b = code11.Code11Enabled;
+            var c = code11.LengthForCode11Length1;
+            var d = code11.LengthForCode11Length2;
+            var e = code11.TransmitCode11CheckDigit;
+        }
+
+        private static void TestCode93(IMotorolaSnapiScanner scanner)
+        {
+            var code93 = scanner.Attributes.Code93;
+            var a = code93.Code93Enabled;
+            var b = code93.LengthForCode93Length1;
+            var c = code93.LengthForCode93Length2;
+        }
+
+        private static void TestCode39(IMotorolaSnapiScanner scanner)
+        {
+            var code39 = scanner.Attributes.Code39;
+            var a = code39.BufferCode39Enabled;
+            var b = code39.Code32PrefixAdded;
+            var c = code39.Code39CheckDigitVerificationEnabled;
+            var d = code39.Code39Enabled;
+            var e = code39.Code39FullAsciiConversionEnabled;
+            var f = code39.Code39IsConvertedToCode32;
+            var g = code39.LengthForCode39Length1;
+            var h = code39.LengthForCode39Length2;
+            var i = code39.TransmitCode39CheckDigit;
+            var j = code39.TriopticCode39Enabled;
+        }
+
+        private static void TestCode128(IMotorolaSnapiScanner scanner)
+        {
+            var code128 = scanner.Attributes.Code128;
+            var a = code128.Code128Enabled = true;
+            var b = code128.Code128Length1 = 0;
+            var c = code128.Code128Length2 = 0;
+            var d = code128.Code128RedundancyEnabled = false;
+            var e = code128.Ean128EmulationEnabled = false;
+            var f = code128.Isbt128Enabled = true;
+            var g = code128.UccEan128Enabled = true;
         }
 
         private static void TestUpcEan(IMotorolaSnapiScanner scanner)

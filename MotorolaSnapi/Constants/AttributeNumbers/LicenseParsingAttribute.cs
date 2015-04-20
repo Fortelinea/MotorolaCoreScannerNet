@@ -4,10 +4,10 @@ namespace Motorola.Snapi.Constants.AttributeNumbers
 {
     internal static class LicenseParsingAttribute
     {
-        public const ushort DLParseMode = 645;
-        public const ushort DLParseBuffer = 646;
+        internal const ushort DLParseMode = 645;
+        internal const ushort DLParseBuffer = 646;
 
-        public static readonly IEnumerable<ushort> All = new[]
+        internal static readonly IEnumerable<ushort> All = new[]
                                                          {
                                                              DLParseMode,
                                                              DLParseBuffer

@@ -2,26 +2,26 @@
 {
     internal static class UpcEanAttribute
     {
-        public const ushort UPC_A = 1;
-        public const ushort UPC_E = 2;
-        public const ushort UPC_E1 = 12;
-        public const ushort EAN_8_JAN8 = 4;
-        public const ushort EAN_13_JAN13 = 3;
-        public const ushort BooklandEAN = 83;
-        public const ushort UPC_EAN_JANSupplementals = 16;
-        public const ushort UPC_EAN_JANSupplementalRedundancy = 80;
-        public const ushort TransmitUPC_ACheckDigit = 40;
-        public const ushort TransmitUPC_ECheckDigit = 41;
-        public const ushort TransmitUPC_E1CheckDigit = 42;
-        public const ushort UPCAPreamble = 34;
-        public const ushort UPCEPreamble = 35;
-        public const ushort UPCE1Preamble = 36;
-        public const ushort ConvertUPCEtoA = 37;
-        public const ushort ConvertUPCE1toA = 38;
-        public const ushort EAN8_JAN8Extend = 39;
-        public const ushort UCCCouponExtendedCode = 85;
-        public const ushort TransmitCodeId = 45;
-        public const ushort Supp2 = 207;
-        public const ushort Supp5 = 208;
+        internal const ushort UpcA = 1;
+        internal const ushort UpcE = 2;
+        internal const ushort UpcE1 = 12;
+        internal const ushort Ean8Jan8 = 4;
+        internal const ushort Ean13Jan13 = 3;
+        internal const ushort BooklandEan = 83;
+        internal const ushort UpcEanJanSupplementals = 16;
+        internal const ushort UpcEanJanSupplementalRedundancy = 80;
+        internal const ushort TransmitUpcACheckDigit = 40;
+        internal const ushort TransmitUpcECheckDigit = 41;
+        internal const ushort TransmitUpcE1CheckDigit = 42;
+        internal const ushort UpcAPreamble = 34;
+        internal const ushort UpcEPreamble = 35;
+        internal const ushort UpcE1Preamble = 36;
+        internal const ushort ConvertUpcEtoA = 37;
+        internal const ushort ConvertUpce1ToA = 38;
+        internal const ushort Ean8Jan8Extend = 39;
+        internal const ushort UccCouponExtendedCode = 85;
+        internal const ushort TransmitCodeId = 45;
+        internal const ushort Supp2 = 207;
+        internal const ushort Supp5 = 208;
     }
 }

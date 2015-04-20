@@ -4,24 +4,24 @@ namespace Motorola.Snapi.Constants.AttributeNumbers
 {
     internal static class AdfAttribute
     {
-        public const ushort ADFRules = 392;
-        public const ushort KeyDelay = 110;
-        public const ushort PauseDuration = 111;
-        public const ushort KeyCategory1 = 98;
-        public const ushort KeyCategory2 = 99;
-        public const ushort KeyCategory3 = 100;
-        public const ushort KeyCategory4 = 101;
-        public const ushort KeyCategory5 = 102;
-        public const ushort KeyCategory6 = 103;
-        public const ushort KeyValue1 = 104;
-        public const ushort KeyValue2 = 105;
-        public const ushort KeyValue3 = 106;
-        public const ushort KeyValue4 = 107;
-        public const ushort KeyValue5 = 108;
-        public const ushort KeyValue6 = 109;
-        public const ushort SimpleDataFormat = 235;
+        internal const ushort ADFRules = 392;
+        internal const ushort KeyDelay = 110;
+        internal const ushort PauseDuration = 111;
+        internal const ushort KeyCategory1 = 98;
+        internal const ushort KeyCategory2 = 99;
+        internal const ushort KeyCategory3 = 100;
+        internal const ushort KeyCategory4 = 101;
+        internal const ushort KeyCategory5 = 102;
+        internal const ushort KeyCategory6 = 103;
+        internal const ushort KeyValue1 = 104;
+        internal const ushort KeyValue2 = 105;
+        internal const ushort KeyValue3 = 106;
+        internal const ushort KeyValue4 = 107;
+        internal const ushort KeyValue5 = 108;
+        internal const ushort KeyValue6 = 109;
+        internal const ushort SimpleDataFormat = 235;
 
-        public static readonly IEnumerable<ushort> All = new[]
+        internal static readonly IEnumerable<ushort> All = new[]
                                                          {
                                                              ADFRules,
                                                              KeyCategory1,

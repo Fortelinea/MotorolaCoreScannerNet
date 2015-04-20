@@ -17,6 +17,9 @@ namespace Motorola.Snapi
         private UpcEan _upcEan;
         private readonly int _scannerId;
         private Code128 _code128;
+        private Code39 _code39;
+        private Code93 _code93;
+        private Code11 _code11;
 
         public AttributeSets(CCoreScanner scannerDriver, int scannerId)
         {
@@ -77,6 +80,21 @@ namespace Motorola.Snapi
         public Code128 Code128
         {
             get { return _code128 ?? (_code128 = new Code128(_scannerId, _scannerDriver)); }
+        }
+
+        public Code39 Code39
+        {
+            get { return _code39 ?? (_code39 = new Code39(_scannerId, _scannerDriver)); }
+        }
+
+        public Code93 Code93
+        {
+            get { return _code93 ?? (_code93 = new Code93(_scannerId, _scannerDriver)); }
+        }
+
+        public Code11 Code11
+        {
+            get { return _code11 ?? (_code11 = new Code11(_scannerId, _scannerDriver)); }
         }
     }
 }
