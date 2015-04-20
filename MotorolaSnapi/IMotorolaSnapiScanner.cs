@@ -1,4 +1,5 @@
-﻿using Motorola.Snapi.Commands;
+﻿using Motorola.Snapi.Attributes;
+using Motorola.Snapi.Commands;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi

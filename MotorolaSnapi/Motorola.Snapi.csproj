@@ -43,14 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttributeSets.cs" />
     <Compile Include="Attributes\Adf.cs" />
+    <Compile Include="Attributes\AttributeSets.cs" />
     <Compile Include="Attributes\Beeper.cs" />
     <Compile Include="Attributes\Code11.cs" />
     <Compile Include="Attributes\Code128.cs" />
     <Compile Include="Attributes\Code39.cs" />
     <Compile Include="Attributes\Code93.cs" />
     <Compile Include="Attributes\Discovery.cs" />
+    <Compile Include="Attributes\Interleaved2Of5.cs" />
     <Compile Include="Attributes\LicenseParsing.cs" />
     <Compile Include="Attributes\Imaging.cs" />
     <Compile Include="Attributes\ScannerAttribute.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Constants\AttributeNumbers\Code93Attribute.cs" />
     <Compile Include="Constants\AttributeNumbers\DiscoveryAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\ImagingAttribute.cs" />
+    <Compile Include="Constants\AttributeNumbers\Interleaved2of5Attribute.cs" />
     <Compile Include="Constants\AttributeNumbers\LicenseParsingAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\OcrAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\StatusAttribute.cs" />
@@ -89,9 +91,10 @@
     <Compile Include="Constants\Enums\BeeperVolume.cs" />
     <Compile Include="Constants\Enums\BeepPattern.cs" />
     <Compile Include="Constants\Enums\CaptureMode.cs" />
-    <Compile Include="Constants\Enums\CheckDigit.cs" />
+    <Compile Include="Constants\Enums\Code11CheckDigit.cs" />
     <Compile Include="Constants\Enums\DataType.cs" />
     <Compile Include="Constants\Enums\DeviceParameter.cs" />
+    <Compile Include="Constants\Enums\I2Of5CheckDigit.cs" />
     <Compile Include="Constants\Enums\LedMode.cs" />
     <Compile Include="Constants\Enums\LicenseParseMode.cs" />
     <Compile Include="Constants\Enums\EventType.cs" />

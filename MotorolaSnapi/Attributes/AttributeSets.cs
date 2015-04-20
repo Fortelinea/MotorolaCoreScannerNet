@@ -1,7 +1,6 @@
 using CoreScanner;
-using Motorola.Snapi.Attributes;
 
-namespace Motorola.Snapi
+namespace Motorola.Snapi.Attributes
 {
     public class AttributeSets {
         private readonly CCoreScanner _scannerDriver;
@@ -20,6 +19,8 @@ namespace Motorola.Snapi
         private Code39 _code39;
         private Code93 _code93;
         private Code11 _code11;
+        private Interleaved2Of5 _interleaved2Of5;
+        private Discrete2Of5 _discrete2Of5;
 
         public AttributeSets(CCoreScanner scannerDriver, int scannerId)
         {
@@ -96,5 +97,16 @@ namespace Motorola.Snapi
         {
             get { return _code11 ?? (_code11 = new Code11(_scannerId, _scannerDriver)); }
         }
+
+        public Interleaved2Of5 Interleaved2Of5
+        {
+            get { return _interleaved2Of5 ?? (_interleaved2Of5 = new Interleaved2Of5(_scannerId, _scannerDriver)); }
+        }
+
+        public Discrete2Of5 Discrete2Of5
+        {
+            get { return _discrete2Of5 ?? (_discrete2Of5 = new Discrete2Of5(_scannerId, _scannerDriver)); }
+        }
     }
+
 }

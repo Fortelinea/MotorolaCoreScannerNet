@@ -38,11 +38,11 @@ namespace Motorola.Snapi.Attributes
         /// <para>Driver Attribute Name: Code11CheckDigitVerification</para>
         /// <para>This parameter enables the scanner to check the integrity of all Code 11 symbols to verify that the data complies with specified check digit algorithm.</para>
         /// </summary>
-        public CheckDigit Code11CheckDigitVerificationEnabled
+        public Code11CheckDigit Code11CheckDigitVerificationEnabled
         {
             get
             {
-                return (CheckDigit)GetAttribute(Code11Attribute.Code11CheckDigitVerification)
+                return (Code11CheckDigit)GetAttribute(Code11Attribute.Code11CheckDigitVerification)
                                  .Value;
             }
             set

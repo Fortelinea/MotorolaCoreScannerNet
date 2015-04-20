@@ -98,10 +98,21 @@ namespace Motorola.Test
             //TestUpcEan(scanner);
             //TestCode128(scanner);
             //TestCode39(scanner);
-            TestCode11(scanner);
-            TestCode93(scanner);
+            //TestCode11(scanner);
+            //TestCode93(scanner);
+            //TestI2Of5(scanner);
         }
 
+        private static void TestI2Of5(IMotorolaSnapiScanner scanner)
+        {
+            var i2of5 = scanner.Attributes.Interleaved2Of5;
+            var a = i2of5.I2Of5CheckDigitVerificationEnabled;
+            var b = i2of5.I2Of5IsConvertedToEan13;
+            var c = i2of5.Interleaved2Of5Enabled;
+            var d = i2of5.LengthForI2Of5Length1;
+            var e = i2of5.LengthForI2Of5Length2;
+            var f = i2of5.TransmitI2Of5CheckDigit;
+        }
         private static void TestCode11(IMotorolaSnapiScanner scanner)
         {
             var code11 = scanner.Attributes.Code11;

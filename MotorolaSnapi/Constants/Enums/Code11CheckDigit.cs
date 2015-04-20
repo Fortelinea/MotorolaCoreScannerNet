@@ -1,6 +1,6 @@
 ﻿namespace Motorola.Snapi.Constants.Enums
 {
-    public enum CheckDigit : byte
+    public enum Code11CheckDigit : byte
     {
         Off,
         OneCheckDigit,
