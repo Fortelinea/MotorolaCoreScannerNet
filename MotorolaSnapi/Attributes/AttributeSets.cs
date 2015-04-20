@@ -1,4 +1,5 @@
 using CoreScanner;
+using Motorola.Snapi.Commands;
 
 namespace Motorola.Snapi.Attributes
 {
@@ -26,6 +27,10 @@ namespace Motorola.Snapi.Attributes
         private Msi _msi;
         private RssGs1Databar _rssGs1Databar;
         private Code32 _code32;
+        private SymbologySecurity _symbologySecurityLevel;
+        private Pdf _pdf;
+        private DataMatrixQr _dataMatrixQr;
+        private Maxicode _maxicode;
 
         public AttributeSets(CCoreScanner scannerDriver, int scannerId)
         {
@@ -136,6 +141,26 @@ namespace Motorola.Snapi.Attributes
         public Code32 Code32
         {
             get { return _code32 ?? (_code32 = new Code32(_scannerId, _scannerDriver)); }
+        }
+
+        public SymbologySecurity SymbologySecurity
+        {
+            get { return _symbologySecurityLevel ?? (_symbologySecurityLevel = new SymbologySecurity(_scannerId, _scannerDriver)); }
+        }
+
+        public Pdf PDF
+        {
+            get { return _pdf ?? (_pdf = new Pdf(_scannerId, _scannerDriver)); }
+        }
+
+        public DataMatrixQr DataMatrixQR
+        {
+            get { return _dataMatrixQr ?? (_dataMatrixQr = new DataMatrixQr(_scannerId, _scannerDriver)); }
+        }
+
+        public Maxicode Maxicode
+        {
+            get { return _maxicode ?? (_maxicode = new Maxicode(_scannerId, _scannerDriver)); }
         }
     }
 }
