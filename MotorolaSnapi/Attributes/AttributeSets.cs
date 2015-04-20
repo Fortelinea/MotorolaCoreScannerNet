@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using CoreScanner;
 
 namespace Motorola.Snapi.Attributes
@@ -25,6 +24,8 @@ namespace Motorola.Snapi.Attributes
         private Chinese2Of5 _chinese2Of5;
         private Codabar _codabar;
         private Msi _msi;
+        private RssGs1Databar _rssGs1Databar;
+        private Code32 _code32;
 
         public AttributeSets(CCoreScanner scannerDriver, int scannerId)
         {
@@ -125,6 +126,16 @@ namespace Motorola.Snapi.Attributes
         public Msi MSI
         {
             get { return _msi ?? (_msi = new Msi(_scannerId, _scannerDriver)); }
+        }
+
+        public RssGs1Databar RssGs1Databar
+        {
+            get { return _rssGs1Databar ?? (_rssGs1Databar = new RssGs1Databar(_scannerId, _scannerDriver)); }
+        }
+
+        public Code32 Code32
+        {
+            get { return _code32 ?? (_code32 = new Code32(_scannerId, _scannerDriver)); }
         }
     }
 }
