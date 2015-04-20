@@ -46,11 +46,13 @@
     <Compile Include="Attributes\Adf.cs" />
     <Compile Include="Attributes\AttributeSets.cs" />
     <Compile Include="Attributes\Beeper.cs" />
+    <Compile Include="Attributes\Chinese2Of5.cs" />
     <Compile Include="Attributes\Code11.cs" />
     <Compile Include="Attributes\Code128.cs" />
     <Compile Include="Attributes\Code39.cs" />
     <Compile Include="Attributes\Code93.cs" />
     <Compile Include="Attributes\Discovery.cs" />
+    <Compile Include="Attributes\Discrete2Of5.cs" />
     <Compile Include="Attributes\Interleaved2Of5.cs" />
     <Compile Include="Attributes\LicenseParsing.cs" />
     <Compile Include="Attributes\Imaging.cs" />
@@ -72,11 +74,13 @@
     <Compile Include="Commands\Trigger.cs" />
     <Compile Include="Constants\AttributeNumbers\AdfAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\BeeperAttribute.cs" />
+    <Compile Include="Constants\AttributeNumbers\Chinese2Of5Attribute.cs" />
     <Compile Include="Constants\AttributeNumbers\Code11Attribute.cs" />
     <Compile Include="Constants\AttributeNumbers\Code128Attribute.cs" />
     <Compile Include="Constants\AttributeNumbers\Code39Attribute.cs" />
     <Compile Include="Constants\AttributeNumbers\Code93Attribute.cs" />
     <Compile Include="Constants\AttributeNumbers\DiscoveryAttribute.cs" />
+    <Compile Include="Constants\AttributeNumbers\Discrete2Of5Attribute.cs" />
     <Compile Include="Constants\AttributeNumbers\ImagingAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\Interleaved2of5Attribute.cs" />
     <Compile Include="Constants\AttributeNumbers\LicenseParsingAttribute.cs" />

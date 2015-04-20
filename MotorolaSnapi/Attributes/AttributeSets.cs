@@ -21,6 +21,7 @@ namespace Motorola.Snapi.Attributes
         private Code11 _code11;
         private Interleaved2Of5 _interleaved2Of5;
         private Discrete2Of5 _discrete2Of5;
+        private Chinese2Of5 _chinese2Of5;
 
         public AttributeSets(CCoreScanner scannerDriver, int scannerId)
         {
@@ -107,6 +108,10 @@ namespace Motorola.Snapi.Attributes
         {
             get { return _discrete2Of5 ?? (_discrete2Of5 = new Discrete2Of5(_scannerId, _scannerDriver)); }
         }
-    }
 
+        public Chinese2Of5 Chinese2Of5
+        {
+            get { return _chinese2Of5 ?? (_chinese2Of5 = new Chinese2Of5(_scannerId, _scannerDriver)); }
+        }
+    }
 }
