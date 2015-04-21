@@ -24,12 +24,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(DataMatrixQrAttribute.DataMatrix)
+                return (bool)GetAttribute((ushort)DataMatrixQrAttribute.DataMatrix)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = DataMatrixQrAttribute.DataMatrix, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)DataMatrixQrAttribute.DataMatrix, DataType = DataType.Bool, Value = value });
             }
         }
     }

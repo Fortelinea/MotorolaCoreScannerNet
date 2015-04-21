@@ -27,11 +27,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute(SymbologySecurityAttribute.RedundancyLevel).Value);
+                return Convert.ToUInt16(GetAttribute((ushort)SymbologySecurityAttribute.RedundancyLevel).Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = SymbologySecurityAttribute.RedundancyLevel, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)SymbologySecurityAttribute.RedundancyLevel, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -45,11 +45,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute(SymbologySecurityAttribute.SecurityLevel).Value);
+                return Convert.ToUInt16(GetAttribute((ushort)SymbologySecurityAttribute.SecurityLevel).Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = SymbologySecurityAttribute.SecurityLevel, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)SymbologySecurityAttribute.SecurityLevel, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -62,12 +62,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(SymbologySecurityAttribute.BidirectionalRedundancy)
+                return (bool)GetAttribute((ushort)SymbologySecurityAttribute.BidirectionalRedundancy)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = SymbologySecurityAttribute.BidirectionalRedundancy, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)SymbologySecurityAttribute.BidirectionalRedundancy, DataType = DataType.Bool, Value = value });
             }
         }
     }

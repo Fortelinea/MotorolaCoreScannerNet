@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using CoreScanner;
 using Motorola.Snapi.Commands;
 
@@ -32,6 +33,7 @@ namespace Motorola.Snapi.Attributes
         private DataMatrixQr _dataMatrixQr;
         private Maxicode _maxicode;
         private Postal _postal;
+        private SignatureCapture _signatureCapture;
 
         public AttributeSets(CCoreScanner scannerDriver, int scannerId)
         {
@@ -167,6 +169,11 @@ namespace Motorola.Snapi.Attributes
         public Postal Postal
         {
             get { return _postal ?? (_postal = new Postal(_scannerId, _scannerDriver)); }
+        }
+
+        public SignatureCapture SignatureCapture
+        {
+            get { return _signatureCapture ?? (_signatureCapture = new SignatureCapture(_scannerId, _scannerDriver)); }
         }
     }
 }

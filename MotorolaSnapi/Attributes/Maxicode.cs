@@ -24,12 +24,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(MaxicodeAttribute.Maxicode)
+                return (bool)GetAttribute((ushort)MaxicodeAttribute.Maxicode)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = MaxicodeAttribute.Maxicode, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)MaxicodeAttribute.Maxicode, DataType = DataType.Bool, Value = value });
             }
         }
     }

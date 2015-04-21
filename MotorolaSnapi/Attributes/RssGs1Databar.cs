@@ -24,12 +24,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(RssGs1DatabarAttribute.Gs1DataBar14)
+                return (bool)GetAttribute((ushort)RssGs1DatabarAttribute.Gs1DataBar14)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = RssGs1DatabarAttribute.Gs1DataBar14, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)RssGs1DatabarAttribute.Gs1DataBar14, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -41,12 +41,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(RssGs1DatabarAttribute.Gs1DataBarLimited)
+                return (bool)GetAttribute((ushort)RssGs1DatabarAttribute.Gs1DataBarLimited)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = RssGs1DatabarAttribute.Gs1DataBarLimited, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)RssGs1DatabarAttribute.Gs1DataBarLimited, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -58,12 +58,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(RssGs1DatabarAttribute.Gs1DataBarExpanded)
+                return (bool)GetAttribute((ushort)RssGs1DatabarAttribute.Gs1DataBarExpanded)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = RssGs1DatabarAttribute.Gs1DataBarExpanded, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)RssGs1DatabarAttribute.Gs1DataBarExpanded, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -79,12 +79,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(RssGs1DatabarAttribute.ConvertGs1DataBarToUpcean)
+                return (bool)GetAttribute((ushort)RssGs1DatabarAttribute.ConvertGs1DataBarToUpcean)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = RssGs1DatabarAttribute.ConvertGs1DataBarToUpcean, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)RssGs1DatabarAttribute.ConvertGs1DataBarToUpcean, DataType = DataType.Bool, Value = value });
             }
         }
     }

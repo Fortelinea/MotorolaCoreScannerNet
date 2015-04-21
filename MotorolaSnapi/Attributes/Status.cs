@@ -24,7 +24,7 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var scannerAttribute = GetAttribute(StatusAttribute.InCradleDetect);
+                var scannerAttribute = GetAttribute((ushort)StatusAttribute.InCradleDetect);
                 if (scannerAttribute != null)
                 {
                     return (bool)scannerAttribute.Value;   
@@ -42,7 +42,7 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var scannerAttribute = GetAttribute(StatusAttribute.OperationalMode);
+                var scannerAttribute = GetAttribute((ushort)StatusAttribute.OperationalMode);
                 if (scannerAttribute != null)
                 {
                     return (bool)scannerAttribute.Value;
@@ -60,7 +60,7 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var scannerAttribute = GetAttribute(StatusAttribute.Charging);
+                var scannerAttribute = GetAttribute((ushort)StatusAttribute.Charging);
                 if (scannerAttribute != null)
                 {
                     return (bool)scannerAttribute.Value;

@@ -24,7 +24,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string ModelNumber
         {
-            get { return (string)GetAttribute(DiscoveryAttribute.ModelNumber).Value; }
+            get { return (string)GetAttribute((ushort)DiscoveryAttribute.ModelNumber).Value; }
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string SerialNumber
         {
-            get { return (string)GetAttribute(DiscoveryAttribute.SerialNumber).Value; }
+            get { return (string)GetAttribute((ushort)DiscoveryAttribute.SerialNumber).Value; }
         }
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(DiscoveryAttribute.BluetoothAddress);
+                var attribute = GetAttribute((ushort)DiscoveryAttribute.BluetoothAddress);
                 if (attribute != null)
                     return ValueConverters.HexStringToByteArray((string)attribute.Value);
                 return null;
@@ -62,7 +62,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string DeviceClass
         {
-            get { return (string)GetAttribute(DiscoveryAttribute.DeviceClass).Value; }
+            get { return (string)GetAttribute((ushort)DiscoveryAttribute.DeviceClass).Value; }
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return DateTime.Parse((string)GetAttribute(DiscoveryAttribute.DateOfManufacture)
+                return DateTime.Parse((string)GetAttribute((ushort)DiscoveryAttribute.DateOfManufacture)
                                                   .Value);
             }
         }
@@ -88,7 +88,7 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var lastServiceDate = (string)GetAttribute(DiscoveryAttribute.LastServiceDate).Value;
+                var lastServiceDate = (string)GetAttribute((ushort)DiscoveryAttribute.LastServiceDate).Value;
                 return !lastServiceDate.Equals("0000000") ? DateTime.Parse(lastServiceDate) : DateTime.MinValue;
             }
         }
@@ -100,7 +100,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string ScannerFirmwareVersion
         {
-            get { return (string)GetAttribute(DiscoveryAttribute.ScannerFirmwareVersion).Value; }
+            get { return (string)GetAttribute((ushort)DiscoveryAttribute.ScannerFirmwareVersion).Value; }
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string ScankitVersion
         {
-            get { return (string)GetAttribute(DiscoveryAttribute.ScankitVersion).Value; }
+            get { return (string)GetAttribute((ushort)DiscoveryAttribute.ScankitVersion).Value; }
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string ImagekitVersion
         {
-            get { return (string)GetAttribute(DiscoveryAttribute.ImagekitVersion).Value; }
+            get { return (string)GetAttribute((ushort)DiscoveryAttribute.ImagekitVersion).Value; }
         }
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string CombinedFirmwareVersion
         {
-            get { return (string)GetAttribute(DiscoveryAttribute.CombinedFirmwareVersion).Value; }
+            get { return (string)GetAttribute((ushort)DiscoveryAttribute.CombinedFirmwareVersion).Value; }
         }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string RsmVersion
         {
-            get { return (string)GetAttribute(DiscoveryAttribute.RSMVersion).Value; }
+            get { return (string)GetAttribute((ushort)DiscoveryAttribute.RSMVersion).Value; }
         }
 
         /// <summary>
@@ -153,12 +153,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var dateOfFirstProgramming = (string)GetAttribute(DiscoveryAttribute.DateOfFirstProgramming).Value;
+                var dateOfFirstProgramming = (string)GetAttribute((ushort)DiscoveryAttribute.DateOfFirstProgramming).Value;
                 return !dateOfFirstProgramming.Equals("DDMMMYY") ? DateTime.Parse(dateOfFirstProgramming) : DateTime.MinValue;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = DiscoveryAttribute.DateOfFirstProgramming, DataType = DataType.String, Value = value.ToString("DDMMMYY") });
+                SetAttribute(new ScannerAttribute { Id = (ushort)DiscoveryAttribute.DateOfFirstProgramming, DataType = DataType.String, Value = value.ToString("DDMMMYY") });
             }
         }
 
@@ -172,10 +172,10 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string ConfigurationFilename
         {
-            get { return (string)GetAttribute(DiscoveryAttribute.ConfigurationFilename).Value; }
+            get { return (string)GetAttribute((ushort)DiscoveryAttribute.ConfigurationFilename).Value; }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = DiscoveryAttribute.ConfigurationFilename, DataType = DataType.String, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)DiscoveryAttribute.ConfigurationFilename, DataType = DataType.String, Value = value });
             }
         }
     }

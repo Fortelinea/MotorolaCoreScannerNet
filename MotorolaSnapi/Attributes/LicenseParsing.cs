@@ -31,14 +31,14 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(LicenseParsingAttribute.DLParseMode);
+                var attribute = GetAttribute((ushort)LicenseParsingAttribute.DLParseMode);
                 if (attribute != null)
                     return (LicenseParseMode)Convert.ToUInt16(attribute.Value);
                 return LicenseParseMode.NA;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = LicenseParsingAttribute.DLParseMode, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)LicenseParsingAttribute.DLParseMode, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -53,14 +53,14 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(LicenseParsingAttribute.DLParseBuffer);
+                var attribute = GetAttribute((ushort)LicenseParsingAttribute.DLParseBuffer);
                 if (attribute != null)
                     return (byte[])attribute.Value;
                 return null;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = LicenseParsingAttribute.DLParseMode, DataType = DataType.Array, Value = ValueConverters.ByteArrayToHexString(value) });
+                SetAttribute(new ScannerAttribute { Id = (ushort)LicenseParsingAttribute.DLParseMode, DataType = DataType.Array, Value = ValueConverters.ByteArrayToHexString(value) });
             }
         }
     }

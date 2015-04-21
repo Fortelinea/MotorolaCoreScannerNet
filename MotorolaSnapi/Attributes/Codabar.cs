@@ -25,12 +25,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(CodabarAttribute.Codabar)
+                return (bool)GetAttribute((ushort)CodabarAttribute.Codabar)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = CodabarAttribute.Codabar, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)CodabarAttribute.Codabar, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -43,12 +43,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(CodabarAttribute.ClsiEditing)
+                return (bool)GetAttribute((ushort)CodabarAttribute.ClsiEditing)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = CodabarAttribute.ClsiEditing, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)CodabarAttribute.ClsiEditing, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -60,12 +60,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(CodabarAttribute.NotisEditing)
+                return (bool)GetAttribute((ushort)CodabarAttribute.NotisEditing)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = CodabarAttribute.NotisEditing, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)CodabarAttribute.NotisEditing, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -77,12 +77,12 @@ namespace Motorola.Snapi.Attributes
         {//Not sure what this actually does or what the values mean.
             get
             {
-                return Convert.ToUInt16(GetAttribute(CodabarAttribute.LengthForCodabarLength1)
+                return Convert.ToUInt16(GetAttribute((ushort)CodabarAttribute.LengthForCodabarLength1)
                                  .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = CodabarAttribute.LengthForCodabarLength1, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)CodabarAttribute.LengthForCodabarLength1, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -94,12 +94,12 @@ namespace Motorola.Snapi.Attributes
         {//Not sure what this actually does or what the values mean.
             get
             {
-                return Convert.ToUInt16(GetAttribute(CodabarAttribute.LengthForCodabarLength2)
+                return Convert.ToUInt16(GetAttribute((ushort)CodabarAttribute.LengthForCodabarLength2)
                                  .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = CodabarAttribute.LengthForCodabarLength2, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)CodabarAttribute.LengthForCodabarLength2, DataType = DataType.Byte, Value = value });
             }
         }
     }

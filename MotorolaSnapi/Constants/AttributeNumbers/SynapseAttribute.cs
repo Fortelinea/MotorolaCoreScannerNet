@@ -1,7 +1,7 @@
 ﻿namespace Motorola.Snapi.Constants.AttributeNumbers
 {
-    internal static class SynapseAttribute
+    internal enum SynapseAttribute :ushort
     {
-        internal const ushort Synapse = 135;
+        Synapse = 135,
     }
 }

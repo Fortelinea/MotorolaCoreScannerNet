@@ -25,11 +25,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.UpcA).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.UpcA).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.UpcA, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.UpcA, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -41,11 +41,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.UpcE).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.UpcE).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.UpcE, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.UpcE, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -57,11 +57,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.UpcE1).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.UpcE1).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.UpcE1, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.UpcE1, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -73,11 +73,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.Ean8Jan8).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.Ean8Jan8).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.Ean8Jan8, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.Ean8Jan8, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -89,11 +89,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.Ean13Jan13).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.Ean13Jan13).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.Ean13Jan13, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.Ean13Jan13, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -105,11 +105,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.BooklandEan).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.BooklandEan).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.BooklandEan, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.BooklandEan, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -123,11 +123,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (SupplementalMode)GetAttribute(UpcEanAttribute.UpcEanJanSupplementals).Value;
+                return (SupplementalMode)GetAttribute((ushort)UpcEanAttribute.UpcEanJanSupplementals).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.BooklandEan, DataType = DataType.Byte, Value = (byte)value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.BooklandEan, DataType = DataType.Byte, Value = (byte)value });
             }
         }
 
@@ -143,11 +143,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute(UpcEanAttribute.UpcEanJanSupplementalRedundancy).Value);
+                return Convert.ToUInt16(GetAttribute((ushort)UpcEanAttribute.UpcEanJanSupplementalRedundancy).Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.UpcEanJanSupplementalRedundancy, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.UpcEanJanSupplementalRedundancy, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -159,11 +159,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.TransmitUpcACheckDigit).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.TransmitUpcACheckDigit).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.TransmitUpcACheckDigit, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.TransmitUpcACheckDigit, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -175,11 +175,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.TransmitUpcECheckDigit).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.TransmitUpcECheckDigit).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.TransmitUpcECheckDigit, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.TransmitUpcECheckDigit, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -191,11 +191,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.TransmitUpcE1CheckDigit).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.TransmitUpcE1CheckDigit).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.TransmitUpcE1CheckDigit, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.TransmitUpcE1CheckDigit, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -208,11 +208,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (UpcPreamble)GetAttribute(UpcEanAttribute.UpcAPreamble).Value;
+                return (UpcPreamble)GetAttribute((ushort)UpcEanAttribute.UpcAPreamble).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.UpcAPreamble, DataType = DataType.Byte, Value = (byte)value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.UpcAPreamble, DataType = DataType.Byte, Value = (byte)value });
             }
         }
 
@@ -225,11 +225,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (UpcPreamble)GetAttribute(UpcEanAttribute.UpcEPreamble).Value;
+                return (UpcPreamble)GetAttribute((ushort)UpcEanAttribute.UpcEPreamble).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.UpcEPreamble, DataType = DataType.Byte, Value = (byte)value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.UpcEPreamble, DataType = DataType.Byte, Value = (byte)value });
             }
         }
 
@@ -242,11 +242,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (UpcPreamble)GetAttribute(UpcEanAttribute.UpcE1Preamble).Value;
+                return (UpcPreamble)GetAttribute((ushort)UpcEanAttribute.UpcE1Preamble).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.UpcE1Preamble, DataType = DataType.Byte, Value = (byte)value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.UpcE1Preamble, DataType = DataType.Byte, Value = (byte)value });
             }
         }
 
@@ -259,11 +259,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.ConvertUpcEtoA).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.ConvertUpcEtoA).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.ConvertUpcEtoA, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.ConvertUpcEtoA, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -276,11 +276,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.ConvertUpce1ToA).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.ConvertUpce1ToA).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.ConvertUpce1ToA, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.ConvertUpce1ToA, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -293,11 +293,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.Ean8Jan8Extend).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.Ean8Jan8Extend).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.Ean8Jan8Extend, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.Ean8Jan8Extend, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -310,11 +310,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.UccCouponExtendedCode).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.UccCouponExtendedCode).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.UccCouponExtendedCode, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.UccCouponExtendedCode, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -326,11 +326,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (TransmitCodeId)GetAttribute(UpcEanAttribute.TransmitCodeId).Value;
+                return (TransmitCodeId)GetAttribute((ushort)UpcEanAttribute.TransmitCodeId).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.TransmitCodeId, DataType = DataType.Byte, Value = (byte)value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.TransmitCodeId, DataType = DataType.Byte, Value = (byte)value });
             }
         }
 
@@ -342,11 +342,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.Supp2).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.Supp2).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.Supp2, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.Supp2, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -358,11 +358,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(UpcEanAttribute.Supp5).Value;
+                return (bool)GetAttribute((ushort)UpcEanAttribute.Supp5).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = UpcEanAttribute.Supp5, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)UpcEanAttribute.Supp5, DataType = DataType.Bool, Value = value });
             }
         }
     }

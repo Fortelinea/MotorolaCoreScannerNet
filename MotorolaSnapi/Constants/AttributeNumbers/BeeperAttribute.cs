@@ -1,15 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace Motorola.Snapi.Constants.AttributeNumbers
+﻿namespace Motorola.Snapi.Constants.AttributeNumbers
 {
-    internal static class BeeperAttribute
+    internal enum BeeperAttribute : ushort
     {
-        internal const ushort BeeperVolume = 140;
-        internal const ushort BeeperFrequency = 145;
-        internal static readonly IEnumerable<ushort> All = new[]
-                                                         {
-                                                             BeeperFrequency,
-                                                             BeeperVolume
-                                                         };
+        BeeperVolume = 140,
+        BeeperFrequency = 145,
+        BeepOnNextBootup = 6003
     }
 }

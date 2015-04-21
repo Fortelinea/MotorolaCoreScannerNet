@@ -1,7 +1,7 @@
 ﻿namespace Motorola.Snapi.Constants.AttributeNumbers
 {
-    internal class Chinese2Of5Attribute
+    internal enum Chinese2Of5Attribute : ushort
     {
-        internal const ushort Chinese2Of5 = 408;
+        Chinese2Of5 = 408
     }
 }

@@ -17,12 +17,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(MsiAttribute.Msi)
+                return (bool)GetAttribute((ushort)MsiAttribute.Msi)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = MsiAttribute.Msi, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)MsiAttribute.Msi, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -35,12 +35,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (MsiCheckDigit)GetAttribute(MsiAttribute.MsiCheckDigits)
+                return (MsiCheckDigit)GetAttribute((ushort)MsiAttribute.MsiCheckDigits)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = MsiAttribute.MsiCheckDigits, DataType = DataType.Bool, Value = (byte)value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)MsiAttribute.MsiCheckDigits, DataType = DataType.Bool, Value = (byte)value });
             }
         }
 
@@ -52,12 +52,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(MsiAttribute.TransmitMsiCheckDigit)
+                return (bool)GetAttribute((ushort)MsiAttribute.TransmitMsiCheckDigit)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = MsiAttribute.TransmitMsiCheckDigit, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)MsiAttribute.TransmitMsiCheckDigit, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -69,12 +69,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (MsiCheckDigitAlgorithm)GetAttribute(MsiAttribute.MsiCheckDigitAlgorithm)
+                return (MsiCheckDigitAlgorithm)GetAttribute((ushort)MsiAttribute.MsiCheckDigitAlgorithm)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = MsiAttribute.MsiCheckDigitAlgorithm, DataType = DataType.Bool, Value = (byte)value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)MsiAttribute.MsiCheckDigitAlgorithm, DataType = DataType.Bool, Value = (byte)value });
             }
         }
 
@@ -86,12 +86,12 @@ namespace Motorola.Snapi.Attributes
         {//Not sure what this actually does or what the values mean.
             get
             {
-                return Convert.ToUInt16(GetAttribute(MsiAttribute.LengthForMsiLength1)
+                return Convert.ToUInt16(GetAttribute((ushort)MsiAttribute.LengthForMsiLength1)
                                  .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = MsiAttribute.LengthForMsiLength1, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)MsiAttribute.LengthForMsiLength1, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -103,12 +103,12 @@ namespace Motorola.Snapi.Attributes
         {//Not sure what this actually does or what the values mean.
             get
             {
-                return Convert.ToUInt16(GetAttribute(MsiAttribute.LengthForMsiLength2)
+                return Convert.ToUInt16(GetAttribute((ushort)MsiAttribute.LengthForMsiLength2)
                                  .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = MsiAttribute.LengthForMsiLength2, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)MsiAttribute.LengthForMsiLength2, DataType = DataType.Byte, Value = value });
             }
         }
     }

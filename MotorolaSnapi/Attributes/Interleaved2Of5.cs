@@ -25,12 +25,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(Interleaved2Of5Attribute.Interleaved2Of5)
+                return (bool)GetAttribute((ushort)Interleaved2Of5Attribute.Interleaved2Of5)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Interleaved2Of5Attribute.Interleaved2Of5, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Interleaved2Of5Attribute.Interleaved2Of5, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -43,12 +43,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (I2Of5CheckDigit)GetAttribute(Interleaved2Of5Attribute.I2Of5CheckDigitVerification)
+                return (I2Of5CheckDigit)GetAttribute((ushort)Interleaved2Of5Attribute.I2Of5CheckDigitVerification)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Interleaved2Of5Attribute.I2Of5CheckDigitVerification, DataType = DataType.Byte, Value = (byte)value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Interleaved2Of5Attribute.I2Of5CheckDigitVerification, DataType = DataType.Byte, Value = (byte)value });
             }
         }
 
@@ -60,12 +60,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(Interleaved2Of5Attribute.TransmitI2Of5CheckDigit)
+                return (bool)GetAttribute((ushort)Interleaved2Of5Attribute.TransmitI2Of5CheckDigit)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Interleaved2Of5Attribute.TransmitI2Of5CheckDigit, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Interleaved2Of5Attribute.TransmitI2Of5CheckDigit, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -78,12 +78,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(Interleaved2Of5Attribute.ConvertI2Of5ToEan13)
+                return (bool)GetAttribute((ushort)Interleaved2Of5Attribute.ConvertI2Of5ToEan13)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Interleaved2Of5Attribute.ConvertI2Of5ToEan13, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Interleaved2Of5Attribute.ConvertI2Of5ToEan13, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -95,12 +95,12 @@ namespace Motorola.Snapi.Attributes
         {//Not sure what this actually does or what the values mean.
             get
             {
-                return Convert.ToUInt16(GetAttribute(Interleaved2Of5Attribute.LengthForI2Of5Length1)
+                return Convert.ToUInt16(GetAttribute((ushort)Interleaved2Of5Attribute.LengthForI2Of5Length1)
                                  .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Interleaved2Of5Attribute.LengthForI2Of5Length1, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Interleaved2Of5Attribute.LengthForI2Of5Length1, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -112,12 +112,12 @@ namespace Motorola.Snapi.Attributes
         {//Not sure what this actually does or what the values mean.
             get
             {
-                return Convert.ToUInt16(GetAttribute(Interleaved2Of5Attribute.LengthForI2Of5Length2)
+                return Convert.ToUInt16(GetAttribute((ushort)Interleaved2Of5Attribute.LengthForI2Of5Length2)
                                  .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Interleaved2Of5Attribute.LengthForI2Of5Length2, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Interleaved2Of5Attribute.LengthForI2Of5Length2, DataType = DataType.Byte, Value = value });
             }
         }
     }

@@ -10,8 +10,6 @@ namespace Motorola.Snapi.Attributes
     /// </summary>
     public class Code128 : MotorolaAttributeSet
     {
-        private readonly int _scannerId;
-        private readonly CCoreScanner _scannerDriver;
         /// <summary>
         /// Instantiates a Code128 object
         /// </summary>
@@ -27,12 +25,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(Code128Attribute.Code128)
+                return (bool)GetAttribute((ushort)Code128Attribute.Code128)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Code128Attribute.Code128, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Code128Attribute.Code128, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -44,12 +42,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(Code128Attribute.UccEan128)
+                return (bool)GetAttribute((ushort)Code128Attribute.UccEan128)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Code128Attribute.UccEan128, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Code128Attribute.UccEan128, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -61,12 +59,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(Code128Attribute.Isbt128)
+                return (bool)GetAttribute((ushort)Code128Attribute.Isbt128)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Code128Attribute.Isbt128, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Code128Attribute.Isbt128, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -77,12 +75,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(Code128Attribute.Code128Redundancy)
+                return (bool)GetAttribute((ushort)Code128Attribute.Code128Redundancy)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Code128Attribute.Code128Redundancy, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Code128Attribute.Code128Redundancy, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -94,12 +92,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(Code128Attribute.Ean128Emulation)
+                return (bool)GetAttribute((ushort)Code128Attribute.Ean128Emulation)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Code128Attribute.Ean128Emulation, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Code128Attribute.Ean128Emulation, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -111,11 +109,11 @@ namespace Motorola.Snapi.Attributes
         {//Not sure what this actually does or what the values mean.
             get
             {
-                return Convert.ToUInt16(GetAttribute(Code128Attribute.Code128Length1).Value);
+                return Convert.ToUInt16(GetAttribute((ushort)Code128Attribute.Code128Length1).Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Code128Attribute.Code128Length1, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Code128Attribute.Code128Length1, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -127,11 +125,11 @@ namespace Motorola.Snapi.Attributes
         {//Not sure what this actually does or what the values mean.
             get
             {
-                return Convert.ToUInt16(GetAttribute(Code128Attribute.Code128Length2).Value);
+                return Convert.ToUInt16(GetAttribute((ushort)Code128Attribute.Code128Length2).Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Code128Attribute.Code128Length2, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Code128Attribute.Code128Length2, DataType = DataType.Byte, Value = value });
             }
         }
     }

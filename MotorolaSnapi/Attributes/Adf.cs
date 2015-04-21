@@ -29,11 +29,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (byte[])GetAttribute(AdfAttribute.ADFRules).Value;
+                return (byte[])GetAttribute((ushort)AdfAttribute.ADFRules).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.ADFRules, DataType = DataType.Bool, Value = ValueConverters.ByteArrayToHexString(value) });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.ADFRules, DataType = DataType.Bool, Value = ValueConverters.ByteArrayToHexString(value) });
             }
         }
 
@@ -47,13 +47,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.KeyDelay);
+                var attribute = GetAttribute((ushort)AdfAttribute.KeyDelay);
                 if(attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.KeyDelay, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyDelay, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -67,13 +67,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.PauseDuration);
+                var attribute = GetAttribute((ushort)AdfAttribute.PauseDuration);
                 if(attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.PauseDuration, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.PauseDuration, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -87,13 +87,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.KeyCategory1);
+                var attribute = GetAttribute((ushort)AdfAttribute.KeyCategory1);
                 if(attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.KeyCategory1, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyCategory1, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -107,13 +107,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.KeyCategory2);
+                var attribute = GetAttribute((ushort)AdfAttribute.KeyCategory2);
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.KeyCategory2, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyCategory2, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -127,13 +127,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.KeyCategory3);
+                var attribute = GetAttribute((ushort)AdfAttribute.KeyCategory3);
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.KeyCategory3, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyCategory3, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -147,13 +147,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.KeyCategory4);
+                var attribute = GetAttribute((ushort)AdfAttribute.KeyCategory4);
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.KeyCategory4, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyCategory4, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -167,13 +167,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.KeyCategory5);
+                var attribute = GetAttribute((ushort)AdfAttribute.KeyCategory5);
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.KeyCategory5, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyCategory5, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -187,13 +187,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.KeyCategory6);
+                var attribute = GetAttribute((ushort)AdfAttribute.KeyCategory6);
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.KeyCategory6, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyCategory6, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -207,13 +207,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.KeyValue1);
+                var attribute = GetAttribute((ushort)AdfAttribute.KeyValue1);
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.KeyValue1, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyValue1, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -227,13 +227,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.KeyValue2);
+                var attribute = GetAttribute((ushort)AdfAttribute.KeyValue2);
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.KeyValue2, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyValue2, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -247,13 +247,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.KeyValue3);
+                var attribute = GetAttribute((ushort)AdfAttribute.KeyValue3);
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.KeyValue3, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyValue3, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -267,13 +267,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.KeyValue4);
+                var attribute = GetAttribute((ushort)AdfAttribute.KeyValue4);
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.KeyValue4, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyValue4, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -287,13 +287,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.KeyValue5);
+                var attribute = GetAttribute((ushort)AdfAttribute.KeyValue5);
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.KeyValue5, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyValue5, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -307,13 +307,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.KeyValue6);
+                var attribute = GetAttribute((ushort)AdfAttribute.KeyValue6);
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.KeyValue6, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyValue6, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -336,13 +336,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var attribute = GetAttribute(AdfAttribute.SimpleDataFormat);
+                var attribute = GetAttribute((ushort)AdfAttribute.SimpleDataFormat);
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = AdfAttribute.SimpleDataFormat, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.SimpleDataFormat, DataType = DataType.Byte, Value = value });
             }
         }
     }

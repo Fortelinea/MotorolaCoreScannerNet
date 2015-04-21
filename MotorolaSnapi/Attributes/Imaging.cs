@@ -26,12 +26,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute(ImagingAttribute.CropTop)
+                return Convert.ToUInt16(GetAttribute((ushort)ImagingAttribute.CropTop)
                                             .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute{Id = ImagingAttribute.CropTop, DataType = DataType.UShort, Value = value});
+                SetAttribute(new ScannerAttribute{Id = (ushort)ImagingAttribute.CropTop, DataType = DataType.UShort, Value = value});
             }
         }
 
@@ -44,12 +44,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute(ImagingAttribute.CropLeft)
+                return Convert.ToUInt16(GetAttribute((ushort)ImagingAttribute.CropLeft)
                                             .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.CropLeft, DataType = DataType.UShort, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)ImagingAttribute.CropLeft, DataType = DataType.UShort, Value = value });
             }
         }
 
@@ -62,12 +62,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute(ImagingAttribute.CropRight)
+                return Convert.ToUInt16(GetAttribute((ushort)ImagingAttribute.CropRight)
                                             .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.CropRight, DataType = DataType.UShort, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)ImagingAttribute.CropRight, DataType = DataType.UShort, Value = value });
             }
         }
 
@@ -81,12 +81,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute(ImagingAttribute.CropBottom)
+                return Convert.ToUInt16(GetAttribute((ushort)ImagingAttribute.CropBottom)
                                             .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.CropBottom, DataType = DataType.UShort, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)ImagingAttribute.CropBottom, DataType = DataType.UShort, Value = value });
             }
         }
 
@@ -99,12 +99,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute(ImagingAttribute.JPEGFileSizeWord)
+                return Convert.ToUInt16(GetAttribute((ushort)ImagingAttribute.JPEGFileSizeWord)
                                             .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.JPEGFileSizeWord, DataType = DataType.UShort, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)ImagingAttribute.JPEGFileSizeWord, DataType = DataType.UShort, Value = value });
             }
         }
 
@@ -117,12 +117,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute(ImagingAttribute.Exposure)
+                return Convert.ToUInt16(GetAttribute((ushort)ImagingAttribute.Exposure)
                                             .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.Exposure, DataType = DataType.UShort, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)ImagingAttribute.Exposure, DataType = DataType.UShort, Value = value });
             }
         }
 
@@ -136,12 +136,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(ImagingAttribute.SnapshotByMotion)
+                return (bool)GetAttribute((ushort)ImagingAttribute.SnapshotByMotion)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.SnapshotByMotion, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)ImagingAttribute.SnapshotByMotion, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -155,12 +155,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(ImagingAttribute.ContinuousSnapshot)
+                return (bool)GetAttribute((ushort)ImagingAttribute.ContinuousSnapshot)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.ContinuousSnapshot, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)ImagingAttribute.ContinuousSnapshot, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -173,12 +173,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute(ImagingAttribute.ImageEdgeSharpen)
+                return Convert.ToUInt16(GetAttribute((ushort)ImagingAttribute.ImageEdgeSharpen)
                                             .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.ContinuousSnapshot, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)ImagingAttribute.ContinuousSnapshot, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -195,12 +195,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (ImageRotation)GetAttribute(ImagingAttribute.ImageRotation)
+                return (ImageRotation)GetAttribute((ushort)ImagingAttribute.ImageRotation)
                                    .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute{ Id = ImagingAttribute.ImageRotation, DataType = DataType.Byte, Value = (byte)value });
+                SetAttribute(new ScannerAttribute{ Id = (ushort)ImagingAttribute.ImageRotation, DataType = DataType.Byte, Value = (byte)value });
             }
         }
 
@@ -213,13 +213,13 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (Convert.ToUInt16(GetAttribute(ImagingAttribute.ContrastEnhancement)
+                return (Convert.ToUInt16(GetAttribute((ushort)ImagingAttribute.ContrastEnhancement)
                                    .Value) == 1);
             }
             set
             {
                 string v = value ? "1" : "0";
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.ContrastEnhancement, DataType = DataType.Byte, Value = v });
+                SetAttribute(new ScannerAttribute { Id = (ushort)ImagingAttribute.ContrastEnhancement, DataType = DataType.Byte, Value = v });
             }
         }
 
@@ -232,12 +232,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute(ImagingAttribute.VideoSubsample)
+                return Convert.ToUInt16(GetAttribute((ushort)ImagingAttribute.VideoSubsample)
                                             .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.VideoSubsample, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)ImagingAttribute.VideoSubsample, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -250,12 +250,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute(ImagingAttribute.AimBrightness)
+                return Convert.ToUInt16(GetAttribute((ushort)ImagingAttribute.AimBrightness)
                                             .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.AimBrightness, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)ImagingAttribute.AimBrightness, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -268,12 +268,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute(ImagingAttribute.IlluminationBrightness)
+                return Convert.ToUInt16(GetAttribute((ushort)ImagingAttribute.IlluminationBrightness)
                                             .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = ImagingAttribute.IlluminationBrightness, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)ImagingAttribute.IlluminationBrightness, DataType = DataType.Byte, Value = value });
             }
         }
     }

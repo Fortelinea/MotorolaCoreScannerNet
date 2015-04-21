@@ -12,12 +12,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(Chinese2Of5Attribute.Chinese2Of5)
+                return (bool)GetAttribute((ushort)Chinese2Of5Attribute.Chinese2Of5)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Chinese2Of5Attribute.Chinese2Of5, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Chinese2Of5Attribute.Chinese2Of5, DataType = DataType.Bool, Value = value });
             }
         }
     }

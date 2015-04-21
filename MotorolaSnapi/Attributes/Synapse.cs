@@ -27,11 +27,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (byte[])GetAttribute(SynapseAttribute.Synapse).Value;
+                return (byte[])GetAttribute((ushort)SynapseAttribute.Synapse).Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = SynapseAttribute.Synapse, DataType = DataType.Array, Value = ValueConverters.ByteArrayToHexString(value) });
+                SetAttribute(new ScannerAttribute { Id = (ushort)SynapseAttribute.Synapse, DataType = DataType.Array, Value = ValueConverters.ByteArrayToHexString(value) });
             }
         }
     }

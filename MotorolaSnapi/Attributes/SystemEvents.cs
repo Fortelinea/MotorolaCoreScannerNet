@@ -28,12 +28,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(SystemEventAttribute.DecodeEvent)
+                return (bool)GetAttribute((ushort)SystemEventAttribute.DecodeEvent)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.DecodeEvent, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)SystemEventAttribute.DecodeEvent, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -47,12 +47,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(SystemEventAttribute.BootupEvent)
+                return (bool)GetAttribute((ushort)SystemEventAttribute.BootupEvent)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.BootupEvent, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)SystemEventAttribute.BootupEvent, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -66,12 +66,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(SystemEventAttribute.ParamEvent)
+                return (bool)GetAttribute((ushort)SystemEventAttribute.ParamEvent)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = SystemEventAttribute.ParamEvent, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)SystemEventAttribute.ParamEvent, DataType = DataType.Bool, Value = value });
             }
         }
     }

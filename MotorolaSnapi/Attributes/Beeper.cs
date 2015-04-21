@@ -23,10 +23,10 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public BeeperVolume BeeperVolume
         {
-            get { return (BeeperVolume)GetAttribute(BeeperAttribute.BeeperVolume).Value; }
+            get { return (BeeperVolume)GetAttribute((ushort)BeeperAttribute.BeeperVolume).Value; }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = BeeperAttribute.BeeperVolume, DataType = DataType.Byte, Value = (byte)value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)BeeperAttribute.BeeperVolume, DataType = DataType.Byte, Value = (byte)value });
             }
         }
 
@@ -37,10 +37,22 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public BeeperFrequency BeeperFrequency
         {
-            get { return (BeeperFrequency)GetAttribute(BeeperAttribute.BeeperFrequency).Value; }
+            get { return (BeeperFrequency)GetAttribute((ushort)BeeperAttribute.BeeperFrequency).Value; }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = BeeperAttribute.BeeperFrequency, DataType = DataType.Byte, Value = (byte)value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)BeeperAttribute.BeeperFrequency, DataType = DataType.Byte, Value = (byte)value });
+            }
+        }
+
+        /// <summary>
+        /// <para>Driver Attribute Name: BeepOnNextBootup</para>
+        /// <para>Controls whether or not the boot up / power up beep is suppressed on the next powerup.</para>
+        /// </summary>
+        public bool BeepOnNextBootup
+        {
+            set
+            {
+                SetAttribute(new ScannerAttribute { Id = (ushort)BeeperAttribute.BeepOnNextBootup, DataType = DataType.Byte, Value = value });
             }
         }
     }

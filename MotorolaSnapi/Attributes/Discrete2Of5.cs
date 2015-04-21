@@ -25,12 +25,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(Discrete2Of5Attribute.Discrete2Of5)
+                return (bool)GetAttribute((ushort)Discrete2Of5Attribute.Discrete2Of5)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Discrete2Of5Attribute.Discrete2Of5, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Discrete2Of5Attribute.Discrete2Of5, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -42,12 +42,12 @@ namespace Motorola.Snapi.Attributes
         {//Not sure what this actually does or what the values mean.
             get
             {
-                return Convert.ToUInt16(GetAttribute(Discrete2Of5Attribute.LengthForD2Of5Length1)
+                return Convert.ToUInt16(GetAttribute((ushort)Discrete2Of5Attribute.LengthForD2Of5Length1)
                                  .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Discrete2Of5Attribute.LengthForD2Of5Length1, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Discrete2Of5Attribute.LengthForD2Of5Length1, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -59,12 +59,12 @@ namespace Motorola.Snapi.Attributes
         {//Not sure what this actually does or what the values mean.
             get
             {
-                return Convert.ToUInt16(GetAttribute(Discrete2Of5Attribute.LengthForD2Of5Length2)
+                return Convert.ToUInt16(GetAttribute((ushort)Discrete2Of5Attribute.LengthForD2Of5Length2)
                                  .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Discrete2Of5Attribute.LengthForD2Of5Length2, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Discrete2Of5Attribute.LengthForD2Of5Length2, DataType = DataType.Byte, Value = value });
             }
         }
     }

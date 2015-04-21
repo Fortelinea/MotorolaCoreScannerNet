@@ -1,18 +1,9 @@
-﻿using System.Collections.Generic;
-
-namespace Motorola.Snapi.Constants.AttributeNumbers
+﻿namespace Motorola.Snapi.Constants.AttributeNumbers
 {
-    internal static class StatusAttribute
+    internal enum StatusAttribute : ushort
     {
-        internal const ushort InCradleDetect = 25000;
-        internal const ushort OperationalMode = 25001;
-        internal const ushort Charging = 25002;
-
-        internal static readonly IEnumerable<ushort> All = new[]
-                                                         {
-                                                             InCradleDetect,
-                                                             OperationalMode,
-                                                             Charging
-                                                         };
+        InCradleDetect = 25000,
+        OperationalMode = 25001,
+        Charging = 25002
     }
 }

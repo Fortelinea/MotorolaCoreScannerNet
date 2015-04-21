@@ -25,12 +25,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(Code93Attribute.Code93)
+                return (bool)GetAttribute((ushort)Code93Attribute.Code93)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Code93Attribute.Code93, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Code93Attribute.Code93, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -42,12 +42,12 @@ namespace Motorola.Snapi.Attributes
         {//Not sure what this actually does or what the values mean.
             get
             {
-                return Convert.ToUInt16(GetAttribute(Code93Attribute.LengthForCode93Length1)
+                return Convert.ToUInt16(GetAttribute((ushort)Code93Attribute.LengthForCode93Length1)
                                  .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Code93Attribute.LengthForCode93Length1, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Code93Attribute.LengthForCode93Length1, DataType = DataType.Byte, Value = value });
             }
         }
 
@@ -59,12 +59,12 @@ namespace Motorola.Snapi.Attributes
         {//Not sure what this actually does or what the values mean.
             get
             {
-                return Convert.ToUInt16(GetAttribute(Code93Attribute.LengthForCode93Length2)
+                return Convert.ToUInt16(GetAttribute((ushort)Code93Attribute.LengthForCode93Length2)
                                  .Value);
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Code93Attribute.LengthForCode93Length2, DataType = DataType.Byte, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Code93Attribute.LengthForCode93Length2, DataType = DataType.Byte, Value = value });
             }
         }
     }

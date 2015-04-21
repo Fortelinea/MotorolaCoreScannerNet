@@ -24,12 +24,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(Code32Attribute.Code32)
+                return (bool)GetAttribute((ushort)Code32Attribute.Code32)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Code32Attribute.Code32, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Code32Attribute.Code32, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -41,12 +41,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(Code32Attribute.Code32Prefix)
+                return (bool)GetAttribute((ushort)Code32Attribute.Code32Prefix)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = Code32Attribute.Code32Prefix, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)Code32Attribute.Code32Prefix, DataType = DataType.Bool, Value = value });
             }
         }
     }

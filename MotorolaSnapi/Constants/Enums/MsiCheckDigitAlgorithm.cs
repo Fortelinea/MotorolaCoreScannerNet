@@ -1,4 +1,4 @@
-namespace Motorola.Snapi.Attributes
+namespace Motorola.Snapi.Constants.Enums
 {
     public enum MsiCheckDigitAlgorithm : byte
     {

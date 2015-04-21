@@ -24,12 +24,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(PdfAttribute.Pdf)
+                return (bool)GetAttribute((ushort)PdfAttribute.Pdf)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = PdfAttribute.Pdf, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)PdfAttribute.Pdf, DataType = DataType.Bool, Value = value });
             }
         }
 
@@ -41,12 +41,12 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute(PdfAttribute.MicroPdf)
+                return (bool)GetAttribute((ushort)PdfAttribute.MicroPdf)
                                  .Value;
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = PdfAttribute.MicroPdf, DataType = DataType.Bool, Value = value });
+                SetAttribute(new ScannerAttribute { Id = (ushort)PdfAttribute.MicroPdf, DataType = DataType.Bool, Value = value });
             }
         }
     }

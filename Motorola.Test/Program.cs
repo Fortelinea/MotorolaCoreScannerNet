@@ -106,7 +106,7 @@ namespace Motorola.Test
         private static void TestI2Of5(IMotorolaSnapiScanner scanner)
         {
             var i2of5 = scanner.Attributes.Interleaved2Of5;
-            var a = i2of5.I2Of5CheckDigitVerificationEnabled;
+            var a = i2of5.I2Of5CheckDigitVerification;
             var b = i2of5.I2Of5IsConvertedToEan13;
             var c = i2of5.Interleaved2Of5Enabled;
             var d = i2of5.LengthForI2Of5Length1;
@@ -116,7 +116,7 @@ namespace Motorola.Test
         private static void TestCode11(IMotorolaSnapiScanner scanner)
         {
             var code11 = scanner.Attributes.Code11;
-            var a = code11.Code11CheckDigitVerificationEnabled;
+            var a = code11.Code11CheckDigitVerification;
             var b = code11.Code11Enabled;
             var c = code11.LengthForCode11Length1;
             var d = code11.LengthForCode11Length2;
