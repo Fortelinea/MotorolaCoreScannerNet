@@ -21,7 +21,61 @@ namespace Motorola.Snapi
         #endregion
 
         #region Attributes
-        AttributeSets Attributes { get; }
+
+        Discovery Discovery { get; }
+
+        Ocr OCR { get; }
+
+        SystemEvents Events { get; }
+
+        Status Status { get; }
+
+        Imaging Imaging { get; }
+
+        Beeper Beeper { get; }
+
+        LicenseParsing License { get; }
+
+        Adf ADF { get; }
+
+        Synapse Synapse { get; }
+
+        UpcEan UPC_EAN { get; }
+
+        Code128 Code128 { get; }
+
+        Code39 Code39 { get; }
+
+        Code93 Code93 { get; }
+
+        Code11 Code11 { get; }
+
+        Interleaved2Of5 Interleaved2Of5 { get; }
+
+        Discrete2Of5 Discrete2Of5 { get; }
+
+        Chinese2Of5 Chinese2Of5 { get; }
+
+        Codabar Codabar { get; }
+
+        Msi MSI { get; }
+
+        RssGs1Databar RssGs1Databar { get; }
+
+        Code32 Code32 { get; }
+
+        SymbologySecurity SymbologySecurity { get; }
+
+        Pdf PDF { get; }
+
+        DataMatrixQr DataMatrixQR { get; }
+
+        Maxicode Maxicode { get; }
+
+        Postal Postal { get; }
+
+        SignatureCapture SignatureCapture { get; }
+
         #endregion
 
         void Reboot();

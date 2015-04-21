@@ -160,6 +160,8 @@ namespace Motorola.Snapi.Constants.Enums
         [Description("UPC-E1 + 5 Supplemental")]
         UPCE1_5 = 144,
         [Description("Macro Micro PDF")]
-        MacroMicroPDF = 154
+        MacroMicroPDF = 154,
+        [Description("OCR")]
+        WeirdBarcode = 161
     }
 }

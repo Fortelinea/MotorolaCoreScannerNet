@@ -114,6 +114,11 @@ namespace Motorola.Snapi.Attributes
             string outXml;
             int status;
 
+            _scannerDriver.ExecCommand((int)ScannerCommand.AttrStore, ref xml, out outXml, out status);
+            if (status != 0)
+            {
+                throw new ScannerException(string.Format("Failed to set attribute {0}. Error code {1}", attribute.Id, status)) { ErrorCode = (StatusCode)status };
+            }
             _scannerDriver.ExecCommand((int)ScannerCommand.SetParameterPersistence, ref xml, out outXml, out status);
             if (status != 0)
             {

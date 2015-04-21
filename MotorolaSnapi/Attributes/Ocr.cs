@@ -380,7 +380,10 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRTemplate1</para>
         /// <para>Description:Set OCR template that matches an OCR string to be read.</para>
-        /// <remarks><para>Values: Variable</para></remarks>
+        /// <remarks><para>"9" (Required digit), "A" (Required alpha), "1" (Optional Alphanumberic), "2" (Optional Alpha), "3" (Alpha or digit),
+        ///  "4" (Any including space & reject), "5" (Any except space & reject), "7" (optional digit), "8" (digit or fill), "F" (alpha or fill),
+        /// " " (optional space), "." (optional small special), "E" (new line), "C" (string extract "CbPe" b = begin, P = category, e = end),
+        ///  """ or "+" delimit literal strings, "D" (End of Field), </para></remarks>
         /// </summary>
         public string Template
         {
@@ -416,7 +419,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRSubset</para>
         /// <para>Set OCR character subset for an OCR string to be read.</para>
-        /// <remarks><para>Values: 0000000000000000000000000000000000000000000000000000000000000000</para></remarks>
+        /// <remarks><para>Values: ABCD1234 etc.</para></remarks>
         /// </summary>
         public string ValidCharacters
         {

@@ -1,12 +1,11 @@
 ﻿using System.Xml.Linq;
 using CoreScanner;
-using Motorola.Snapi.Attributes;
 using Motorola.Snapi.Commands;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi
 {
-    public class BarcodeScanner : IMotorolaSnapiScanner
+    public partial class BarcodeScanner : IMotorolaSnapiScanner
     {
         private readonly CCoreScanner _scannerDriver;
         private readonly ScannerInfo _info;
@@ -16,7 +15,6 @@ namespace Motorola.Snapi
         {
             _scannerDriver = scannerDriver;
             _info = new ScannerInfo(scannerXml);
-            _attributes = new AttributeSets(_scannerDriver, Info.ScannerId);
         }
 
         #region Commands
@@ -163,8 +161,6 @@ namespace Motorola.Snapi
         }
         #endregion
 
-        private readonly AttributeSets _attributes;
-        public AttributeSets Attributes { get { return _attributes; } }
 
         //public void EnableLeicaBarcodes()
         //{

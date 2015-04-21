@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\Adf.cs" />
-    <Compile Include="Attributes\AttributeSets.cs" />
+    <Compile Include="BarcodeScanner.Attributes.cs" />
     <Compile Include="Attributes\Beeper.cs" />
     <Compile Include="Attributes\Chinese2Of5.cs" />
     <Compile Include="Attributes\Codabar.cs" />
@@ -160,6 +160,9 @@
     </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>doxygen ../../Doxyfile</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
