@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motorola.Test", "Motorola.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Motorola.Snapi", "MotorolaSnapi\Motorola.Snapi.csproj", "{8609800B-EAF7-4A99-82D5-5899DF1E0747}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddCopyright", "ConsoleApplication1\AddCopyright.csproj", "{86E9835E-1022-49CD-A832-DD93E2B28CC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{8609800B-EAF7-4A99-82D5-5899DF1E0747}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8609800B-EAF7-4A99-82D5-5899DF1E0747}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8609800B-EAF7-4A99-82D5-5899DF1E0747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86E9835E-1022-49CD-A832-DD93E2B28CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86E9835E-1022-49CD-A832-DD93E2B28CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86E9835E-1022-49CD-A832-DD93E2B28CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86E9835E-1022-49CD-A832-DD93E2B28CC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
