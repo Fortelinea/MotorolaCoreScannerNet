@@ -138,7 +138,7 @@
     <Compile Include="EventArguments\FirmwareEventArgs.cs" />
     <Compile Include="EventArguments\FlashStartEventArgs.cs" />
     <Compile Include="EventArguments\ImageEventArgs.cs" />
-    <Compile Include="EventArguments\IOEventArgs.cs" />
+    <Compile Include="EventArguments\IoEventArgs.cs" />
     <Compile Include="EventArguments\PnpEventArgs.cs" />
     <Compile Include="EventArguments\ScannerEventArgs.cs" />
     <Compile Include="EventArguments\VideoEventArgs.cs" />

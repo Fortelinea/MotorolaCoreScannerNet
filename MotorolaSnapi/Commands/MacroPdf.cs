@@ -4,7 +4,7 @@ using Motorola.Snapi.Constants.Enums;
 namespace Motorola.Snapi.Commands
 {
     /// <summary>
-    /// MacroPDF commands.
+    /// Methods for flushing and aborting MacroPDF reads.
     /// </summary>
     public class MacroPdf
     {

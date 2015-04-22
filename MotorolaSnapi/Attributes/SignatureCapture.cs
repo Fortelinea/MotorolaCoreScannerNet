@@ -5,12 +5,19 @@ using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
 {
+    /// <summary>
+    /// Provides properties for accessing and modifying SignatureCapture attributes.
+    /// </summary>
     public class SignatureCapture : MotorolaAttributeSet
     {
+        /// <summary>
+        /// Initializes a SignatureCapture object.
+        /// </summary>
+        /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
+        /// <param name="scannerDriver">CCoreScanner instance</param>
         internal SignatureCapture(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
 
         /// <summary>
-        /// 
         /// Driver Attribute Name: SignatureCapture
         /// <para>This parameter enables the decoding of Signature Bar codes.</para>
         /// <remarks><para>NOTE: Scanning an signature capture bar code will product an Image of the contents within the bar code.</para></remarks>

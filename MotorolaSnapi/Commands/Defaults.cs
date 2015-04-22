@@ -3,6 +3,9 @@ using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Commands
 {
+    /// <summary>
+    /// Controls default settings on your scanner. Can restore defaults and write custom defaults.
+    /// </summary>
     public class Defaults
     {
         private readonly CCoreScanner _scannerDriver;

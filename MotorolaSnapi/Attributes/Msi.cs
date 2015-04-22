@@ -5,13 +5,21 @@ using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
 {
+    /// <summary>
+    /// Provides properties for accessing and modifying scanner MSI barcode attributes.
+    /// </summary>
     public class Msi : MotorolaAttributeSet
     {
+        /// <summary>
+        /// Initializes a Msi object.
+        /// </summary>
+        /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
+        /// <param name="scannerDriver">CCoreScanner instance</param>
         internal Msi(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
 
         /// <summary>
         /// Driver Attribute Name: MSI
-        /// <para>This parameter enables the decoding of MSI.</para>
+        /// <para>This parameter enables the decoding of MSI barcodes.</para>
         /// </summary>
         public bool MsiEnabled
         {

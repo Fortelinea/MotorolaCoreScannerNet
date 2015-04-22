@@ -421,13 +421,13 @@ namespace Motorola.Snapi
         public event EventHandler<ScannerEventArgs> VideoModeEnabled;
         /// <summary>
         /// Invoked when a responce to a command is received.
-        /// TODO Figure out what to do with this.
+        /// TODO Figure out what to do with this. Should probably be handled inside the wrapper or not used.
         /// </summary>
         internal event EventHandler<CommandResponceEventArgs> ResponceReceived;
         /// <summary>
         /// Invoked when another application attempts to access a scanner that has been exclusively claimed by this application.
         /// </summary>
-        public event EventHandler<IOEventArgs> ApplicationBlocked;
+        public event EventHandler<IoEventArgs> ApplicationBlocked;
 
         /// <summary>
         /// Handles BardcodeEvent and invokes DataReceived.
@@ -613,7 +613,7 @@ namespace Motorola.Snapi
         /// <param name="data"></param>
         private void OnIOEvent(short type, byte data)
         {
-            if(ApplicationBlocked != null) ApplicationBlocked(this, new IOEventArgs(type, data));
+            if(ApplicationBlocked != null) ApplicationBlocked(this, new IoEventArgs(type, data));
         }
         #endregion
 

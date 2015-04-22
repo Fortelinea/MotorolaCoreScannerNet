@@ -5,7 +5,7 @@ using Motorola.Snapi.Constants.Enums;
 namespace Motorola.Snapi.Attributes
 {
     /// <summary>
-    /// <para>Provides properties for accessing and modifying scanner ADF rule attributes.</para>
+    /// Provides properties for accessing and modifying scanner ADF rule attributes.
     /// <remarks>The ADF buffer attribute contains a proprietary format which stores data formatting configurations. This format is not published however, the contents of this attribute can be copied from a "golden" scanner which
     /// has the correct settings and copied to other devices.</remarks>
     /// </summary>

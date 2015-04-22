@@ -2,20 +2,30 @@ using System;
 
 namespace Motorola.Snapi.EventArguments
 {
-    public class IOEventArgs : EventArgs
+    /// <summary>
+    /// Contains data that is sent by the scanner when another device tries to access it and it is exclusively claimed.
+    /// </summary>
+    //TODO Figure out what this data is for.
+    public class IoEventArgs : EventArgs
     {
         /// <summary>
-        /// Reserved parameter
+        /// Creates a new instance of IoEventArgs
         /// </summary>
-        public short Type { get; private set; }
-        /// <summary>
-        /// Reserved parameter
-        /// </summary>
-        public byte Data { get; private set; }
-        public IOEventArgs(short type, byte data)
+        /// <param name="type">Reserved parameter.</param>
+        /// <param name="data">Reserved parameter.</param>
+        public IoEventArgs(short type, byte data)
         {
             Type = type;
             Data = data;
         }
+
+        /// <summary>
+        /// Reserved parameter.
+        /// </summary>
+        public short Type { get; private set; }
+        /// <summary>
+        /// Reserved parameter.
+        /// </summary>
+        public byte Data { get; private set; }
     }
 }

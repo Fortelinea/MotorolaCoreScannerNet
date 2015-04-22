@@ -6,6 +6,7 @@ namespace Motorola.Snapi.Commands
 {
     /// <summary>
     /// Represents a virtual trigger. Contains commands for pulling and releasing the trigger.
+    /// Must set TriggerByCommand to true to begin using.
     /// </summary>
     public class Trigger {
         private readonly CCoreScanner _scannerDriver;

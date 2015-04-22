@@ -7,7 +7,7 @@ using Motorola.Snapi.Constants.Enums;
 namespace Motorola.Snapi.Commands
 {
     /// <summary>
-    /// Keyboard emulation commands.
+    /// Keyboard emulation control.
     /// </summary>
     public class Keyboard
     {
