@@ -1,4 +1,5 @@
-# MotorolaCoreScannerNet
+# Motorola CoreScanner Driver Wrapper
+//TODO Come up with a better name
 C# Wrapper for the Motorola CoreScanner Driver. Visit website for documentation.
 http://fortelinea.github.io/MotorolaCoreScannerNet/
 
