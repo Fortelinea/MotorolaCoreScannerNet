@@ -18,6 +18,7 @@ var searchData=
   ['installedfirmware',['InstalledFirmware',['../class_motorola_1_1_snapi_1_1_scanner_info.html#a1db9e037a0a480da6c7a3964d3a95b23',1,'Motorola::Snapi::ScannerInfo']]],
   ['interleaved2of5',['Interleaved2Of5',['../class_motorola_1_1_snapi_1_1_attributes_1_1_interleaved2_of5.html',1,'Motorola::Snapi::Attributes']]],
   ['interleaved2of5enabled',['Interleaved2Of5Enabled',['../class_motorola_1_1_snapi_1_1_attributes_1_1_interleaved2_of5.html#a25956bdefe081fa9f2a3c6aacc2f71d1',1,'Motorola::Snapi::Attributes::Interleaved2Of5']]],
+  ['ioeventargs',['IoEventArgs',['../class_motorola_1_1_snapi_1_1_event_arguments_1_1_io_event_args.html#a950193fe9d48a4518b4a35aeafb7130f',1,'Motorola::Snapi::EventArguments::IoEventArgs']]],
   ['ioeventargs',['IoEventArgs',['../class_motorola_1_1_snapi_1_1_event_arguments_1_1_io_event_args.html',1,'Motorola::Snapi::EventArguments']]],
   ['isbt128enabled',['Isbt128Enabled',['../class_motorola_1_1_snapi_1_1_attributes_1_1_code128.html#a2e09e4333e1791a779dba17d8ad5bf8f',1,'Motorola::Snapi::Attributes::Code128']]],
   ['ishandsfree',['IsHandsfree',['../class_motorola_1_1_snapi_1_1_attributes_1_1_status.html#a4fa3837814a2c866a0afe66924d436f6',1,'Motorola::Snapi::Attributes::Status']]]
