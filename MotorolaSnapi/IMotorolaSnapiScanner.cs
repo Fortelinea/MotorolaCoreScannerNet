@@ -1,4 +1,10 @@
-﻿using Motorola.Snapi.Attributes;
+/*Copyright (c) 2015 Fortelinea
+/
+/See the file license.txt for copying permission
+*/
+
+
+using Motorola.Snapi.Attributes;
 using Motorola.Snapi.Commands;
 using Motorola.Snapi.Constants.Enums;
 

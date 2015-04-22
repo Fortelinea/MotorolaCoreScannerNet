@@ -1,4 +1,10 @@
-﻿using Motorola.Snapi.Constants.Enums;
+/*Copyright (c) 2015 Fortelinea
+/
+/See the file license.txt for copying permission
+*/
+
+
+using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.EventArguments
 {

@@ -1,4 +1,10 @@
-﻿using System;
+/*Copyright (c) 2015 Fortelinea
+/
+/See the file license.txt for copying permission
+*/
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;

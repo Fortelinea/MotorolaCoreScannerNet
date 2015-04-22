@@ -1,3 +1,9 @@
+/*Copyright (c) 2015 Fortelinea
+/
+/See the file license.txt for copying permission
+*/
+
+
 using System;
 using CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
@@ -19,8 +25,8 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: RedundancyLevel</para>
-        /// <para>This parameter sets the scanner’s Redundancy Level. The scanner offers four levels of decode redundancy. Select higher redundancy levels for
-        /// decreasing levels of bar code quality. As redundancy levels increase, the scanner’s aggressiveness decreases. Refer to your scanner’s Product Reference Guide for details.</para>
+        /// <para>This parameter sets the scannerï¿½s Redundancy Level. The scanner offers four levels of decode redundancy. Select higher redundancy levels for
+        /// decreasing levels of bar code quality. As redundancy levels increase, the scannerï¿½s aggressiveness decreases. Refer to your scannerï¿½s Product Reference Guide for details.</para>
         /// <remarks><para>Values: 0(lowest), 1, 2, 3, 4</para></remarks>
         /// </summary>
         public ushort RedundancyLevel
@@ -38,7 +44,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: SecurityLevel</para>
         /// <para>The scanner offers four levels of decode security for delta bar codes, which include the Code 128 family, UPC/EAN, and Code 93. Select increasing levels of security for
-        /// decreasing levels of bar code quality. As security levels increase, the scanner’s aggressiveness decreases. Refer to your scanner’s Product Reference Guide for details.</para>
+        /// decreasing levels of bar code quality. As security levels increase, the scannerï¿½s aggressiveness decreases. Refer to your scannerï¿½s Product Reference Guide for details.</para>
         /// <remarks><para>Values: 0(lowest), 1, 2, 3, 4</para></remarks>
         /// </summary>
         public ushort SecurityLevel

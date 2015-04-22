@@ -1,4 +1,10 @@
-﻿namespace Motorola.Snapi.Constants
+/*Copyright (c) 2015 Fortelinea
+/
+/See the file license.txt for copying permission
+*/
+
+
+namespace Motorola.Snapi.Constants
 {
     /// <summary>
     /// Stores strings used for setting host mode.

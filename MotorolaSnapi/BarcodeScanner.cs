@@ -1,4 +1,10 @@
-﻿using System.Xml.Linq;
+/*Copyright (c) 2015 Fortelinea
+/
+/See the file license.txt for copying permission
+*/
+
+
+using System.Xml.Linq;
 using CoreScanner;
 using Motorola.Snapi.Commands;
 using Motorola.Snapi.Constants.Enums;

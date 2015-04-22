@@ -1,4 +1,10 @@
-﻿using System;
+/*Copyright (c) 2015 Fortelinea
+/
+/See the file license.txt for copying permission
+*/
+
+
+using System;
 using CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;

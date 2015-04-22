@@ -1,4 +1,10 @@
-﻿using System.ComponentModel;
+/*Copyright (c) 2015 Fortelinea
+/
+/See the file license.txt for copying permission
+*/
+
+
+using System.ComponentModel;
 
 namespace Motorola.Snapi.Constants.Enums
 {

@@ -1,4 +1,10 @@
-﻿using System.Drawing;
+/*Copyright (c) 2015 Fortelinea
+/
+/See the file license.txt for copying permission
+*/
+
+
+using System.Drawing;
 using System.Drawing.Imaging;
 
 namespace Motorola.Snapi.EventArguments

@@ -1,4 +1,10 @@
-﻿namespace Motorola.Snapi.EventArguments
+/*Copyright (c) 2015 Fortelinea
+/
+/See the file license.txt for copying permission
+*/
+
+
+namespace Motorola.Snapi.EventArguments
 {
     /// <summary>
     /// Contains scanner info sent when a scanner is connected or disconnected.

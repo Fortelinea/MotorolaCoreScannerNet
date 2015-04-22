@@ -1,3 +1,9 @@
+/*Copyright (c) 2015 Fortelinea
+/
+/See the file license.txt for copying permission
+*/
+
+
 using Motorola.Snapi.Attributes;
 
 namespace Motorola.Snapi
