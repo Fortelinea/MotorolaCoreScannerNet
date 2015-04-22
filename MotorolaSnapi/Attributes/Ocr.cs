@@ -20,7 +20,7 @@ namespace Motorola.Snapi.Attributes
         /// <summary>
         /// <para>Driver Attribute Name: OCRCheckDigitMod</para>
         /// <para>OCR module check calculation.</para>
-        /// <remarks><para>Values: 1..99</para>
+        /// <remarks><para>Values: 1..99</para></remarks>
         /// </summary>
         public ushort CheckDigitMod
         {

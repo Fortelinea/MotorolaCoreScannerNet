@@ -51,6 +51,7 @@ namespace Motorola.Test
 
             foreach (var scanner in BarcodeScannerManager.Instance.GetDevices())
             {
+                scanner.SetHostMode(HostMode.USB_SNAPI_Imaging);
                 if (scanner.Info.UsbHostMode != HostMode.USB_SNAPI_Imaging)
                 {
                     scanner.SetHostMode(HostMode.USB_SNAPI_Imaging);
@@ -60,7 +61,7 @@ namespace Motorola.Test
                     }
                 }
                 //scanner.Defaults.Restore();
-                scanner.CaptureMode = CaptureMode.Barcode;
+                //scanner.CaptureMode = CaptureMode.Barcode;
                 GetAttributes(scanner);
                 //PerformCommands(scanner);
             }
@@ -267,21 +268,21 @@ namespace Motorola.Test
             var i = scanner.OCR.Despeckle;// = 50;
             var j = scanner.OCR.EnableExternalFinder;
             var k = scanner.OCR.EnableFinder;
-            var l = scanner.OCR.EnableIllumination;
+            var l = scanner.OCR.EnableIllumination;// = false;
             var m = scanner.OCR.EnableMicre13B;
             var n = scanner.OCR.EnableOcrA;// = false;
             var o = scanner.OCR.EnableOcrB;// = true;
             var p = scanner.OCR.EnableUSCurrency;
             var q = scanner.OCR.Lines;// = 1;
-            var r = scanner.OCR.LowPassFilter;// = 15;
+            var r = scanner.OCR.LowPassFilter;// = 0;
             var s = scanner.OCR.MaxCharacters = 7;
             var t = scanner.OCR.MinCharacters = 7;
             var u = scanner.OCR.OcrAVariant;
             var v = scanner.OCR.OcrBVariant;
-            var w = scanner.OCR.Orientation;// = BarcodeOrientation.Clockwise270;
-            var x = scanner.OCR.QuietZone;// = 20;
-            var y = scanner.OCR.SecurityLevel;// = 50;
-            var z = scanner.OCR.Template;// = "3333+ +333D";
+            var w = scanner.OCR.Orientation = BarcodeOrientation.Clockwise270;
+            var x = scanner.OCR.QuietZone = 99;
+            var y = scanner.OCR.SecurityLevel = 50;
+            var z = scanner.OCR.Template = "3333+ +333D";
             var aa = scanner.OCR.Thicken;// = 8;
             var ab = scanner.OCR.ValidCharacters;// = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
             var ac = scanner.OCR.WhiteLevel;// = 50;

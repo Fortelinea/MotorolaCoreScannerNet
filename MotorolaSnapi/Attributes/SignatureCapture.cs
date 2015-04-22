@@ -10,7 +10,8 @@ namespace Motorola.Snapi.Attributes
         internal SignatureCapture(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
 
         /// <summary>
-        /// <para>Driver Attribute Name: SignatureCapture</para>
+        /// 
+        /// Driver Attribute Name: SignatureCapture
         /// <para>This parameter enables the decoding of Signature Bar codes.</para>
         /// <remarks><para>NOTE: Scanning an signature capture bar code will product an Image of the contents within the bar code.</para></remarks>
         /// </summary>

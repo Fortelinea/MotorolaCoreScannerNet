@@ -4,10 +4,17 @@ using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
 {
+    /// <summary>
+    /// Provides properties for accessing Chinese 2 of 5 barcode attributes.
+    /// </summary>
     public class Chinese2Of5 : MotorolaAttributeSet
     {
         internal Chinese2Of5(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
 
+        /// <summary>
+        /// <para>Driver Attribute Name: Chinese2of5</para>
+        /// <para>This parameter enables the decoding of Chinese 2 of 5 barcodes.</para>
+        /// </summary>
         public bool Chinese2Of5Enabled
         {
             get

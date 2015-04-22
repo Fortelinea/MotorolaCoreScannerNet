@@ -5,7 +5,7 @@ using Motorola.Snapi.Constants.Enums;
 namespace Motorola.Snapi.Attributes
 {
     /// <summary>
-    /// <para>Provides properties for accessing and modifying scanner ADF attributes.</remarks>
+    /// <para>Provides properties for accessing and modifying scanner ADF rule attributes.</para>
     /// <remarks>The ADF buffer attribute contains a proprietary format which stores data formatting configurations. This format is not published however, the contents of this attribute can be copied from a "golden" scanner which
     /// has the correct settings and copied to other devices.</remarks>
     /// </summary>
@@ -20,7 +20,7 @@ namespace Motorola.Snapi.Attributes
 
         /// <summary>
         /// <para>Driver Attribute Name: ADFRules</para>
-        /// <para>The parameter defines the advanced data formatting rules which should be applied to decoded bar codes.</remarks>
+        /// <para>The parameter defines the advanced data formatting rules which should be applied to decoded bar codes.</para>
         /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
         /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
         /// deployed to other scanners in the enterprise.</remarks>

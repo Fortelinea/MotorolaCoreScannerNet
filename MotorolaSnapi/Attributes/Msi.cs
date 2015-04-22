@@ -10,7 +10,7 @@ namespace Motorola.Snapi.Attributes
         internal Msi(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
 
         /// <summary>
-        /// <para>Driver Attribute Name: MSI</para>
+        /// Driver Attribute Name: MSI
         /// <para>This parameter enables the decoding of MSI.</para>
         /// </summary>
         public bool MsiEnabled
