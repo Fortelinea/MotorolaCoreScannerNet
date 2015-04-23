@@ -13,7 +13,7 @@ var searchData=
   ['imageresolution',['ImageResolution',['../class_motorola_1_1_snapi_1_1_attributes_1_1_imaging.html#a65e0ebe89a3c0c6515eb15f45d5aae5d',1,'Motorola::Snapi::Attributes::Imaging']]],
   ['imagerotation',['ImageRotation',['../class_motorola_1_1_snapi_1_1_attributes_1_1_imaging.html#a44914bd1dc0059cfaf0fd45b299b6666',1,'Motorola::Snapi::Attributes::Imaging']]],
   ['imaging',['Imaging',['../class_motorola_1_1_snapi_1_1_attributes_1_1_imaging.html',1,'Motorola::Snapi::Attributes']]],
-  ['imotorolasnapiscanner',['IMotorolaSnapiScanner',['../interface_motorola_1_1_snapi_1_1_i_motorola_snapi_scanner.html',1,'Motorola::Snapi']]],
+  ['imotorolabarcodescanner',['IMotorolaBarcodeScanner',['../interface_motorola_1_1_snapi_1_1_i_motorola_barcode_scanner.html',1,'Motorola::Snapi']]],
   ['incradle',['InCradle',['../class_motorola_1_1_snapi_1_1_attributes_1_1_status.html#ae09d714d8d7591a16b8a03abcf343e62',1,'Motorola::Snapi::Attributes::Status']]],
   ['installedfirmware',['InstalledFirmware',['../class_motorola_1_1_snapi_1_1_scanner_info.html#a1db9e037a0a480da6c7a3964d3a95b23',1,'Motorola::Snapi::ScannerInfo']]],
   ['interleaved2of5',['Interleaved2Of5',['../class_motorola_1_1_snapi_1_1_attributes_1_1_interleaved2_of5.html',1,'Motorola::Snapi::Attributes']]],

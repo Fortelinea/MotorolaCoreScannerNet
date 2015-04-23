@@ -97,6 +97,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Motorola.Snapi.BarcodeScannerManager Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_motorola_1_1_snapi_1_1_barcode_scanner_manager.html" title="BarcodeScannerManager is where all barcode scanners are managed and where a user application or libra...">BarcodeScannerManager</a> is where all barcode scanners are managed and where a user application or library can open an instance of the driver. This should be the first class accessed in this library by a user application.  
+ <a href="class_motorola_1_1_snapi_1_1_barcode_scanner_manager.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Motorola.Snapi.BarcodeScannerManager:</div>
 <div class="dyncontent">
@@ -111,9 +114,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa541c6477e6ad643f348aa0f0c404977"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa541c6477e6ad643f348aa0f0c404977"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Close</b> ()</td></tr>
 <tr class="separator:aa541c6477e6ad643f348aa0f0c404977"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac627ff3e2469092c715c3514b43ca13"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="interface_motorola_1_1_snapi_1_1_i_motorola_snapi_scanner.html">IMotorolaSnapiScanner</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_motorola_1_1_snapi_1_1_barcode_scanner_manager.html#aac627ff3e2469092c715c3514b43ca13">GetDevices</a> ()</td></tr>
-<tr class="memdesc:aac627ff3e2469092c715c3514b43ca13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find all connected devices  <a href="#aac627ff3e2469092c715c3514b43ca13">More...</a><br /></td></tr>
-<tr class="separator:aac627ff3e2469092c715c3514b43ca13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae65de849eec32c6f44a650e974063c5b"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="interface_motorola_1_1_snapi_1_1_i_motorola_barcode_scanner.html">IMotorolaBarcodeScanner</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_motorola_1_1_snapi_1_1_barcode_scanner_manager.html#ae65de849eec32c6f44a650e974063c5b">GetDevices</a> ()</td></tr>
+<tr class="memdesc:ae65de849eec32c6f44a650e974063c5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find all connected devices  <a href="#ae65de849eec32c6f44a650e974063c5b">More...</a><br /></td></tr>
+<tr class="separator:ae65de849eec32c6f44a650e974063c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45c8486e166af654815c7c59a84c008f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_motorola_1_1_snapi_1_1_barcode_scanner_manager.html#a45c8486e166af654815c7c59a84c008f">Open</a> ()</td></tr>
 <tr class="memdesc:a45c8486e166af654815c7c59a84c008f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens an application instance from the user application or user library.  <a href="#a45c8486e166af654815c7c59a84c008f">More...</a><br /></td></tr>
 <tr class="separator:a45c8486e166af654815c7c59a84c008f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,13 +202,26 @@ Events</h2></td></tr>
 <tr class="memdesc:ad8b0a3cc8d3c7127caa7b29e71ea6f32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invoked when another application attempts to access a scanner that has been exclusively claimed by this application.  <a href="#ad8b0a3cc8d3c7127caa7b29e71ea6f32">More...</a><br /></td></tr>
 <tr class="separator:ad8b0a3cc8d3c7127caa7b29e71ea6f32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="aac627ff3e2469092c715c3514b43ca13"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_motorola_1_1_snapi_1_1_barcode_scanner_manager.html" title="BarcodeScannerManager is where all barcode scanners are managed and where a user application or libra...">BarcodeScannerManager</a> is where all barcode scanners are managed and where a user application or library can open an instance of the driver. This should be the first class accessed in this library by a user application. </p>
+<p>To start using this library you will need to do the following.</p>
+<p>First open an instance of the CoreScanner driver.</p>
+<p><code> BarcodeScannerManager.Instance.Open(); </code> </p>
+<p>Now you can register for whatever events you want to listen for in your application.</p>
+<p>For example:</p>
+<p><code> BarcodeScannerManager.Instance.RegisterForEvents(EventType.Barcode, EventType.Pnp, EventType.Image, EventType.Other, EventType.Rmd); </code> </p>
+<p>If you need to unregister for an event..</p>
+<p><code> BarcodeScannerManager.Instance.UnRegisterForEvents(EventType.Barcode, EventType.Pnp, ...); </code> </p>
+<p>Adding a handler for an event is simply</p>
+<p><code> BarcodeScannerManager.Instance.ScannerAttached += YourHandler; </code> </p>
+<p>Now you can use BarcodeScannerManager.Instance.GetDevices() to get a list containing an <a class="el" href="interface_motorola_1_1_snapi_1_1_i_motorola_barcode_scanner.html">IMotorolaBarcodeScanner</a> object for each of your scanners from which you can perform scanner specific tasks.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ae65de849eec32c6f44a650e974063c5b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">List&lt;<a class="el" href="interface_motorola_1_1_snapi_1_1_i_motorola_snapi_scanner.html">IMotorolaSnapiScanner</a>&gt; Motorola.Snapi.BarcodeScannerManager.GetDevices </td>
+          <td class="memname">List&lt;<a class="el" href="interface_motorola_1_1_snapi_1_1_i_motorola_barcode_scanner.html">IMotorolaBarcodeScanner</a>&gt; Motorola.Snapi.BarcodeScannerManager.GetDevices </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -214,7 +230,7 @@ Events</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Find all connected devices </p>
-<dl class="section return"><dt>Returns</dt><dd>A list of <a class="el" href="interface_motorola_1_1_snapi_1_1_i_motorola_snapi_scanner.html">IMotorolaSnapiScanner</a></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A list of IMotorolaSnapiScanner</dd></dl>
 
 </div>
 </div>
@@ -524,7 +540,7 @@ Events</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 22 2015 13:40:08 for Motorola CoreScanner Driver Wrapper by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Apr 22 2015 19:09:23 for Motorola CoreScanner Driver Wrapper by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
