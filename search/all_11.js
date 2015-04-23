@@ -14,7 +14,7 @@ var searchData=
   ['serialnumber',['SerialNumber',['../class_motorola_1_1_snapi_1_1_attributes_1_1_discovery.html#a558947415e62326dc851e9d4b8bdc4eb',1,'Motorola.Snapi.Attributes.Discovery.SerialNumber()'],['../class_motorola_1_1_snapi_1_1_scanner_info.html#a80bf7fd2cf3fd92c1b7be13c78bfc3d8',1,'Motorola.Snapi.ScannerInfo.SerialNumber()']]],
   ['setattribute',['SetAttribute',['../class_motorola_1_1_snapi_1_1_attributes_1_1_motorola_attribute_set.html#ac6a494fd2a97dc60acd5fc1691bcfce8',1,'Motorola::Snapi::Attributes::MotorolaAttributeSet']]],
   ['setcustom',['SetCustom',['../class_motorola_1_1_snapi_1_1_commands_1_1_defaults.html#aeb8e5b32f93e96f7790e95accfa4b6d3',1,'Motorola::Snapi::Commands::Defaults']]],
-  ['sethostmode',['SetHostMode',['../class_motorola_1_1_snapi_1_1_barcode_scanner.html#a7a243c2db3a357fd3238fbeac78165e8',1,'Motorola::Snapi::BarcodeScanner']]],
+  ['sethostmode',['SetHostMode',['../class_motorola_1_1_snapi_1_1_barcode_scanner.html#a7a243c2db3a357fd3238fbeac78165e8',1,'Motorola.Snapi.BarcodeScanner.SetHostMode()'],['../interface_motorola_1_1_snapi_1_1_i_motorola_barcode_scanner.html#a50e1c5bcb9130e96eeb662638972c2df',1,'Motorola.Snapi.IMotorolaBarcodeScanner.SetHostMode()']]],
   ['signaturecapture',['SignatureCapture',['../class_motorola_1_1_snapi_1_1_attributes_1_1_signature_capture.html',1,'Motorola::Snapi::Attributes']]],
   ['signaturecaptureenabled',['SignatureCaptureEnabled',['../class_motorola_1_1_snapi_1_1_attributes_1_1_signature_capture.html#acfc394577d47a3fdd421f50238a39f21',1,'Motorola::Snapi::Attributes::SignatureCapture']]],
   ['simpledataformat',['SimpleDataFormat',['../class_motorola_1_1_snapi_1_1_attributes_1_1_adf.html#a120fe334fee393870adcfba091609bd3',1,'Motorola::Snapi::Attributes::Adf']]],

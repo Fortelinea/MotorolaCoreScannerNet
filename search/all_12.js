@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['the_20mit_20license_20_28mit_29',['The MIT License (MIT)',['../license.html',1,'index']]],
   ['template',['Template',['../class_motorola_1_1_snapi_1_1_attributes_1_1_ocr.html#af189b09e665f1482f98e200a09c48794',1,'Motorola::Snapi::Attributes::Ocr']]],
   ['thicken',['Thicken',['../class_motorola_1_1_snapi_1_1_attributes_1_1_ocr.html#a1d04b0ab6caa5b1686d8cd7a34da12a8',1,'Motorola::Snapi::Attributes::Ocr']]],
   ['totalrecords',['TotalRecords',['../class_motorola_1_1_snapi_1_1_event_arguments_1_1_flash_start_event_args.html#a67e3a206114a97e49ea2da2c62534912',1,'Motorola::Snapi::EventArguments::FlashStartEventArgs']]],

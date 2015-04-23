@@ -38,6 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li>
@@ -106,8 +107,8 @@ Inheritance diagram for Motorola.Snapi.IMotorolaBarcodeScanner:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a50e1c5bcb9130e96eeb662638972c2df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50e1c5bcb9130e96eeb662638972c2df"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SetHostMode</b> (string mode, bool permanent=false, bool silent=true)</td></tr>
+<tr class="memitem:a50e1c5bcb9130e96eeb662638972c2df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_motorola_1_1_snapi_1_1_i_motorola_barcode_scanner.html#a50e1c5bcb9130e96eeb662638972c2df">SetHostMode</a> (string mode, bool permanent=false, bool silent=true)</td></tr>
+<tr class="memdesc:a50e1c5bcb9130e96eeb662638972c2df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the USB host mode of the scanner.  <a href="#a50e1c5bcb9130e96eeb662638972c2df">More...</a><br /></td></tr>
 <tr class="separator:a50e1c5bcb9130e96eeb662638972c2df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30f8371b1fdf00ab1cc8294df9d188fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30f8371b1fdf00ab1cc8294df9d188fe"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Reboot</b> ()</td></tr>
@@ -121,6 +122,12 @@ Properties</h2></td></tr>
 <tr class="memitem:a8cca4e381ed75bbf5fd8ab97deeb7f8d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8cca4e381ed75bbf5fd8ab97deeb7f8d"></a>
 CaptureMode&#160;</td><td class="memItemRight" valign="bottom"><b>CaptureMode</b><code> [set]</code></td></tr>
 <tr class="separator:a8cca4e381ed75bbf5fd8ab97deeb7f8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abae0f19c3eefa75fee007aeab478e633"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abae0f19c3eefa75fee007aeab478e633"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>AimEnabled</b><code> [set]</code></td></tr>
+<tr class="separator:abae0f19c3eefa75fee007aeab478e633"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed73fd82d13c5d1c123bc3f59d45db0a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed73fd82d13c5d1c123bc3f59d45db0a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>ScanningEnabled</b><code> [set]</code></td></tr>
+<tr class="separator:aed73fd82d13c5d1c123bc3f59d45db0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd74d5b18f6df904bcbbfcf840b128a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd74d5b18f6df904bcbbfcf840b128a2"></a>
 <a class="el" href="class_motorola_1_1_snapi_1_1_commands_1_1_access_control.html">AccessControl</a>&#160;</td><td class="memItemRight" valign="bottom"><b>AccessControl</b><code> [get]</code></td></tr>
 <tr class="separator:acd74d5b18f6df904bcbbfcf840b128a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -221,13 +228,58 @@ CaptureMode&#160;</td><td class="memItemRight" valign="bottom"><b>CaptureMode</b
 <a class="el" href="class_motorola_1_1_snapi_1_1_attributes_1_1_signature_capture.html">SignatureCapture</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SignatureCapture</b><code> [get]</code></td></tr>
 <tr class="separator:a7d4aab7f34082d68fa08e3b18f380a41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a50e1c5bcb9130e96eeb662638972c2df"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Motorola.Snapi.IMotorolaBarcodeScanner.SetHostMode </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>mode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>permanent</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>silent</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Change the USB host mode of the scanner. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>Host mode code</td></tr>
+    <tr><td class="paramname">permanent</td><td>Keep in this mode after power cycle.</td></tr>
+    <tr><td class="paramname">silent</td><td>Change modes silently (No beep)</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_motorola_1_1_snapi_1_1_barcode_scanner.html#a7a243c2db3a357fd3238fbeac78165e8">Motorola.Snapi.BarcodeScanner</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this interface was generated from the following file:<ul>
 <li>IMotorolaBarcodeScanner.cs</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 22 2015 19:09:23 for Motorola CoreScanner Driver Wrapper by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 23 2015 15:27:42 for Motorola CoreScanner Driver Wrapper by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
