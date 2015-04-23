@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 Fortelinea
+﻿/*Copyright (c) 2015 Fortelinea
 /
 /See the file license.txt for copying permission
 */
@@ -19,6 +19,31 @@ using ImageFormat = System.Drawing.Imaging.ImageFormat;
 
 namespace Motorola.Snapi
 {
+    /// <summary>
+    /// BarcodeScannerManager is where all barcode scanners are managed and where a user application or library can open an instance of the driver.
+    /// This should be the first class accessed in this library by a user application.
+    /// <example>
+    /// <para>To start using this library you will need to do the following.</para>
+    /// <para>First open an instance of the CoreScanner driver.</para>
+    /// <code>
+    /// BarcodeScannerManager.Instance.Open();
+    /// </code>
+    /// <para>Now you can register for whatever events you want to listen for in your application.</para>
+    /// For example:<para> </para>
+    /// <code>
+    /// BarcodeScannerManager.Instance.RegisterForEvents(EventType.Barcode, EventType.Pnp, EventType.Image, EventType.Other, EventType.Rmd);
+    /// </code>
+    /// <para>If you need to unregister for an event..</para>
+    /// <code>
+    /// BarcodeScannerManager.Instance.UnRegisterForEvents(EventType.Barcode, EventType.Pnp, ...);
+    /// </code>
+    /// <para>Adding a handler for an event is simply</para>
+    /// <code>
+    /// BarcodeScannerManager.Instance.ScannerAttached += YourHandler;
+    /// </code>
+    /// <para>Now you can use BarcodeScannerManager.Instance.GetDevices() to get a list containing an IMotorolaBarcodeScanner object for each of your scanners from which you can perform scanner specific tasks.</para>
+    /// </example>
+    /// </summary>
     public class BarcodeScannerManager : IDisposable
     {
         public static readonly BarcodeScannerManager Instance = new BarcodeScannerManager();
@@ -50,9 +75,9 @@ namespace Motorola.Snapi
         /// Find all connected devices
         /// </summary>
         /// <returns>A list of IMotorolaSnapiScanner</returns>
-        public List<IMotorolaSnapiScanner> GetDevices()
+        public List<IMotorolaBarcodeScanner> GetDevices()
         {
-            List<IMotorolaSnapiScanner> retval = new List<IMotorolaSnapiScanner>();
+            List<IMotorolaBarcodeScanner> retval = new List<IMotorolaBarcodeScanner>();
 
             if (Open())
             {

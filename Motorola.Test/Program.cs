@@ -73,7 +73,7 @@ namespace Motorola.Test
             Console.ReadLine();
         }
 
-        private static void PerformCommands(IMotorolaSnapiScanner scanner)
+        private static void PerformCommands(IMotorolaBarcodeScanner scanner)
         {
             scanner.Actions.ToggleLed(LedMode.GreenOn);
             scanner.Actions.ToggleLed(LedMode.GreenOff);
@@ -85,7 +85,7 @@ namespace Motorola.Test
             scanner.Reboot();
         }
 
-        private static void GetAttributes(IMotorolaSnapiScanner scanner)
+        private static void GetAttributes(IMotorolaBarcodeScanner scanner)
         {
             //TestStatus(scanner);
             TestOcr(scanner);
@@ -101,20 +101,38 @@ namespace Motorola.Test
             //TestCode39(scanner);
             //TestCode11(scanner);
             //TestCode93(scanner);
-            //TestI2Of5(scanner);
+            TestI2Of5(scanner);
+            //TestD2Of5(scanner);
+            //TestSecurity(scanner);
         }
 
-        private static void TestI2Of5(IMotorolaSnapiScanner scanner)
+        private static void TestSecurity(IMotorolaBarcodeScanner scanner)
+        {
+            var security = scanner.SymbologySecurity;
+            var a = security.BidirectionalRedundancyEnabled;
+            var b = security.SecurityLevel;
+            var c = security.RedundancyLevel;
+        }
+
+        private static void TestD2Of5(IMotorolaBarcodeScanner scanner)
+        {
+            var d2of5 = scanner.Discrete2Of5;
+            var a = d2of5.Discrete2Of5Enabled;
+            var b = d2of5.LengthForD2Of5Length1;
+            var c = d2of5.LengthForD2Of5Length2;
+        }
+
+        private static void TestI2Of5(IMotorolaBarcodeScanner scanner)
         {
             var i2of5 = scanner.Interleaved2Of5;
-            var a = i2of5.I2Of5CheckDigitVerification;
-            var b = i2of5.I2Of5IsConvertedToEan13;
-            var c = i2of5.Interleaved2Of5Enabled;
-            var d = i2of5.LengthForI2Of5Length1;
-            var e = i2of5.LengthForI2Of5Length2;
+            var a = i2of5.I2Of5CheckDigitVerification;// = I2Of5CheckDigit.Off;
+            var b = i2of5.I2Of5IsConvertedToEan13;// = false;
+            var c = i2of5.Interleaved2Of5Enabled;// = true;
+            var d = i2of5.LengthForI2Of5Length1;// = 6;
+            var e = i2of5.LengthForI2Of5Length2;// = 0;
             var f = i2of5.TransmitI2Of5CheckDigit;
         }
-        private static void TestCode11(IMotorolaSnapiScanner scanner)
+        private static void TestCode11(IMotorolaBarcodeScanner scanner)
         {
             var code11 = scanner.Code11;
             var a = code11.Code11CheckDigitVerification;
@@ -124,7 +142,7 @@ namespace Motorola.Test
             var e = code11.TransmitCode11CheckDigit;
         }
 
-        private static void TestCode93(IMotorolaSnapiScanner scanner)
+        private static void TestCode93(IMotorolaBarcodeScanner scanner)
         {
             var code93 = scanner.Code93;
             var a = code93.Code93Enabled;
@@ -132,7 +150,7 @@ namespace Motorola.Test
             var c = code93.LengthForCode93Length2;
         }
 
-        private static void TestCode39(IMotorolaSnapiScanner scanner)
+        private static void TestCode39(IMotorolaBarcodeScanner scanner)
         {
             var code39 = scanner.Code39;
             var a = code39.BufferCode39Enabled;
@@ -147,7 +165,7 @@ namespace Motorola.Test
             var j = code39.TriopticCode39Enabled;
         }
 
-        private static void TestCode128(IMotorolaSnapiScanner scanner)
+        private static void TestCode128(IMotorolaBarcodeScanner scanner)
         {
             var code128 = scanner.Code128;
             var a = code128.Code128Enabled = true;
@@ -159,7 +177,7 @@ namespace Motorola.Test
             var g = code128.UccEan128Enabled = true;
         }
 
-        private static void TestUpcEan(IMotorolaSnapiScanner scanner)
+        private static void TestUpcEan(IMotorolaBarcodeScanner scanner)
         {
             var cc = scanner.UPC_EAN.BooklandEanEnabled = false;
             var cd = scanner.UPC_EAN.ConvertUpcE1toA = false;
@@ -184,9 +202,9 @@ namespace Motorola.Test
             var cw = scanner.UPC_EAN.UpcEanJanSupplementalRedundancy = 2;
         }
 
-        private static void TestSynapse(IMotorolaSnapiScanner scanner) { var cb = scanner.Synapse.Value; }
+        private static void TestSynapse(IMotorolaBarcodeScanner scanner) { var cb = scanner.Synapse.Value; }
 
-        private static void TestADF(IMotorolaSnapiScanner scanner)
+        private static void TestADF(IMotorolaBarcodeScanner scanner)
         {
             var bl = scanner.ADF.KeyDelay;
             var bm = scanner.ADF.ADFRules;
@@ -206,26 +224,26 @@ namespace Motorola.Test
             var ca = scanner.ADF.SimpleDataFormat;
         }
 
-        private static void TestLicense(IMotorolaSnapiScanner scanner)
+        private static void TestLicense(IMotorolaBarcodeScanner scanner)
         {
             var bj = scanner.License.LicenseParseMode;
             var bk = scanner.License.LicenseParseBuffer;
         }
 
-        private static void TestBeeper(IMotorolaSnapiScanner scanner)
+        private static void TestBeeper(IMotorolaBarcodeScanner scanner)
         {
             var bh = scanner.Beeper.BeeperFrequency;
             var bi = scanner.Beeper.BeeperVolume = BeeperVolume.Low;
         }
 
-        private static void TestEvents(IMotorolaSnapiScanner scanner)
+        private static void TestEvents(IMotorolaBarcodeScanner scanner)
         {
             var be = scanner.Events.BootupEventEnabled;
             var bf = scanner.Events.DecodeEventEnabled;
             var bg = scanner.Events.ParamEventEnabled;
         }
 
-        private static void TestImaging(IMotorolaSnapiScanner scanner)
+        private static void TestImaging(IMotorolaBarcodeScanner scanner)
         {
             var aq = scanner.Imaging.AimBrightness;
             var ar = scanner.Imaging.ContinuousSnapshotEnabled;
@@ -243,7 +261,7 @@ namespace Motorola.Test
             var bd = scanner.Imaging.SnapshotByMotionEnabled;
         }
 
-        private static void TestDiscovery(IMotorolaSnapiScanner scanner)
+        private static void TestDiscovery(IMotorolaBarcodeScanner scanner)
         {
             var ad = scanner.Discovery.BluetoothAddress;
             var ae = scanner.Discovery.CombinedFirmwareVersion;
@@ -260,7 +278,7 @@ namespace Motorola.Test
             var ap = scanner.Discovery.SerialNumber;
         }
 
-        private static void TestOcr(IMotorolaSnapiScanner scanner)
+        private static void TestOcr(IMotorolaBarcodeScanner scanner)
         {
             var f = scanner.OCR.CheckDigitMod;
             var g = scanner.OCR.CheckDigitMultiplier;
@@ -271,24 +289,24 @@ namespace Motorola.Test
             var l = scanner.OCR.EnableIllumination;// = false;
             var m = scanner.OCR.EnableMicre13B;
             var n = scanner.OCR.EnableOcrA;// = false;
-            var o = scanner.OCR.EnableOcrB;// = true;
+            var o = scanner.OCR.EnableOcrB = true;
             var p = scanner.OCR.EnableUSCurrency;
-            var q = scanner.OCR.Lines;// = 1;
+            var q = scanner.OCR.Lines = 1;
             var r = scanner.OCR.LowPassFilter;// = 0;
             var s = scanner.OCR.MaxCharacters = 7;
             var t = scanner.OCR.MinCharacters = 7;
             var u = scanner.OCR.OcrAVariant;
             var v = scanner.OCR.OcrBVariant;
-            var w = scanner.OCR.Orientation = BarcodeOrientation.Clockwise270;
-            var x = scanner.OCR.QuietZone = 99;
-            var y = scanner.OCR.SecurityLevel = 50;
-            var z = scanner.OCR.Template = "3333+ +333D";
+            var w = scanner.OCR.Orientation;// = BarcodeOrientation.Clockwise270;
+            var x = scanner.OCR.QuietZone;// = 99;
+            var y = scanner.OCR.SecurityLevel;// = 50;
+            var z = scanner.OCR.Template;// = "3333+ +333D";
             var aa = scanner.OCR.Thicken;// = 8;
             var ab = scanner.OCR.ValidCharacters;// = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
             var ac = scanner.OCR.WhiteLevel;// = 50;
         }
 
-        private static void TestStatus(IMotorolaSnapiScanner scanner)
+        private static void TestStatus(IMotorolaBarcodeScanner scanner)
         {
             var c = scanner.Status.Charging;
             var d = scanner.Status.InCradle;

@@ -142,7 +142,7 @@
     <Compile Include="EventArguments\PnpEventArgs.cs" />
     <Compile Include="EventArguments\ScannerEventArgs.cs" />
     <Compile Include="EventArguments\VideoEventArgs.cs" />
-    <Compile Include="IMotorolaSnapiScanner.cs" />
+    <Compile Include="IMotorolaBarcodeScanner.cs" />
     <Compile Include="ScannerInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScannerException.cs" />
@@ -158,6 +158,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Documentation.dox" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

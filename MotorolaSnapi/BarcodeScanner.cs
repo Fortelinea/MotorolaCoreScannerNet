@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 Fortelinea
+﻿/*Copyright (c) 2015 Fortelinea
 /
 /See the file license.txt for copying permission
 */
@@ -11,7 +11,7 @@ using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi
 {
-    public partial class BarcodeScanner : IMotorolaSnapiScanner
+    public partial class BarcodeScanner : IMotorolaBarcodeScanner
     {
         private readonly CCoreScanner _scannerDriver;
         private readonly ScannerInfo _info;

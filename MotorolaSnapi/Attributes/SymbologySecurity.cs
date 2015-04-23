@@ -68,8 +68,10 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (bool)GetAttribute((ushort)SymbologySecurityAttribute.BidirectionalRedundancy)
-                                 .Value;
+                var result = GetAttribute((ushort)SymbologySecurityAttribute.BidirectionalRedundancy);
+                if (result != null)
+                    return (bool)result.Value;
+                return false;
             }
             set
             {

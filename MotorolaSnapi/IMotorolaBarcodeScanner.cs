@@ -10,7 +10,7 @@ using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi
 {
-    public interface IMotorolaSnapiScanner
+    public interface IMotorolaBarcodeScanner
     {
         ScannerInfo Info { get; }
 
