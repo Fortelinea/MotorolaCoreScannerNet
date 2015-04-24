@@ -206,16 +206,33 @@ Events</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_motorola_1_1_snapi_1_1_barcode_scanner_manager.html" title="BarcodeScannerManager is where all barcode scanners are managed and where a user application or libra...">BarcodeScannerManager</a> is where all barcode scanners are managed and where a user application or library can open an instance of the driver. This should be the first class accessed in this library by a user application. </p>
 <p>To start using this library you will need to do the following.</p>
-<p>First open an instance of the CoreScanner driver.</p>
-<p><code> BarcodeScannerManager.Instance.Open(); </code> </p>
+ <p>First open an instance of the CoreScanner driver.</p>
+<p><div class="fragment"><div class="line">            BarcodeScannerManager.Instance.Open();</div>
+</div><!-- fragment --> </p>
 <p>Now you can register for whatever events you want to listen for in your application.</p>
 <p>For example:</p>
-<p><code> BarcodeScannerManager.Instance.RegisterForEvents(EventType.Barcode, EventType.Pnp, EventType.Image, EventType.Other, EventType.Rmd); </code> </p>
+<p><div class="fragment"><div class="line">            BarcodeScannerManager.Instance.RegisterForEvents(</div>
+<div class="line">                EventType.Barcode,</div>
+<div class="line">                EventType.Pnp,</div>
+<div class="line">                EventType.Image,</div>
+<div class="line">                EventType.Other,</div>
+<div class="line">                EventType.Rmd</div>
+<div class="line">                );</div>
+</div><!-- fragment --> </p>
 <p>If you need to unregister for an event..</p>
-<p><code> BarcodeScannerManager.Instance.UnRegisterForEvents(EventType.Barcode, EventType.Pnp, ...); </code> </p>
+<p><div class="fragment"><div class="line">            BarcodeScannerManager.Instance.UnRegisterForEvents(</div>
+<div class="line">                EventType.Barcode,</div>
+<div class="line">                EventType.Pnp,</div>
+<div class="line">                EventType.Image,</div>
+<div class="line">                EventType.Other,</div>
+<div class="line">                EventType.Rmd</div>
+<div class="line">                );</div>
+</div><!-- fragment --> </p>
+<p>Now you can use <div class="fragment"><div class="line">            _scanners = BarcodeScannerManager.Instance.GetDevices();</div>
+</div><!-- fragment --> to get a list containing an <a class="el" href="interface_motorola_1_1_snapi_1_1_i_motorola_barcode_scanner.html">IMotorolaBarcodeScanner</a> object for each of your scanners from which you can perform scanner specific tasks.</p>
 <p>Adding a handler for an event is simply</p>
-<p><code> BarcodeScannerManager.Instance.ScannerAttached += YourHandler; </code> </p>
-<p>Now you can use BarcodeScannerManager.Instance.GetDevices() to get a list containing an <a class="el" href="interface_motorola_1_1_snapi_1_1_i_motorola_barcode_scanner.html">IMotorolaBarcodeScanner</a> object for each of your scanners from which you can perform scanner specific tasks.</p>
+<p><div class="fragment"><div class="line">            BarcodeScannerManager.Instance.DataReceived += OnDataReceived;</div>
+</div><!-- fragment --> </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ae65de849eec32c6f44a650e974063c5b"></a>
 <div class="memitem">
@@ -541,7 +558,7 @@ Events</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Apr 23 2015 15:27:42 for Motorola CoreScanner Driver Wrapper by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 23 2015 17:41:39 for Motorola CoreScanner Driver Wrapper by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

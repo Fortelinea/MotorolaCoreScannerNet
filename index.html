@@ -84,17 +84,73 @@ Introduction</h1>
 <p>Thank you for using this tool. My name is Jason, I was assigned to complete this project by my employer Fortelinea. We decided to start this open source project when we realised how frustrating and anti-object-oriented the <a class="el" href="namespace_motorola.html">Motorola</a> CoreScanner driver is. Most of the scanner commands and attributes were originally executed or modified using XML and a single method. This wrapper breaks them up into individual methods and properties and organizes them in a meaningful object-oriented fashion. It also parses the XML outputs into appropriate objects and values and generates input XML for the values you provide allowing you to forget about all the annoying XML and write clearer, more object-oriented code.</p>
 <h1><a class="anchor" id="install_sec"></a>
 Getting Started</h1>
-<h2><a class="anchor" id="step1"></a>
+ <h2><a class="anchor" id="step1"></a>
 First, open an instance of the CoreScanner driver.</h2>
-<p>BarcodeScannerManager.Instance.Open();</p>
+<p><div class="fragment"><div class="line">        <span class="keyword">static</span> <span class="keywordtype">void</span> Main()</div>
+<div class="line">        {</div>
+<div class="line">            <span class="comment">//First open an instance of the CoreScanner driver.</span></div>
+<div class="line">            BarcodeScannerManager.Instance.Open();</div>
+</div><!-- fragment --></p>
 <h2><a class="anchor" id="step2"></a>
 Next, register for all events that you want to listen for in your application.</h2>
-<p>BarcodeScannerManager.Instance.RegisterForEvents(EventType.Barcode, EventType.Pnp, EventType.Image, EventType.Other, EventType.Rmd);</p>
+<p><div class="fragment"><div class="line">            BarcodeScannerManager.Instance.RegisterForEvents(</div>
+<div class="line">                EventType.Barcode,</div>
+<div class="line">                EventType.Pnp,</div>
+<div class="line">                EventType.Image,</div>
+<div class="line">                EventType.Other,</div>
+<div class="line">                EventType.Rmd</div>
+<div class="line">                );</div>
+</div><!-- fragment --> </p>
+<h3><a class="anchor" id="unreg"></a>
+If you need to unregister.</h3>
+<p><div class="fragment"><div class="line">            BarcodeScannerManager.Instance.UnRegisterForEvents(</div>
+<div class="line">                EventType.Barcode,</div>
+<div class="line">                EventType.Pnp,</div>
+<div class="line">                EventType.Image,</div>
+<div class="line">                EventType.Other,</div>
+<div class="line">                EventType.Rmd</div>
+<div class="line">                );</div>
+</div><!-- fragment --> </p>
+<h3><a class="anchor" id="check"></a>
+To check which events you are registered to check RegisteredEvents.</h3>
+<p><div class="fragment"><div class="line">            <span class="comment">//The events you are currently registered to will be listed in RegisteredEvents.</span></div>
+<div class="line">            <span class="keywordflow">if</span> (BarcodeScannerManager.Instance.RegisteredEvents.Contains(EventType.Image))</div>
+<div class="line">            {</div>
+<div class="line">                <span class="comment">//Do things</span></div>
+<div class="line">            };</div>
+</div><!-- fragment --></p>
+<h2><a class="anchor" id="step3"></a>
+You can now get a \p List&lt;IMotorolaBarcodeScanner&gt; containing your connected scanners with \p GetDevices().</h2>
+<p><div class="fragment"><div class="line">            <span class="comment">//Get a List&lt;IMotorolaBarcodeScanner&gt; containing each connected scanner.</span></div>
+<div class="line">            _scanners = BarcodeScannerManager.Instance.GetDevices();</div>
+</div><!-- fragment --></p>
+<h2><a class="anchor" id="step4"></a>
+You may have to set your scanners to the proper USB host mode before it will function correctly.</h2>
+<p><div class="fragment"><div class="line"></div>
+<div class="line">            <span class="comment">//Loop through scanners and set their host mode to SNAPI with imaging enabled.</span></div>
+<div class="line">            <span class="keywordflow">foreach</span> (var scanner <span class="keywordflow">in</span> _scanners)</div>
+<div class="line">            {</div>
+<div class="line">                scanner.SetHostMode(HostMode.USB_SNAPI_Imaging);</div>
+<div class="line">            }</div>
+</div><!-- fragment --></p>
+<h2><a class="anchor" id="step5"></a>
+Add a handler to your DataReceived event.</h2>
+<p><div class="fragment"><div class="line">            BarcodeScannerManager.Instance.DataReceived += OnDataReceived;</div>
+</div><!-- fragment --> </p>
+<h3><a class="anchor" id="ex"></a>
+Example DataReceived handler:</h3>
+<p><div class="fragment"><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">void</span> OnDataReceived(<span class="keywordtype">object</span> sender, BarcodeScanEventArgs e)</div>
+<div class="line">        {</div>
+<div class="line">            _lastScanned = e.Data;</div>
+<div class="line">            Console.WriteLine(<span class="stringliteral">&quot;Barcode type: &quot;</span> + e.BarcodeType.GetDescription());</div>
+<div class="line">            Console.WriteLine(<span class="stringliteral">&quot;Data: &quot;</span> + e.Data);</div>
+<div class="line">        }</div>
+</div><!-- fragment --> <a class="el" href="example.html">complete class.</a></p>
 <p><a class="el" href="license.html">Licensed by The MIT License (MIT)</a> </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Apr 23 2015 15:27:44 for Motorola CoreScanner Driver Wrapper by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 23 2015 17:41:40 for Motorola CoreScanner Driver Wrapper by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
