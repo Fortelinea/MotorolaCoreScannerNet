@@ -120,14 +120,13 @@ To check which events you are registered to check RegisteredEvents.</h3>
 <div class="line">            };</div>
 </div><!-- fragment --></p>
 <h2><a class="anchor" id="step3"></a>
-You can now get a \p List&lt;IMotorolaBarcodeScanner&gt; containing your connected scanners with \p GetDevices().</h2>
+You can now get a List&lt;IMotorolaBarcodeScanner&gt; containing your connected scanners with GetDevices().</h2>
 <p><div class="fragment"><div class="line">            <span class="comment">//Get a List&lt;IMotorolaBarcodeScanner&gt; containing each connected scanner.</span></div>
 <div class="line">            _scanners = BarcodeScannerManager.Instance.GetDevices();</div>
 </div><!-- fragment --></p>
 <h2><a class="anchor" id="step4"></a>
 You may have to set your scanners to the proper USB host mode before it will function correctly.</h2>
-<p><div class="fragment"><div class="line"></div>
-<div class="line">            <span class="comment">//Loop through scanners and set their host mode to SNAPI with imaging enabled.</span></div>
+<p><div class="fragment"><div class="line">            <span class="comment">//Loop through scanners and set their host mode to SNAPI with imaging enabled.</span></div>
 <div class="line">            <span class="keywordflow">foreach</span> (var scanner <span class="keywordflow">in</span> _scanners)</div>
 <div class="line">            {</div>
 <div class="line">                scanner.SetHostMode(HostMode.USB_SNAPI_Imaging);</div>
@@ -150,7 +149,7 @@ Example DataReceived handler:</h3>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Apr 23 2015 17:41:40 for Motorola CoreScanner Driver Wrapper by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 23 2015 17:45:52 for Motorola CoreScanner Driver Wrapper by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
