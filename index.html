@@ -138,7 +138,8 @@ Add a handler to your DataReceived event.</h2>
 </div><!-- fragment --> </p>
 <h3><a class="anchor" id="ex"></a>
 Example DataReceived handler:</h3>
-<p><div class="fragment"><div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">void</span> OnDataReceived(<span class="keywordtype">object</span> sender, BarcodeScanEventArgs e)</div>
+<p><div class="fragment"><div class="line">        <span class="comment">//Outputs barcode data to the console and overwrites _lastScanned.</span></div>
+<div class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">void</span> OnDataReceived(<span class="keywordtype">object</span> sender, BarcodeScanEventArgs e)</div>
 <div class="line">        {</div>
 <div class="line">            _lastScanned = e.Data;</div>
 <div class="line">            Console.WriteLine(<span class="stringliteral">&quot;Barcode type: &quot;</span> + e.BarcodeType.GetDescription());</div>
@@ -149,7 +150,7 @@ Example DataReceived handler:</h3>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Apr 23 2015 17:45:52 for Motorola CoreScanner Driver Wrapper by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 23 2015 20:47:23 for Motorola CoreScanner Driver Wrapper by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
