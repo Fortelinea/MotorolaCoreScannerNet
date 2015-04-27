@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
 using System.Linq;
 using Motorola.Snapi.Constants.Enums;
@@ -27,55 +26,53 @@ namespace Motorola.Snapi
             switch (dataType)
             {
                 case DataType.Array:
-                    {
-                        value = HexStringToByteArray(stringValue);
-                        var array = (byte[])value;
-                        if (array.Count() == 1)
-                        {
-                            value = array[0];
-                        }
-                        break;
-                    }
+                {
+                    value = HexStringToByteArray(stringValue);
+                    var array = (byte[])value;
+                    if (array.Count() == 1)
+                        value = array[0];
+                    break;
+                }
                 case DataType.Byte:
-                    {
-                        value = Byte.Parse(stringValue);
-                        break;
-                    }
+                {
+                    value = Byte.Parse(stringValue);
+                    break;
+                }
                 case DataType.Char:
-                    {
-                        //Not used;
-                        break;
-                    }
+                {
+                    //Not used;
+                    break;
+                }
                 case DataType.UInt:
-                    {
-                        //Not used;
-                        break;
-                    }
+                {
+                    //Not used;
+                    break;
+                }
                 case DataType.Bool:
-                    {
-                        value = !stringValue.Equals("False");
-                        break;
-                    }
+                {
+                    value = !stringValue.Equals("False");
+                    break;
+                }
                 case DataType.Short:
-                    {
-                        //Not used;
-                        break;
-                    }
+                {
+                    //Not used;
+                    break;
+                }
                 case DataType.Int:
-                    {
-                        //Not used;
-                        break;
-                    }
+                {
+                    //Not used;
+                    break;
+                }
                 case DataType.String:
-                    {
-                        value = stringValue;
-                        break;
-                    }
+                {
+                    value = stringValue;
+                    break;
+                }
                 case DataType.UShort:
-                    {
-                        value = UInt16.Parse(stringValue);
-                        break;
-                    }
+                {
+                    value = UInt16.Parse(stringValue);
+                    break;
+                }
             }
             return value;
         }
@@ -87,16 +84,15 @@ namespace Motorola.Snapi
         /// <returns></returns>
         internal static byte[] HexStringToByteArray(string hex)
         {
-            var hexadecimal = hex.Replace(" ", "").Replace("0x", "");
-            if (hexadecimal.Length % 2 == 1)
+            var hexadecimal = hex.Replace(" ", "")
+                                 .Replace("0x", "");
+            if (hexadecimal.Length%2 == 1)
                 throw new Exception("The binary key cannot have an odd number of digits");
 
             byte[] arr = new byte[hexadecimal.Length >> 1];
 
             for (int i = 0; i < hexadecimal.Length >> 1; ++i)
-            {
                 arr[i] = (byte)((HexCharToInt(hexadecimal[i << 1]) << 4) + (HexCharToInt(hexadecimal[(i << 1) + 1])));
-            }
 
             return arr;
         }
@@ -111,23 +107,23 @@ namespace Motorola.Snapi
 
         internal static DataType TypeToDataType(Type t)
         {
-            if (t == typeof(byte[]))
+            if (t == typeof (byte[]))
                 return DataType.Array;
-            if (t == typeof(byte))
+            if (t == typeof (byte))
                 return DataType.Byte;
-            if (t == typeof(char))
+            if (t == typeof (char))
                 return DataType.Char;
-            if (t == typeof(uint))
+            if (t == typeof (uint))
                 return DataType.UInt;
-            if (t == typeof(bool))
+            if (t == typeof (bool))
                 return DataType.Bool;
-            if (t == typeof(short))
+            if (t == typeof (short))
                 return DataType.Short;
-            if (t == typeof(int))
+            if (t == typeof (int))
                 return DataType.Int;
-            if (t == typeof(string))
+            if (t == typeof (string))
                 return DataType.String;
-            if (t == typeof(ushort))
+            if (t == typeof (ushort))
                 return DataType.UShort;
 
             return DataType.Unknown;

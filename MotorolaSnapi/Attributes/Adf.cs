@@ -3,8 +3,7 @@
 /See the file license.txt for copying permission
 */
 
-
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -22,31 +21,29 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal Adf(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        internal Adf(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: ADFRules</para>
         /// <para>The parameter defines the advanced data formatting rules which should be applied to decoded bar codes.</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte[] ADFRules
         {
             get
             {
-                return (byte[])GetAttribute((ushort)AdfAttribute.ADFRules).Value;
+                return (byte[])GetAttribute((ushort)AdfAttribute.ADFRules)
+                                   .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.ADFRules, DataType = DataType.Bool, Value = ValueConverters.ByteArrayToHexString(value) });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.ADFRules, DataType = DataType.Bool, Value = ValueConverters.ByteArrayToHexString(value)}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: KeyDelay</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte KeyDelay
@@ -54,19 +51,16 @@ namespace Motorola.Snapi.Attributes
             get
             {
                 var attribute = GetAttribute((ushort)AdfAttribute.KeyDelay);
-                if(attribute != null) return (byte)attribute.Value;
+                if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyDelay, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.KeyDelay, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: PauseDuration</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte PauseDuration
@@ -74,19 +68,16 @@ namespace Motorola.Snapi.Attributes
             get
             {
                 var attribute = GetAttribute((ushort)AdfAttribute.PauseDuration);
-                if(attribute != null) return (byte)attribute.Value;
+                if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.PauseDuration, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.PauseDuration, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: KeyCategory1</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte KeyCategory1
@@ -94,19 +85,16 @@ namespace Motorola.Snapi.Attributes
             get
             {
                 var attribute = GetAttribute((ushort)AdfAttribute.KeyCategory1);
-                if(attribute != null) return (byte)attribute.Value;
+                if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyCategory1, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.KeyCategory1, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: KeyCategory2</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte KeyCategory2
@@ -117,16 +105,13 @@ namespace Motorola.Snapi.Attributes
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyCategory2, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.KeyCategory2, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: KeyCategory3</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte KeyCategory3
@@ -137,16 +122,13 @@ namespace Motorola.Snapi.Attributes
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyCategory3, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.KeyCategory3, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: KeyCategory4</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte KeyCategory4
@@ -157,16 +139,13 @@ namespace Motorola.Snapi.Attributes
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyCategory4, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.KeyCategory4, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: KeyCategory5</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte KeyCategory5
@@ -177,16 +156,13 @@ namespace Motorola.Snapi.Attributes
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyCategory5, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.KeyCategory5, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: KeyCategory6</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte KeyCategory6
@@ -197,16 +173,13 @@ namespace Motorola.Snapi.Attributes
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyCategory6, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.KeyCategory6, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: KeyValue1</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte KeyValue1
@@ -217,16 +190,13 @@ namespace Motorola.Snapi.Attributes
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyValue1, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.KeyValue1, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: KeyValue2</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte KeyValue2
@@ -237,16 +207,13 @@ namespace Motorola.Snapi.Attributes
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyValue2, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.KeyValue2, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: KeyValue3</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte KeyValue3
@@ -257,16 +224,13 @@ namespace Motorola.Snapi.Attributes
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyValue3, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.KeyValue3, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: KeyValue4</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte KeyValue4
@@ -277,16 +241,13 @@ namespace Motorola.Snapi.Attributes
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyValue4, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.KeyValue4, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: KeyValue5</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte KeyValue5
@@ -297,16 +258,13 @@ namespace Motorola.Snapi.Attributes
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyValue5, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.KeyValue5, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: KeyValue6</para>
-        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program 
-        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be 
+        /// <remarks>The ADF rules are in a proprietary format. End users wishing to deploy ADF rules should first manually program
+        /// the scanner using programming bar codes and then reading the attribute from an application. The rule can then be
         /// deployed to other scanners in the enterprise.</remarks>
         /// </summary>
         public byte KeyValue6
@@ -317,10 +275,7 @@ namespace Motorola.Snapi.Attributes
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.KeyValue6, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.KeyValue6, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
@@ -346,10 +301,7 @@ namespace Motorola.Snapi.Attributes
                 if (attribute != null) return (byte)attribute.Value;
                 return 0;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)AdfAttribute.SimpleDataFormat, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)AdfAttribute.SimpleDataFormat, DataType = DataType.Byte, Value = value}); }
         }
     }
 }

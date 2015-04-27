@@ -3,8 +3,7 @@
 /See the file license.txt for copying permission
 */
 
-
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -21,7 +20,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal SystemEvents(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver){}
+        internal SystemEvents(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: DecodeEvent</para>
@@ -37,10 +36,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)SystemEventAttribute.DecodeEvent)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)SystemEventAttribute.DecodeEvent, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)SystemEventAttribute.DecodeEvent, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -56,10 +52,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)SystemEventAttribute.BootupEvent)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)SystemEventAttribute.BootupEvent, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)SystemEventAttribute.BootupEvent, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -75,10 +68,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)SystemEventAttribute.ParamEvent)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)SystemEventAttribute.ParamEvent, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)SystemEventAttribute.ParamEvent, DataType = DataType.Bool, Value = value}); }
         }
     }
 }

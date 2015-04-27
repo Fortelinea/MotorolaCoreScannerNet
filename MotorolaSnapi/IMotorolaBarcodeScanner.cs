@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 using Motorola.Snapi.Attributes;
 using Motorola.Snapi.Commands;
 using Motorola.Snapi.Constants.Enums;
@@ -13,10 +12,11 @@ namespace Motorola.Snapi
     public interface IMotorolaBarcodeScanner
     {
         ScannerInfo Info { get; }
-
         CaptureMode CaptureMode { set; }
+        void Reboot();
 
         #region Commands
+
         void SetHostMode(string mode, bool permanent = false, bool silent = true);
         AccessControl AccessControl { get; }
         Actions Actions { get; }
@@ -24,6 +24,7 @@ namespace Motorola.Snapi
         Firmware Firmware { get; }
         Trigger Trigger { get; }
         MacroPdf MacroPDF { get; }
+
         #endregion
 
         #region Attributes
@@ -83,7 +84,5 @@ namespace Motorola.Snapi
         SignatureCapture SignatureCapture { get; }
 
         #endregion
-
-        void Reboot();
     }
 }

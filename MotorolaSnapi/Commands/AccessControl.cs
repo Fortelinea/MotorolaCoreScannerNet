@@ -3,8 +3,7 @@
 /See the file license.txt for copying permission
 */
 
-
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Commands
@@ -12,7 +11,8 @@ namespace Motorola.Snapi.Commands
     /// <summary>
     /// Access Control commands.
     /// </summary>
-    public class AccessControl {
+    public class AccessControl
+    {
         private readonly CCoreScanner _scannerDriver;
         private readonly int _scannerId;
 
@@ -38,7 +38,7 @@ namespace Motorola.Snapi.Commands
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.ClaimDevice, ref inXml, out outXml, out status);
             if (status != 0)
-                throw new ScannerException("Device claim failed") { ErrorCode = (StatusCode)status };
+                throw new ScannerException("Device claim failed") {ErrorCode = (StatusCode)status};
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Motorola.Snapi.Commands
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.ReleaseDevice, ref inXml, out outXml, out status);
             if (status != 0)
-                throw new ScannerException("Device release failed") { ErrorCode = (StatusCode)status };
+                throw new ScannerException("Device release failed") {ErrorCode = (StatusCode)status};
         }
     }
 }

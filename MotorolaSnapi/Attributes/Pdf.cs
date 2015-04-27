@@ -3,8 +3,7 @@
 /See the file license.txt for copying permission
 */
 
-
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -20,7 +19,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal Pdf(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        internal Pdf(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: PDF</para>
@@ -33,10 +32,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)PdfAttribute.Pdf)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)PdfAttribute.Pdf, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)PdfAttribute.Pdf, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -50,10 +46,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)PdfAttribute.MicroPdf)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)PdfAttribute.MicroPdf, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)PdfAttribute.MicroPdf, DataType = DataType.Bool, Value = value}); }
         }
     }
 }

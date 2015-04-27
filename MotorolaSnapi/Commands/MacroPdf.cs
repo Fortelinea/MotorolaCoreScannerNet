@@ -3,8 +3,7 @@
 /See the file license.txt for copying permission
 */
 
-
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Commands
@@ -16,6 +15,7 @@ namespace Motorola.Snapi.Commands
     {
         private readonly CCoreScanner _scannerDriver;
         private readonly int _scannerId;
+
         /// <summary>
         /// Instantiates a new MacroPdf object
         /// </summary>
@@ -38,7 +38,7 @@ namespace Motorola.Snapi.Commands
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.FlushMacroPdf, ref inXml, out outXml, out status);
             if (status != 0)
-                throw new ScannerException("MacroPDF flush failed") { ErrorCode = (StatusCode)status };
+                throw new ScannerException("MacroPDF flush failed") {ErrorCode = (StatusCode)status};
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Motorola.Snapi.Commands
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.AbortMacroPdf, ref inXml, out outXml, out status);
             if (status != 0)
-                throw new ScannerException("Abort MacroPDF failed") { ErrorCode = (StatusCode)status };
+                throw new ScannerException("Abort MacroPDF failed") {ErrorCode = (StatusCode)status};
         }
     }
 }

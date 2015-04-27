@@ -1,10 +1,10 @@
 ﻿using Motorola.Snapi;
-using System;
-using System.ComponentModel;
-using System.Reflection;
 using Motorola.Snapi.Constants;
 using Motorola.Snapi.Constants.Enums;
 using Motorola.Snapi.EventArguments;
+using System;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace Motorola.Test
 {
@@ -22,14 +22,14 @@ namespace Motorola.Test
             Console.WriteLine("Data: " + e.Data);
         }
 
-        private static void Instance_ScannerAttached(object sender, PnpEventArgs e) 
+        private static void Instance_ScannerAttached(object sender, PnpEventArgs e)
         {
             _scannerAttached = true;
         }
 
         private static void Instance_ImageReceived(object sender, ImageEventArgs e)
         {
-            e.Image.Save(ImageSaveLocation, e.Format);      
+            e.Image.Save(ImageSaveLocation, e.Format);
             Console.WriteLine("Image saved to \"{0}\"", ImageSaveLocation);
         }
 
@@ -132,6 +132,7 @@ namespace Motorola.Test
             var e = i2of5.LengthForI2Of5Length2;// = 0;
             var f = i2of5.TransmitI2Of5CheckDigit;
         }
+
         private static void TestCode11(IMotorolaBarcodeScanner scanner)
         {
             var code11 = scanner.Code11;
@@ -202,7 +203,10 @@ namespace Motorola.Test
             var cw = scanner.UPC_EAN.UpcEanJanSupplementalRedundancy = 2;
         }
 
-        private static void TestSynapse(IMotorolaBarcodeScanner scanner) { var cb = scanner.Synapse.Value; }
+        private static void TestSynapse(IMotorolaBarcodeScanner scanner)
+        {
+            var cb = scanner.Synapse.Value;
+        }
 
         private static void TestADF(IMotorolaBarcodeScanner scanner)
         {

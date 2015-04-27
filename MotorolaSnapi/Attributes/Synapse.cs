@@ -3,8 +3,7 @@
 /See the file license.txt for copying permission
 */
 
-
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -21,7 +20,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal Synapse(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        internal Synapse(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>The parameter defines the Host specific
@@ -33,12 +32,10 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return (byte[])GetAttribute((ushort)SynapseAttribute.Synapse).Value;
+                return (byte[])GetAttribute((ushort)SynapseAttribute.Synapse)
+                                   .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)SynapseAttribute.Synapse, DataType = DataType.Array, Value = ValueConverters.ByteArrayToHexString(value) });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)SynapseAttribute.Synapse, DataType = DataType.Array, Value = ValueConverters.ByteArrayToHexString(value)}); }
         }
     }
 }

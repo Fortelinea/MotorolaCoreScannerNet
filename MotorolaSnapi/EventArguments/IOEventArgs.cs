@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
 
 namespace Motorola.Snapi.EventArguments
@@ -29,6 +28,7 @@ namespace Motorola.Snapi.EventArguments
         /// Reserved parameter.
         /// </summary>
         public short Type { get; private set; }
+
         /// <summary>
         /// Reserved parameter.
         /// </summary>

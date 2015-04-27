@@ -3,9 +3,8 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -21,7 +20,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal Code93(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        internal Code93(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: Code93</para>
@@ -34,10 +33,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Code93Attribute.Code93)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code93Attribute.Code93, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code93Attribute.Code93, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -45,16 +41,14 @@ namespace Motorola.Snapi.Attributes
         /// <para>Defines the allowable lengths for the symbology.</para>
         /// </summary>
         public ushort LengthForCode93Length1
-        {//Not sure what this actually does or what the values mean.
+        {
+            //Not sure what this actually does or what the values mean.
             get
             {
                 return Convert.ToUInt16(GetAttribute((ushort)Code93Attribute.LengthForCode93Length1)
-                                 .Value);
+                                            .Value);
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code93Attribute.LengthForCode93Length1, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code93Attribute.LengthForCode93Length1, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
@@ -62,16 +56,14 @@ namespace Motorola.Snapi.Attributes
         /// <para>Defines the allowable lengths for the symbology.</para>
         /// </summary>
         public ushort LengthForCode93Length2
-        {//Not sure what this actually does or what the values mean.
+        {
+            //Not sure what this actually does or what the values mean.
             get
             {
                 return Convert.ToUInt16(GetAttribute((ushort)Code93Attribute.LengthForCode93Length2)
-                                 .Value);
+                                            .Value);
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code93Attribute.LengthForCode93Length2, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code93Attribute.LengthForCode93Length2, DataType = DataType.Byte, Value = value}); }
         }
     }
 }

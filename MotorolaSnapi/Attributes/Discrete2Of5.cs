@@ -3,9 +3,8 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -21,7 +20,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal Discrete2Of5(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        internal Discrete2Of5(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: Discrete2of5</para>
@@ -34,10 +33,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Discrete2Of5Attribute.Discrete2Of5)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Discrete2Of5Attribute.Discrete2Of5, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Discrete2Of5Attribute.Discrete2Of5, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -45,16 +41,14 @@ namespace Motorola.Snapi.Attributes
         /// <para>Defines the allowable lengths for the symbology.</para>
         /// </summary>
         public ushort LengthForD2Of5Length1
-        {//Not sure what this actually does or what the values mean.
+        {
+            //Not sure what this actually does or what the values mean.
             get
             {
                 return Convert.ToUInt16(GetAttribute((ushort)Discrete2Of5Attribute.LengthForD2Of5Length1)
-                                 .Value);
+                                            .Value);
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Discrete2Of5Attribute.LengthForD2Of5Length1, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Discrete2Of5Attribute.LengthForD2Of5Length1, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
@@ -62,16 +56,14 @@ namespace Motorola.Snapi.Attributes
         /// <para>Defines the allowable lengths for the symbology.</para>
         /// </summary>
         public ushort LengthForD2Of5Length2
-        {//Not sure what this actually does or what the values mean.
+        {
+            //Not sure what this actually does or what the values mean.
             get
             {
                 return Convert.ToUInt16(GetAttribute((ushort)Discrete2Of5Attribute.LengthForD2Of5Length2)
-                                 .Value);
+                                            .Value);
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Discrete2Of5Attribute.LengthForD2Of5Length2, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Discrete2Of5Attribute.LengthForD2Of5Length2, DataType = DataType.Byte, Value = value}); }
         }
     }
 }

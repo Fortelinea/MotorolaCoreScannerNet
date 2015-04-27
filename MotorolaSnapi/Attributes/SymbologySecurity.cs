@@ -3,9 +3,8 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -21,7 +20,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal SymbologySecurity(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        internal SymbologySecurity(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: RedundancyLevel</para>
@@ -33,12 +32,10 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute((ushort)SymbologySecurityAttribute.RedundancyLevel).Value);
+                return Convert.ToUInt16(GetAttribute((ushort)SymbologySecurityAttribute.RedundancyLevel)
+                                            .Value);
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)SymbologySecurityAttribute.RedundancyLevel, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)SymbologySecurityAttribute.RedundancyLevel, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
@@ -51,12 +48,10 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                return Convert.ToUInt16(GetAttribute((ushort)SymbologySecurityAttribute.SecurityLevel).Value);
+                return Convert.ToUInt16(GetAttribute((ushort)SymbologySecurityAttribute.SecurityLevel)
+                                            .Value);
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)SymbologySecurityAttribute.SecurityLevel, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)SymbologySecurityAttribute.SecurityLevel, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
@@ -73,10 +68,7 @@ namespace Motorola.Snapi.Attributes
                     return (bool)result.Value;
                 return false;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)SymbologySecurityAttribute.BidirectionalRedundancy, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)SymbologySecurityAttribute.BidirectionalRedundancy, DataType = DataType.Bool, Value = value}); }
         }
     }
 }

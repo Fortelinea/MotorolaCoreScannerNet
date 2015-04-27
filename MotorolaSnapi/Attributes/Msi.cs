@@ -3,9 +3,8 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -21,7 +20,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal Msi(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        internal Msi(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// Driver Attribute Name: MSI
@@ -34,10 +33,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)MsiAttribute.Msi)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)MsiAttribute.Msi, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)MsiAttribute.Msi, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -50,12 +46,9 @@ namespace Motorola.Snapi.Attributes
             get
             {
                 return (MsiCheckDigit)GetAttribute((ushort)MsiAttribute.MsiCheckDigits)
-                                 .Value;
+                                          .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)MsiAttribute.MsiCheckDigits, DataType = DataType.Bool, Value = (byte)value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)MsiAttribute.MsiCheckDigits, DataType = DataType.Bool, Value = (byte)value}); }
         }
 
         /// <summary>
@@ -69,10 +62,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)MsiAttribute.TransmitMsiCheckDigit)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)MsiAttribute.TransmitMsiCheckDigit, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)MsiAttribute.TransmitMsiCheckDigit, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -84,12 +74,9 @@ namespace Motorola.Snapi.Attributes
             get
             {
                 return (MsiCheckDigitAlgorithm)GetAttribute((ushort)MsiAttribute.MsiCheckDigitAlgorithm)
-                                 .Value;
+                                                   .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)MsiAttribute.MsiCheckDigitAlgorithm, DataType = DataType.Bool, Value = (byte)value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)MsiAttribute.MsiCheckDigitAlgorithm, DataType = DataType.Bool, Value = (byte)value}); }
         }
 
         /// <summary>
@@ -97,16 +84,14 @@ namespace Motorola.Snapi.Attributes
         /// <para>Defines the allowable lengths for the symbology.</para>
         /// </summary>
         public ushort LengthForMsiLength1
-        {//Not sure what this actually does or what the values mean.
+        {
+            //Not sure what this actually does or what the values mean.
             get
             {
                 return Convert.ToUInt16(GetAttribute((ushort)MsiAttribute.LengthForMsiLength1)
-                                 .Value);
+                                            .Value);
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)MsiAttribute.LengthForMsiLength1, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)MsiAttribute.LengthForMsiLength1, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
@@ -114,16 +99,14 @@ namespace Motorola.Snapi.Attributes
         /// <para>Defines the allowable lengths for the symbology.</para>
         /// </summary>
         public ushort LengthForMsiLength2
-        {//Not sure what this actually does or what the values mean.
+        {
+            //Not sure what this actually does or what the values mean.
             get
             {
                 return Convert.ToUInt16(GetAttribute((ushort)MsiAttribute.LengthForMsiLength2)
-                                 .Value);
+                                            .Value);
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)MsiAttribute.LengthForMsiLength2, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)MsiAttribute.LengthForMsiLength2, DataType = DataType.Byte, Value = value}); }
         }
     }
 }

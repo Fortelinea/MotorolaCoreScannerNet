@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
 using System.IO;
 using System.Xml.Linq;
@@ -15,47 +14,58 @@ namespace Motorola.Snapi
     /// Contains information about this scanner.
     /// <para>NOTE: If this information was changed you must call get GetDevices() again to update your scanner list.</para>
     /// </summary>
-    public class ScannerInfo {
-        public ScannerInfo(XElement scannerXml) { Parse(scannerXml);}
+    public class ScannerInfo
+    {
+        public ScannerInfo(XElement scannerXml) { Parse(scannerXml); }
+
         /// <summary>
         /// Date of manufacture.
         /// </summary>
         public string DateOfManufacture { get; private set; }
+
         /// <summary>
         /// Currently installed firmware.
         /// <para>NOTE: If you updated your firmware after you last called GetDevices, this information will be obsolete. Call GetDevices again to update your scanner collection.</para>
         /// </summary>
         public string InstalledFirmware { get; private set; }
+
         /// <summary>
         /// Asset tracking information of the scanner.
         /// </summary>
         public Guid GUID { get; private set; }
+
         /// <summary>
         /// USB Host mode of the scanner.
         /// <para>NOTE: If you changed the USB host mode after you last called GetDevices, this information will be obsolete. Call GetDevices again to update your scanner collection.</para>
         /// </summary>
         public string UsbHostMode { get; private set; }
+
         /// <summary>
         /// Scanner model number.
         /// </summary>
         public string ModelNumber { get; private set; }
+
         /// <summary>
         /// Product ID.
         /// </summary>
         public int ProductId { get; private set; }
+
         /// <summary>
         /// Current scannerID.
         /// <para>May change on reboot. Call GetScanners again to update.</para>
         /// </summary>
         public int ScannerId { get; private set; }
+
         /// <summary>
         /// Unique serial number of the device.
         /// </summary>
         public string SerialNumber { get; private set; }
+
         /// <summary>
         /// Vendor ID.
         /// </summary>
         public int VendorId { get; private set; }
+
         /// <summary>
         /// Parses scanner info from this scanner's xml. (Usually from GetDevices Method which executes the GetScanners command.)
         /// <para>NOTE: If this information was changed you must call get GetDevices() again to update your scanner list.</para>

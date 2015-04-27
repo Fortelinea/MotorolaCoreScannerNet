@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes

@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
 
 namespace Motorola.Snapi.EventArguments

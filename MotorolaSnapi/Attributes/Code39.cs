@@ -3,9 +3,8 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -21,7 +20,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal Code39(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        internal Code39(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: Code39</para>
@@ -34,10 +33,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Code39Attribute.Code39)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code39Attribute.Code39, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code39Attribute.Code39, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -51,10 +47,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Code39Attribute.TriopticCode39)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code39Attribute.TriopticCode39, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code39Attribute.TriopticCode39, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -68,10 +61,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Code39Attribute.ConvertCode39ToCode32)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code39Attribute.ConvertCode39ToCode32, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code39Attribute.ConvertCode39ToCode32, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -85,10 +75,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Code39Attribute.Code32Prefix)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code39Attribute.Code32Prefix, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code39Attribute.Code32Prefix, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -96,16 +83,14 @@ namespace Motorola.Snapi.Attributes
         /// <para>Defines the allowable lengths for the symbology.</para>
         /// </summary>
         public ushort LengthForCode39Length1
-        {//Not sure what this actually does or what the values mean.
+        {
+            //Not sure what this actually does or what the values mean.
             get
             {
                 return Convert.ToUInt16(GetAttribute((ushort)Code39Attribute.LengthForCode39Length1)
-                                 .Value);
+                                            .Value);
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code39Attribute.LengthForCode39Length1, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code39Attribute.LengthForCode39Length1, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
@@ -113,16 +98,14 @@ namespace Motorola.Snapi.Attributes
         /// <para>Defines the allowable lengths for the symbology.</para>
         /// </summary>
         public ushort LengthForCode39Length2
-        {//Not sure what this actually does or what the values mean.
+        {
+            //Not sure what this actually does or what the values mean.
             get
             {
                 return Convert.ToUInt16(GetAttribute((ushort)Code39Attribute.LengthForCode39Length2)
-                                 .Value);
+                                            .Value);
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code39Attribute.LengthForCode39Length2, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code39Attribute.LengthForCode39Length2, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
@@ -137,10 +120,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Code39Attribute.Code39CheckDigitVerification)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code39Attribute.Code39CheckDigitVerification, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code39Attribute.Code39CheckDigitVerification, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -154,15 +134,12 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Code39Attribute.TransmitCode39CheckDigit)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code39Attribute.TransmitCode39CheckDigit, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code39Attribute.TransmitCode39CheckDigit, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
         /// <para>Driver Attribute Name: Code39FullASCIIConversion</para>
-        /// <para>This parameter enables the interpretation of Code 39 as Code 39 Full ASCII. Trioptic Code 39 and Code 39 Full ASCII cannot be enabled simultaneously. 
+        /// <para>This parameter enables the interpretation of Code 39 as Code 39 Full ASCII. Trioptic Code 39 and Code 39 Full ASCII cannot be enabled simultaneously.
         /// Code 39 Full ASCII to Full ASCII Correlation is host-dependent and is described in the ASCII Character Set table of your scanner’s Product Reference Guide.</para>
         /// </summary>
         public bool Code39FullAsciiConversionEnabled
@@ -172,10 +149,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Code39Attribute.Code39FullAsciiConversion)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code39Attribute.Code39FullAsciiConversion, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code39Attribute.Code39FullAsciiConversion, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -189,10 +163,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Code39Attribute.BufferCode39)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code39Attribute.BufferCode39, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code39Attribute.BufferCode39, DataType = DataType.Bool, Value = value}); }
         }
     }
 }

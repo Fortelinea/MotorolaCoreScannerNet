@@ -3,8 +3,7 @@
 /See the file license.txt for copying permission
 */
 
-
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -20,7 +19,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal Beeper(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        internal Beeper(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: BeeperVolume</para>
@@ -29,11 +28,12 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public BeeperVolume BeeperVolume
         {
-            get { return (BeeperVolume)GetAttribute((ushort)BeeperAttribute.BeeperVolume).Value; }
-            set
+            get
             {
-                SetAttribute(new ScannerAttribute { Id = (ushort)BeeperAttribute.BeeperVolume, DataType = DataType.Byte, Value = (byte)value });
+                return (BeeperVolume)GetAttribute((ushort)BeeperAttribute.BeeperVolume)
+                                         .Value;
             }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)BeeperAttribute.BeeperVolume, DataType = DataType.Byte, Value = (byte)value}); }
         }
 
         /// <summary>
@@ -43,11 +43,12 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public BeeperFrequency BeeperFrequency
         {
-            get { return (BeeperFrequency)GetAttribute((ushort)BeeperAttribute.BeeperFrequency).Value; }
-            set
+            get
             {
-                SetAttribute(new ScannerAttribute { Id = (ushort)BeeperAttribute.BeeperFrequency, DataType = DataType.Byte, Value = (byte)value });
+                return (BeeperFrequency)GetAttribute((ushort)BeeperAttribute.BeeperFrequency)
+                                            .Value;
             }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)BeeperAttribute.BeeperFrequency, DataType = DataType.Byte, Value = (byte)value}); }
         }
 
         /// <summary>
@@ -56,11 +57,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public bool BeepOnNextBootup
         {
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)BeeperAttribute.BeepOnNextBootup, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)BeeperAttribute.BeepOnNextBootup, DataType = DataType.Byte, Value = value}); }
         }
     }
-
 }

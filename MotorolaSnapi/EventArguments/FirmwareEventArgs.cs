@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.EventArguments
@@ -18,10 +17,7 @@ namespace Motorola.Snapi.EventArguments
         /// </summary>
         /// <param name="scannerId">Id number of the scanner that triggered the event.</param>
         /// <param name="status">Status or error code.</param>
-        internal FirmwareEventArgs(uint scannerId, StatusCode status) : base(scannerId)
-        {
-            Status = status;
-        }
+        internal FirmwareEventArgs(uint scannerId, StatusCode status) : base(scannerId) { Status = status; }
 
         /// <summary>
         /// Status or error code.

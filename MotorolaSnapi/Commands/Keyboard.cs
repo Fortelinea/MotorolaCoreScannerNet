@@ -3,11 +3,10 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
 using System.Linq;
 using System.Xml.Linq;
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Commands
@@ -17,22 +16,19 @@ namespace Motorola.Snapi.Commands
     /// </summary>
     public class Keyboard
     {
+        public enum KeyboardLocale
+        {
+            English = 0,
+            French = 1
+        }
+
         private readonly CCoreScanner _scannerDriver;
 
         /// <summary>
         /// Initializes a Keyboard object.
         /// </summary>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal Keyboard(CCoreScanner scannerDriver)
-        {
-            _scannerDriver = scannerDriver;
-        }
-
-        public enum KeyboardLocale
-        {
-            English = 0,
-            French = 1
-        }
+        internal Keyboard(CCoreScanner scannerDriver) { _scannerDriver = scannerDriver; }
 
         /// <summary>
         /// True if keyboard emulation is enabled.
@@ -47,7 +43,8 @@ namespace Motorola.Snapi.Commands
                 _scannerDriver.ExecCommand((int)ScannerCommand.KeyboardEmulatorGetConfig, ref inXml, out outXml, out status);
 
                 XDocument xdoc = XDocument.Parse(outXml);
-                XElement keyEnumState = xdoc.Descendants("KeyEnumState").First();
+                XElement keyEnumState = xdoc.Descendants("KeyEnumState")
+                                            .First();
                 return Convert.ToBoolean(keyEnumState.Value);
             }
             set
@@ -72,7 +69,8 @@ namespace Motorola.Snapi.Commands
                 _scannerDriver.ExecCommand((int)ScannerCommand.KeyboardEmulatorGetConfig, ref inXml, out outXml, out status);
 
                 XDocument xdoc = XDocument.Parse(outXml);
-                XElement keyEnumLocale = xdoc.Descendants("KeyEnumLocale").First();
+                XElement keyEnumLocale = xdoc.Descendants("KeyEnumLocale")
+                                             .First();
                 return (KeyboardLocale)Convert.ToInt32(keyEnumLocale.Value);
             }
             set

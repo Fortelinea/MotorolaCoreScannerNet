@@ -3,9 +3,8 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -42,10 +41,7 @@ namespace Motorola.Snapi.Attributes
                     return (LicenseParseMode)Convert.ToUInt16(attribute.Value);
                 return LicenseParseMode.NA;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)LicenseParsingAttribute.DLParseMode, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)LicenseParsingAttribute.DLParseMode, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
@@ -66,7 +62,7 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute { Id = (ushort)LicenseParsingAttribute.DLParseMode, DataType = DataType.Array, Value = ValueConverters.ByteArrayToHexString(value) });
+                SetAttribute(new ScannerAttribute {Id = (ushort)LicenseParsingAttribute.DLParseMode, DataType = DataType.Array, Value = ValueConverters.ByteArrayToHexString(value)});
             }
         }
     }

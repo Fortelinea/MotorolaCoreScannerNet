@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 using System.ComponentModel;
 
 namespace Motorola.Snapi.Constants.Enums
@@ -12,6 +11,7 @@ namespace Motorola.Snapi.Constants.Enums
     {
         [Description("USB HID")]
         UsbHid = 1,
+
         [Description("USB Bulk")]
         UsbBulk = 2
     }

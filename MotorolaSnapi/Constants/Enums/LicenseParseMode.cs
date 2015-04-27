@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 using System.ComponentModel;
 
 namespace Motorola.Snapi.Constants.Enums
@@ -12,10 +11,13 @@ namespace Motorola.Snapi.Constants.Enums
     {
         [Description("Parsing Off")]
         Off,
+
         [Description("Parse license with Embedded Software.")]
         ParseEmbedded,
+
         [Description("Encrypt license then send to host for parsing")]
         ParseServer,
+
         [Description("Not Available")]
         NA
     }

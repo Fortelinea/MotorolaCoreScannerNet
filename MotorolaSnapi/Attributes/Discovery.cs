@@ -3,9 +3,8 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -21,7 +20,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal Discovery(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver){}
+        internal Discovery(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: ModelNumber</para>
@@ -30,7 +29,11 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string ModelNumber
         {
-            get { return (string)GetAttribute((ushort)DiscoveryAttribute.ModelNumber).Value; }
+            get
+            {
+                return (string)GetAttribute((ushort)DiscoveryAttribute.ModelNumber)
+                                   .Value;
+            }
         }
 
         /// <summary>
@@ -40,7 +43,11 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string SerialNumber
         {
-            get { return (string)GetAttribute((ushort)DiscoveryAttribute.SerialNumber).Value; }
+            get
+            {
+                return (string)GetAttribute((ushort)DiscoveryAttribute.SerialNumber)
+                                   .Value;
+            }
         }
 
         /// <summary>
@@ -68,7 +75,11 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string DeviceClass
         {
-            get { return (string)GetAttribute((ushort)DiscoveryAttribute.DeviceClass).Value; }
+            get
+            {
+                return (string)GetAttribute((ushort)DiscoveryAttribute.DeviceClass)
+                                   .Value;
+            }
         }
 
         /// <summary>
@@ -94,7 +105,8 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var lastServiceDate = (string)GetAttribute((ushort)DiscoveryAttribute.LastServiceDate).Value;
+                var lastServiceDate = (string)GetAttribute((ushort)DiscoveryAttribute.LastServiceDate)
+                                                  .Value;
                 return !lastServiceDate.Equals("0000000") ? DateTime.Parse(lastServiceDate) : DateTime.MinValue;
             }
         }
@@ -106,7 +118,11 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string ScannerFirmwareVersion
         {
-            get { return (string)GetAttribute((ushort)DiscoveryAttribute.ScannerFirmwareVersion).Value; }
+            get
+            {
+                return (string)GetAttribute((ushort)DiscoveryAttribute.ScannerFirmwareVersion)
+                                   .Value;
+            }
         }
 
         /// <summary>
@@ -116,7 +132,11 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string ScankitVersion
         {
-            get { return (string)GetAttribute((ushort)DiscoveryAttribute.ScankitVersion).Value; }
+            get
+            {
+                return (string)GetAttribute((ushort)DiscoveryAttribute.ScankitVersion)
+                                   .Value;
+            }
         }
 
         /// <summary>
@@ -126,7 +146,11 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string ImagekitVersion
         {
-            get { return (string)GetAttribute((ushort)DiscoveryAttribute.ImagekitVersion).Value; }
+            get
+            {
+                return (string)GetAttribute((ushort)DiscoveryAttribute.ImagekitVersion)
+                                   .Value;
+            }
         }
 
         /// <summary>
@@ -137,7 +161,11 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string CombinedFirmwareVersion
         {
-            get { return (string)GetAttribute((ushort)DiscoveryAttribute.CombinedFirmwareVersion).Value; }
+            get
+            {
+                return (string)GetAttribute((ushort)DiscoveryAttribute.CombinedFirmwareVersion)
+                                   .Value;
+            }
         }
 
         /// <summary>
@@ -147,7 +175,11 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string RsmVersion
         {
-            get { return (string)GetAttribute((ushort)DiscoveryAttribute.RSMVersion).Value; }
+            get
+            {
+                return (string)GetAttribute((ushort)DiscoveryAttribute.RSMVersion)
+                                   .Value;
+            }
         }
 
         /// <summary>
@@ -159,13 +191,11 @@ namespace Motorola.Snapi.Attributes
         {
             get
             {
-                var dateOfFirstProgramming = (string)GetAttribute((ushort)DiscoveryAttribute.DateOfFirstProgramming).Value;
+                var dateOfFirstProgramming = (string)GetAttribute((ushort)DiscoveryAttribute.DateOfFirstProgramming)
+                                                         .Value;
                 return !dateOfFirstProgramming.Equals("DDMMMYY") ? DateTime.Parse(dateOfFirstProgramming) : DateTime.MinValue;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)DiscoveryAttribute.DateOfFirstProgramming, DataType = DataType.String, Value = value.ToString("DDMMMYY") });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)DiscoveryAttribute.DateOfFirstProgramming, DataType = DataType.String, Value = value.ToString("DDMMMYY")}); }
         }
 
         /// <summary>
@@ -178,11 +208,12 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         public string ConfigurationFilename
         {
-            get { return (string)GetAttribute((ushort)DiscoveryAttribute.ConfigurationFilename).Value; }
-            set
+            get
             {
-                SetAttribute(new ScannerAttribute { Id = (ushort)DiscoveryAttribute.ConfigurationFilename, DataType = DataType.String, Value = value });
+                return (string)GetAttribute((ushort)DiscoveryAttribute.ConfigurationFilename)
+                                   .Value;
             }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)DiscoveryAttribute.ConfigurationFilename, DataType = DataType.String, Value = value}); }
         }
     }
 }

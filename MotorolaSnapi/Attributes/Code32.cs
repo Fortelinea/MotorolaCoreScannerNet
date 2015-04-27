@@ -3,8 +3,7 @@
 /See the file license.txt for copying permission
 */
 
-
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -20,7 +19,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal Code32(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        internal Code32(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: Code32</para>
@@ -33,10 +32,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Code32Attribute.Code32)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code32Attribute.Code32, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code32Attribute.Code32, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -50,10 +46,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Code32Attribute.Code32Prefix)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code32Attribute.Code32Prefix, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code32Attribute.Code32Prefix, DataType = DataType.Bool, Value = value}); }
         }
     }
 }

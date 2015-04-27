@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 using System.Xml.Linq;
 
 namespace Motorola.Snapi.EventArguments
@@ -18,6 +17,7 @@ namespace Motorola.Snapi.EventArguments
         /// </summary>
         /// <param name="outXml">Command results in xml format.</param>
         internal CommandResponceEventArgs(XDocument outXml) { OutXml = outXml; }
+
         /// <summary>
         /// Command results in xml format.
         /// </summary>

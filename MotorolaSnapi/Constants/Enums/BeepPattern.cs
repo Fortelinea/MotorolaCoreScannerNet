@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 namespace Motorola.Snapi.Constants.Enums
 {
     public enum BeepPattern
@@ -34,6 +33,6 @@ namespace Motorola.Snapi.Constants.Enums
         LowHigh,
         HighLowHigh,
         LowHighLow,
-        HighHighLowLow,
+        HighHighLowLow
     }
 }

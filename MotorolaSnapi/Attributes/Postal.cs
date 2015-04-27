@@ -3,8 +3,7 @@
 /See the file license.txt for copying permission
 */
 
-
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -20,7 +19,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal Postal(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        internal Postal(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: USPost1</para>
@@ -33,10 +32,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)PostalAttribute.UsPost1)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)PostalAttribute.UsPost1, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)PostalAttribute.UsPost1, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -50,10 +46,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)PostalAttribute.UsPost2)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)PostalAttribute.UsPost2, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)PostalAttribute.UsPost2, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -67,10 +60,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)PostalAttribute.UkPost)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)PostalAttribute.UkPost, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)PostalAttribute.UkPost, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -84,10 +74,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)PostalAttribute.CanadaPost)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)PostalAttribute.CanadaPost, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)PostalAttribute.CanadaPost, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -101,10 +88,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)PostalAttribute.UsPostParity)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)PostalAttribute.UsPostParity, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)PostalAttribute.UsPostParity, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -118,10 +102,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)PostalAttribute.UkPostParity)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)PostalAttribute.UkPostParity, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)PostalAttribute.UkPostParity, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -135,10 +116,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)PostalAttribute.JapanPost)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)PostalAttribute.JapanPost, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)PostalAttribute.JapanPost, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -152,10 +130,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)PostalAttribute.AusPost)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)PostalAttribute.AusPost, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)PostalAttribute.AusPost, DataType = DataType.Bool, Value = value}); }
         }
     }
 }

@@ -3,9 +3,8 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -21,7 +20,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal Code11(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver){}
+        internal Code11(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: Code11</para>
@@ -34,10 +33,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Code11Attribute.Code11)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code11Attribute.Code11, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code11Attribute.Code11, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -49,12 +45,9 @@ namespace Motorola.Snapi.Attributes
             get
             {
                 return (Code11CheckDigit)GetAttribute((ushort)Code11Attribute.Code11CheckDigitVerification)
-                                 .Value;
+                                             .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code11Attribute.Code11CheckDigitVerification, DataType = DataType.Byte, Value = (byte)value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code11Attribute.Code11CheckDigitVerification, DataType = DataType.Byte, Value = (byte)value}); }
         }
 
         /// <summary>
@@ -68,10 +61,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Code11Attribute.TransmitCode11CheckDigit)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code11Attribute.TransmitCode11CheckDigit, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code11Attribute.TransmitCode11CheckDigit, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -79,16 +69,14 @@ namespace Motorola.Snapi.Attributes
         /// <para>Defines the allowable lengths for the symbology.</para>
         /// </summary>
         public ushort LengthForCode11Length1
-        {//Not sure what this actually does or what the values mean.
+        {
+            //Not sure what this actually does or what the values mean.
             get
             {
                 return Convert.ToUInt16(GetAttribute((ushort)Code11Attribute.LengthForCode11Length1)
-                                 .Value);
+                                            .Value);
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code11Attribute.LengthForCode11Length1, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code11Attribute.LengthForCode11Length1, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
@@ -96,16 +84,14 @@ namespace Motorola.Snapi.Attributes
         /// <para>Defines the allowable lengths for the symbology.</para>
         /// </summary>
         public ushort LengthForCode11Length2
-        {//Not sure what this actually does or what the values mean.
+        {
+            //Not sure what this actually does or what the values mean.
             get
             {
                 return Convert.ToUInt16(GetAttribute((ushort)Code11Attribute.LengthForCode11Length2)
-                                 .Value);
+                                            .Value);
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Code11Attribute.LengthForCode11Length2, DataType = DataType.Byte, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Code11Attribute.LengthForCode11Length2, DataType = DataType.Byte, Value = value}); }
         }
     }
 }

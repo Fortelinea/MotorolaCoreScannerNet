@@ -3,8 +3,7 @@
 /See the file license.txt for copying permission
 */
 
-
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -15,7 +14,7 @@ namespace Motorola.Snapi.Attributes
     /// </summary>
     public class Chinese2Of5 : MotorolaAttributeSet
     {
-        internal Chinese2Of5(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        internal Chinese2Of5(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: Chinese2of5</para>
@@ -28,10 +27,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)Chinese2Of5Attribute.Chinese2Of5)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)Chinese2Of5Attribute.Chinese2Of5, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)Chinese2Of5Attribute.Chinese2Of5, DataType = DataType.Bool, Value = value}); }
         }
     }
 }

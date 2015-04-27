@@ -3,14 +3,13 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Xml;
 using System.Xml.Linq;
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
@@ -35,7 +34,13 @@ namespace Motorola.Snapi.Attributes
             _scannerId = scannerId;
             _scannerDriver = scannerDriver;
             _getAttributesXml = String.Format(@"<inArgs><scannerID>{0}</scannerID><cmdArgs><arg-xml><attrib_list>{1}</attrib_list></arg-xml></cmdArgs></inArgs>", scannerId, @"{0}");
-            _setAttributeXml = String.Format(@"<inArgs><scannerID>{0}</scannerID><cmdArgs><arg-xml><attrib_list><attribute><id>{1}</id><datatype>{2}</datatype><value>{3}</value></attribute></attrib_list></arg-xml></cmdArgs></inArgs>", scannerId, @"{0}", @"{1}", @"{2}");
+            _setAttributeXml =
+                String.Format(
+                    @"<inArgs><scannerID>{0}</scannerID><cmdArgs><arg-xml><attrib_list><attribute><id>{1}</id><datatype>{2}</datatype><value>{3}</value></attribute></attrib_list></arg-xml></cmdArgs></inArgs>",
+                    scannerId,
+                    @"{0}",
+                    @"{1}",
+                    @"{2}");
         }
 
         /// <summary>
@@ -51,20 +56,27 @@ namespace Motorola.Snapi.Attributes
 
             _scannerDriver.ExecCommand((int)ScannerCommand.AttrGet, ref xml, out outXml, out status);
             if (status != 0)
-            {
-                throw new ScannerException(string.Format("Failed to get attribute {0}. Error code {1}", id, status)) { ErrorCode = (StatusCode)status };
-            }
+                throw new ScannerException(string.Format("Failed to get attribute {0}. Error code {1}", id, status)) {ErrorCode = (StatusCode)status};
             if (outXml == null)
                 return null;
             XDocument doc = XDocument.Parse(outXml);
-            var xmlAttribute = doc.Descendants("attribute").Single();
-            var name = xmlAttribute.Descendants("name").Single().Value;
-            var dataType = (DataType)xmlAttribute.Descendants("datatype").Single().Value[0];
-            var permission = xmlAttribute.Descendants("permission").Single().Value[0];
-            var stringValue = xmlAttribute.Descendants("value").Single().Value;
+            var xmlAttribute = doc.Descendants("attribute")
+                                  .Single();
+            var name = xmlAttribute.Descendants("name")
+                                   .Single()
+                                   .Value;
+            var dataType = (DataType)xmlAttribute.Descendants("datatype")
+                                                 .Single()
+                                                 .Value[0];
+            var permission = xmlAttribute.Descendants("permission")
+                                         .Single()
+                                         .Value[0];
+            var stringValue = xmlAttribute.Descendants("value")
+                                          .Single()
+                                          .Value;
             var value = ValueConverters.StringToActualType(dataType, stringValue);
 
-            var retval = new ScannerAttribute { Id = id, Name = name, DataType = dataType, Permission = permission, Value = value };
+            var retval = new ScannerAttribute {Id = id, Name = name, DataType = dataType, Permission = permission, Value = value};
             return retval;
         }
 
@@ -75,15 +87,16 @@ namespace Motorola.Snapi.Attributes
         /// <returns>Dictionary of ScannerAttribute objects holding identification info and the value of their corrisponding attribute. Keyed by id.</returns>
         protected IDictionary<ushort, ScannerAttribute> GetAttributes(List<ushort> ids)
         {
-            var xml = String.Format(_getAttributesXml, String.Join(",", ids.Select(n => n.ToString()).ToArray()));
+            var xml = String.Format(_getAttributesXml,
+                                    String.Join(",",
+                                                ids.Select(n => n.ToString())
+                                                   .ToArray()));
             string outXml = null;
             int status;
 
             _scannerDriver.ExecCommand((int)ScannerCommand.AttrGet, ref xml, out outXml, out status);
             if (status != 0)
-            {
-                throw new ScannerException(string.Format("Failed to get attributes. Error code {0}", status)){ ErrorCode = (StatusCode)status };
-            }
+                throw new ScannerException(string.Format("Failed to get attributes. Error code {0}", status)) {ErrorCode = (StatusCode)status};
 
             var retval = new Dictionary<ushort, ScannerAttribute>();
             XDocument doc;
@@ -99,13 +112,23 @@ namespace Motorola.Snapi.Attributes
             var attributes = doc.Descendants("attribute");
             foreach (var xmlAttribute in attributes)
             {
-                var id = ushort.Parse(xmlAttribute.Descendants("id").Single().Value);
-                var name = xmlAttribute.Descendants("name").Single().Value;
-                var dataType = (DataType)xmlAttribute.Descendants("datatype").Single().Value[0];
-                var permission = xmlAttribute.Descendants("permission").Single().Value[0];
-                var stringValue = xmlAttribute.Descendants("value").Single().Value;
+                var id = ushort.Parse(xmlAttribute.Descendants("id")
+                                                  .Single()
+                                                  .Value);
+                var name = xmlAttribute.Descendants("name")
+                                       .Single()
+                                       .Value;
+                var dataType = (DataType)xmlAttribute.Descendants("datatype")
+                                                     .Single()
+                                                     .Value[0];
+                var permission = xmlAttribute.Descendants("permission")
+                                             .Single()
+                                             .Value[0];
+                var stringValue = xmlAttribute.Descendants("value")
+                                              .Single()
+                                              .Value;
                 var value = ValueConverters.StringToActualType(dataType, stringValue);
-                retval.Add(id, new ScannerAttribute { Id = id, Name = name, DataType = dataType, Permission = permission, Value = value });
+                retval.Add(id, new ScannerAttribute {Id = id, Name = name, DataType = dataType, Permission = permission, Value = value});
             }
             return retval;
         }
@@ -122,14 +145,10 @@ namespace Motorola.Snapi.Attributes
 
             _scannerDriver.ExecCommand((int)ScannerCommand.AttrStore, ref xml, out outXml, out status);
             if (status != 0)
-            {
-                throw new ScannerException(string.Format("Failed to set attribute {0}. Error code {1}", attribute.Id, status)) { ErrorCode = (StatusCode)status };
-            }
+                throw new ScannerException(string.Format("Failed to set attribute {0}. Error code {1}", attribute.Id, status)) {ErrorCode = (StatusCode)status};
             _scannerDriver.ExecCommand((int)ScannerCommand.SetParameterPersistence, ref xml, out outXml, out status);
             if (status != 0)
-            {
-                throw new ScannerException(string.Format("Failed to set attribute {0}. Error code {1}", attribute.Id, status)) { ErrorCode = (StatusCode)status };
-            }
+                throw new ScannerException(string.Format("Failed to set attribute {0}. Error code {1}", attribute.Id, status)) {ErrorCode = (StatusCode)status};
         }
     }
 }

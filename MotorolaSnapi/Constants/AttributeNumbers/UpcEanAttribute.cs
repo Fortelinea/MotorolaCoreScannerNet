@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 namespace Motorola.Snapi.Constants.AttributeNumbers
 {
     internal enum UpcEanAttribute : ushort
@@ -28,6 +27,6 @@ namespace Motorola.Snapi.Constants.AttributeNumbers
         UccCouponExtendedCode = 85,
         TransmitCodeId = 45,
         Supp2 = 207,
-        Supp5 = 208,
+        Supp5 = 208
     }
 }

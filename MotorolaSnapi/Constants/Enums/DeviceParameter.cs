@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
 
 namespace Motorola.Snapi.Constants.Enums
@@ -173,7 +172,7 @@ namespace Motorola.Snapi.Constants.Enums
         FirmwareUpdateAlreadyAborted = 504, //  Firmware update is already aborted
         FirmwareUpdateAborted = 505, //  FW Update aborted
         ScannerDisconnectedDuringFirmwareUpdate = 506, //  Scanner is disconnected while updating firmware
-        FirmwareAlreadyExistsOnScanner = 600, //  The software component is already resident in the scanner
+        FirmwareAlreadyExistsOnScanner = 600 //  The software component is already resident in the scanner
     }
 
     [Flags]

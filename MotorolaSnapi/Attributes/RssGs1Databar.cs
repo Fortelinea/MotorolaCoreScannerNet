@@ -3,8 +3,7 @@
 /See the file license.txt for copying permission
 */
 
-
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -20,7 +19,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal RssGs1Databar(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        internal RssGs1Databar(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: GS1DataBar14</para>
@@ -33,10 +32,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)RssGs1DatabarAttribute.Gs1DataBar14)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)RssGs1DatabarAttribute.Gs1DataBar14, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)RssGs1DatabarAttribute.Gs1DataBar14, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -50,10 +46,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)RssGs1DatabarAttribute.Gs1DataBarLimited)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)RssGs1DatabarAttribute.Gs1DataBarLimited, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)RssGs1DatabarAttribute.Gs1DataBarLimited, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -67,10 +60,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)RssGs1DatabarAttribute.Gs1DataBarExpanded)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)RssGs1DatabarAttribute.Gs1DataBarExpanded, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)RssGs1DatabarAttribute.Gs1DataBarExpanded, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
@@ -88,10 +78,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)RssGs1DatabarAttribute.ConvertGs1DataBarToUpcean)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)RssGs1DatabarAttribute.ConvertGs1DataBarToUpcean, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)RssGs1DatabarAttribute.ConvertGs1DataBarToUpcean, DataType = DataType.Bool, Value = value}); }
         }
     }
 }

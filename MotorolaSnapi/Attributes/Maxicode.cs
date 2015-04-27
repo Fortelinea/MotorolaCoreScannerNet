@@ -3,8 +3,7 @@
 /See the file license.txt for copying permission
 */
 
-
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
@@ -20,7 +19,7 @@ namespace Motorola.Snapi.Attributes
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        public Maxicode(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        public Maxicode(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
         /// <para>Driver Attribute Name: Maxicode</para>
@@ -33,10 +32,7 @@ namespace Motorola.Snapi.Attributes
                 return (bool)GetAttribute((ushort)MaxicodeAttribute.Maxicode)
                                  .Value;
             }
-            set
-            {
-                SetAttribute(new ScannerAttribute { Id = (ushort)MaxicodeAttribute.Maxicode, DataType = DataType.Bool, Value = value });
-            }
+            set { SetAttribute(new ScannerAttribute {Id = (ushort)MaxicodeAttribute.Maxicode, DataType = DataType.Bool, Value = value}); }
         }
     }
 }

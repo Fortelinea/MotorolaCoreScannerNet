@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.EventArguments
@@ -11,7 +10,8 @@ namespace Motorola.Snapi.EventArguments
     /// <summary>
     /// Contains event information related to firmware downloading. Contains the current component being downloaded and the number of records downloaded.
     /// </summary>
-    public class DownloadEventArgs : FirmwareEventArgs {
+    public class DownloadEventArgs : FirmwareEventArgs
+    {
         /// <summary>
         /// Creates a new instnace of DownloadEventArgs
         /// </summary>
@@ -24,10 +24,12 @@ namespace Motorola.Snapi.EventArguments
             Component = component;
             Progress = progress;
         }
+
         /// <summary>
         /// Number of records downloaded. This value can be compared to TotalRecords from the FlashSessionStarted event to get the completion percentage.
         /// </summary>
         public int Progress { get; private set; }
+
         /// <summary>
         /// Software component number being downloaded.
         /// </summary>

@@ -3,39 +3,39 @@
 /See the file license.txt for copying permission
 */
 
-
 using Motorola.Snapi.Attributes;
 
 namespace Motorola.Snapi
 {
-    public partial class BarcodeScanner {
-        private Discovery _discovery;
-        private SystemEvents _systemEvents;
-        private Status _status;
-        private Ocr _ocr;
-        private Imaging _imaging;
-        private Beeper _beeper;
-        private LicenseParsing _license;
+    public partial class BarcodeScanner
+    {
         private Adf _adf;
-        private Synapse _synapse;
-        private UpcEan _upcEan;
-        private Code128 _code128;
-        private Code39 _code39;
-        private Code93 _code93;
-        private Code11 _code11;
-        private Interleaved2Of5 _interleaved2Of5;
-        private Discrete2Of5 _discrete2Of5;
+        private Beeper _beeper;
         private Chinese2Of5 _chinese2Of5;
         private Codabar _codabar;
-        private Msi _msi;
-        private RssGs1Databar _rssGs1Databar;
+        private Code11 _code11;
+        private Code128 _code128;
         private Code32 _code32;
-        private SymbologySecurity _symbologySecurityLevel;
-        private Pdf _pdf;
+        private Code39 _code39;
+        private Code93 _code93;
         private DataMatrixQr _dataMatrixQr;
+        private Discovery _discovery;
+        private Discrete2Of5 _discrete2Of5;
+        private Imaging _imaging;
+        private Interleaved2Of5 _interleaved2Of5;
+        private LicenseParsing _license;
         private Maxicode _maxicode;
+        private Msi _msi;
+        private Ocr _ocr;
+        private Pdf _pdf;
         private Postal _postal;
+        private RssGs1Databar _rssGs1Databar;
         private SignatureCapture _signatureCapture;
+        private Status _status;
+        private SymbologySecurity _symbologySecurityLevel;
+        private Synapse _synapse;
+        private SystemEvents _systemEvents;
+        private UpcEan _upcEan;
 
         public Discovery Discovery
         {

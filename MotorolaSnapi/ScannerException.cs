@@ -3,7 +3,6 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
 using System.Runtime.Serialization;
 using Motorola.Snapi.Constants.Enums;
@@ -15,17 +14,13 @@ namespace Motorola.Snapi
     {
         private StatusCode _errorCode;
         public ScannerException() { }
-
         public ScannerException(string message) : base(message) { }
-
         public ScannerException(string message, Exception innerException) : base(message, innerException) { }
 
         public ScannerException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
             if (info != null)
-            {
                 _errorCode = (StatusCode)info.GetInt32("_errorCode");
-            }
         }
 
         internal StatusCode ErrorCode
@@ -39,9 +34,7 @@ namespace Motorola.Snapi
             base.GetObjectData(info, context);
 
             if (info != null)
-            {
                 info.AddValue("_errorCode", _errorCode);
-            }
         }
     }
 }

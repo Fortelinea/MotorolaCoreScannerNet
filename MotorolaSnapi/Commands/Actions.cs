@@ -3,8 +3,7 @@
 /See the file license.txt for copying permission
 */
 
-
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Commands
@@ -40,7 +39,7 @@ namespace Motorola.Snapi.Commands
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.SetAction, ref inXml, out outXml, out status);
             if (status != 0)
-                throw new ScannerException("Sound beeper command failed") { ErrorCode = (StatusCode)status };
+                throw new ScannerException("Sound beeper command failed") {ErrorCode = (StatusCode)status};
         }
 
         public void ToggleLed(LedMode mode)
@@ -51,7 +50,7 @@ namespace Motorola.Snapi.Commands
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.SetAction, ref inXml, out outXml, out status);
             if (status != 0)
-                throw new ScannerException("Toggle led command failed") { ErrorCode = (StatusCode)status };
+                throw new ScannerException("Toggle led command failed") {ErrorCode = (StatusCode)status};
         }
     }
 

@@ -3,10 +3,9 @@
 /See the file license.txt for copying permission
 */
 
-
 using System;
 using System.IO;
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Commands
@@ -18,6 +17,7 @@ namespace Motorola.Snapi.Commands
     {
         private readonly CCoreScanner _scannerDriver;
         private readonly int _scannerId;
+
         /// <summary>
         /// Instantiates a new Firmware object.
         /// </summary>
@@ -41,7 +41,7 @@ namespace Motorola.Snapi.Commands
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.AbortUpdateFirmware, ref inXml, out outXml, out status);
             if (status != 0)
-                throw new ScannerException("Abort firmware update failed") { ErrorCode = (StatusCode)status };
+                throw new ScannerException("Abort firmware update failed") {ErrorCode = (StatusCode)status};
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Motorola.Snapi.Commands
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.StartNewFirmware, ref inXml, out outXml, out status);
             if (status != 0)
-                throw new ScannerException("Start new firmware failed") { ErrorCode = (StatusCode)status };
+                throw new ScannerException("Start new firmware failed") {ErrorCode = (StatusCode)status};
         }
 
         /// <summary>
@@ -72,19 +72,13 @@ namespace Motorola.Snapi.Commands
             int status;
             var extension = Path.GetExtension(firmwarePath);
             if (extension != null && extension.ToLower() == ".dat")
-            {
                 _scannerDriver.ExecCommand((int)ScannerCommand.UpdateFirmware, ref inXml, out outXml, out status);
-            }
-            else if(extension !=null && extension.ToLower() == ".scnplg")
-            {
+            else if (extension != null && extension.ToLower() == ".scnplg")
                 _scannerDriver.ExecCommand((int)ScannerCommand.UpdateFirmwareFromPlugin, ref inXml, out outXml, out status);
-            }
             else
-            {
                 throw new ArgumentOutOfRangeException("Firmware files should have the extension \".dat\" and plugin files should have the extension \".scnplg\"");
-            }
             if (status != 0)
-                throw new ScannerException("Firmware update command failed") { ErrorCode = (StatusCode)status };
+                throw new ScannerException("Firmware update command failed") {ErrorCode = (StatusCode)status};
         }
     }
 }

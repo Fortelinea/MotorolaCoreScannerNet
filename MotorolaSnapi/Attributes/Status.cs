@@ -3,8 +3,7 @@
 /See the file license.txt for copying permission
 */
 
-
-using CoreScanner;
+using Interop.CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 
 namespace Motorola.Snapi.Attributes
@@ -12,7 +11,7 @@ namespace Motorola.Snapi.Attributes
     /// <summary>
     /// Provides properties for accessing status attributes of cordless scanners.
     /// </summary>
-    public class Status : MotorolaAttributeSet 
+    public class Status : MotorolaAttributeSet
     {
         /// <summary>
         /// Initializes a SystemEvents object.
@@ -32,9 +31,7 @@ namespace Motorola.Snapi.Attributes
             {
                 var scannerAttribute = GetAttribute((ushort)StatusAttribute.InCradleDetect);
                 if (scannerAttribute != null)
-                {
-                    return (bool)scannerAttribute.Value;   
-                }
+                    return (bool)scannerAttribute.Value;
                 return false;
             }
         }
@@ -50,9 +47,7 @@ namespace Motorola.Snapi.Attributes
             {
                 var scannerAttribute = GetAttribute((ushort)StatusAttribute.OperationalMode);
                 if (scannerAttribute != null)
-                {
                     return (bool)scannerAttribute.Value;
-                }
                 return false;
             }
         }
@@ -68,9 +63,7 @@ namespace Motorola.Snapi.Attributes
             {
                 var scannerAttribute = GetAttribute((ushort)StatusAttribute.Charging);
                 if (scannerAttribute != null)
-                {
                     return (bool)scannerAttribute.Value;
-                }
                 return false;
             }
         }
