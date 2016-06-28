@@ -10,9 +10,9 @@ using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi
 {
+
     public partial class BarcodeScanner : IMotorolaBarcodeScanner
     {
-
         private readonly CCoreScanner _scannerDriver;
 
         internal BarcodeScanner(CCoreScanner scannerDriver, XElement scannerXml)

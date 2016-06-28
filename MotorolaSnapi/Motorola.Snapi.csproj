@@ -133,6 +133,7 @@
     <Compile Include="Constants\Enums\UpcPreamble.cs" />
     <Compile Include="Constants\Enums\UpdateMode.cs" />
     <Compile Include="Constants\HostMode.cs" />
+    <Compile Include="EnumUtil.cs" />
     <Compile Include="EventArguments\BarcodeScanEventArgs.cs" />
     <Compile Include="EventArguments\CommandResponceEventArgs.cs" />
     <Compile Include="EventArguments\DownloadEventArgs.cs" />
@@ -169,6 +170,7 @@
     </PostBuildEvent>
   </PropertyGroup>
   <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release'">
-    <Exec Command="nuget pack $(ProjectFileName) -Symbols -Prop Configuration=Release"></Exec>
+    <Exec Command="nuget pack $(ProjectFileName) -Symbols -Prop Configuration=Release">
+    </Exec>
   </Target>
 </Project>
