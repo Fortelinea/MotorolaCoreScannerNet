@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>MotorolaCoreScannerNet</id>
+        <version>1.1.0</version>
+        <title>Motorola CoreScanner Driver .NET Wrapper</title>
+        <authors>Nathan Barnett,Jason Talbot</authors>
+        <projectUrl>https://github.com/Fortelinea/MotorolaCoreScannerNet</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Provides a wrapper for the Zebra/Motorola CoreScannerDriver that is much easier to use in a C# project.</description>
+        <summary>Provides a wrapper for the Zebra/Motorola CoreScannerDriver that is much easier to use in a C# project.</summary>
+        <releaseNotes>1.1.0 Exceptions and Code Cleanup
+
+Exceptions pass along much more information about the error.
+
+For documentation go to http://fortelinea.github.io/MotorolaCoreScannerNet/
+
+You will need to download and include the Motorola (Zebra) Core Scanner Driver to make this work.</releaseNotes>
+        <copyright>Copyright (c) 2015 Fortelinea Software Systems, Inc.</copyright>
+        <tags>Motorola Zebra Barcode Scanner Fortelinea CoreScanner .NET</tags>
+    </metadata>
+</package>
