@@ -8,12 +8,13 @@ using Motorola.Snapi.Constants.Enums;
 namespace Motorola.Snapi.EventArguments
 {
     /// <summary>
-    /// Contains event information related to firmware downloading. Contains the current component being downloaded and the number of records downloaded.
+    ///     Contains event information related to firmware downloading. Contains the current component being downloaded and the
+    ///     number of records downloaded.
     /// </summary>
     public class DownloadEventArgs : FirmwareEventArgs
     {
         /// <summary>
-        /// Creates a new instnace of DownloadEventArgs
+        ///     Creates a new instnace of DownloadEventArgs
         /// </summary>
         /// <param name="scannerId">Id number of the scanner that is downloading.</param>
         /// <param name="status">Status or error code.</param>
@@ -26,13 +27,14 @@ namespace Motorola.Snapi.EventArguments
         }
 
         /// <summary>
-        /// Number of records downloaded. This value can be compared to TotalRecords from the FlashSessionStarted event to get the completion percentage.
-        /// </summary>
-        public int Progress { get; private set; }
-
-        /// <summary>
-        /// Software component number being downloaded.
+        ///     Software component number being downloaded.
         /// </summary>
         public int Component { get; private set; }
+
+        /// <summary>
+        ///     Number of records downloaded. This value can be compared to TotalRecords from the FlashSessionStarted event to get
+        ///     the completion percentage.
+        /// </summary>
+        public int Progress { get; private set; }
     }
 }

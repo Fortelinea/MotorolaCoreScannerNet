@@ -3,72 +3,90 @@
 /See the file license.txt for copying permission
 */
 
-using Interop.CoreScanner;
+using CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
 {
     /// <summary>
-    /// Provides properties for accessing and modifying SystemEvents attributes.
-    /// These apply only to  SSI RS232 mode.
+    ///     Provides properties for accessing and modifying SystemEvents attributes.
+    ///     These apply only to  SSI RS232 mode.
     /// </summary>
     public class SystemEvents : MotorolaAttributeSet
     {
         /// <summary>
-        /// Initializes a SystemEvents object containing the current values of all System Event attributes for a given scanner.
+        ///     Initializes a SystemEvents object containing the current values of all System Event attributes for a given scanner.
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
         internal SystemEvents(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
-        /// <para>Driver Attribute Name: DecodeEvent</para>
-        /// <para>When enabled, the scanner generates a message
-        /// to the host whenever a bar code is successfully
-        /// decoded. When disabled, no notification is sent</para>
-        /// <para>Values: "On" (true), "Off" (false)</para>
-        /// </summary>
-        public bool DecodeEventEnabled
-        {
-            get
-            {
-                return (bool)GetAttribute((ushort)SystemEventAttribute.DecodeEvent)
-                                 .Value;
-            }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)SystemEventAttribute.DecodeEvent, DataType = DataType.Bool, Value = value}); }
-        }
-
-        /// <summary>
-        /// <para>Driver Attribute Name: BootupEvent</para>
-        /// <para>When enabled, the scanner generates a message to the host
-        /// whenever power is applied. When disabled, no notification is sent</para>
-        /// <para>Values: "On" (true), "Off" (false)</para>
+        ///     <para>Driver Attribute Name: BootupEvent</para>
+        ///     <para>
+        ///         When enabled, the scanner generates a message to the host
+        ///         whenever power is applied. When disabled, no notification is sent
+        ///     </para>
+        ///     <para>Values: "On" (true), "Off" (false)</para>
         /// </summary>
         public bool BootupEventEnabled
         {
-            get
+            get { return (bool)GetAttribute((ushort)SystemEventAttribute.BootupEvent).Value; }
+            set
             {
-                return (bool)GetAttribute((ushort)SystemEventAttribute.BootupEvent)
-                                 .Value;
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)SystemEventAttribute.BootupEvent,
+                                 DataType = DataType.Bool,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)SystemEventAttribute.BootupEvent, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: ParamEvent</para>
-        /// <para>When enabled, the scanner generates a message
-        /// to the host when a parameter is changed.</para>
-        /// <para>Values: "On" (true), "Off" (false)</para>
+        ///     <para>Driver Attribute Name: DecodeEvent</para>
+        ///     <para>
+        ///         When enabled, the scanner generates a message
+        ///         to the host whenever a bar code is successfully
+        ///         decoded. When disabled, no notification is sent
+        ///     </para>
+        ///     <para>Values: "On" (true), "Off" (false)</para>
+        /// </summary>
+        public bool DecodeEventEnabled
+        {
+            get { return (bool)GetAttribute((ushort)SystemEventAttribute.DecodeEvent).Value; }
+            set
+            {
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)SystemEventAttribute.DecodeEvent,
+                                 DataType = DataType.Bool,
+                                 Value = value
+                             });
+            }
+        }
+
+        /// <summary>
+        ///     <para>Driver Attribute Name: ParamEvent</para>
+        ///     <para>
+        ///         When enabled, the scanner generates a message
+        ///         to the host when a parameter is changed.
+        ///     </para>
+        ///     <para>Values: "On" (true), "Off" (false)</para>
         /// </summary>
         public bool ParamEventEnabled
         {
-            get
+            get { return (bool)GetAttribute((ushort)SystemEventAttribute.ParamEvent).Value; }
+            set
             {
-                return (bool)GetAttribute((ushort)SystemEventAttribute.ParamEvent)
-                                 .Value;
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)SystemEventAttribute.ParamEvent,
+                                 DataType = DataType.Bool,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)SystemEventAttribute.ParamEvent, DataType = DataType.Bool, Value = value}); }
         }
     }
 }

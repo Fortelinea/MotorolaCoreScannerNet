@@ -3,21 +3,22 @@
 /See the file license.txt for copying permission
 */
 
-using Interop.CoreScanner;
+using CoreScanner;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Commands
 {
     /// <summary>
-    /// Methods for flushing and aborting MacroPDF reads.
+    ///     Methods for flushing and aborting MacroPDF reads.
     /// </summary>
     public class MacroPdf
     {
         private readonly CCoreScanner _scannerDriver;
+
         private readonly int _scannerId;
 
         /// <summary>
-        /// Instantiates a new MacroPdf object
+        ///     Instantiates a new MacroPdf object
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
@@ -28,31 +29,33 @@ namespace Motorola.Snapi.Commands
         }
 
         /// <summary>
-        /// Flush MacroPDF buffer of this scanner
-        /// </summary>
-        public void Flush()
-        {
-            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-            string inXml = string.Format(setCommandXml, _scannerId);
-            string outXml;
-            int status;
-            _scannerDriver.ExecCommand((int)ScannerCommand.FlushMacroPdf, ref inXml, out outXml, out status);
-            if (status != 0)
-                throw new ScannerException("MacroPDF flush failed") {ErrorCode = (StatusCode)status};
-        }
-
-        /// <summary>
-        /// Abort MacroPDF continuous read.
+        ///     Abort MacroPDF continuous read.
         /// </summary>
         public void Abort()
         {
             const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-            string inXml = string.Format(setCommandXml, _scannerId);
+            var inXml = string.Format(setCommandXml, _scannerId);
             string outXml;
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.AbortMacroPdf, ref inXml, out outXml, out status);
-            if (status != 0)
-                throw new ScannerException("Abort MacroPDF failed") {ErrorCode = (StatusCode)status};
+            var s = (StatusCode)status;
+            if (s != StatusCode.Success)
+                throw new ScannerException(s);
+        }
+
+        /// <summary>
+        ///     Flush MacroPDF buffer of this scanner
+        /// </summary>
+        public void Flush()
+        {
+            const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
+            var inXml = string.Format(setCommandXml, _scannerId);
+            string outXml;
+            int status;
+            _scannerDriver.ExecCommand((int)ScannerCommand.FlushMacroPdf, ref inXml, out outXml, out status);
+            var s = (StatusCode)status;
+            if (s != StatusCode.Success)
+                throw new ScannerException(s);
         }
     }
 }

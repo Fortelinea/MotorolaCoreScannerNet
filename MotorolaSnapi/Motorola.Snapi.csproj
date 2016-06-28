@@ -33,12 +33,8 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Interop.CoreScanner, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\..\..\..\..\Program Files\Motorola Scanner\Common\Interop.CoreScanner.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
@@ -155,6 +151,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Documentation.dox" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="CoreScanner">
+      <Guid>{DB07B9FC-18B0-4B55-9A44-31D2C2F87875}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

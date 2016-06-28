@@ -6,7 +6,7 @@
 namespace Motorola.Snapi.EventArguments
 {
     /// <summary>
-    /// Not implemented. Only contains scanner id. No plans to implement in the near future unless I find a need for it.
+    ///     Not implemented. Only contains scanner id. No plans to implement in the near future unless I find a need for it.
     /// </summary>
     public class VideoEventArgs : ScannerEventArgs
     {

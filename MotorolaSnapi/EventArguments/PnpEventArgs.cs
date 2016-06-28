@@ -6,12 +6,12 @@
 namespace Motorola.Snapi.EventArguments
 {
     /// <summary>
-    /// Contains scanner info sent when a scanner is connected or disconnected.
+    ///     Contains scanner info sent when a scanner is connected or disconnected.
     /// </summary>
     public class PnpEventArgs : ScannerEventArgs
     {
         /// <summary>
-        /// Creates a new PnpEventArgs instance. passes scannerId to base class.
+        ///     Creates a new PnpEventArgs instance. passes scannerId to base class.
         /// </summary>
         /// <param name="scannerId">Id number of scanner that triggered the event.</param>
         public PnpEventArgs(uint scannerId) : base(scannerId) { }

@@ -9,12 +9,12 @@ using System.Drawing.Imaging;
 namespace Motorola.Snapi.EventArguments
 {
     /// <summary>
-    /// Contains image data and sender info for when a scanner captures an image.
+    ///     Contains image data and sender info for when a scanner captures an image.
     /// </summary>
     public class ImageEventArgs : ScannerEventArgs
     {
         /// <summary>
-        /// Creates a new image event instance.
+        ///     Creates a new image event instance.
         /// </summary>
         /// <param name="scannerId">Id number of the scanner that triggered the event.</param>
         /// <param name="format">File format of the image.</param>
@@ -26,12 +26,12 @@ namespace Motorola.Snapi.EventArguments
         }
 
         /// <summary>
-        /// File format of the received image.
+        ///     File format of the received image.
         /// </summary>
         public ImageFormat Format { get; private set; }
 
         /// <summary>
-        /// Image received by the scanner.
+        ///     Image received by the scanner.
         /// </summary>
         public Image Image { get; private set; }
     }

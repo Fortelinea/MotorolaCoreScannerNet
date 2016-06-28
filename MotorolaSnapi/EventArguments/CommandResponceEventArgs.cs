@@ -8,18 +8,18 @@ using System.Xml.Linq;
 namespace Motorola.Snapi.EventArguments
 {
     /// <summary>
-    /// Contains the results of an async command.
+    ///     Contains the results of an async command.
     /// </summary>
     internal class CommandResponceEventArgs
     {
         /// <summary>
-        /// Creates a new instance of CommandResponceEventArgs.
+        ///     Creates a new instance of CommandResponceEventArgs.
         /// </summary>
         /// <param name="outXml">Command results in xml format.</param>
         internal CommandResponceEventArgs(XDocument outXml) { OutXml = outXml; }
 
         /// <summary>
-        /// Command results in xml format.
+        ///     Command results in xml format.
         /// </summary>
         internal XDocument OutXml { get; set; }
     }

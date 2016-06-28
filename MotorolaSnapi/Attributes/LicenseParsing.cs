@@ -4,52 +4,43 @@
 */
 
 using System;
-using Interop.CoreScanner;
+using CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
 {
     /// <summary>
-    /// Provides properties for accessing and modifying Driver License Parsing attributes.
-    /// <remarks><para>Notes: DL parsing rules are in a proprietary format. End users wishing to deploy DL parsing rules should first manually
-    /// program the scanner using programming bar codes and then reading the attribute from the application. The rules can then be
-    /// deployed to other scanners in the enterprise.</para></remarks> 
+    ///     Provides properties for accessing and modifying Driver License Parsing attributes.
+    ///     <remarks>
+    ///         <para>
+    ///             Notes: DL parsing rules are in a proprietary format. End users wishing to deploy DL parsing rules should
+    ///             first manually
+    ///             program the scanner using programming bar codes and then reading the attribute from the application. The
+    ///             rules can then be
+    ///             deployed to other scanners in the enterprise.
+    ///         </para>
+    ///     </remarks>
     /// </summary>
     public class LicenseParsing : MotorolaAttributeSet
     {
         /// <summary>
-        /// Instantiates a DLParsing object.
+        ///     Instantiates a DLParsing object.
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
-        internal LicenseParsing(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) {}
+        internal LicenseParsing(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
-        /// <para>Driver Attribute Number: DLParseMode</para>
-        /// <para>This parameter specifies a Driver’s License parsing Mode. It can be disabled,
-        /// set to Embedded driver’s license parsing (does not require Motorola software on
-        /// the host) or set to Server Based driver’slicense parsing (requires Motorola software on the host).</para>
-        /// <para>Values: Parsing Off (0), Parse w Embedded Software (1), Encrypt then send to host (2)</para>
-        /// </summary>
-        public LicenseParseMode LicenseParseMode
-        {
-            get
-            {
-                var attribute = GetAttribute((ushort)LicenseParsingAttribute.DLParseMode);
-                if (attribute != null)
-                    return (LicenseParseMode)Convert.ToUInt16(attribute.Value);
-                return LicenseParseMode.NA;
-            }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)LicenseParsingAttribute.DLParseMode, DataType = DataType.Byte, Value = value}); }
-        }
-
-        /// <summary>
-        /// <para>Driver Attribute Number: DLParseBuffer</para>
-        /// <para>The buffer containing the DL parse rules.</para>
-        /// <para>Notes: DL parsing rules are in a proprietary format. End users wishing to deploy DL parsing rules should first manually
-        /// program the scanner using programming bar codes and then reading the attribute from the application. The rules can then be
-        /// deployed to other scanners in the enterprise.</para>
+        ///     <para>Driver Attribute Number: DLParseBuffer</para>
+        ///     <para>The buffer containing the DL parse rules.</para>
+        ///     <para>
+        ///         Notes: DL parsing rules are in a proprietary format. End users wishing to deploy DL parsing rules should first
+        ///         manually
+        ///         program the scanner using programming bar codes and then reading the attribute from the application. The rules
+        ///         can then be
+        ///         deployed to other scanners in the enterprise.
+        ///     </para>
         /// </summary>
         public byte[] LicenseParseBuffer
         {
@@ -62,7 +53,41 @@ namespace Motorola.Snapi.Attributes
             }
             set
             {
-                SetAttribute(new ScannerAttribute {Id = (ushort)LicenseParsingAttribute.DLParseMode, DataType = DataType.Array, Value = ValueConverters.ByteArrayToHexString(value)});
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)LicenseParsingAttribute.DLParseMode,
+                                 DataType = DataType.Array,
+                                 Value = ValueConverters.ByteArrayToHexString(value)
+                             });
+            }
+        }
+
+        /// <summary>
+        ///     <para>Driver Attribute Number: DLParseMode</para>
+        ///     <para>
+        ///         This parameter specifies a Driver’s License parsing Mode. It can be disabled,
+        ///         set to Embedded driver’s license parsing (does not require Motorola software on
+        ///         the host) or set to Server Based driver’slicense parsing (requires Motorola software on the host).
+        ///     </para>
+        ///     <para>Values: Parsing Off (0), Parse w Embedded Software (1), Encrypt then send to host (2)</para>
+        /// </summary>
+        public LicenseParseMode LicenseParseMode
+        {
+            get
+            {
+                var attribute = GetAttribute((ushort)LicenseParsingAttribute.DLParseMode);
+                if (attribute != null)
+                    return (LicenseParseMode)Convert.ToUInt16(attribute.Value);
+                return LicenseParseMode.NA;
+            }
+            set
+            {
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)LicenseParsingAttribute.DLParseMode,
+                                 DataType = DataType.Byte,
+                                 Value = value
+                             });
             }
         }
     }

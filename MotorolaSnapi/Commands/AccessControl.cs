@@ -3,21 +3,22 @@
 /See the file license.txt for copying permission
 */
 
-using Interop.CoreScanner;
+using CoreScanner;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Commands
 {
     /// <summary>
-    /// Access Control commands.
+    ///     Access Control commands.
     /// </summary>
     public class AccessControl
     {
         private readonly CCoreScanner _scannerDriver;
+
         private readonly int _scannerId;
 
         /// <summary>
-        /// Instantiates a new AccessControl object.
+        ///     Instantiates a new AccessControl object.
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
@@ -28,31 +29,33 @@ namespace Motorola.Snapi.Commands
         }
 
         /// <summary>
-        /// Claim this device.
+        ///     Claim this device.
         /// </summary>
         public void Claim()
         {
             const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-            string inXml = string.Format(setCommandXml, _scannerId);
+            var inXml = string.Format(setCommandXml, _scannerId);
             string outXml;
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.ClaimDevice, ref inXml, out outXml, out status);
-            if (status != 0)
-                throw new ScannerException("Device claim failed") {ErrorCode = (StatusCode)status};
+            var s = (StatusCode)status;
+            if (s != StatusCode.Success)
+                throw new ScannerException(s);
         }
 
         /// <summary>
-        /// Release this device.
+        ///     Release this device.
         /// </summary>
         public void Release()
         {
             const string setCommandXml = @"<inArgs><scannerID>{0}</scannerID></inArgs>";
-            string inXml = string.Format(setCommandXml, _scannerId);
+            var inXml = string.Format(setCommandXml, _scannerId);
             string outXml;
             int status;
             _scannerDriver.ExecCommand((int)ScannerCommand.ReleaseDevice, ref inXml, out outXml, out status);
-            if (status != 0)
-                throw new ScannerException("Device release failed") {ErrorCode = (StatusCode)status};
+            var s = (StatusCode)status;
+            if (s != StatusCode.Success)
+                throw new ScannerException(s);
         }
     }
 }

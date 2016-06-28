@@ -4,385 +4,533 @@
 */
 
 using System;
-using Interop.CoreScanner;
+using CoreScanner;
 using Motorola.Snapi.Constants.AttributeNumbers;
 using Motorola.Snapi.Constants.Enums;
 
 namespace Motorola.Snapi.Attributes
 {
     /// <summary>
-    /// Provides properties for accessing and modifying scanner OCR attributes.
+    ///     Provides properties for accessing and modifying scanner OCR attributes.
     /// </summary>
     public class Ocr : MotorolaAttributeSet
     {
         /// <summary>
-        /// Initializes an Ocr object.
+        ///     Initializes an Ocr object.
         /// </summary>
         /// <param name="scannerId">ID number of the scanner to get/set data from.</param>
         /// <param name="scannerDriver">CCoreScanner instance</param>
         internal Ocr(int scannerId, CCoreScanner scannerDriver) : base(scannerId, scannerDriver) { }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRCheckDigitMod</para>
-        /// <para>OCR module check calculation.</para>
-        /// <remarks><para>Values: 1..99</para></remarks>
+        ///     <para>Driver Attribute Name: OCRCheckDigitMod</para>
+        ///     <para>OCR module check calculation.</para>
+        ///     <remarks>
+        ///         <para>Values: 1..99</para>
+        ///     </remarks>
         /// </summary>
         public ushort CheckDigitMod
         {
-            get
+            get { return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.CheckDigitMod).Value); }
+            set
             {
-                return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.CheckDigitMod)
-                                            .Value);
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.CheckDigitMod,
+                                 DataType = DataType.UShort,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.CheckDigitMod, DataType = DataType.UShort, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRCheckDigitMulti</para>
-        /// <para>OCR check digit multiplier string.</para>
-        /// <remarks><para>Values: 1212121212</para>
+        ///     <para>Driver Attribute Name: OCRCheckDigitMulti</para>
+        ///     <para>OCR check digit multiplier string.</para>
+        ///     <remarks>
+        ///         <para>Values: 1212121212</para>
         /// </summary>
         public string CheckDigitMultiplier
         {
-            get
+            get { return (string)GetAttribute((ushort)OcrAttribute.CheckDigitMultiplier).Value; }
+            set
             {
-                return (string)GetAttribute((ushort)OcrAttribute.CheckDigitMultiplier)
-                                   .Value;
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.CheckDigitMultiplier,
+                                 DataType = DataType.String,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.CheckDigitMultiplier, DataType = DataType.String, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRCheckDigitValid</para>
-        /// <para>Set one of OCR check digit validations.</para>
-        /// <remarks><para>Values: 0..9</para></remarks>
+        ///     <para>Driver Attribute Name: OCRCheckDigitValid</para>
+        ///     <para>Set one of OCR check digit validations.</para>
+        ///     <remarks>
+        ///         <para>Values: 0..9</para>
+        ///     </remarks>
         /// </summary>
         public ushort CheckDigitValidation
         {
-            get
+            get { return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.CheckDigitValidation).Value); }
+            set
             {
-                return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.CheckDigitValidation)
-                                            .Value);
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.CheckDigitValidation,
+                                 DataType = DataType.Byte,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.CheckDigitValidation, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRDespeckle</para>
-        /// <para>OCR Despeckle Level.</para>
-        /// <remarks><para>Values: 0..99</para></remarks>
+        ///     <para>Driver Attribute Name: OCRDespeckle</para>
+        ///     <para>OCR Despeckle Level.</para>
+        ///     <remarks>
+        ///         <para>Values: 0..99</para>
+        ///     </remarks>
         /// </summary>
         public ushort Despeckle
         {
-            get
+            get { return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.Despeckle).Value); }
+            set
             {
-                return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.Despeckle)
-                                            .Value);
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.Despeckle,
+                                 DataType = DataType.Byte,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.Despeckle, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRFinderExternal</para>
-        /// <para>Enabled external OCR finder.</para>
-        /// <remarks><para>Values: "Enable"(true) "Disable"(false)</para></remarks>
+        ///     <para>Driver Attribute Name: OCRFinderExternal</para>
+        ///     <para>Enabled external OCR finder.</para>
+        ///     <remarks>
+        ///         <para>Values: "Enable"(true) "Disable"(false)</para>
+        ///     </remarks>
         /// </summary>
         public bool EnableExternalFinder
         {
-            get
+            get { return (bool)GetAttribute((ushort)OcrAttribute.EnableExternalFinder).Value; }
+            set
             {
-                return (bool)GetAttribute((ushort)OcrAttribute.EnableExternalFinder)
-                                 .Value;
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.EnableExternalFinder,
+                                 DataType = DataType.Bool,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.EnableExternalFinder, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRFinderEnable</para>
-        /// <para>Enables OCR finder.</para>
-        /// <remarks><para>Values: "Enable"(true) "Disable"(false)</para></remarks>
+        ///     <para>Driver Attribute Name: OCRFinderEnable</para>
+        ///     <para>Enables OCR finder.</para>
+        ///     <remarks>
+        ///         <para>Values: "Enable"(true) "Disable"(false)</para>
+        ///     </remarks>
         /// </summary>
         public bool EnableFinder
         {
-            get
+            get { return (bool)GetAttribute((ushort)OcrAttribute.EnableFinder).Value; }
+            set
             {
-                return (bool)GetAttribute((ushort)OcrAttribute.EnableFinder)
-                                 .Value;
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.EnableFinder,
+                                 DataType = DataType.Bool,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.EnableFinder, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRBrightIllum</para>
-        /// <para>Enable brightness for long OCR strings.</para>
-        /// <remarks><para>Values: "Enable"(true) "Disable"(false)</para></remarks>
+        ///     <para>Driver Attribute Name: OCRBrightIllum</para>
+        ///     <para>Enable brightness for long OCR strings.</para>
+        ///     <remarks>
+        ///         <para>Values: "Enable"(true) "Disable"(false)</para>
+        ///     </remarks>
         /// </summary>
         public bool EnableIllumination
         {
-            get
+            get { return (bool)GetAttribute((ushort)OcrAttribute.EnableIllumination).Value; }
+            set
             {
-                return (bool)GetAttribute((ushort)OcrAttribute.EnableIllumination)
-                                 .Value;
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.EnableIllumination,
+                                 DataType = DataType.Bool,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.EnableIllumination, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: MICRE13BEnable</para>
-        /// <para>Enable/Disable MICR E13B.</para>
-        /// <remarks><para>Values: "Enable"(true) "Disable"(false)</para></remarks>
+        ///     <para>Driver Attribute Name: MICRE13BEnable</para>
+        ///     <para>Enable/Disable MICR E13B.</para>
+        ///     <remarks>
+        ///         <para>Values: "Enable"(true) "Disable"(false)</para>
+        ///     </remarks>
         /// </summary>
         public bool EnableMicre13B
         {
-            get
+            get { return (bool)GetAttribute((ushort)OcrAttribute.Micre13BEnable).Value; }
+            set
             {
-                return (bool)GetAttribute((ushort)OcrAttribute.Micre13BEnable)
-                                 .Value;
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.Micre13BEnable,
+                                 DataType = DataType.Bool,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.Micre13BEnable, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRAEnable</para>
-        /// <para>OCR-A Enable/Disable.</para>
-        /// <remarks><para>Values: "Enable"(true) "Disable"(false)</para></remarks>
+        ///     <para>Driver Attribute Name: OCRAEnable</para>
+        ///     <para>OCR-A Enable/Disable.</para>
+        ///     <remarks>
+        ///         <para>Values: "Enable"(true) "Disable"(false)</para>
+        ///     </remarks>
         /// </summary>
         public bool EnableOcrA
         {
-            get
+            get { return (bool)GetAttribute((ushort)OcrAttribute.OcrAEnable).Value; }
+            set
             {
-                return (bool)GetAttribute((ushort)OcrAttribute.OcrAEnable)
-                                 .Value;
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.OcrAEnable,
+                                 DataType = DataType.Bool,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.OcrAEnable, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRBEnable</para>
-        /// <para>OCR-B Enable/Disable.</para>
-        /// <remarks><para>Values: "Enable"(true) "Disable"(false)</para></remarks>
+        ///     <para>Driver Attribute Name: OCRBEnable</para>
+        ///     <para>OCR-B Enable/Disable.</para>
+        ///     <remarks>
+        ///         <para>Values: "Enable"(true) "Disable"(false)</para>
+        ///     </remarks>
         /// </summary>
         public bool EnableOcrB
         {
-            get
+            get { return (bool)GetAttribute((ushort)OcrAttribute.OcrBEnable).Value; }
+            set
             {
-                return (bool)GetAttribute((ushort)OcrAttribute.OcrBEnable)
-                                 .Value;
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.OcrBEnable,
+                                 DataType = DataType.Bool,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.OcrBEnable, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: USCurrencyEnable</para>
-        /// <para>Enable/Disable US Currency Serial Number.</para>
-        /// <remarks><para>Values: "Enable"(true) "Disable"(false)</para></remarks>
+        ///     <para>Driver Attribute Name: USCurrencyEnable</para>
+        ///     <para>Enable/Disable US Currency Serial Number.</para>
+        ///     <remarks>
+        ///         <para>Values: "Enable"(true) "Disable"(false)</para>
+        ///     </remarks>
         /// </summary>
         public bool EnableUSCurrency
         {
-            get
+            get { return (bool)GetAttribute((ushort)OcrAttribute.UsCurrencyEnable).Value; }
+            set
             {
-                return (bool)GetAttribute((ushort)OcrAttribute.UsCurrencyEnable)
-                                 .Value;
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.UsCurrencyEnable,
+                                 DataType = DataType.Bool,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.UsCurrencyEnable, DataType = DataType.Bool, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRLines</para>
-        /// <para>Set number of lines of OCR to be read.</para>
-        /// <remarks><para>Values: 1, 2, 3</para></remarks>
+        ///     <para>Driver Attribute Name: OCRLines</para>
+        ///     <para>Set number of lines of OCR to be read.</para>
+        ///     <remarks>
+        ///         <para>Values: 1, 2, 3</para>
+        ///     </remarks>
         /// </summary>
         public ushort Lines
         {
-            get
+            get { return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.Lines).Value); }
+            set
             {
-                return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.Lines)
-                                            .Value);
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.Lines,
+                                 DataType = DataType.Byte,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.Lines, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRLowPassFilter</para>
-        /// <para>OCR Low Pass Filter.</para>
-        /// <remarks><para>Values: 0..20</para></remarks>
+        ///     <para>Driver Attribute Name: OCRLowPassFilter</para>
+        ///     <para>OCR Low Pass Filter.</para>
+        ///     <remarks>
+        ///         <para>Values: 0..20</para>
+        ///     </remarks>
         /// </summary>
         public ushort LowPassFilter
         {
-            get
+            get { return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.LowPassFilter).Value); }
+            set
             {
-                return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.LowPassFilter)
-                                            .Value);
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.LowPassFilter,
+                                 DataType = DataType.Byte,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.LowPassFilter, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRMaxChar</para>
-        /// <para>Set maximum number of OCR characters per line to decode.</para>
-        /// <remarks><para>Values: 3..100</para></remarks>
+        ///     <para>Driver Attribute Name: OCRMaxChar</para>
+        ///     <para>Set maximum number of OCR characters per line to decode.</para>
+        ///     <remarks>
+        ///         <para>Values: 3..100</para>
+        ///     </remarks>
         /// </summary>
         public ushort MaxCharacters
         {
-            get
+            get { return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.MaxCharacters).Value); }
+            set
             {
-                return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.MaxCharacters)
-                                            .Value);
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.MaxCharacters,
+                                 DataType = DataType.Byte,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.MaxCharacters, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRMinChar</para>
-        /// <para>Set minimum number of OCR characters per line to decode.</para>
-        /// <remarks><para>Values: 3..100</para></remarks>
+        ///     <para>Driver Attribute Name: OCRMinChar</para>
+        ///     <para>Set minimum number of OCR characters per line to decode.</para>
+        ///     <remarks>
+        ///         <para>Values: 3..100</para>
+        ///     </remarks>
         /// </summary>
         public ushort MinCharacters
         {
-            get
+            get { return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.MinCharacters).Value); }
+            set
             {
-                return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.MinCharacters)
-                                            .Value);
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.MinCharacters,
+                                 DataType = DataType.Byte,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.MinCharacters, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRAVariant</para>
-        /// <para>Set one of OCR-A variants.</para>
-        /// <remarks><para>Values: 0, 1, 2, 3</para></remarks>
+        ///     <para>Driver Attribute Name: OCRAVariant</para>
+        ///     <para>Set one of OCR-A variants.</para>
+        ///     <remarks>
+        ///         <para>Values: 0, 1, 2, 3</para>
+        ///     </remarks>
         /// </summary>
         public ushort OcrAVariant
         {
-            get
+            get { return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.OcrAVariant).Value); }
+            set
             {
-                return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.OcrAVariant)
-                                            .Value);
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.OcrAVariant,
+                                 DataType = DataType.Byte,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.OcrAVariant, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRBVariant</para>
-        /// <para>Set one of OCR-B variants.</para>
-        /// <remarks><para>Values: 0..10</para></remarks>
+        ///     <para>Driver Attribute Name: OCRBVariant</para>
+        ///     <para>Set one of OCR-B variants.</para>
+        ///     <remarks>
+        ///         <para>Values: 0..10</para>
+        ///     </remarks>
         /// </summary>
         public ushort OcrBVariant
         {
-            get
+            get { return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.OcrBVariant).Value); }
+            set
             {
-                return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.OcrBVariant)
-                                            .Value);
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.OcrBVariant,
+                                 DataType = DataType.Byte,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.OcrBVariant, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCROrientation</para>
-        /// <para>Set the orientation of an OCR string to be read to the camera.</para>
-        /// <remarks><para>Values: 0, 1, 2, 3</para></remarks>
+        ///     <para>Driver Attribute Name: OCROrientation</para>
+        ///     <para>Set the orientation of an OCR string to be read to the camera.</para>
+        ///     <remarks>
+        ///         <para>Values: 0, 1, 2, 3</para>
+        ///     </remarks>
         /// </summary>
         public BarcodeOrientation Orientation
         {
-            get
+            get { return (BarcodeOrientation)GetAttribute((ushort)OcrAttribute.Orientation).Value; }
+            set
             {
-                return (BarcodeOrientation)GetAttribute((ushort)OcrAttribute.Orientation)
-                                               .Value;
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.Orientation,
+                                 DataType = DataType.Byte,
+                                 Value = (int)value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.Orientation, DataType = DataType.Byte, Value = (int)value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRQuietZone</para>
-        /// <para>Set OCR quiet zone.</para>
-        /// <remarks><para>Values: 20..99</para></remarks>
+        ///     <para>Driver Attribute Name: OCRQuietZone</para>
+        ///     <para>Set OCR quiet zone.</para>
+        ///     <remarks>
+        ///         <para>Values: 20..99</para>
+        ///     </remarks>
         /// </summary>
         public ushort QuietZone
         {
-            get
+            get { return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.QuietZone).Value); }
+            set
             {
-                return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.QuietZone)
-                                            .Value);
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.QuietZone,
+                                 DataType = DataType.Byte,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.QuietZone, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRSecurityLevel</para>
-        /// <para>OCR security / confidence level.</para>
-        /// <remarks><para>Values: 10..99</para></remarks>
+        ///     <para>Driver Attribute Name: OCRSecurityLevel</para>
+        ///     <para>OCR security / confidence level.</para>
+        ///     <remarks>
+        ///         <para>Values: 10..99</para>
+        ///     </remarks>
         /// </summary>
         public ushort SecurityLevel
         {
-            get
+            get { return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.SecurityLevel).Value); }
+            set
             {
-                return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.SecurityLevel)
-                                            .Value);
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.SecurityLevel,
+                                 DataType = DataType.Byte,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.SecurityLevel, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRTemplate1</para>
-        /// <para>Description:Set OCR template that matches an OCR string to be read.</para>
-        /// <remarks><para>"9" (Required digit), "A" (Required alpha), "1" (Optional Alphanumberic), "2" (Optional Alpha), "3" (Alpha or digit),
-        ///  "4" (Any including space & reject), "5" (Any except space & reject), "7" (optional digit), "8" (digit or fill), "F" (alpha or fill),
-        /// " " (optional space), "." (optional small special), "E" (new line), "C" (string extract "CbPe" b = begin, P = category, e = end),
-        ///  """ or "+" delimit literal strings, "D" (End of Field), </para></remarks>
+        ///     <para>Driver Attribute Name: OCRTemplate1</para>
+        ///     <para>Description:Set OCR template that matches an OCR string to be read.</para>
+        ///     <remarks>
+        ///         <para>
+        ///             "9" (Required digit), "A" (Required alpha), "1" (Optional Alphanumberic), "2" (Optional Alpha), "3" (Alpha
+        ///             or digit),
+        ///             "4" (Any including space & reject), "5" (Any except space & reject), "7" (optional digit), "8" (digit or
+        ///             fill), "F" (alpha or fill),
+        ///             " " (optional space), "." (optional small special), "E" (new line), "C" (string extract "CbPe" b = begin, P
+        ///             = category, e = end),
+        ///             """ or "+" delimit literal strings, "D" (End of Field),
+        ///         </para>
+        ///     </remarks>
         /// </summary>
         public string Template
         {
-            get
+            get { return (string)GetAttribute((ushort)OcrAttribute.Template).Value; }
+            set
             {
-                return (string)GetAttribute((ushort)OcrAttribute.Template)
-                                   .Value;
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.Template,
+                                 DataType = DataType.String,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.Template, DataType = DataType.String, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRThicken</para>
-        /// <para>OCR Thickening.</para>
-        /// <remarks><para>Values: 0..16</para></remarks>
+        ///     <para>Driver Attribute Name: OCRThicken</para>
+        ///     <para>OCR Thickening.</para>
+        ///     <remarks>
+        ///         <para>Values: 0..16</para>
+        ///     </remarks>
         /// </summary>
         public ushort Thicken
         {
-            get
+            get { return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.Thicken).Value); }
+            set
             {
-                return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.Thicken)
-                                            .Value);
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.Thicken,
+                                 DataType = DataType.Byte,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.Thicken, DataType = DataType.Byte, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRSubset</para>
-        /// <para>Set OCR character subset for an OCR string to be read.</para>
-        /// <remarks><para>Values: ABCD1234 etc.</para></remarks>
+        ///     <para>Driver Attribute Name: OCRSubset</para>
+        ///     <para>Set OCR character subset for an OCR string to be read.</para>
+        ///     <remarks>
+        ///         <para>Values: ABCD1234 etc.</para>
+        ///     </remarks>
         /// </summary>
         public string ValidCharacters
         {
-            get
+            get { return (string)GetAttribute((ushort)OcrAttribute.ValidCharacters).Value; }
+            set
             {
-                return (string)GetAttribute((ushort)OcrAttribute.ValidCharacters)
-                                   .Value;
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.ValidCharacters,
+                                 DataType = DataType.String,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.ValidCharacters, DataType = DataType.String, Value = value}); }
         }
 
         /// <summary>
-        /// <para>Driver Attribute Name: OCRBWLevel</para>
-        /// <para>Sets OCR White Level.</para>
-        /// <remarks><para>Values: 0..99</para></remarks>
+        ///     <para>Driver Attribute Name: OCRBWLevel</para>
+        ///     <para>Sets OCR White Level.</para>
+        ///     <remarks>
+        ///         <para>Values: 0..99</para>
+        ///     </remarks>
         /// </summary>
         public ushort WhiteLevel
         {
-            get
+            get { return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.WhiteLevel).Value); }
+            set
             {
-                return Convert.ToUInt16(GetAttribute((ushort)OcrAttribute.WhiteLevel)
-                                            .Value);
+                SetAttribute(new ScannerAttribute
+                             {
+                                 Id = (ushort)OcrAttribute.WhiteLevel,
+                                 DataType = DataType.Byte,
+                                 Value = value
+                             });
             }
-            set { SetAttribute(new ScannerAttribute {Id = (ushort)OcrAttribute.WhiteLevel, DataType = DataType.Byte, Value = value}); }
         }
     }
 }

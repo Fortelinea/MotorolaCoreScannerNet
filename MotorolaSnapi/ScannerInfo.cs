@@ -11,69 +11,76 @@ using Motorola.Snapi.Constants;
 namespace Motorola.Snapi
 {
     /// <summary>
-    /// Contains information about this scanner.
-    /// <para>NOTE: If this information was changed you must call get GetDevices() again to update your scanner list.</para>
+    ///     Contains information about this scanner.
+    ///     <para>NOTE: If this information was changed you must call get GetDevices() again to update your scanner list.</para>
     /// </summary>
     public class ScannerInfo
     {
         public ScannerInfo(XElement scannerXml) { Parse(scannerXml); }
 
         /// <summary>
-        /// Date of manufacture.
+        ///     Date of manufacture.
         /// </summary>
         public string DateOfManufacture { get; private set; }
 
         /// <summary>
-        /// Currently installed firmware.
-        /// <para>NOTE: If you updated your firmware after you last called GetDevices, this information will be obsolete. Call GetDevices again to update your scanner collection.</para>
-        /// </summary>
-        public string InstalledFirmware { get; private set; }
-
-        /// <summary>
-        /// Asset tracking information of the scanner.
+        ///     Asset tracking information of the scanner.
         /// </summary>
         public Guid GUID { get; private set; }
 
         /// <summary>
-        /// USB Host mode of the scanner.
-        /// <para>NOTE: If you changed the USB host mode after you last called GetDevices, this information will be obsolete. Call GetDevices again to update your scanner collection.</para>
+        ///     Currently installed firmware.
+        ///     <para>
+        ///         NOTE: If you updated your firmware after you last called GetDevices, this information will be obsolete. Call
+        ///         GetDevices again to update your scanner collection.
+        ///     </para>
         /// </summary>
-        public string UsbHostMode { get; private set; }
+        public string InstalledFirmware { get; private set; }
 
         /// <summary>
-        /// Scanner model number.
+        ///     Scanner model number.
         /// </summary>
         public string ModelNumber { get; private set; }
 
         /// <summary>
-        /// Product ID.
+        ///     Product ID.
         /// </summary>
         public int ProductId { get; private set; }
 
         /// <summary>
-        /// Current scannerID.
-        /// <para>May change on reboot. Call GetScanners again to update.</para>
+        ///     Current scannerID.
+        ///     <para>May change on reboot. Call GetScanners again to update.</para>
         /// </summary>
         public int ScannerId { get; private set; }
 
         /// <summary>
-        /// Unique serial number of the device.
+        ///     Unique serial number of the device.
         /// </summary>
         public string SerialNumber { get; private set; }
 
         /// <summary>
-        /// Vendor ID.
+        ///     USB Host mode of the scanner.
+        ///     <para>
+        ///         NOTE: If you changed the USB host mode after you last called GetDevices, this information will be obsolete.
+        ///         Call GetDevices again to update your scanner collection.
+        ///     </para>
+        /// </summary>
+        public string UsbHostMode { get; private set; }
+
+        /// <summary>
+        ///     Vendor ID.
         /// </summary>
         public int VendorId { get; private set; }
 
         /// <summary>
-        /// Parses scanner info from this scanner's xml. (Usually from GetDevices Method which executes the GetScanners command.)
-        /// <para>NOTE: If this information was changed you must call get GetDevices() again to update your scanner list.</para>
+        ///     Parses scanner info from this scanner's xml. (Usually from GetDevices Method which executes the GetScanners
+        ///     command.)
+        ///     <para>NOTE: If this information was changed you must call get GetDevices() again to update your scanner list.</para>
         /// </summary>
         /// <param name="scannerXml">Xml containing info for this scanner</param>
         private void Parse(XElement scannerXml)
         {
-            if ((scannerXml == null) || (scannerXml.IsEmpty))
+            if ((scannerXml == null) || scannerXml.IsEmpty)
                 throw new InvalidDataException("Xml is empty");
 
             ParseHostMode(scannerXml);
@@ -95,81 +102,70 @@ namespace Motorola.Snapi
             ParseFirmware(scannerXml);
         }
 
-        private void ParseFirmware(XElement scannerXml)
-        {
-            XElement firmware = scannerXml.Element("firmware");
-            if (firmware != null)
-                InstalledFirmware = firmware.Value.Trim();
-        }
-
         private void ParseDateOfManufacture(XElement scannerXml)
         {
-            XElement dateOfManufacture = scannerXml.Element("DoM");
+            var dateOfManufacture = scannerXml.Element("DoM");
             if (dateOfManufacture != null)
                 DateOfManufacture = dateOfManufacture.Value.Trim();
         }
 
-        private void ParseModelNumber(XElement scannerXml)
+        private void ParseFirmware(XElement scannerXml)
         {
-            XElement modelNumber = scannerXml.Element("modelnumber");
-            if (modelNumber != null)
-                ModelNumber = modelNumber.Value.Trim();
-        }
-
-        private void ParsePid(XElement scannerXml)
-        {
-            XElement productId = scannerXml.Element("PID");
-            if (productId != null)
-            {
-                try
-                {
-                    ProductId = Int32.Parse(productId.Value);
-                }
-                catch {}
-            }
-        }
-
-        private void ParseVid(XElement scannerXml)
-        {
-            XElement vendorId = scannerXml.Element("VID");
-            if (vendorId != null)
-            {
-                try
-                {
-                    VendorId = Int32.Parse(vendorId.Value);
-                }
-                catch {}
-            }
+            var firmware = scannerXml.Element("firmware");
+            if (firmware != null)
+                InstalledFirmware = firmware.Value.Trim();
         }
 
         private void ParseGuid(XElement scannerXml)
         {
-            XElement guid = scannerXml.Element("GUID");
+            var guid = scannerXml.Element("GUID");
             if (guid != null)
             {
                 try
                 {
                     GUID = Guid.Parse(guid.Value);
                 }
-                catch {}
+                catch { }
             }
         }
 
-        private void ParseSerialNumber(XElement scannerXml)
+        private void ParseHostMode(XElement scannerXml)
         {
-            XElement serialNumber = scannerXml.Element("serialnumber");
-            if (serialNumber != null)
-                SerialNumber = serialNumber.Value.Trim();
+            var type = scannerXml.Attribute("type");
+            var mode = type.Value;
+            switch (mode)
+            {
+                case "SNAPI":
+                {
+                    UsbHostMode = HostMode.USB_SNAPI_Imaging;
+                    break;
+                }
+                case "USBIBMHID":
+                {
+                    UsbHostMode = HostMode.USB_IBMHID;
+                    break;
+                }
+                case "USBHIDKB":
+                {
+                    UsbHostMode = HostMode.USB_HIDKB;
+                    break;
+                }
+                case "USBIBMTT":
+                {
+                    UsbHostMode = HostMode.USB_IBMTT;
+                    break;
+                }
+            }
         }
 
         private void ParseId(XElement scannerXml)
         {
-            XElement scannerId = scannerXml.Element("scannerID");
+            var scannerId = scannerXml.Element("scannerID");
             if (scannerId != null)
             {
                 try
                 {
-                    ScannerId = Int32.Parse(scannerId.Value);
+                    ScannerId = int.Parse(scannerId.Value);
                 }
                 catch
                 {
@@ -178,32 +174,43 @@ namespace Motorola.Snapi
             }
         }
 
-        private void ParseHostMode(XElement scannerXml)
+        private void ParseModelNumber(XElement scannerXml)
         {
-            XAttribute type = scannerXml.Attribute("type");
-            var mode = type.Value;
-            switch (mode)
+            var modelNumber = scannerXml.Element("modelnumber");
+            if (modelNumber != null)
+                ModelNumber = modelNumber.Value.Trim();
+        }
+
+        private void ParsePid(XElement scannerXml)
+        {
+            var productId = scannerXml.Element("PID");
+            if (productId != null)
             {
-                case ("SNAPI"):
+                try
                 {
-                    UsbHostMode = HostMode.USB_SNAPI_Imaging;
-                    break;
+                    ProductId = int.Parse(productId.Value);
                 }
-                case ("USBIBMHID"):
+                catch { }
+            }
+        }
+
+        private void ParseSerialNumber(XElement scannerXml)
+        {
+            var serialNumber = scannerXml.Element("serialnumber");
+            if (serialNumber != null)
+                SerialNumber = serialNumber.Value.Trim();
+        }
+
+        private void ParseVid(XElement scannerXml)
+        {
+            var vendorId = scannerXml.Element("VID");
+            if (vendorId != null)
+            {
+                try
                 {
-                    UsbHostMode = HostMode.USB_IBMHID;
-                    break;
+                    VendorId = int.Parse(vendorId.Value);
                 }
-                case ("USBHIDKB"):
-                {
-                    UsbHostMode = HostMode.USB_HIDKB;
-                    break;
-                }
-                case ("USBIBMTT"):
-                {
-                    UsbHostMode = HostMode.USB_IBMTT;
-                    break;
-                }
+                catch { }
             }
         }
     }

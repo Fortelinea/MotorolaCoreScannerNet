@@ -11,18 +11,26 @@ namespace Motorola.Snapi
 {
     public interface IMotorolaBarcodeScanner
     {
-        ScannerInfo Info { get; }
         CaptureMode CaptureMode { set; }
+
+        ScannerInfo Info { get; }
+
         void Reboot();
 
         #region Commands
 
         void SetHostMode(string mode, bool permanent = false, bool silent = true);
+
         AccessControl AccessControl { get; }
+
         Actions Actions { get; }
+
         Defaults Defaults { get; }
+
         Firmware Firmware { get; }
+
         Trigger Trigger { get; }
+
         MacroPdf MacroPDF { get; }
 
         #endregion
