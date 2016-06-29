@@ -1,7 +1,10 @@
-# Motorola CoreScanner Driver Wrapper
-//TODO Come up with a better name.
+# Motorola / Zebra CoreScanner Driver Wrapper
 
-C# Wrapper for the Motorola CoreScanner Driver. Visit website for documentation.
+C# Wrapper for the Motorola CoreScanner Driver. 
+
+Makes using the Motorola / Zebra Scanners much easier (handles much of the duplicate code and XML for you).
+
+Visit website for documentation.
 http://fortelinea.github.io/MotorolaCoreScannerNet/
 
 #The MIT License (MIT)

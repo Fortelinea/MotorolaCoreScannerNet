@@ -35,6 +35,9 @@ obj/
 [Rr]elease*/
 Ankh.NoLoad
 
+#NuGet Package Creation directories
+build/
+
 nuget/package/lib/*
 nuget/package/*.nupkg
 

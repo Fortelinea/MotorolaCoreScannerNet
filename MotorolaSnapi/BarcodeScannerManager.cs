@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -50,6 +51,10 @@ namespace Motorola.Snapi
     /// </summary>
     public class BarcodeScannerManager : IDisposable
     {
+        /// <summary>
+        ///     Returns a singleton instance of the manager.
+        ///     If the core scanner libraries can't be found or the object otherwise initialized, the instance
+        /// </summary>
         public static readonly BarcodeScannerManager Instance = new BarcodeScannerManager();
 
         private CCoreScanner _scannerDriver;
@@ -63,8 +68,19 @@ namespace Motorola.Snapi
 
                 Keyboard = new Keyboard(_scannerDriver);
             }
-            catch (TypeInitializationException) { }
+            catch (Exception ex)
+            {
+                Trace.WriteLine($"Initialization of the Motorola/Zebra BarcodeScannerManager failed:{Environment.NewLine}{ex.Message}");
+                _scannerDriver = null;
+                Keyboard = null;
+            }
         }
+
+        /// <summary>
+        ///     Used to determine if this instance can talk to the Interop drivers
+        /// </summary>
+        /// <returns>false when drivers are not installed or there are problems otherwise</returns>
+        public bool IsInitialized => _scannerDriver != null;
 
         #region Commands
 
