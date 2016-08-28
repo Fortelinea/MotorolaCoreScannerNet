@@ -65,7 +65,16 @@ namespace Motorola.Test
             Console.WriteLine("Image saved to \"{0}\"", ImageSaveLocation);
         }
 
-        private static void Instance_ScannerAttached(object sender, PnpEventArgs e) { _scannerAttached = true; }
+        private static void Instance_ScannerAttached(object sender, PnpEventArgs e)
+        {
+            _scannerAttached = true;
+            ConnectScanners();
+        }
+
+        private static void Instance_ScannerDetached(object sender, PnpEventArgs e)
+        {
+            _scannerAttached = false;
+        }
 
         private static void Main(string[] args)
         {
@@ -77,12 +86,24 @@ namespace Motorola.Test
 
             var b = BarcodeScannerManager.Instance.RegisteredEvents;
 
-            BarcodeScannerManager.Instance.Keyboard.EnableEmulation = false;
+            //BarcodeScannerManager.Instance.Keyboard.EnableEmulation = false;
 
             BarcodeScannerManager.Instance.ScannerAttached += Instance_ScannerAttached;
+            BarcodeScannerManager.Instance.ScannerDetached += Instance_ScannerDetached;
 
             var a = BarcodeScannerManager.Instance.DriverVersion;
 
+            ConnectScanners();
+
+            BarcodeScannerManager.Instance.DataReceived += Instance_DataReceived;
+            BarcodeScannerManager.Instance.ImageReceived += Instance_ImageReceived;
+
+            Console.WriteLine("Ready to scan.. (Enter to quit)");
+            Console.ReadLine();
+        }
+        
+        private static void ConnectScanners()
+        {
             foreach (var scanner in BarcodeScannerManager.Instance.GetDevices())
             {
                 scanner.SetHostMode(HostMode.USB_SNAPI_Imaging);
@@ -101,12 +122,6 @@ namespace Motorola.Test
 
                 //PerformCommands(scanner);
             }
-
-            BarcodeScannerManager.Instance.DataReceived += Instance_DataReceived;
-            BarcodeScannerManager.Instance.ImageReceived += Instance_ImageReceived;
-
-            Console.WriteLine("Ready to scan.. (Enter to quit)");
-            Console.ReadLine();
         }
 
         private static void PerformCommands(IMotorolaBarcodeScanner scanner)
