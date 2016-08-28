@@ -599,9 +599,9 @@ namespace Motorola.Snapi
             var xdoc = XDocument.Parse(ppnpdata);
             var scannerId = ParseScannerId(xdoc);
 
-            if ((ScannerAttached != null) && (eventtype == 1))
+            if ((ScannerAttached != null) && (eventtype == 0))
                 ScannerAttached(this, new PnpEventArgs(scannerId));
-            else if ((ScannerDetached != null) && (eventtype == 2))
+            else if ((ScannerDetached != null) && (eventtype == 1))
                 ScannerDetached(this, new PnpEventArgs(scannerId));
         }
 
