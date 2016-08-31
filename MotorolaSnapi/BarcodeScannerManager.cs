@@ -589,19 +589,19 @@ namespace Motorola.Snapi
         /// <summary>
         ///     Handles PNPEvent and invokes ScannerAttached or ScannerDetached.
         /// </summary>
-        /// <param name="eventtype">
-        ///     1 - Scanner attached.
-        ///     2 - Scanner detached.
+        /// <param name="eventType">
+        ///     0 - Scanner attached.
+        ///     1 - Scanner detached.
         /// </param>
         /// <param name="ppnpdata">Xml output.</param>
-        private void OnPnpEvent(short eventtype, ref string ppnpdata)
+        private void OnPnpEvent(short eventType, ref string ppnpdata)
         {
             var xdoc = XDocument.Parse(ppnpdata);
             var scannerId = ParseScannerId(xdoc);
 
-            if ((ScannerAttached != null) && (eventtype == 0))
+            if ((ScannerAttached != null) && (eventType == (short)PnpEvent.ScannerAttached))
                 ScannerAttached(this, new PnpEventArgs(scannerId));
-            else if ((ScannerDetached != null) && (eventtype == 1))
+            else if ((ScannerDetached != null) && (eventType == (short)PnpEvent.ScannerDetached))
                 ScannerDetached(this, new PnpEventArgs(scannerId));
         }
 
