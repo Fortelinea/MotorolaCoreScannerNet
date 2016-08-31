@@ -60,7 +60,7 @@ namespace Motorola.Snapi.Constants.Enums
         Jpeg = 1
     }
 
-    internal enum PnpEvent
+    internal enum PnpEvent : short
     {
         ScannerAttached = 0, // Triggered when a Motorola Scanner is attached.
 
