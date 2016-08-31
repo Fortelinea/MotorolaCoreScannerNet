@@ -1,17 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<package>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>MotorolaCoreScannerNet</id>
         <version>$version$</version>
         <title>Motorola CoreScanner Driver .NET Wrapper</title>
         <authors>Nathan Barnett,Jason Talbot</authors>
+        <owners>Nathan Barnett,Jason Talbot</owners>
         <projectUrl>https://github.com/Fortelinea/MotorolaCoreScannerNet</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Provides a wrapper for the Zebra/Motorola CoreScannerDriver that is much easier to use in a C# project.</description>
         <summary>Provides a wrapper for the Zebra/Motorola CoreScannerDriver that is much easier to use in a C# project.</summary>
-        <releaseNotes>Namespace and versioning fixes
-
-Exceptions pass along much more information about the error.
+        <releaseNotes>Fixes enum.
 
 For documentation go to http://fortelinea.github.io/MotorolaCoreScannerNet/
 
@@ -19,13 +18,9 @@ You will need to download and include the Motorola (Zebra) Core Scanner Driver t
         <copyright>Copyright (c) 2015 Fortelinea Software Systems, Inc.</copyright>
         <tags>Motorola Zebra Barcode Scanner Fortelinea CoreScanner .NET</tags>
     </metadata>
-
-    <!-- Add the following files to the nuget package -->
     <files>
-        <file src="bin/$configuration$/Interop.CoreScanner.dll" target="build\"/>
-        <file src="build/MotorolaCoreScannerNet.targets" target="build\"/>
+        <file src="bin/$configuration$/Interop.CoreScanner.dll" target="build\Interop.CoreScanner.dll" />
+        <file src="build/MotorolaCoreScannerNet.targets" target="build\MotorolaCoreScannerNet.targets" />
+        <file src="bin/$configuration$/Motorola.Snapi.dll" target="lib\net451\Motorola.Snapi.dll" />
     </files>
-
 </package>
-
-
