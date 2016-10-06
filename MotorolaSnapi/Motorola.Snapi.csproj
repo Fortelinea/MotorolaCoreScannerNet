@@ -83,6 +83,7 @@
     <Compile Include="BarcodeScannerManager.cs" />
     <Compile Include="Commands\MacroPdf.cs" />
     <Compile Include="Commands\Trigger.cs" />
+    <Compile Include="Constants\AttributeNumbers\ActionAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\AdfAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\BeeperAttribute.cs" />
     <Compile Include="Constants\AttributeNumbers\Chinese2Of5Attribute.cs" />

@@ -20,7 +20,7 @@ namespace Motorola.Test
         private static void GetAttributes(IMotorolaBarcodeScanner scanner)
         {
             //TestStatus(scanner);
-            TestOcr(scanner);
+            //TestOcr(scanner);
 
             //TestDiscovery(scanner);
             //TestImaging(scanner);
@@ -34,7 +34,7 @@ namespace Motorola.Test
             //TestCode39(scanner);
             //TestCode11(scanner);
             //TestCode93(scanner);
-            TestI2Of5(scanner);
+            //TestI2Of5(scanner);
 
             //TestD2Of5(scanner);
             //TestSecurity(scanner);
@@ -118,9 +118,13 @@ namespace Motorola.Test
 
                 //scanner.Defaults.Restore();
                 //scanner.CaptureMode = CaptureMode.Barcode;
-                GetAttributes(scanner);
+                //GetAttributes(scanner);
 
                 //PerformCommands(scanner);
+                //scanner.Trigger.TriggerByCommand = true;
+                //scanner.Trigger.PullTrigger();
+
+                scanner.Actions.SetAttribute(138, 'B', 0); // sound beeper via attribute
             }
         }
 
