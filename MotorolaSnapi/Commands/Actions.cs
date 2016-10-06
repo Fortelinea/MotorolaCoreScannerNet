@@ -17,6 +17,9 @@ namespace Motorola.Snapi.Commands
 
         private readonly int _scannerId;
 
+        private readonly string _setAttributeXml;
+
+
         /// <summary>
         ///     Instantiates a new Actions object
         /// </summary>
@@ -26,6 +29,10 @@ namespace Motorola.Snapi.Commands
         {
             _scannerDriver = scannerDriver;
             _scannerId = scannerId;
+
+            _setAttributeXml =
+                $@"<inArgs><scannerID>{_scannerId}</scannerID><cmdArgs><arg-xml><attrib_list><attribute><id>{{0}}</id><datatype>{{1}}</datatype><value>{{2}}</value></attribute></attrib_list></arg-xml></cmdArgs></inArgs>";
+
         }
 
         /// <summary>
@@ -54,6 +61,22 @@ namespace Motorola.Snapi.Commands
             var s = (StatusCode)status;
             if (s != StatusCode.Success)
                 throw new ScannerException(s);
+        }
+
+        public void SetAttribute(uint attributeNumber, char type, string value)
+        {
+            var inXml = string.Format(_setAttributeXml, attributeNumber, type, value);
+            string outXml;
+            int status;
+            _scannerDriver.ExecCommand((int)ScannerCommand.DeviceSetParameters, ref inXml, out outXml, out status);
+            var s = (StatusCode)status;
+            if (s != StatusCode.Success)
+                throw new ScannerException(s);
+
+        }
+        public void SetAttribute(uint attributeNumber, char type, int value)
+        {
+            this.SetAttribute(attributeNumber, type, value.ToString());
         }
     }
 

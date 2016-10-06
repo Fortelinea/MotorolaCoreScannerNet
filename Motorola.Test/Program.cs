@@ -121,9 +121,10 @@ namespace Motorola.Test
                 //GetAttributes(scanner);
 
                 //PerformCommands(scanner);
-                scanner.Trigger.TriggerByCommand = true;
-                scanner.Trigger.PullTrigger();
+                //scanner.Trigger.TriggerByCommand = true;
+                //scanner.Trigger.PullTrigger();
 
+                scanner.Actions.SetAttribute(138, 'B', 0); // sound beeper via attribute
             }
         }
 
