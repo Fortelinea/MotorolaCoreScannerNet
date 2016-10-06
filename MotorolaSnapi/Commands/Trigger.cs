@@ -37,7 +37,7 @@ namespace Motorola.Snapi.Commands
             {
                 if (value)
                 {
-                    var inXml = string.Format(_setAttributeXml, "X", 0);
+                    var inXml = string.Format(_setAttributeXml, (int)Constants.AttributeNumbers.ActionAttribute.HostTriggerSession, "X", 0);
                     string outXml;
                     int status;
                     _scannerDriver.ExecCommand((int)ScannerCommand.DeviceSetParameters, ref inXml, out outXml, out status);
