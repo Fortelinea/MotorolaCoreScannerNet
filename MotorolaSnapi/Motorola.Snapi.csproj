@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\Adf.cs" />
+    <Compile Include="Attributes\Custom.cs" />
     <Compile Include="BarcodeScanner.Attributes.cs" />
     <Compile Include="Attributes\Beeper.cs" />
     <Compile Include="Attributes\Chinese2Of5.cs" />
