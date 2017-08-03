@@ -63,20 +63,29 @@ namespace Motorola.Snapi.Commands
                 throw new ScannerException(s);
         }
 
-        public void SetAttribute(uint attributeNumber, char type, string value)
+        public void SetAttribute(uint attributeNumber, char type, string value, bool permanent = false)
         {
             var inXml = string.Format(_setAttributeXml, attributeNumber, type, value);
             string outXml;
             int status;
-            _scannerDriver.ExecCommand((int)ScannerCommand.DeviceSetParameters, ref inXml, out outXml, out status);
+            var opCode = permanent
+                ? ScannerCommand.SetParameterPersistence
+                : ScannerCommand.DeviceSetParameters;
+            _scannerDriver.ExecCommand((int) opCode, ref inXml, out outXml, out status);
             var s = (StatusCode)status;
             if (s != StatusCode.Success)
                 throw new ScannerException(s);
 
         }
+
         public void SetAttribute(uint attributeNumber, char type, int value)
         {
             this.SetAttribute(attributeNumber, type, value.ToString());
+        }
+
+        public void SetAttribute(uint attributeNumber, DataType type, object value, bool permanent = false)
+        {
+            this.SetAttribute(attributeNumber, (char) type, value.ToString(), permanent);
         }
     }
 

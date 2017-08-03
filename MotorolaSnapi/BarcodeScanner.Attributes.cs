@@ -13,8 +13,6 @@ namespace Motorola.Snapi
 
         private Beeper _beeper;
 
-        private Custom _custom;
-
         private Chinese2Of5 _chinese2Of5;
 
         private Codabar _codabar;
@@ -74,8 +72,6 @@ namespace Motorola.Snapi
         #region IMotorolaBarcodeScanner Members
 
         public Beeper Beeper => _beeper ?? (_beeper = new Beeper(Info.ScannerId, _scannerDriver));
-
-        public Custom Custom => _custom ?? (_custom = new Custom(Info.ScannerId, _scannerDriver));
 
         #endregion
 

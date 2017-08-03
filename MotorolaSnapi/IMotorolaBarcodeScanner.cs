@@ -49,8 +49,6 @@ namespace Motorola.Snapi
 
         Beeper Beeper { get; }
 
-        Custom Custom { get; }
-
         LicenseParsing License { get; }
 
         Adf ADF { get; }
