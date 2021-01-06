@@ -1,159 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8609800B-EAF7-4A99-82D5-5899DF1E0747}</ProjectGuid>
+    <TargetFrameworks>net451;netstandard2.0</TargetFrameworks>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Motorola.Snapi</RootNamespace>
-    <AssemblyName>Motorola.Snapi</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Attributes\Adf.cs" />
-    <Compile Include="BarcodeScanner.Attributes.cs" />
-    <Compile Include="Attributes\Beeper.cs" />
-    <Compile Include="Attributes\Chinese2Of5.cs" />
-    <Compile Include="Attributes\Codabar.cs" />
-    <Compile Include="Attributes\Code11.cs" />
-    <Compile Include="Attributes\Code128.cs" />
-    <Compile Include="Attributes\Code32.cs" />
-    <Compile Include="Attributes\Code39.cs" />
-    <Compile Include="Attributes\Code93.cs" />
-    <Compile Include="Attributes\DataMatrixQr.cs" />
-    <Compile Include="Attributes\Discovery.cs" />
-    <Compile Include="Attributes\Discrete2Of5.cs" />
-    <Compile Include="Attributes\Interleaved2Of5.cs" />
-    <Compile Include="Attributes\LicenseParsing.cs" />
-    <Compile Include="Attributes\Imaging.cs" />
-    <Compile Include="Attributes\Maxicode.cs" />
-    <Compile Include="Attributes\Msi.cs" />
-    <Compile Include="Attributes\Pdf.cs" />
-    <Compile Include="Attributes\Postal.cs" />
-    <Compile Include="Attributes\RssGs1Databar.cs" />
-    <Compile Include="Attributes\ScannerAttribute.cs" />
-    <Compile Include="Attributes\SignatureCapture.cs" />
-    <Compile Include="Attributes\Status.cs" />
-    <Compile Include="Attributes\SymbologySecurity.cs" />
-    <Compile Include="Attributes\Synapse.cs" />
-    <Compile Include="Attributes\SystemEvents.cs" />
-    <Compile Include="Attributes\UpcEan.cs" />
-    <Compile Include="Commands\AccessControl.cs" />
-    <Compile Include="Commands\Actions.cs" />
-    <Compile Include="Commands\Defaults.cs" />
-    <Compile Include="Commands\Firmware.cs" />
-    <Compile Include="Commands\Keyboard.cs" />
-    <Compile Include="Attributes\MotorolaAttributeSet.cs" />
-    <Compile Include="Attributes\Ocr.cs" />
-    <Compile Include="BarcodeScanner.cs" />
-    <Compile Include="BarcodeScannerManager.cs" />
-    <Compile Include="Commands\MacroPdf.cs" />
-    <Compile Include="Commands\Trigger.cs" />
-    <Compile Include="Constants\AttributeNumbers\ActionAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\AdfAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\BeeperAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\Chinese2Of5Attribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\CodabarAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\Code11Attribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\Code128Attribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\Code32Attribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\Code39Attribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\Code93Attribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\DataMatrixQrAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\DiscoveryAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\Discrete2Of5Attribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\ImagingAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\Interleaved2of5Attribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\LicenseParsingAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\MaxicodeAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\MsiAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\OcrAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\PdfAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\PostalAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\RssGs1DatabarAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\SignatureCaptureAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\StatusAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\SymbologySecurityAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\SynapseAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\SystemEventAttribute.cs" />
-    <Compile Include="Constants\AttributeNumbers\UpcEanAttribute.cs" />
-    <Compile Include="Constants\Enums\BarcodeOrientation.cs" />
-    <Compile Include="Constants\Enums\BarcodeType.cs" />
-    <Compile Include="Constants\Enums\BeeperFrequency.cs" />
-    <Compile Include="Constants\Enums\BeeperVolume.cs" />
-    <Compile Include="Constants\Enums\BeepPattern.cs" />
-    <Compile Include="Constants\Enums\CaptureMode.cs" />
-    <Compile Include="Constants\Enums\Code11CheckDigit.cs" />
-    <Compile Include="Constants\Enums\DataType.cs" />
-    <Compile Include="Constants\Enums\DeviceParameter.cs" />
-    <Compile Include="Constants\Enums\I2Of5CheckDigit.cs" />
-    <Compile Include="Constants\Enums\LedMode.cs" />
-    <Compile Include="Constants\Enums\LicenseParseMode.cs" />
-    <Compile Include="Constants\Enums\EventType.cs" />
-    <Compile Include="Constants\Enums\ImageRotation.cs" />
-    <Compile Include="Constants\Enums\MsiCheckDigit.cs" />
-    <Compile Include="Constants\Enums\MsiCheckDigitAlgorithm.cs" />
-    <Compile Include="Constants\Enums\NotificationType.cs" />
-    <Compile Include="Constants\Enums\RmdEventType.cs" />
-    <Compile Include="Constants\Enums\SupplementalMode.cs" />
-    <Compile Include="Constants\Enums\TransmitCodeId.cs" />
-    <Compile Include="Constants\Enums\UpcPreamble.cs" />
-    <Compile Include="Constants\Enums\UpdateMode.cs" />
-    <Compile Include="Constants\HostMode.cs" />
-    <Compile Include="EnumUtil.cs" />
-    <Compile Include="EventArguments\BarcodeScanEventArgs.cs" />
-    <Compile Include="EventArguments\CommandResponceEventArgs.cs" />
-    <Compile Include="EventArguments\DownloadEventArgs.cs" />
-    <Compile Include="EventArguments\FirmwareEventArgs.cs" />
-    <Compile Include="EventArguments\FlashStartEventArgs.cs" />
-    <Compile Include="EventArguments\ImageEventArgs.cs" />
-    <Compile Include="EventArguments\IoEventArgs.cs" />
-    <Compile Include="EventArguments\PnpEventArgs.cs" />
-    <Compile Include="EventArguments\ScannerEventArgs.cs" />
-    <Compile Include="EventArguments\VideoEventArgs.cs" />
-    <Compile Include="IMotorolaBarcodeScanner.cs" />
-    <Compile Include="ScannerInfo.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScannerException.cs" />
-    <Compile Include="ValueConverters.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Documentation.dox" />
-  </ItemGroup>
   <ItemGroup>
     <COMReference Include="CoreScanner">
       <Guid>{DB07B9FC-18B0-4B55-9A44-31D2C2F87875}</Guid>
@@ -165,13 +15,14 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+  </ItemGroup>
+  <PropertyGroup />
   <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release'">
-    <Exec Command="nuget pack $(ProjectFileName) -Symbols -Prop Configuration=Release">
-    </Exec>
+    <Exec Command="nuget pack $(ProjectFileName) -Symbols -Prop Configuration=Release"></Exec>
   </Target>
 </Project>

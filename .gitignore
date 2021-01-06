@@ -100,3 +100,4 @@ Installer/**/*.zip
 Installer/Clients/Reports/*
 Installer/Server/PrimaWebService/*
 Installer/Prima/*
+.vs/
